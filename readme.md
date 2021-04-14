@@ -1,5 +1,11 @@
-IMUSim - simulator for inertial and magnetic sensing systems and algorithms.
+## IMUSim: Simulator for inertial and magnetic sensing systems and algorithms.
 
+### Documentation
+To view API, open `docs/build/html/api/index.html` in your web browser.
+
+![docs](/images/docs-index.png)
+
+### Licensing
 For more information see http://www.imusim.org/
 
 Copyright (C) 2009-2011 University of Edinburgh
