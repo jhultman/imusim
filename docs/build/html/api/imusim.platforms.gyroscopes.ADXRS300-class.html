@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>imusim.platforms.gyroscopes.ADXRS300</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="imusim-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://www.imusim.org/">IMUSim</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="imusim-module.html">Package&nbsp;imusim</a> ::
+        <a href="imusim.platforms-module.html">Package&nbsp;platforms</a> ::
+        <a href="imusim.platforms.gyroscopes-module.html">Module&nbsp;gyroscopes</a> ::
+        Class&nbsp;ADXRS300
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class ADXRS300</h1><p class="nomargin-top"><span class="codelink"><a href="imusim.platforms.gyroscopes-pysrc.html#ADXRS300">source&nbsp;code</a></span></p>
+<center>
+
+</center>
+<hr />
+<p>Model of the Analog devices ADXRS300 gyroscope with enhanced 
+  range.</p>
+  <p>For range extension method see Analog Devices application note 
+  AN625.</p>
+  <p>The model assumes that the output of the gyroscope is converted to a 
+  3.3V voltage domain using a 1% tolerance resistor divider.</p>
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Instance Methods</span></td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="imusim.platforms.gyroscopes.ADXRS300-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">platform</span>,
+        <span class="summary-sig-arg">noiseStdDev</span>,
+        <span class="summary-sig-arg">sensitivity</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">300deg/s</code><code class="variable-quote">'</code></span>,
+        <span class="summary-sig-arg">rng</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">**kwargs</span>)</span><br />
+      Initialise sensor.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="imusim.platforms.gyroscopes-pysrc.html#ADXRS300.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="imusim.platforms.gyroscopes.ADXRS300-class.html#sensedVoltages" class="summary-sig-name">sensedVoltages</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">t</span>)</span><br />
+      Get output voltages at given times.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="imusim.platforms.gyroscopes-pysrc.html#ADXRS300.sensedVoltages">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="imusim.platforms.sensors.NoisySensor-class.html">sensors.NoisySensor</a></code></b>:
+      <code><a href="imusim.platforms.sensors.NoisySensor-class.html#noiseVoltages">noiseVoltages</a></code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="imusim.platforms.gyroscopes.Gyroscope-class.html">Gyroscope</a></code></b>:
+      <code><a href="imusim.platforms.gyroscopes.Gyroscope-class.html#trueValues">trueValues</a></code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="imusim.platforms.sensors.Sensor-class.html">sensors.Sensor</a></code></b>:
+      <code><a href="imusim.platforms.sensors.Sensor-class.html#voltages">voltages</a></code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__delattr__</code>,
+      <code>__format__</code>,
+      <code>__getattribute__</code>,
+      <code>__hash__</code>,
+      <code>__new__</code>,
+      <code>__reduce__</code>,
+      <code>__reduce_ex__</code>,
+      <code>__repr__</code>,
+      <code>__setattr__</code>,
+      <code>__sizeof__</code>,
+      <code>__str__</code>,
+      <code>__subclasshook__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS VARIABLES ==================== -->
+<a name="section-ClassVariables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Class Variables</span></td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="imusim.platforms.gyroscopes.ADXRS300-class.html#NOMINAL_SENSITIVITY" class="summary-name">NOMINAL_SENSITIVITY</a> = <code title="{'1200deg/s': 0.00125,
+ '300deg/s': 0.005,
+ '600deg/s': 0.0025,
+ '900deg/s': 0.00167}"><code class="variable-group">{</code><code class="variable-quote">'</code><code class="variable-string">1200deg/s</code><code class="variable-quote">'</code><code class="variable-op">: </code>0.00125<code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">300deg/s</code><code class="variable-quote">'</code><code class="variable-op">: </code>0.005<code class="variable-ellipsis">...</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="NOMINAL_OFFSET"></a><span class="summary-name">NOMINAL_OFFSET</span> = <code title="2.5">2.5</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="CROSS_AXIS"></a><span class="summary-name">CROSS_AXIS</span> = <code title="0.05">0.05</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="NOMINAL_ACCELERATION_SENSITIVITY"></a><span class="summary-name">NOMINAL_ACCELERATION_SENSITIVITY</span> = <code title="0.003490658503988659">0.003490658503988659</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__abstractmethods__"></a><span class="summary-name">__abstractmethods__</span> = <code title="frozenset([])"><code class="variable-group">frozenset([</code><code class="variable-group">])</code></code>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="imusim.platforms.sensors.Sensor-class.html">sensors.Sensor</a></code></b>:
+      <code><a href="imusim.platforms.sensors.Sensor-class.html#__metaclass__">__metaclass__</a></code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== INSTANCE VARIABLES ==================== -->
+<a name="section-InstanceVariables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Instance Variables</span></td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="imusim.platforms.sensors.Sensor-class.html">sensors.Sensor</a></code></b>:
+      <code><a href="imusim.platforms.sensors.Sensor-class.html#platform">platform</a></code>,
+      <code><a href="imusim.platforms.sensors.Sensor-class.html#trajectory">trajectory</a></code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== PROPERTIES ==================== -->
+<a name="section-Properties"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Properties</span></td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__class__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Method Details</span></td>
+</tr>
+</table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">platform</span>,
+        <span class="sig-arg">noiseStdDev</span>,
+        <span class="sig-arg">sensitivity</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">300deg/s</code><code class="variable-quote">'</code></span>,
+        <span class="sig-arg">rng</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">**kwargs</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="imusim.platforms.gyroscopes-pysrc.html#ADXRS300.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Initialise sensor.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>platform</code></strong> - <a href="imusim.platforms.base.Platform-class.html" 
+          class="link">Platform</a> this sensor will be attached to.</li>
+        <li><strong class="pname"><code>positionOffset</code></strong> - Position offset vector of this sensor in the local co-ordinate 
+          frame of its host platform.</li>
+        <li><strong class="pname"><code>rotationOffset</code></strong> - Rotation offset quaternion of this sensor in the local 
+          co-ordinate frame of its host platform.</li>
+        <li><strong class="pname"><code>sensitivity</code></strong> - Sensitivity, '300deg/s', '600deg/s', '900deg/s' or '1200deg/s'.</li>
+        <li><strong class="pname"><code>noiseStdDev</code></strong> - Standard deviation of measured output voltage noise in the system
+          in which the gyroscope is integrated.</li>
+        <li><strong class="pname"><code>rng</code></strong> - <code class="link">np.random.RandomState</code> from which to 
+          draw imperfections.</li>
+    </ul></dd>
+    <dt>Decorators:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code>@prepend_method_doc(Gyroscope)</code></li>
+    </ul></dd>
+    <dt>Overrides:
+        object.__init__
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="sensedVoltages"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">sensedVoltages</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">t</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="imusim.platforms.gyroscopes-pysrc.html#ADXRS300.sensedVoltages">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Get output voltages at given times.</p>
+  <p>This function should include all deterministic effects in the sensor, 
+  but not random noise.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>t</code></strong> - time(s) at which to measure.</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>3xN <code class="link">np.ndarray</code> of output voltages, 
+          where N = len(t).</dd>
+    <dt>Overrides:
+        <a href="imusim.platforms.sensors.Sensor-class.html#sensedVoltages">sensors.Sensor.sensedVoltages</a>
+        <dd><em class="note">(inherited documentation)</em></dd>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== CLASS VARIABLE DETAILS ==================== -->
+<a name="section-ClassVariableDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Class Variable Details</span></td>
+</tr>
+</table>
+<a name="NOMINAL_SENSITIVITY"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">NOMINAL_SENSITIVITY</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+<code class="variable-group">{</code><code class="variable-quote">'</code><code class="variable-string">1200deg/s</code><code class="variable-quote">'</code><code class="variable-op">: </code>0.00125<code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">300deg/s</code><code class="variable-quote">'</code><code class="variable-op">: </code>0.005<code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">600deg/s</code><code class="variable-quote">'</code><code class="variable-op">: </code>0.0025<code class="variable-op">,</code>
+ <code class="variable-quote">'</code><code class="variable-string">900deg/s</code><code class="variable-quote">'</code><code class="variable-op">: </code>0.00167<code class="variable-group">}</code>
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="imusim-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://www.imusim.org/">IMUSim</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Wed Apr 14 11:45:14 2021
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

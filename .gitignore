@@ -2,4 +2,4 @@
 *.so
 imusim/maths/*.c
 build
-docs/build
+!docs/build

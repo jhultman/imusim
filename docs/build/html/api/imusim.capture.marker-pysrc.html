@@ -1,0 +1,1234 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>imusim.capture.marker</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="imusim-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://www.imusim.org/">IMUSim</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="imusim-module.html">Package&nbsp;imusim</a> ::
+        <a href="imusim.capture-module.html">Package&nbsp;capture</a> ::
+        Module&nbsp;marker
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="imusim.capture.marker-module.html">Module imusim.capture.marker</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-docstring">Classes to represent marker-based capture data.</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment"># Copyright (C) 2009-2011 University of Edinburgh</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-comment"># This file is part of IMUSim.</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-comment"># IMUSim is free software: you can redistribute it and/or modify it</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-comment"># under the terms of the GNU General Public License as published by</tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-comment"># the Free Software Foundation, either version 3 of the License, or</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-comment"># (at your option) any later version.</tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-comment"># IMUSim is distributed in the hope that it will be useful,</tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-comment"># but WITHOUT ANY WARRANTY; without even the implied warranty of</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-comment"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-comment"># GNU General Public License for more details.</tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-comment"># You should have received a copy of the GNU General Public License</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-comment"># along with IMUSim.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-0" class="py-name" targets="Package imusim=imusim-module.html"><a title="imusim" class="py-name" href="#" onclick="return doclink('link-0', 'imusim', 'link-0');">imusim</a></tt><tt class="py-op">.</tt><tt id="link-1" class="py-name" targets="Module imusim.testing.trajectories=imusim.testing.trajectories-module.html,Package imusim.trajectories=imusim.trajectories-module.html"><a title="imusim.testing.trajectories
+imusim.trajectories" class="py-name" href="#" onclick="return doclink('link-1', 'trajectories', 'link-1');">trajectories</a></tt><tt class="py-op">.</tt><tt id="link-2" class="py-name" targets="Module imusim.environment.base=imusim.environment.base-module.html,Module imusim.platforms.base=imusim.platforms.base-module.html,Module imusim.simulation.base=imusim.simulation.base-module.html,Module imusim.trajectories.base=imusim.trajectories.base-module.html"><a title="imusim.environment.base
+imusim.platforms.base
+imusim.simulation.base
+imusim.trajectories.base" class="py-name" href="#" onclick="return doclink('link-2', 'base', 'link-2');">base</a></tt> <tt class="py-keyword">import</tt> <tt id="link-3" class="py-name" targets="Class imusim.trajectories.base.AbstractTrajectory=imusim.trajectories.base.AbstractTrajectory-class.html"><a title="imusim.trajectories.base.AbstractTrajectory" class="py-name" href="#" onclick="return doclink('link-3', 'AbstractTrajectory', 'link-3');">AbstractTrajectory</a></tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-4" class="py-name"><a title="imusim" class="py-name" href="#" onclick="return doclink('link-4', 'imusim', 'link-0');">imusim</a></tt><tt class="py-op">.</tt><tt id="link-5" class="py-name"><a title="imusim.testing.trajectories
+imusim.trajectories" class="py-name" href="#" onclick="return doclink('link-5', 'trajectories', 'link-1');">trajectories</a></tt><tt class="py-op">.</tt><tt id="link-6" class="py-name" targets="Module imusim.trajectories.sampled=imusim.trajectories.sampled-module.html"><a title="imusim.trajectories.sampled" class="py-name" href="#" onclick="return doclink('link-6', 'sampled', 'link-6');">sampled</a></tt> <tt class="py-keyword">import</tt> <tt id="link-7" class="py-name" targets="Class imusim.trajectories.sampled.SampledPositionTrajectory=imusim.trajectories.sampled.SampledPositionTrajectory-class.html"><a title="imusim.trajectories.sampled.SampledPositionTrajectory" class="py-name" href="#" onclick="return doclink('link-7', 'SampledPositionTrajectory', 'link-7');">SampledPositionTrajectory</a></tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-8" class="py-name"><a title="imusim" class="py-name" href="#" onclick="return doclink('link-8', 'imusim', 'link-0');">imusim</a></tt><tt class="py-op">.</tt><tt id="link-9" class="py-name"><a title="imusim.testing.trajectories
+imusim.trajectories" class="py-name" href="#" onclick="return doclink('link-9', 'trajectories', 'link-1');">trajectories</a></tt><tt class="py-op">.</tt><tt id="link-10" class="py-name"><a title="imusim.trajectories.sampled" class="py-name" href="#" onclick="return doclink('link-10', 'sampled', 'link-6');">sampled</a></tt> <tt class="py-keyword">import</tt> <tt id="link-11" class="py-name" targets="Class imusim.trajectories.sampled.SampledRotationTrajectory=imusim.trajectories.sampled.SampledRotationTrajectory-class.html"><a title="imusim.trajectories.sampled.SampledRotationTrajectory" class="py-name" href="#" onclick="return doclink('link-11', 'SampledRotationTrajectory', 'link-11');">SampledRotationTrajectory</a></tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-12" class="py-name"><a title="imusim" class="py-name" href="#" onclick="return doclink('link-12', 'imusim', 'link-0');">imusim</a></tt><tt class="py-op">.</tt><tt id="link-13" class="py-name"><a title="imusim.testing.trajectories
+imusim.trajectories" class="py-name" href="#" onclick="return doclink('link-13', 'trajectories', 'link-1');">trajectories</a></tt><tt class="py-op">.</tt><tt id="link-14" class="py-name" targets="Module imusim.trajectories.splined=imusim.trajectories.splined-module.html"><a title="imusim.trajectories.splined" class="py-name" href="#" onclick="return doclink('link-14', 'splined', 'link-14');">splined</a></tt> <tt class="py-keyword">import</tt> <tt id="link-15" class="py-name" targets="Class imusim.trajectories.splined.SplinedPositionTrajectory=imusim.trajectories.splined.SplinedPositionTrajectory-class.html"><a title="imusim.trajectories.splined.SplinedPositionTrajectory" class="py-name" href="#" onclick="return doclink('link-15', 'SplinedPositionTrajectory', 'link-15');">SplinedPositionTrajectory</a></tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-16" class="py-name"><a title="imusim" class="py-name" href="#" onclick="return doclink('link-16', 'imusim', 'link-0');">imusim</a></tt><tt class="py-op">.</tt><tt id="link-17" class="py-name"><a title="imusim.testing.trajectories
+imusim.trajectories" class="py-name" href="#" onclick="return doclink('link-17', 'trajectories', 'link-1');">trajectories</a></tt><tt class="py-op">.</tt><tt id="link-18" class="py-name"><a title="imusim.trajectories.splined" class="py-name" href="#" onclick="return doclink('link-18', 'splined', 'link-14');">splined</a></tt> <tt class="py-keyword">import</tt> <tt id="link-19" class="py-name" targets="Class imusim.trajectories.splined.SplinedRotationTrajectory=imusim.trajectories.splined.SplinedRotationTrajectory-class.html"><a title="imusim.trajectories.splined.SplinedRotationTrajectory" class="py-name" href="#" onclick="return doclink('link-19', 'SplinedRotationTrajectory', 'link-19');">SplinedRotationTrajectory</a></tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">numpy</tt> <tt class="py-keyword">as</tt> <tt class="py-name">np</tt> </tt>
+<a name="MarkerCapture"></a><div id="MarkerCapture-def"><a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt> <a class="py-toggle" href="#" id="MarkerCapture-toggle" onclick="return toggle('MarkerCapture');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="imusim.capture.marker.MarkerCapture-class.html">MarkerCapture</a><tt class="py-op">(</tt><tt class="py-base-class">object</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MarkerCapture-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="MarkerCapture-expanded"><a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"><tt class="py-docstring">    Marker trajectory data captured synchronously for one or more markers.</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line"><tt class="py-docstring">    @ivar sampleTimes: Sequence of times at which samples were taken.</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line"> </tt>
+<a name="MarkerCapture.__init__"></a><div id="MarkerCapture.__init__-def"><a name="L35"></a><tt class="py-lineno"> 35</tt> <a class="py-toggle" href="#" id="MarkerCapture.__init__-toggle" onclick="return toggle('MarkerCapture.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.capture.marker.MarkerCapture-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MarkerCapture.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MarkerCapture.__init__-expanded"><a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line"><tt class="py-docstring">        Initialise capture.</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_markers</tt> <tt class="py-op">=</tt> <tt class="py-name">dict</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line"> </tt>
+<a name="MarkerCapture._addMarker"></a><div id="MarkerCapture._addMarker-def"><a name="L41"></a><tt class="py-lineno"> 41</tt> <a class="py-toggle" href="#" id="MarkerCapture._addMarker-toggle" onclick="return toggle('MarkerCapture._addMarker');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.capture.marker.MarkerCapture-class.html#_addMarker">_addMarker</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">marker</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MarkerCapture._addMarker-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MarkerCapture._addMarker-expanded"><a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_markers</tt><tt class="py-op">[</tt><tt id="link-20" class="py-name" targets="Module imusim.capture.marker=imusim.capture.marker-module.html,Method imusim.capture.marker.MarkerCapture.marker()=imusim.capture.marker.MarkerCapture-class.html#marker"><a title="imusim.capture.marker
+imusim.capture.marker.MarkerCapture.marker" class="py-name" href="#" onclick="return doclink('link-20', 'marker', 'link-20');">marker</a></tt><tt class="py-op">.</tt><tt class="py-name">id</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt id="link-21" class="py-name"><a title="imusim.capture.marker
+imusim.capture.marker.MarkerCapture.marker" class="py-name" href="#" onclick="return doclink('link-21', 'marker', 'link-20');">marker</a></tt> </tt>
+</div><a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line"> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line">    <tt class="py-decorator">@</tt><tt class="py-decorator">property</tt> </tt>
+<a name="MarkerCapture.markers"></a><div id="MarkerCapture.markers-def"><a name="L45"></a><tt class="py-lineno"> 45</tt> <a class="py-toggle" href="#" id="MarkerCapture.markers-toggle" onclick="return toggle('MarkerCapture.markers');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.capture.marker.MarkerCapture-class.html#markers">markers</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MarkerCapture.markers-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MarkerCapture.markers-expanded"><a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line"><tt class="py-docstring">        List of the markers in this capture.</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_markers</tt><tt class="py-op">.</tt><tt id="link-22" class="py-name" targets="Variable imusim.utilities.time_series.TimeSeries.values=imusim.utilities.time_series.TimeSeries-class.html#values"><a title="imusim.utilities.time_series.TimeSeries.values" class="py-name" href="#" onclick="return doclink('link-22', 'values', 'link-22');">values</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line"> </tt>
+<a name="MarkerCapture.marker"></a><div id="MarkerCapture.marker-def"><a name="L51"></a><tt class="py-lineno"> 51</tt> <a class="py-toggle" href="#" id="MarkerCapture.marker-toggle" onclick="return toggle('MarkerCapture.marker');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.capture.marker.MarkerCapture-class.html#marker">marker</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">id</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MarkerCapture.marker-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MarkerCapture.marker-expanded"><a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line"><tt class="py-docstring">        Get a marker by identifier.</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line"><tt class="py-docstring">        @return: The L{Marker} with the given identifier.</tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_markers</tt><tt class="py-op">[</tt><tt class="py-name">id</tt><tt class="py-op">]</tt> </tt>
+</div></div><a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line"> </tt>
+<a name="Marker"></a><div id="Marker-def"><a name="L59"></a><tt class="py-lineno"> 59</tt> <a class="py-toggle" href="#" id="Marker-toggle" onclick="return toggle('Marker');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="imusim.capture.marker.Marker-class.html">Marker</a><tt class="py-op">(</tt><tt class="py-base-class">AbstractTrajectory</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Marker-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="Marker-expanded"><a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line"><tt class="py-docstring">    A motion capture marker of any type.</tt> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line"> </tt>
+<a name="Marker.__init__"></a><div id="Marker.__init__-def"><a name="L64"></a><tt class="py-lineno"> 64</tt> <a class="py-toggle" href="#" id="Marker.__init__-toggle" onclick="return toggle('Marker.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.capture.marker.Marker-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">capture</tt><tt class="py-op">,</tt> <tt class="py-param">id</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Marker.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Marker.__init__-expanded"><a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line"><tt class="py-docstring">        Initialise marker.</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line"><tt class="py-docstring">        @param capture: Parent L{MarkerCapture}.</tt> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line"><tt class="py-docstring">        @param id: Marker identifier.</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-23" class="py-name" targets="Package imusim.capture=imusim.capture-module.html"><a title="imusim.capture" class="py-name" href="#" onclick="return doclink('link-23', 'capture', 'link-23');">capture</a></tt> <tt class="py-op">=</tt> <tt id="link-24" class="py-name"><a title="imusim.capture" class="py-name" href="#" onclick="return doclink('link-24', 'capture', 'link-23');">capture</a></tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">id</tt> <tt class="py-op">=</tt> <tt class="py-name">id</tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-25" class="py-name"><a title="imusim.capture" class="py-name" href="#" onclick="return doclink('link-25', 'capture', 'link-23');">capture</a></tt><tt class="py-op">.</tt><tt class="py-name">_addMarker</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line"> </tt>
+<a name="Marker3DOF"></a><div id="Marker3DOF-def"><a name="L75"></a><tt class="py-lineno"> 75</tt> <a class="py-toggle" href="#" id="Marker3DOF-toggle" onclick="return toggle('Marker3DOF');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="imusim.capture.marker.Marker3DOF-class.html">Marker3DOF</a><tt class="py-op">(</tt><tt class="py-base-class">SampledPositionTrajectory</tt><tt class="py-op">,</tt> <tt class="py-base-class">Marker</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Marker3DOF-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="Marker3DOF-expanded"><a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line"><tt class="py-docstring">    A capture marker with 3DOF position samples.</tt> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="Marker3DOF.__init__"></a><div id="Marker3DOF.__init__-def"><a name="L79"></a><tt class="py-lineno"> 79</tt> <a class="py-toggle" href="#" id="Marker3DOF.__init__-toggle" onclick="return toggle('Marker3DOF.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.capture.marker.Marker3DOF-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">capture</tt><tt class="py-op">,</tt> <tt class="py-param">id</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Marker3DOF.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Marker3DOF.__init__-expanded"><a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">        <tt id="link-26" class="py-name" targets="Class imusim.capture.marker.Marker=imusim.capture.marker.Marker-class.html"><a title="imusim.capture.marker.Marker" class="py-name" href="#" onclick="return doclink('link-26', 'Marker', 'link-26');">Marker</a></tt><tt class="py-op">.</tt><tt id="link-27" class="py-name" targets="Method imusim.algorithms.calibration.ScaleAndOffsetCalibration.__init__()=imusim.algorithms.calibration.ScaleAndOffsetCalibration-class.html#__init__,Method imusim.algorithms.orientation.BachmannCF.__init__()=imusim.algorithms.orientation.BachmannCF-class.html#__init__,Method imusim.algorithms.orientation.DistLinAccelCF.__init__()=imusim.algorithms.orientation.DistLinAccelCF-class.html#__init__,Method imusim.algorithms.orientation.GyroIntegrator.__init__()=imusim.algorithms.orientation.GyroIntegrator-class.html#__init__,Method imusim.algorithms.orientation.OrientCF.__init__()=imusim.algorithms.orientation.OrientCF-class.html#__init__,Method imusim.algorithms.orientation.OrientationFilter.__init__()=imusim.algorithms.orientation.OrientationFilter-class.html#__init__,Method imusim.algorithms.orientation.YunEKF.__init__()=imusim.algorithms.orientation.YunEKF-class.html#__init__,Method imusim.algorithms.position.ConstantPosition.__init__()=imusim.algorithms.position.ConstantPosition-class.html#__init__,Method imusim.algorithms.position.ContactTrackingKalmanFilter.__init__()=imusim.algorithms.position.ContactTrackingKalmanFilter-class.html#__init__,Method imusim.algorithms.position.LowestPoint.__init__()=imusim.algorithms.position.LowestPoint-class.html#__init__,Method imusim.algorithms.position.PositionEstimator.__init__()=imusim.algorithms.position.PositionEstimator-class.html#__init__,Method imusim.algorithms.position.RootAccelerationIntegrator.__init__()=imusim.algorithms.position.RootAccelerationIntegrator-class.html#__init__,Method imusim.algorithms.posture_reconstruction.InheritedForwardKinematics.__init__()=imusim.algorithms.posture_reconstruction.InheritedForwardKinematics-class.html#__init__,Method imusim.algorithms.posture_reconstruction.PostureReconstructor.__init__()=imusim.algorithms.posture_reconstruction.PostureReconstructor-class.html#__init__,Method imusim.algorithms.posture_reconstruction.SimpleForwardKinematics.__init__()=imusim.algorithms.posture_reconstruction.SimpleForwardKinematics-class.html#__init__,Method imusim.algorithms.vector_observation.FQA.__init__()=imusim.algorithms.vector_observation.FQA-class.html#__init__,Method imusim.algorithms.vector_observation.LeastSquaresOptimalVectorObservation.__init__()=imusim.algorithms.vector_observation.LeastSquaresOptimalVectorObservation-class.html#__init__,Method imusim.behaviours.basestation.BodyModelReconstructor.__init__()=imusim.behaviours.basestation.BodyModelReconstructor-class.html#__init__,Method imusim.behaviours.imu.BasicIMUBehaviour.__init__()=imusim.behaviours.imu.BasicIMUBehaviour-class.html#__init__,Method imusim.behaviours.mac.MAC.__init__()=imusim.behaviours.mac.MAC-class.html#__init__,Method imusim.behaviours.orient_tdma.AuxPacket.__init__()=imusim.behaviours.orient_tdma.AuxPacket-class.html#__init__,Method imusim.behaviours.orient_tdma.DataPacket.__init__()=imusim.behaviours.orient_tdma.DataPacket-class.html#__init__,Method imusim.behaviours.orient_tdma.InterSlaveMAC.__init__()=imusim.behaviours.orient_tdma.InterSlaveMAC-class.html#__init__,Method imusim.behaviours.orient_tdma.InterSlaveSchedule.__init__()=imusim.behaviours.orient_tdma.InterSlaveSchedule-class.html#__init__,Method imusim.behaviours.orient_tdma.MasterMAC.__init__()=imusim.behaviours.orient_tdma.MasterMAC-class.html#__init__,Method imusim.behaviours.orient_tdma.Schedule.__init__()=imusim.behaviours.orient_tdma.Schedule-class.html#__init__,Method imusim.behaviours.orient_tdma.SlaveMAC.__init__()=imusim.behaviours.orient_tdma.SlaveMAC-class.html#__init__,Method imusim.behaviours.sampling.PeriodicSampler.__init__()=imusim.behaviours.sampling.PeriodicSampler-class.html#__init__,Method imusim.behaviours.timing.TimerMultiplexer.__init__()=imusim.behaviours.timing.TimerMultiplexer-class.html#__init__,Method imusim.behaviours.timing.VirtualTimer.__init__()=imusim.behaviours.timing.VirtualTimer-class.html#__init__,Method imusim.capture.marker.Marker.__init__()=imusim.capture.marker.Marker-class.html#__init__,Method imusim.capture.marker.Marker3DOF.__init__()=imusim.capture.marker.Marker3DOF-class.html#__init__,Method imusim.capture.marker.Marker6DOF.__init__()=imusim.capture.marker.Marker6DOF-class.html#__init__,Method imusim.capture.marker.MarkerCapture.__init__()=imusim.capture.marker.MarkerCapture-class.html#__init__,Method imusim.capture.marker.SplinedMarker3DOF.__init__()=imusim.capture.marker.SplinedMarker3DOF-class.html#__init__,Method imusim.capture.marker.SplinedMarker6DOF.__init__()=imusim.capture.marker.SplinedMarker6DOF-class.html#__init__,Method imusim.capture.marker.SplinedMarkerCapture.__init__()=imusim.capture.marker.SplinedMarkerCapture-class.html#__init__,Method imusim.capture.sensor.CapturedDevice.__init__()=imusim.capture.sensor.CapturedDevice-class.html#__init__,Method imusim.capture.sensor.SensorDataCapture.__init__()=imusim.capture.sensor.SensorDataCapture-class.html#__init__,Method imusim.environment.base.Environment.__init__()=imusim.environment.base.Environment-class.html#__init__,Method imusim.environment.gravity.ConstantGravitationalField.__init__()=imusim.environment.gravity.ConstantGravitationalField-class.html#__init__,Method imusim.environment.magnetic_fields.DistortedMagneticField.__init__()=imusim.environment.magnetic_fields.DistortedMagneticField-class.html#__init__,Method imusim.environment.magnetic_fields.EarthMagneticField.__init__()=imusim.environment.magnetic_fields.EarthMagneticField-class.html#__init__,Method imusim.environment.magnetic_fields.SolenoidMagneticField.__init__()=imusim.environment.magnetic_fields.SolenoidMagneticField-class.html#__init__,Method imusim.environment.radio_environment.BERRadioEnvironment.__init__()=imusim.environment.radio_environment.BERRadioEnvironment-class.html#__init__,Method imusim.environment.radio_environment.IdealRadioEnvironment.__init__()=imusim.environment.radio_environment.IdealRadioEnvironment-class.html#__init__,Method imusim.environment.radio_environment.RadioEnvironment.__init__()=imusim.environment.radio_environment.RadioEnvironment-class.html#__init__,Method imusim.io.bvh.BVHExporter.__init__()=imusim.io.bvh.BVHExporter-class.html#__init__,Method imusim.io.bvh.BVHLoader.__init__()=imusim.io.bvh.BVHLoader-class.html#__init__,Method imusim.maths.integrators.DoubleIntegrator.__init__()=imusim.maths.integrators.DoubleIntegrator-class.html#__init__,Method imusim.maths.integrators.Integrator.__init__()=imusim.maths.integrators.Integrator-class.html#__init__,Method imusim.maths.integrators.TrapeziumRule.__init__()=imusim.maths.integrators.TrapeziumRule-class.html#__init__,Method imusim.maths.kalman.KalmanFilter.__init__()=imusim.maths.kalman.KalmanFilter-class.html#__init__,Method imusim.maths.kalman.UnscentedKalmanFilter.__init__()=imusim.maths.kalman.UnscentedKalmanFilter-class.html#__init__,Method imusim.maths.quat_splines.SQUADQuaternionSpline.__init__()=imusim.maths.quat_splines.SQUADQuaternionSpline-class.html#__init__,Method imusim.maths.quaternions.QuaternionArray.__init__()=imusim.maths.quaternions.QuaternionArray-class.html#__init__,Method imusim.maths.splines.PartialInputSpline.__init__()=imusim.maths.splines.PartialInputSpline-class.html#__init__,Method imusim.maths.splines.UnivariateSpline.__init__()=imusim.maths.splines.UnivariateSpline-class.html#__init__,Method imusim.maths.transforms.AffineTransform.__init__()=imusim.maths.transforms.AffineTransform-class.html#__init__,Method imusim.maths.transforms.UnscentedTransform.__init__()=imusim.maths.transforms.UnscentedTransform-class.html#__init__,Method imusim.maths.vector_fields.ConstantVectorField.__init__()=imusim.maths.vector_fields.ConstantVectorField-class.html#__init__,Method imusim.maths.vector_fields.InterpolatedVectorField.__init__()=imusim.maths.vector_fields.InterpolatedVectorField-class.html#__init__,Method imusim.maths.vector_fields.NaturalNeighbourInterpolatedField.__init__()=imusim.maths.vector_fields.NaturalNeighbourInterpolatedField-class.html#__init__,Method imusim.maths.vector_fields.RBFInterpolatedField.__init__()=imusim.maths.vector_fields.RBFInterpolatedField-class.html#__init__,Method imusim.maths.vector_splines.PartialInputVectorSpline.__init__()=imusim.maths.vector_splines.PartialInputVectorSpline-class.html#__init__,Method imusim.maths.vector_splines.UnivariateVectorSpline.__init__()=imusim.maths.vector_splines.UnivariateVectorSpline-class.html#__init__,Method imusim.platforms.accelerometers.MMA7260Q.__init__()=imusim.platforms.accelerometers.MMA7260Q-class.html#__init__,Method imusim.platforms.adcs.ParametricADC.__init__()=imusim.platforms.adcs.ParametricADC-class.html#__init__,Method imusim.platforms.adcs.QuantisingADC.__init__()=imusim.platforms.adcs.QuantisingADC-class.html#__init__,Method imusim.platforms.base.Component.__init__()=imusim.platforms.base.Component-class.html#__init__,Method imusim.platforms.base.Platform.__init__()=imusim.platforms.base.Platform-class.html#__init__,Method imusim.platforms.basestations.IdealBasestation.__init__()=imusim.platforms.basestations.IdealBasestation-class.html#__init__,Method imusim.platforms.gyroscopes.ADXRS300.__init__()=imusim.platforms.gyroscopes.ADXRS300-class.html#__init__,Method imusim.platforms.imus.IdealIMU.__init__()=imusim.platforms.imus.IdealIMU-class.html#__init__,Method imusim.platforms.imus.MagicIMU.__init__()=imusim.platforms.imus.MagicIMU-class.html#__init__,Method imusim.platforms.imus.Orient3IMU.__init__()=imusim.platforms.imus.Orient3IMU-class.html#__init__,Method imusim.platforms.magnetometers.HMC105x.__init__()=imusim.platforms.magnetometers.HMC105x-class.html#__init__,Method imusim.platforms.radios.Radio.__init__()=imusim.platforms.radios.Radio-class.html#__init__,Method imusim.platforms.radios.RadioPacket.__init__()=imusim.platforms.radios.RadioPacket-class.html#__init__,Method imusim.platforms.sensors.NoisySensor.__init__()=imusim.platforms.sensors.NoisySensor-class.html#__init__,Method imusim.platforms.sensors.NoisyTransformedSensor.__init__()=imusim.platforms.sensors.NoisyTransformedSensor-class.html#__init__,Method imusim.platforms.sensors.Sensor.__init__()=imusim.platforms.sensors.Sensor-class.html#__init__,Method imusim.platforms.sensors.TransformedSensor.__init__()=imusim.platforms.sensors.TransformedSensor-class.html#__init__,Method imusim.platforms.timers.ParametricTimer.__init__()=imusim.platforms.timers.ParametricTimer-class.html#__init__,Method imusim.platforms.timers.Timer.__init__()=imusim.platforms.timers.Timer-class.html#__init__,Method imusim.simulation.base.Simulation.ProgressMonitor.__init__()=imusim.simulation.base.Simulation.ProgressMonitor-class.html#__init__,Method imusim.simulation.base.Simulation.__init__()=imusim.simulation.base.Simulation-class.html#__init__,Method imusim.simulation.calibrators.Calibrator.__init__()=imusim.simulation.calibrators.Calibrator-class.html#__init__,Method imusim.simulation.calibrators.ScaleAndOffsetCalibrator.__init__()=imusim.simulation.calibrators.ScaleAndOffsetCalibrator-class.html#__init__,Method imusim.testing.random_data.RandomRotationTrajectory.__init__()=imusim.testing.random_data.RandomRotationTrajectory-class.html#__init__,Method imusim.testing.random_data.RandomTrajectory.__init__()=imusim.testing.random_data.RandomTrajectory-class.html#__init__,Method imusim.trajectories.base.ConstantPositionTrajectory.__init__()=imusim.trajectories.base.ConstantPositionTrajectory-class.html#__init__,Method imusim.trajectories.base.ConstantRotationTrajectory.__init__()=imusim.trajectories.base.ConstantRotationTrajectory-class.html#__init__,Method imusim.trajectories.base.ContinuousRotationTrajectory.__init__()=imusim.trajectories.base.ContinuousRotationTrajectory-class.html#__init__,Method imusim.trajectories.base.StaticContinuousRotationTrajectory.__init__()=imusim.trajectories.base.StaticContinuousRotationTrajectory-class.html#__init__,Method imusim.trajectories.base.StaticTrajectory.__init__()=imusim.trajectories.base.StaticTrajectory-class.html#__init__,Method imusim.trajectories.multi_marker.MultiMarkerTrajectory.__init__()=imusim.trajectories.multi_marker.MultiMarkerTrajectory-class.html#__init__,Method imusim.trajectories.offset.OffsetTrajectory.__init__()=imusim.trajectories.offset.OffsetTrajectory-class.html#__init__,Method imusim.trajectories.rigid_body.Joint.__init__()=imusim.trajectories.rigid_body.Joint-class.html#__init__,Method imusim.trajectories.rigid_body.Point.__init__()=imusim.trajectories.rigid_body.Point-class.html#__init__,Method imusim.trajectories.rigid_body.PointTrajectory.__init__()=imusim.trajectories.rigid_body.PointTrajectory-class.html#__init__,Method imusim.trajectories.rigid_body.SampledBodyModel.__init__()=imusim.trajectories.rigid_body.SampledBodyModel-class.html#__init__,Method imusim.trajectories.rigid_body.SampledJoint.__init__()=imusim.trajectories.rigid_body.SampledJoint-class.html#__init__,Method imusim.trajectories.rigid_body.SplinedBodyModel.__init__()=imusim.trajectories.rigid_body.SplinedBodyModel-class.html#__init__,Method imusim.trajectories.rigid_body.SplinedJoint.__init__()=imusim.trajectories.rigid_body.SplinedJoint-class.html#__init__,Method imusim.trajectories.sampled.SampledPositionTrajectory.__init__()=imusim.trajectories.sampled.SampledPositionTrajectory-class.html#__init__,Method imusim.trajectories.sampled.SampledRotationTrajectory.__init__()=imusim.trajectories.sampled.SampledRotationTrajectory-class.html#__init__,Method imusim.trajectories.sampled.SampledTrajectory.__init__()=imusim.trajectories.sampled.SampledTrajectory-class.html#__init__,Method imusim.trajectories.splined.SplinedPositionTrajectory.__init__()=imusim.trajectories.splined.SplinedPositionTrajectory-class.html#__init__,Method imusim.trajectories.splined.SplinedRotationTrajectory.__init__()=imusim.trajectories.splined.SplinedRotationTrajectory-class.html#__init__,Method imusim.trajectories.splined.SplinedTrajectory.__init__()=imusim.trajectories.splined.SplinedTrajectory-class.html#__init__,Method imusim.utilities.caching.CacheEntry.__init__()=imusim.utilities.caching.CacheEntry-class.html#__init__,Method imusim.utilities.caching.CacheLastValue.__init__()=imusim.utilities.caching.CacheLastValue-class.html#__init__,Method imusim.utilities.documentation.prepend_method_doc.__init__()=imusim.utilities.documentation.prepend_method_doc-class.html#__init__,Method imusim.utilities.time_series.TimeSeries.__init__()=imusim.utilities.time_series.TimeSeries-class.html#__init__,Method imusim.utilities.trees.TreeNode.__init__()=imusim.utilities.trees.TreeNode-class.html#__init__,Method imusim.visualisation.rendering.AnimatedRenderer.__init__()=imusim.visualisation.rendering.AnimatedRenderer-class.html#__init__,Method imusim.visualisation.rendering.BodyModelRenderer.__init__()=imusim.visualisation.rendering.BodyModelRenderer-class.html#__init__,Method imusim.visualisation.rendering.ContactProbabilityRenderer.__init__()=imusim.visualisation.rendering.ContactProbabilityRenderer-class.html#__init__,Method imusim.visualisation.rendering.InteractiveAnimation.__init__()=imusim.visualisation.rendering.InteractiveAnimation-class.html#__init__,Method imusim.visualisation.rendering.VelocityVectorRenderer.__init__()=imusim.visualisation.rendering.VelocityVectorRenderer-class.html#__init__"><a title="imusim.algorithms.calibration.ScaleAndOffsetCalibration.__init__
+imusim.algorithms.orientation.BachmannCF.__init__
+imusim.algorithms.orientation.DistLinAccelCF.__init__
+imusim.algorithms.orientation.GyroIntegrator.__init__
+imusim.algorithms.orientation.OrientCF.__init__
+imusim.algorithms.orientation.OrientationFilter.__init__
+imusim.algorithms.orientation.YunEKF.__init__
+imusim.algorithms.position.ConstantPosition.__init__
+imusim.algorithms.position.ContactTrackingKalmanFilter.__init__
+imusim.algorithms.position.LowestPoint.__init__
+imusim.algorithms.position.PositionEstimator.__init__
+imusim.algorithms.position.RootAccelerationIntegrator.__init__
+imusim.algorithms.posture_reconstruction.InheritedForwardKinematics.__init__
+imusim.algorithms.posture_reconstruction.PostureReconstructor.__init__
+imusim.algorithms.posture_reconstruction.SimpleForwardKinematics.__init__
+imusim.algorithms.vector_observation.FQA.__init__
+imusim.algorithms.vector_observation.LeastSquaresOptimalVectorObservation.__init__
+imusim.behaviours.basestation.BodyModelReconstructor.__init__
+imusim.behaviours.imu.BasicIMUBehaviour.__init__
+imusim.behaviours.mac.MAC.__init__
+imusim.behaviours.orient_tdma.AuxPacket.__init__
+imusim.behaviours.orient_tdma.DataPacket.__init__
+imusim.behaviours.orient_tdma.InterSlaveMAC.__init__
+imusim.behaviours.orient_tdma.InterSlaveSchedule.__init__
+imusim.behaviours.orient_tdma.MasterMAC.__init__
+imusim.behaviours.orient_tdma.Schedule.__init__
+imusim.behaviours.orient_tdma.SlaveMAC.__init__
+imusim.behaviours.sampling.PeriodicSampler.__init__
+imusim.behaviours.timing.TimerMultiplexer.__init__
+imusim.behaviours.timing.VirtualTimer.__init__
+imusim.capture.marker.Marker.__init__
+imusim.capture.marker.Marker3DOF.__init__
+imusim.capture.marker.Marker6DOF.__init__
+imusim.capture.marker.MarkerCapture.__init__
+imusim.capture.marker.SplinedMarker3DOF.__init__
+imusim.capture.marker.SplinedMarker6DOF.__init__
+imusim.capture.marker.SplinedMarkerCapture.__init__
+imusim.capture.sensor.CapturedDevice.__init__
+imusim.capture.sensor.SensorDataCapture.__init__
+imusim.environment.base.Environment.__init__
+imusim.environment.gravity.ConstantGravitationalField.__init__
+imusim.environment.magnetic_fields.DistortedMagneticField.__init__
+imusim.environment.magnetic_fields.EarthMagneticField.__init__
+imusim.environment.magnetic_fields.SolenoidMagneticField.__init__
+imusim.environment.radio_environment.BERRadioEnvironment.__init__
+imusim.environment.radio_environment.IdealRadioEnvironment.__init__
+imusim.environment.radio_environment.RadioEnvironment.__init__
+imusim.io.bvh.BVHExporter.__init__
+imusim.io.bvh.BVHLoader.__init__
+imusim.maths.integrators.DoubleIntegrator.__init__
+imusim.maths.integrators.Integrator.__init__
+imusim.maths.integrators.TrapeziumRule.__init__
+imusim.maths.kalman.KalmanFilter.__init__
+imusim.maths.kalman.UnscentedKalmanFilter.__init__
+imusim.maths.quat_splines.SQUADQuaternionSpline.__init__
+imusim.maths.quaternions.QuaternionArray.__init__
+imusim.maths.splines.PartialInputSpline.__init__
+imusim.maths.splines.UnivariateSpline.__init__
+imusim.maths.transforms.AffineTransform.__init__
+imusim.maths.transforms.UnscentedTransform.__init__
+imusim.maths.vector_fields.ConstantVectorField.__init__
+imusim.maths.vector_fields.InterpolatedVectorField.__init__
+imusim.maths.vector_fields.NaturalNeighbourInterpolatedField.__init__
+imusim.maths.vector_fields.RBFInterpolatedField.__init__
+imusim.maths.vector_splines.PartialInputVectorSpline.__init__
+imusim.maths.vector_splines.UnivariateVectorSpline.__init__
+imusim.platforms.accelerometers.MMA7260Q.__init__
+imusim.platforms.adcs.ParametricADC.__init__
+imusim.platforms.adcs.QuantisingADC.__init__
+imusim.platforms.base.Component.__init__
+imusim.platforms.base.Platform.__init__
+imusim.platforms.basestations.IdealBasestation.__init__
+imusim.platforms.gyroscopes.ADXRS300.__init__
+imusim.platforms.imus.IdealIMU.__init__
+imusim.platforms.imus.MagicIMU.__init__
+imusim.platforms.imus.Orient3IMU.__init__
+imusim.platforms.magnetometers.HMC105x.__init__
+imusim.platforms.radios.Radio.__init__
+imusim.platforms.radios.RadioPacket.__init__
+imusim.platforms.sensors.NoisySensor.__init__
+imusim.platforms.sensors.NoisyTransformedSensor.__init__
+imusim.platforms.sensors.Sensor.__init__
+imusim.platforms.sensors.TransformedSensor.__init__
+imusim.platforms.timers.ParametricTimer.__init__
+imusim.platforms.timers.Timer.__init__
+imusim.simulation.base.Simulation.ProgressMonitor.__init__
+imusim.simulation.base.Simulation.__init__
+imusim.simulation.calibrators.Calibrator.__init__
+imusim.simulation.calibrators.ScaleAndOffsetCalibrator.__init__
+imusim.testing.random_data.RandomRotationTrajectory.__init__
+imusim.testing.random_data.RandomTrajectory.__init__
+imusim.trajectories.base.ConstantPositionTrajectory.__init__
+imusim.trajectories.base.ConstantRotationTrajectory.__init__
+imusim.trajectories.base.ContinuousRotationTrajectory.__init__
+imusim.trajectories.base.StaticContinuousRotationTrajectory.__init__
+imusim.trajectories.base.StaticTrajectory.__init__
+imusim.trajectories.multi_marker.MultiMarkerTrajectory.__init__
+imusim.trajectories.offset.OffsetTrajectory.__init__
+imusim.trajectories.rigid_body.Joint.__init__
+imusim.trajectories.rigid_body.Point.__init__
+imusim.trajectories.rigid_body.PointTrajectory.__init__
+imusim.trajectories.rigid_body.SampledBodyModel.__init__
+imusim.trajectories.rigid_body.SampledJoint.__init__
+imusim.trajectories.rigid_body.SplinedBodyModel.__init__
+imusim.trajectories.rigid_body.SplinedJoint.__init__
+imusim.trajectories.sampled.SampledPositionTrajectory.__init__
+imusim.trajectories.sampled.SampledRotationTrajectory.__init__
+imusim.trajectories.sampled.SampledTrajectory.__init__
+imusim.trajectories.splined.SplinedPositionTrajectory.__init__
+imusim.trajectories.splined.SplinedRotationTrajectory.__init__
+imusim.trajectories.splined.SplinedTrajectory.__init__
+imusim.utilities.caching.CacheEntry.__init__
+imusim.utilities.caching.CacheLastValue.__init__
+imusim.utilities.documentation.prepend_method_doc.__init__
+imusim.utilities.time_series.TimeSeries.__init__
+imusim.utilities.trees.TreeNode.__init__
+imusim.visualisation.rendering.AnimatedRenderer.__init__
+imusim.visualisation.rendering.BodyModelRenderer.__init__
+imusim.visualisation.rendering.ContactProbabilityRenderer.__init__
+imusim.visualisation.rendering.InteractiveAnimation.__init__
+imusim.visualisation.rendering.VelocityVectorRenderer.__init__" class="py-name" href="#" onclick="return doclink('link-27', '__init__', 'link-27');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt id="link-28" class="py-name"><a title="imusim.capture" class="py-name" href="#" onclick="return doclink('link-28', 'capture', 'link-23');">capture</a></tt><tt class="py-op">,</tt> <tt class="py-name">id</tt><tt class="py-op">)</tt> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line">        <tt id="link-29" class="py-name"><a title="imusim.trajectories.sampled.SampledPositionTrajectory" class="py-name" href="#" onclick="return doclink('link-29', 'SampledPositionTrajectory', 'link-7');">SampledPositionTrajectory</a></tt><tt class="py-op">.</tt><tt id="link-30" class="py-name"><a title="imusim.algorithms.calibration.ScaleAndOffsetCalibration.__init__
+imusim.algorithms.orientation.BachmannCF.__init__
+imusim.algorithms.orientation.DistLinAccelCF.__init__
+imusim.algorithms.orientation.GyroIntegrator.__init__
+imusim.algorithms.orientation.OrientCF.__init__
+imusim.algorithms.orientation.OrientationFilter.__init__
+imusim.algorithms.orientation.YunEKF.__init__
+imusim.algorithms.position.ConstantPosition.__init__
+imusim.algorithms.position.ContactTrackingKalmanFilter.__init__
+imusim.algorithms.position.LowestPoint.__init__
+imusim.algorithms.position.PositionEstimator.__init__
+imusim.algorithms.position.RootAccelerationIntegrator.__init__
+imusim.algorithms.posture_reconstruction.InheritedForwardKinematics.__init__
+imusim.algorithms.posture_reconstruction.PostureReconstructor.__init__
+imusim.algorithms.posture_reconstruction.SimpleForwardKinematics.__init__
+imusim.algorithms.vector_observation.FQA.__init__
+imusim.algorithms.vector_observation.LeastSquaresOptimalVectorObservation.__init__
+imusim.behaviours.basestation.BodyModelReconstructor.__init__
+imusim.behaviours.imu.BasicIMUBehaviour.__init__
+imusim.behaviours.mac.MAC.__init__
+imusim.behaviours.orient_tdma.AuxPacket.__init__
+imusim.behaviours.orient_tdma.DataPacket.__init__
+imusim.behaviours.orient_tdma.InterSlaveMAC.__init__
+imusim.behaviours.orient_tdma.InterSlaveSchedule.__init__
+imusim.behaviours.orient_tdma.MasterMAC.__init__
+imusim.behaviours.orient_tdma.Schedule.__init__
+imusim.behaviours.orient_tdma.SlaveMAC.__init__
+imusim.behaviours.sampling.PeriodicSampler.__init__
+imusim.behaviours.timing.TimerMultiplexer.__init__
+imusim.behaviours.timing.VirtualTimer.__init__
+imusim.capture.marker.Marker.__init__
+imusim.capture.marker.Marker3DOF.__init__
+imusim.capture.marker.Marker6DOF.__init__
+imusim.capture.marker.MarkerCapture.__init__
+imusim.capture.marker.SplinedMarker3DOF.__init__
+imusim.capture.marker.SplinedMarker6DOF.__init__
+imusim.capture.marker.SplinedMarkerCapture.__init__
+imusim.capture.sensor.CapturedDevice.__init__
+imusim.capture.sensor.SensorDataCapture.__init__
+imusim.environment.base.Environment.__init__
+imusim.environment.gravity.ConstantGravitationalField.__init__
+imusim.environment.magnetic_fields.DistortedMagneticField.__init__
+imusim.environment.magnetic_fields.EarthMagneticField.__init__
+imusim.environment.magnetic_fields.SolenoidMagneticField.__init__
+imusim.environment.radio_environment.BERRadioEnvironment.__init__
+imusim.environment.radio_environment.IdealRadioEnvironment.__init__
+imusim.environment.radio_environment.RadioEnvironment.__init__
+imusim.io.bvh.BVHExporter.__init__
+imusim.io.bvh.BVHLoader.__init__
+imusim.maths.integrators.DoubleIntegrator.__init__
+imusim.maths.integrators.Integrator.__init__
+imusim.maths.integrators.TrapeziumRule.__init__
+imusim.maths.kalman.KalmanFilter.__init__
+imusim.maths.kalman.UnscentedKalmanFilter.__init__
+imusim.maths.quat_splines.SQUADQuaternionSpline.__init__
+imusim.maths.quaternions.QuaternionArray.__init__
+imusim.maths.splines.PartialInputSpline.__init__
+imusim.maths.splines.UnivariateSpline.__init__
+imusim.maths.transforms.AffineTransform.__init__
+imusim.maths.transforms.UnscentedTransform.__init__
+imusim.maths.vector_fields.ConstantVectorField.__init__
+imusim.maths.vector_fields.InterpolatedVectorField.__init__
+imusim.maths.vector_fields.NaturalNeighbourInterpolatedField.__init__
+imusim.maths.vector_fields.RBFInterpolatedField.__init__
+imusim.maths.vector_splines.PartialInputVectorSpline.__init__
+imusim.maths.vector_splines.UnivariateVectorSpline.__init__
+imusim.platforms.accelerometers.MMA7260Q.__init__
+imusim.platforms.adcs.ParametricADC.__init__
+imusim.platforms.adcs.QuantisingADC.__init__
+imusim.platforms.base.Component.__init__
+imusim.platforms.base.Platform.__init__
+imusim.platforms.basestations.IdealBasestation.__init__
+imusim.platforms.gyroscopes.ADXRS300.__init__
+imusim.platforms.imus.IdealIMU.__init__
+imusim.platforms.imus.MagicIMU.__init__
+imusim.platforms.imus.Orient3IMU.__init__
+imusim.platforms.magnetometers.HMC105x.__init__
+imusim.platforms.radios.Radio.__init__
+imusim.platforms.radios.RadioPacket.__init__
+imusim.platforms.sensors.NoisySensor.__init__
+imusim.platforms.sensors.NoisyTransformedSensor.__init__
+imusim.platforms.sensors.Sensor.__init__
+imusim.platforms.sensors.TransformedSensor.__init__
+imusim.platforms.timers.ParametricTimer.__init__
+imusim.platforms.timers.Timer.__init__
+imusim.simulation.base.Simulation.ProgressMonitor.__init__
+imusim.simulation.base.Simulation.__init__
+imusim.simulation.calibrators.Calibrator.__init__
+imusim.simulation.calibrators.ScaleAndOffsetCalibrator.__init__
+imusim.testing.random_data.RandomRotationTrajectory.__init__
+imusim.testing.random_data.RandomTrajectory.__init__
+imusim.trajectories.base.ConstantPositionTrajectory.__init__
+imusim.trajectories.base.ConstantRotationTrajectory.__init__
+imusim.trajectories.base.ContinuousRotationTrajectory.__init__
+imusim.trajectories.base.StaticContinuousRotationTrajectory.__init__
+imusim.trajectories.base.StaticTrajectory.__init__
+imusim.trajectories.multi_marker.MultiMarkerTrajectory.__init__
+imusim.trajectories.offset.OffsetTrajectory.__init__
+imusim.trajectories.rigid_body.Joint.__init__
+imusim.trajectories.rigid_body.Point.__init__
+imusim.trajectories.rigid_body.PointTrajectory.__init__
+imusim.trajectories.rigid_body.SampledBodyModel.__init__
+imusim.trajectories.rigid_body.SampledJoint.__init__
+imusim.trajectories.rigid_body.SplinedBodyModel.__init__
+imusim.trajectories.rigid_body.SplinedJoint.__init__
+imusim.trajectories.sampled.SampledPositionTrajectory.__init__
+imusim.trajectories.sampled.SampledRotationTrajectory.__init__
+imusim.trajectories.sampled.SampledTrajectory.__init__
+imusim.trajectories.splined.SplinedPositionTrajectory.__init__
+imusim.trajectories.splined.SplinedRotationTrajectory.__init__
+imusim.trajectories.splined.SplinedTrajectory.__init__
+imusim.utilities.caching.CacheEntry.__init__
+imusim.utilities.caching.CacheLastValue.__init__
+imusim.utilities.documentation.prepend_method_doc.__init__
+imusim.utilities.time_series.TimeSeries.__init__
+imusim.utilities.trees.TreeNode.__init__
+imusim.visualisation.rendering.AnimatedRenderer.__init__
+imusim.visualisation.rendering.BodyModelRenderer.__init__
+imusim.visualisation.rendering.ContactProbabilityRenderer.__init__
+imusim.visualisation.rendering.InteractiveAnimation.__init__
+imusim.visualisation.rendering.VelocityVectorRenderer.__init__" class="py-name" href="#" onclick="return doclink('link-30', '__init__', 'link-27');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line"> </tt>
+<a name="Marker6DOF"></a><div id="Marker6DOF-def"><a name="L83"></a><tt class="py-lineno"> 83</tt> <a class="py-toggle" href="#" id="Marker6DOF-toggle" onclick="return toggle('Marker6DOF');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="imusim.capture.marker.Marker6DOF-class.html">Marker6DOF</a><tt class="py-op">(</tt><tt class="py-base-class">SampledRotationTrajectory</tt><tt class="py-op">,</tt> <tt class="py-base-class">Marker3DOF</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Marker6DOF-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="Marker6DOF-expanded"><a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line"><tt class="py-docstring">    A capture marker with 6DOF position &amp; orientation samples.</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="Marker6DOF.__init__"></a><div id="Marker6DOF.__init__-def"><a name="L87"></a><tt class="py-lineno"> 87</tt> <a class="py-toggle" href="#" id="Marker6DOF.__init__-toggle" onclick="return toggle('Marker6DOF.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.capture.marker.Marker6DOF-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">capture</tt><tt class="py-op">,</tt> <tt class="py-param">id</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Marker6DOF.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Marker6DOF.__init__-expanded"><a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line">        <tt id="link-31" class="py-name" targets="Class imusim.capture.marker.Marker3DOF=imusim.capture.marker.Marker3DOF-class.html"><a title="imusim.capture.marker.Marker3DOF" class="py-name" href="#" onclick="return doclink('link-31', 'Marker3DOF', 'link-31');">Marker3DOF</a></tt><tt class="py-op">.</tt><tt id="link-32" class="py-name"><a title="imusim.algorithms.calibration.ScaleAndOffsetCalibration.__init__
+imusim.algorithms.orientation.BachmannCF.__init__
+imusim.algorithms.orientation.DistLinAccelCF.__init__
+imusim.algorithms.orientation.GyroIntegrator.__init__
+imusim.algorithms.orientation.OrientCF.__init__
+imusim.algorithms.orientation.OrientationFilter.__init__
+imusim.algorithms.orientation.YunEKF.__init__
+imusim.algorithms.position.ConstantPosition.__init__
+imusim.algorithms.position.ContactTrackingKalmanFilter.__init__
+imusim.algorithms.position.LowestPoint.__init__
+imusim.algorithms.position.PositionEstimator.__init__
+imusim.algorithms.position.RootAccelerationIntegrator.__init__
+imusim.algorithms.posture_reconstruction.InheritedForwardKinematics.__init__
+imusim.algorithms.posture_reconstruction.PostureReconstructor.__init__
+imusim.algorithms.posture_reconstruction.SimpleForwardKinematics.__init__
+imusim.algorithms.vector_observation.FQA.__init__
+imusim.algorithms.vector_observation.LeastSquaresOptimalVectorObservation.__init__
+imusim.behaviours.basestation.BodyModelReconstructor.__init__
+imusim.behaviours.imu.BasicIMUBehaviour.__init__
+imusim.behaviours.mac.MAC.__init__
+imusim.behaviours.orient_tdma.AuxPacket.__init__
+imusim.behaviours.orient_tdma.DataPacket.__init__
+imusim.behaviours.orient_tdma.InterSlaveMAC.__init__
+imusim.behaviours.orient_tdma.InterSlaveSchedule.__init__
+imusim.behaviours.orient_tdma.MasterMAC.__init__
+imusim.behaviours.orient_tdma.Schedule.__init__
+imusim.behaviours.orient_tdma.SlaveMAC.__init__
+imusim.behaviours.sampling.PeriodicSampler.__init__
+imusim.behaviours.timing.TimerMultiplexer.__init__
+imusim.behaviours.timing.VirtualTimer.__init__
+imusim.capture.marker.Marker.__init__
+imusim.capture.marker.Marker3DOF.__init__
+imusim.capture.marker.Marker6DOF.__init__
+imusim.capture.marker.MarkerCapture.__init__
+imusim.capture.marker.SplinedMarker3DOF.__init__
+imusim.capture.marker.SplinedMarker6DOF.__init__
+imusim.capture.marker.SplinedMarkerCapture.__init__
+imusim.capture.sensor.CapturedDevice.__init__
+imusim.capture.sensor.SensorDataCapture.__init__
+imusim.environment.base.Environment.__init__
+imusim.environment.gravity.ConstantGravitationalField.__init__
+imusim.environment.magnetic_fields.DistortedMagneticField.__init__
+imusim.environment.magnetic_fields.EarthMagneticField.__init__
+imusim.environment.magnetic_fields.SolenoidMagneticField.__init__
+imusim.environment.radio_environment.BERRadioEnvironment.__init__
+imusim.environment.radio_environment.IdealRadioEnvironment.__init__
+imusim.environment.radio_environment.RadioEnvironment.__init__
+imusim.io.bvh.BVHExporter.__init__
+imusim.io.bvh.BVHLoader.__init__
+imusim.maths.integrators.DoubleIntegrator.__init__
+imusim.maths.integrators.Integrator.__init__
+imusim.maths.integrators.TrapeziumRule.__init__
+imusim.maths.kalman.KalmanFilter.__init__
+imusim.maths.kalman.UnscentedKalmanFilter.__init__
+imusim.maths.quat_splines.SQUADQuaternionSpline.__init__
+imusim.maths.quaternions.QuaternionArray.__init__
+imusim.maths.splines.PartialInputSpline.__init__
+imusim.maths.splines.UnivariateSpline.__init__
+imusim.maths.transforms.AffineTransform.__init__
+imusim.maths.transforms.UnscentedTransform.__init__
+imusim.maths.vector_fields.ConstantVectorField.__init__
+imusim.maths.vector_fields.InterpolatedVectorField.__init__
+imusim.maths.vector_fields.NaturalNeighbourInterpolatedField.__init__
+imusim.maths.vector_fields.RBFInterpolatedField.__init__
+imusim.maths.vector_splines.PartialInputVectorSpline.__init__
+imusim.maths.vector_splines.UnivariateVectorSpline.__init__
+imusim.platforms.accelerometers.MMA7260Q.__init__
+imusim.platforms.adcs.ParametricADC.__init__
+imusim.platforms.adcs.QuantisingADC.__init__
+imusim.platforms.base.Component.__init__
+imusim.platforms.base.Platform.__init__
+imusim.platforms.basestations.IdealBasestation.__init__
+imusim.platforms.gyroscopes.ADXRS300.__init__
+imusim.platforms.imus.IdealIMU.__init__
+imusim.platforms.imus.MagicIMU.__init__
+imusim.platforms.imus.Orient3IMU.__init__
+imusim.platforms.magnetometers.HMC105x.__init__
+imusim.platforms.radios.Radio.__init__
+imusim.platforms.radios.RadioPacket.__init__
+imusim.platforms.sensors.NoisySensor.__init__
+imusim.platforms.sensors.NoisyTransformedSensor.__init__
+imusim.platforms.sensors.Sensor.__init__
+imusim.platforms.sensors.TransformedSensor.__init__
+imusim.platforms.timers.ParametricTimer.__init__
+imusim.platforms.timers.Timer.__init__
+imusim.simulation.base.Simulation.ProgressMonitor.__init__
+imusim.simulation.base.Simulation.__init__
+imusim.simulation.calibrators.Calibrator.__init__
+imusim.simulation.calibrators.ScaleAndOffsetCalibrator.__init__
+imusim.testing.random_data.RandomRotationTrajectory.__init__
+imusim.testing.random_data.RandomTrajectory.__init__
+imusim.trajectories.base.ConstantPositionTrajectory.__init__
+imusim.trajectories.base.ConstantRotationTrajectory.__init__
+imusim.trajectories.base.ContinuousRotationTrajectory.__init__
+imusim.trajectories.base.StaticContinuousRotationTrajectory.__init__
+imusim.trajectories.base.StaticTrajectory.__init__
+imusim.trajectories.multi_marker.MultiMarkerTrajectory.__init__
+imusim.trajectories.offset.OffsetTrajectory.__init__
+imusim.trajectories.rigid_body.Joint.__init__
+imusim.trajectories.rigid_body.Point.__init__
+imusim.trajectories.rigid_body.PointTrajectory.__init__
+imusim.trajectories.rigid_body.SampledBodyModel.__init__
+imusim.trajectories.rigid_body.SampledJoint.__init__
+imusim.trajectories.rigid_body.SplinedBodyModel.__init__
+imusim.trajectories.rigid_body.SplinedJoint.__init__
+imusim.trajectories.sampled.SampledPositionTrajectory.__init__
+imusim.trajectories.sampled.SampledRotationTrajectory.__init__
+imusim.trajectories.sampled.SampledTrajectory.__init__
+imusim.trajectories.splined.SplinedPositionTrajectory.__init__
+imusim.trajectories.splined.SplinedRotationTrajectory.__init__
+imusim.trajectories.splined.SplinedTrajectory.__init__
+imusim.utilities.caching.CacheEntry.__init__
+imusim.utilities.caching.CacheLastValue.__init__
+imusim.utilities.documentation.prepend_method_doc.__init__
+imusim.utilities.time_series.TimeSeries.__init__
+imusim.utilities.trees.TreeNode.__init__
+imusim.visualisation.rendering.AnimatedRenderer.__init__
+imusim.visualisation.rendering.BodyModelRenderer.__init__
+imusim.visualisation.rendering.ContactProbabilityRenderer.__init__
+imusim.visualisation.rendering.InteractiveAnimation.__init__
+imusim.visualisation.rendering.VelocityVectorRenderer.__init__" class="py-name" href="#" onclick="return doclink('link-32', '__init__', 'link-27');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt id="link-33" class="py-name"><a title="imusim.capture" class="py-name" href="#" onclick="return doclink('link-33', 'capture', 'link-23');">capture</a></tt><tt class="py-op">,</tt> <tt class="py-name">id</tt><tt class="py-op">)</tt> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line">        <tt id="link-34" class="py-name"><a title="imusim.trajectories.sampled.SampledRotationTrajectory" class="py-name" href="#" onclick="return doclink('link-34', 'SampledRotationTrajectory', 'link-11');">SampledRotationTrajectory</a></tt><tt class="py-op">.</tt><tt id="link-35" class="py-name"><a title="imusim.algorithms.calibration.ScaleAndOffsetCalibration.__init__
+imusim.algorithms.orientation.BachmannCF.__init__
+imusim.algorithms.orientation.DistLinAccelCF.__init__
+imusim.algorithms.orientation.GyroIntegrator.__init__
+imusim.algorithms.orientation.OrientCF.__init__
+imusim.algorithms.orientation.OrientationFilter.__init__
+imusim.algorithms.orientation.YunEKF.__init__
+imusim.algorithms.position.ConstantPosition.__init__
+imusim.algorithms.position.ContactTrackingKalmanFilter.__init__
+imusim.algorithms.position.LowestPoint.__init__
+imusim.algorithms.position.PositionEstimator.__init__
+imusim.algorithms.position.RootAccelerationIntegrator.__init__
+imusim.algorithms.posture_reconstruction.InheritedForwardKinematics.__init__
+imusim.algorithms.posture_reconstruction.PostureReconstructor.__init__
+imusim.algorithms.posture_reconstruction.SimpleForwardKinematics.__init__
+imusim.algorithms.vector_observation.FQA.__init__
+imusim.algorithms.vector_observation.LeastSquaresOptimalVectorObservation.__init__
+imusim.behaviours.basestation.BodyModelReconstructor.__init__
+imusim.behaviours.imu.BasicIMUBehaviour.__init__
+imusim.behaviours.mac.MAC.__init__
+imusim.behaviours.orient_tdma.AuxPacket.__init__
+imusim.behaviours.orient_tdma.DataPacket.__init__
+imusim.behaviours.orient_tdma.InterSlaveMAC.__init__
+imusim.behaviours.orient_tdma.InterSlaveSchedule.__init__
+imusim.behaviours.orient_tdma.MasterMAC.__init__
+imusim.behaviours.orient_tdma.Schedule.__init__
+imusim.behaviours.orient_tdma.SlaveMAC.__init__
+imusim.behaviours.sampling.PeriodicSampler.__init__
+imusim.behaviours.timing.TimerMultiplexer.__init__
+imusim.behaviours.timing.VirtualTimer.__init__
+imusim.capture.marker.Marker.__init__
+imusim.capture.marker.Marker3DOF.__init__
+imusim.capture.marker.Marker6DOF.__init__
+imusim.capture.marker.MarkerCapture.__init__
+imusim.capture.marker.SplinedMarker3DOF.__init__
+imusim.capture.marker.SplinedMarker6DOF.__init__
+imusim.capture.marker.SplinedMarkerCapture.__init__
+imusim.capture.sensor.CapturedDevice.__init__
+imusim.capture.sensor.SensorDataCapture.__init__
+imusim.environment.base.Environment.__init__
+imusim.environment.gravity.ConstantGravitationalField.__init__
+imusim.environment.magnetic_fields.DistortedMagneticField.__init__
+imusim.environment.magnetic_fields.EarthMagneticField.__init__
+imusim.environment.magnetic_fields.SolenoidMagneticField.__init__
+imusim.environment.radio_environment.BERRadioEnvironment.__init__
+imusim.environment.radio_environment.IdealRadioEnvironment.__init__
+imusim.environment.radio_environment.RadioEnvironment.__init__
+imusim.io.bvh.BVHExporter.__init__
+imusim.io.bvh.BVHLoader.__init__
+imusim.maths.integrators.DoubleIntegrator.__init__
+imusim.maths.integrators.Integrator.__init__
+imusim.maths.integrators.TrapeziumRule.__init__
+imusim.maths.kalman.KalmanFilter.__init__
+imusim.maths.kalman.UnscentedKalmanFilter.__init__
+imusim.maths.quat_splines.SQUADQuaternionSpline.__init__
+imusim.maths.quaternions.QuaternionArray.__init__
+imusim.maths.splines.PartialInputSpline.__init__
+imusim.maths.splines.UnivariateSpline.__init__
+imusim.maths.transforms.AffineTransform.__init__
+imusim.maths.transforms.UnscentedTransform.__init__
+imusim.maths.vector_fields.ConstantVectorField.__init__
+imusim.maths.vector_fields.InterpolatedVectorField.__init__
+imusim.maths.vector_fields.NaturalNeighbourInterpolatedField.__init__
+imusim.maths.vector_fields.RBFInterpolatedField.__init__
+imusim.maths.vector_splines.PartialInputVectorSpline.__init__
+imusim.maths.vector_splines.UnivariateVectorSpline.__init__
+imusim.platforms.accelerometers.MMA7260Q.__init__
+imusim.platforms.adcs.ParametricADC.__init__
+imusim.platforms.adcs.QuantisingADC.__init__
+imusim.platforms.base.Component.__init__
+imusim.platforms.base.Platform.__init__
+imusim.platforms.basestations.IdealBasestation.__init__
+imusim.platforms.gyroscopes.ADXRS300.__init__
+imusim.platforms.imus.IdealIMU.__init__
+imusim.platforms.imus.MagicIMU.__init__
+imusim.platforms.imus.Orient3IMU.__init__
+imusim.platforms.magnetometers.HMC105x.__init__
+imusim.platforms.radios.Radio.__init__
+imusim.platforms.radios.RadioPacket.__init__
+imusim.platforms.sensors.NoisySensor.__init__
+imusim.platforms.sensors.NoisyTransformedSensor.__init__
+imusim.platforms.sensors.Sensor.__init__
+imusim.platforms.sensors.TransformedSensor.__init__
+imusim.platforms.timers.ParametricTimer.__init__
+imusim.platforms.timers.Timer.__init__
+imusim.simulation.base.Simulation.ProgressMonitor.__init__
+imusim.simulation.base.Simulation.__init__
+imusim.simulation.calibrators.Calibrator.__init__
+imusim.simulation.calibrators.ScaleAndOffsetCalibrator.__init__
+imusim.testing.random_data.RandomRotationTrajectory.__init__
+imusim.testing.random_data.RandomTrajectory.__init__
+imusim.trajectories.base.ConstantPositionTrajectory.__init__
+imusim.trajectories.base.ConstantRotationTrajectory.__init__
+imusim.trajectories.base.ContinuousRotationTrajectory.__init__
+imusim.trajectories.base.StaticContinuousRotationTrajectory.__init__
+imusim.trajectories.base.StaticTrajectory.__init__
+imusim.trajectories.multi_marker.MultiMarkerTrajectory.__init__
+imusim.trajectories.offset.OffsetTrajectory.__init__
+imusim.trajectories.rigid_body.Joint.__init__
+imusim.trajectories.rigid_body.Point.__init__
+imusim.trajectories.rigid_body.PointTrajectory.__init__
+imusim.trajectories.rigid_body.SampledBodyModel.__init__
+imusim.trajectories.rigid_body.SampledJoint.__init__
+imusim.trajectories.rigid_body.SplinedBodyModel.__init__
+imusim.trajectories.rigid_body.SplinedJoint.__init__
+imusim.trajectories.sampled.SampledPositionTrajectory.__init__
+imusim.trajectories.sampled.SampledRotationTrajectory.__init__
+imusim.trajectories.sampled.SampledTrajectory.__init__
+imusim.trajectories.splined.SplinedPositionTrajectory.__init__
+imusim.trajectories.splined.SplinedRotationTrajectory.__init__
+imusim.trajectories.splined.SplinedTrajectory.__init__
+imusim.utilities.caching.CacheEntry.__init__
+imusim.utilities.caching.CacheLastValue.__init__
+imusim.utilities.documentation.prepend_method_doc.__init__
+imusim.utilities.time_series.TimeSeries.__init__
+imusim.utilities.trees.TreeNode.__init__
+imusim.visualisation.rendering.AnimatedRenderer.__init__
+imusim.visualisation.rendering.BodyModelRenderer.__init__
+imusim.visualisation.rendering.ContactProbabilityRenderer.__init__
+imusim.visualisation.rendering.InteractiveAnimation.__init__
+imusim.visualisation.rendering.VelocityVectorRenderer.__init__" class="py-name" href="#" onclick="return doclink('link-35', '__init__', 'link-27');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line"> </tt>
+<a name="SplinedMarkerCapture"></a><div id="SplinedMarkerCapture-def"><a name="L91"></a><tt class="py-lineno"> 91</tt> <a class="py-toggle" href="#" id="SplinedMarkerCapture-toggle" onclick="return toggle('SplinedMarkerCapture');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="imusim.capture.marker.SplinedMarkerCapture-class.html">SplinedMarkerCapture</a><tt class="py-op">(</tt><tt class="py-base-class">MarkerCapture</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SplinedMarkerCapture-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="SplinedMarkerCapture-expanded"><a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line"><tt class="py-docstring">    Wrapper to obtain splined versions of all marker trajectories in a capture.</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line"><tt class="py-docstring">    @param sampled: L{MarkerCapture} with sampled marker data.</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line"><tt class="py-docstring">    @param kwargs: Keyword arguments to pass to spline trajectory constructors.</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="SplinedMarkerCapture.__init__"></a><div id="SplinedMarkerCapture.__init__-def"><a name="L98"></a><tt class="py-lineno"> 98</tt> <a class="py-toggle" href="#" id="SplinedMarkerCapture.__init__-toggle" onclick="return toggle('SplinedMarkerCapture.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.capture.marker.SplinedMarkerCapture-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">sampled</tt><tt class="py-op">,</tt> <tt class="py-op">**</tt><tt class="py-param">kwargs</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SplinedMarkerCapture.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="SplinedMarkerCapture.__init__-expanded"><a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-36" class="py-name"><a title="imusim.trajectories.sampled" class="py-name" href="#" onclick="return doclink('link-36', 'sampled', 'link-6');">sampled</a></tt> <tt class="py-op">=</tt> <tt id="link-37" class="py-name"><a title="imusim.trajectories.sampled" class="py-name" href="#" onclick="return doclink('link-37', 'sampled', 'link-6');">sampled</a></tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_markers</tt> <tt class="py-op">=</tt> <tt class="py-name">dict</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt id="link-38" class="py-name"><a title="imusim.capture.marker
+imusim.capture.marker.MarkerCapture.marker" class="py-name" href="#" onclick="return doclink('link-38', 'marker', 'link-20');">marker</a></tt> <tt class="py-keyword">in</tt> <tt id="link-39" class="py-name"><a title="imusim.trajectories.sampled" class="py-name" href="#" onclick="return doclink('link-39', 'sampled', 'link-6');">sampled</a></tt><tt class="py-op">.</tt><tt id="link-40" class="py-name" targets="Variable imusim.capture.marker.MarkerCapture.markers=imusim.capture.marker.MarkerCapture-class.html#markers"><a title="imusim.capture.marker.MarkerCapture.markers" class="py-name" href="#" onclick="return doclink('link-40', 'markers', 'link-40');">markers</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">isinstance</tt><tt class="py-op">(</tt><tt id="link-41" class="py-name"><a title="imusim.capture.marker
+imusim.capture.marker.MarkerCapture.marker" class="py-name" href="#" onclick="return doclink('link-41', 'marker', 'link-20');">marker</a></tt><tt class="py-op">,</tt> <tt id="link-42" class="py-name" targets="Class imusim.capture.marker.Marker6DOF=imusim.capture.marker.Marker6DOF-class.html"><a title="imusim.capture.marker.Marker6DOF" class="py-name" href="#" onclick="return doclink('link-42', 'Marker6DOF', 'link-42');">Marker6DOF</a></tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line">                <tt class="py-name">markerClass</tt> <tt class="py-op">=</tt> <tt id="link-43" class="py-name" targets="Class imusim.capture.marker.SplinedMarker6DOF=imusim.capture.marker.SplinedMarker6DOF-class.html"><a title="imusim.capture.marker.SplinedMarker6DOF" class="py-name" href="#" onclick="return doclink('link-43', 'SplinedMarker6DOF', 'link-43');">SplinedMarker6DOF</a></tt> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line">            <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line">                <tt class="py-name">markerClass</tt> <tt class="py-op">=</tt> <tt id="link-44" class="py-name" targets="Class imusim.capture.marker.SplinedMarker3DOF=imusim.capture.marker.SplinedMarker3DOF-class.html"><a title="imusim.capture.marker.SplinedMarker3DOF" class="py-name" href="#" onclick="return doclink('link-44', 'SplinedMarker3DOF', 'link-44');">SplinedMarker3DOF</a></tt> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_markers</tt><tt class="py-op">[</tt><tt id="link-45" class="py-name"><a title="imusim.capture.marker
+imusim.capture.marker.MarkerCapture.marker" class="py-name" href="#" onclick="return doclink('link-45', 'marker', 'link-20');">marker</a></tt><tt class="py-op">.</tt><tt class="py-name">id</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">markerClass</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt id="link-46" class="py-name"><a title="imusim.capture.marker
+imusim.capture.marker.MarkerCapture.marker" class="py-name" href="#" onclick="return doclink('link-46', 'marker', 'link-20');">marker</a></tt><tt class="py-op">,</tt> <tt class="py-op">**</tt><tt class="py-name">kwargs</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line"> </tt>
+<a name="SplinedMarker3DOF"></a><div id="SplinedMarker3DOF-def"><a name="L108"></a><tt class="py-lineno">108</tt> <a class="py-toggle" href="#" id="SplinedMarker3DOF-toggle" onclick="return toggle('SplinedMarker3DOF');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="imusim.capture.marker.SplinedMarker3DOF-class.html">SplinedMarker3DOF</a><tt class="py-op">(</tt><tt class="py-base-class">SplinedPositionTrajectory</tt><tt class="py-op">,</tt> <tt class="py-base-class">Marker</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SplinedMarker3DOF-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="SplinedMarker3DOF-expanded"><a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line"><tt class="py-docstring">    A capture marker with splined 3DOF position information.</tt> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="SplinedMarker3DOF.__init__"></a><div id="SplinedMarker3DOF.__init__-def"><a name="L112"></a><tt class="py-lineno">112</tt> <a class="py-toggle" href="#" id="SplinedMarker3DOF.__init__-toggle" onclick="return toggle('SplinedMarker3DOF.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.capture.marker.SplinedMarker3DOF-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">capture</tt><tt class="py-op">,</tt> <tt class="py-param">sampled</tt><tt class="py-op">,</tt> <tt class="py-op">**</tt><tt class="py-param">kwargs</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SplinedMarker3DOF.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="SplinedMarker3DOF.__init__-expanded"><a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line"><tt class="py-docstring">        Initialise splined marker trajectory.</tt> </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line"><tt class="py-docstring">        @param capture: Parent L{SplinedMarkerCapture}.</tt> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line"><tt class="py-docstring">        @param sampled: L{Marker3DOF} with sampled data.</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line"><tt class="py-docstring">        @param kwargs: Keyword arguments for spline trajectory constructors.</tt> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line">        <tt id="link-47" class="py-name"><a title="imusim.capture.marker.Marker" class="py-name" href="#" onclick="return doclink('link-47', 'Marker', 'link-26');">Marker</a></tt><tt class="py-op">.</tt><tt id="link-48" class="py-name"><a title="imusim.algorithms.calibration.ScaleAndOffsetCalibration.__init__
+imusim.algorithms.orientation.BachmannCF.__init__
+imusim.algorithms.orientation.DistLinAccelCF.__init__
+imusim.algorithms.orientation.GyroIntegrator.__init__
+imusim.algorithms.orientation.OrientCF.__init__
+imusim.algorithms.orientation.OrientationFilter.__init__
+imusim.algorithms.orientation.YunEKF.__init__
+imusim.algorithms.position.ConstantPosition.__init__
+imusim.algorithms.position.ContactTrackingKalmanFilter.__init__
+imusim.algorithms.position.LowestPoint.__init__
+imusim.algorithms.position.PositionEstimator.__init__
+imusim.algorithms.position.RootAccelerationIntegrator.__init__
+imusim.algorithms.posture_reconstruction.InheritedForwardKinematics.__init__
+imusim.algorithms.posture_reconstruction.PostureReconstructor.__init__
+imusim.algorithms.posture_reconstruction.SimpleForwardKinematics.__init__
+imusim.algorithms.vector_observation.FQA.__init__
+imusim.algorithms.vector_observation.LeastSquaresOptimalVectorObservation.__init__
+imusim.behaviours.basestation.BodyModelReconstructor.__init__
+imusim.behaviours.imu.BasicIMUBehaviour.__init__
+imusim.behaviours.mac.MAC.__init__
+imusim.behaviours.orient_tdma.AuxPacket.__init__
+imusim.behaviours.orient_tdma.DataPacket.__init__
+imusim.behaviours.orient_tdma.InterSlaveMAC.__init__
+imusim.behaviours.orient_tdma.InterSlaveSchedule.__init__
+imusim.behaviours.orient_tdma.MasterMAC.__init__
+imusim.behaviours.orient_tdma.Schedule.__init__
+imusim.behaviours.orient_tdma.SlaveMAC.__init__
+imusim.behaviours.sampling.PeriodicSampler.__init__
+imusim.behaviours.timing.TimerMultiplexer.__init__
+imusim.behaviours.timing.VirtualTimer.__init__
+imusim.capture.marker.Marker.__init__
+imusim.capture.marker.Marker3DOF.__init__
+imusim.capture.marker.Marker6DOF.__init__
+imusim.capture.marker.MarkerCapture.__init__
+imusim.capture.marker.SplinedMarker3DOF.__init__
+imusim.capture.marker.SplinedMarker6DOF.__init__
+imusim.capture.marker.SplinedMarkerCapture.__init__
+imusim.capture.sensor.CapturedDevice.__init__
+imusim.capture.sensor.SensorDataCapture.__init__
+imusim.environment.base.Environment.__init__
+imusim.environment.gravity.ConstantGravitationalField.__init__
+imusim.environment.magnetic_fields.DistortedMagneticField.__init__
+imusim.environment.magnetic_fields.EarthMagneticField.__init__
+imusim.environment.magnetic_fields.SolenoidMagneticField.__init__
+imusim.environment.radio_environment.BERRadioEnvironment.__init__
+imusim.environment.radio_environment.IdealRadioEnvironment.__init__
+imusim.environment.radio_environment.RadioEnvironment.__init__
+imusim.io.bvh.BVHExporter.__init__
+imusim.io.bvh.BVHLoader.__init__
+imusim.maths.integrators.DoubleIntegrator.__init__
+imusim.maths.integrators.Integrator.__init__
+imusim.maths.integrators.TrapeziumRule.__init__
+imusim.maths.kalman.KalmanFilter.__init__
+imusim.maths.kalman.UnscentedKalmanFilter.__init__
+imusim.maths.quat_splines.SQUADQuaternionSpline.__init__
+imusim.maths.quaternions.QuaternionArray.__init__
+imusim.maths.splines.PartialInputSpline.__init__
+imusim.maths.splines.UnivariateSpline.__init__
+imusim.maths.transforms.AffineTransform.__init__
+imusim.maths.transforms.UnscentedTransform.__init__
+imusim.maths.vector_fields.ConstantVectorField.__init__
+imusim.maths.vector_fields.InterpolatedVectorField.__init__
+imusim.maths.vector_fields.NaturalNeighbourInterpolatedField.__init__
+imusim.maths.vector_fields.RBFInterpolatedField.__init__
+imusim.maths.vector_splines.PartialInputVectorSpline.__init__
+imusim.maths.vector_splines.UnivariateVectorSpline.__init__
+imusim.platforms.accelerometers.MMA7260Q.__init__
+imusim.platforms.adcs.ParametricADC.__init__
+imusim.platforms.adcs.QuantisingADC.__init__
+imusim.platforms.base.Component.__init__
+imusim.platforms.base.Platform.__init__
+imusim.platforms.basestations.IdealBasestation.__init__
+imusim.platforms.gyroscopes.ADXRS300.__init__
+imusim.platforms.imus.IdealIMU.__init__
+imusim.platforms.imus.MagicIMU.__init__
+imusim.platforms.imus.Orient3IMU.__init__
+imusim.platforms.magnetometers.HMC105x.__init__
+imusim.platforms.radios.Radio.__init__
+imusim.platforms.radios.RadioPacket.__init__
+imusim.platforms.sensors.NoisySensor.__init__
+imusim.platforms.sensors.NoisyTransformedSensor.__init__
+imusim.platforms.sensors.Sensor.__init__
+imusim.platforms.sensors.TransformedSensor.__init__
+imusim.platforms.timers.ParametricTimer.__init__
+imusim.platforms.timers.Timer.__init__
+imusim.simulation.base.Simulation.ProgressMonitor.__init__
+imusim.simulation.base.Simulation.__init__
+imusim.simulation.calibrators.Calibrator.__init__
+imusim.simulation.calibrators.ScaleAndOffsetCalibrator.__init__
+imusim.testing.random_data.RandomRotationTrajectory.__init__
+imusim.testing.random_data.RandomTrajectory.__init__
+imusim.trajectories.base.ConstantPositionTrajectory.__init__
+imusim.trajectories.base.ConstantRotationTrajectory.__init__
+imusim.trajectories.base.ContinuousRotationTrajectory.__init__
+imusim.trajectories.base.StaticContinuousRotationTrajectory.__init__
+imusim.trajectories.base.StaticTrajectory.__init__
+imusim.trajectories.multi_marker.MultiMarkerTrajectory.__init__
+imusim.trajectories.offset.OffsetTrajectory.__init__
+imusim.trajectories.rigid_body.Joint.__init__
+imusim.trajectories.rigid_body.Point.__init__
+imusim.trajectories.rigid_body.PointTrajectory.__init__
+imusim.trajectories.rigid_body.SampledBodyModel.__init__
+imusim.trajectories.rigid_body.SampledJoint.__init__
+imusim.trajectories.rigid_body.SplinedBodyModel.__init__
+imusim.trajectories.rigid_body.SplinedJoint.__init__
+imusim.trajectories.sampled.SampledPositionTrajectory.__init__
+imusim.trajectories.sampled.SampledRotationTrajectory.__init__
+imusim.trajectories.sampled.SampledTrajectory.__init__
+imusim.trajectories.splined.SplinedPositionTrajectory.__init__
+imusim.trajectories.splined.SplinedRotationTrajectory.__init__
+imusim.trajectories.splined.SplinedTrajectory.__init__
+imusim.utilities.caching.CacheEntry.__init__
+imusim.utilities.caching.CacheLastValue.__init__
+imusim.utilities.documentation.prepend_method_doc.__init__
+imusim.utilities.time_series.TimeSeries.__init__
+imusim.utilities.trees.TreeNode.__init__
+imusim.visualisation.rendering.AnimatedRenderer.__init__
+imusim.visualisation.rendering.BodyModelRenderer.__init__
+imusim.visualisation.rendering.ContactProbabilityRenderer.__init__
+imusim.visualisation.rendering.InteractiveAnimation.__init__
+imusim.visualisation.rendering.VelocityVectorRenderer.__init__" class="py-name" href="#" onclick="return doclink('link-48', '__init__', 'link-27');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt id="link-49" class="py-name"><a title="imusim.capture" class="py-name" href="#" onclick="return doclink('link-49', 'capture', 'link-23');">capture</a></tt><tt class="py-op">,</tt> <tt id="link-50" class="py-name"><a title="imusim.trajectories.sampled" class="py-name" href="#" onclick="return doclink('link-50', 'sampled', 'link-6');">sampled</a></tt><tt class="py-op">.</tt><tt class="py-name">id</tt><tt class="py-op">)</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line">        <tt id="link-51" class="py-name"><a title="imusim.trajectories.splined.SplinedPositionTrajectory" class="py-name" href="#" onclick="return doclink('link-51', 'SplinedPositionTrajectory', 'link-15');">SplinedPositionTrajectory</a></tt><tt class="py-op">.</tt><tt id="link-52" class="py-name"><a title="imusim.algorithms.calibration.ScaleAndOffsetCalibration.__init__
+imusim.algorithms.orientation.BachmannCF.__init__
+imusim.algorithms.orientation.DistLinAccelCF.__init__
+imusim.algorithms.orientation.GyroIntegrator.__init__
+imusim.algorithms.orientation.OrientCF.__init__
+imusim.algorithms.orientation.OrientationFilter.__init__
+imusim.algorithms.orientation.YunEKF.__init__
+imusim.algorithms.position.ConstantPosition.__init__
+imusim.algorithms.position.ContactTrackingKalmanFilter.__init__
+imusim.algorithms.position.LowestPoint.__init__
+imusim.algorithms.position.PositionEstimator.__init__
+imusim.algorithms.position.RootAccelerationIntegrator.__init__
+imusim.algorithms.posture_reconstruction.InheritedForwardKinematics.__init__
+imusim.algorithms.posture_reconstruction.PostureReconstructor.__init__
+imusim.algorithms.posture_reconstruction.SimpleForwardKinematics.__init__
+imusim.algorithms.vector_observation.FQA.__init__
+imusim.algorithms.vector_observation.LeastSquaresOptimalVectorObservation.__init__
+imusim.behaviours.basestation.BodyModelReconstructor.__init__
+imusim.behaviours.imu.BasicIMUBehaviour.__init__
+imusim.behaviours.mac.MAC.__init__
+imusim.behaviours.orient_tdma.AuxPacket.__init__
+imusim.behaviours.orient_tdma.DataPacket.__init__
+imusim.behaviours.orient_tdma.InterSlaveMAC.__init__
+imusim.behaviours.orient_tdma.InterSlaveSchedule.__init__
+imusim.behaviours.orient_tdma.MasterMAC.__init__
+imusim.behaviours.orient_tdma.Schedule.__init__
+imusim.behaviours.orient_tdma.SlaveMAC.__init__
+imusim.behaviours.sampling.PeriodicSampler.__init__
+imusim.behaviours.timing.TimerMultiplexer.__init__
+imusim.behaviours.timing.VirtualTimer.__init__
+imusim.capture.marker.Marker.__init__
+imusim.capture.marker.Marker3DOF.__init__
+imusim.capture.marker.Marker6DOF.__init__
+imusim.capture.marker.MarkerCapture.__init__
+imusim.capture.marker.SplinedMarker3DOF.__init__
+imusim.capture.marker.SplinedMarker6DOF.__init__
+imusim.capture.marker.SplinedMarkerCapture.__init__
+imusim.capture.sensor.CapturedDevice.__init__
+imusim.capture.sensor.SensorDataCapture.__init__
+imusim.environment.base.Environment.__init__
+imusim.environment.gravity.ConstantGravitationalField.__init__
+imusim.environment.magnetic_fields.DistortedMagneticField.__init__
+imusim.environment.magnetic_fields.EarthMagneticField.__init__
+imusim.environment.magnetic_fields.SolenoidMagneticField.__init__
+imusim.environment.radio_environment.BERRadioEnvironment.__init__
+imusim.environment.radio_environment.IdealRadioEnvironment.__init__
+imusim.environment.radio_environment.RadioEnvironment.__init__
+imusim.io.bvh.BVHExporter.__init__
+imusim.io.bvh.BVHLoader.__init__
+imusim.maths.integrators.DoubleIntegrator.__init__
+imusim.maths.integrators.Integrator.__init__
+imusim.maths.integrators.TrapeziumRule.__init__
+imusim.maths.kalman.KalmanFilter.__init__
+imusim.maths.kalman.UnscentedKalmanFilter.__init__
+imusim.maths.quat_splines.SQUADQuaternionSpline.__init__
+imusim.maths.quaternions.QuaternionArray.__init__
+imusim.maths.splines.PartialInputSpline.__init__
+imusim.maths.splines.UnivariateSpline.__init__
+imusim.maths.transforms.AffineTransform.__init__
+imusim.maths.transforms.UnscentedTransform.__init__
+imusim.maths.vector_fields.ConstantVectorField.__init__
+imusim.maths.vector_fields.InterpolatedVectorField.__init__
+imusim.maths.vector_fields.NaturalNeighbourInterpolatedField.__init__
+imusim.maths.vector_fields.RBFInterpolatedField.__init__
+imusim.maths.vector_splines.PartialInputVectorSpline.__init__
+imusim.maths.vector_splines.UnivariateVectorSpline.__init__
+imusim.platforms.accelerometers.MMA7260Q.__init__
+imusim.platforms.adcs.ParametricADC.__init__
+imusim.platforms.adcs.QuantisingADC.__init__
+imusim.platforms.base.Component.__init__
+imusim.platforms.base.Platform.__init__
+imusim.platforms.basestations.IdealBasestation.__init__
+imusim.platforms.gyroscopes.ADXRS300.__init__
+imusim.platforms.imus.IdealIMU.__init__
+imusim.platforms.imus.MagicIMU.__init__
+imusim.platforms.imus.Orient3IMU.__init__
+imusim.platforms.magnetometers.HMC105x.__init__
+imusim.platforms.radios.Radio.__init__
+imusim.platforms.radios.RadioPacket.__init__
+imusim.platforms.sensors.NoisySensor.__init__
+imusim.platforms.sensors.NoisyTransformedSensor.__init__
+imusim.platforms.sensors.Sensor.__init__
+imusim.platforms.sensors.TransformedSensor.__init__
+imusim.platforms.timers.ParametricTimer.__init__
+imusim.platforms.timers.Timer.__init__
+imusim.simulation.base.Simulation.ProgressMonitor.__init__
+imusim.simulation.base.Simulation.__init__
+imusim.simulation.calibrators.Calibrator.__init__
+imusim.simulation.calibrators.ScaleAndOffsetCalibrator.__init__
+imusim.testing.random_data.RandomRotationTrajectory.__init__
+imusim.testing.random_data.RandomTrajectory.__init__
+imusim.trajectories.base.ConstantPositionTrajectory.__init__
+imusim.trajectories.base.ConstantRotationTrajectory.__init__
+imusim.trajectories.base.ContinuousRotationTrajectory.__init__
+imusim.trajectories.base.StaticContinuousRotationTrajectory.__init__
+imusim.trajectories.base.StaticTrajectory.__init__
+imusim.trajectories.multi_marker.MultiMarkerTrajectory.__init__
+imusim.trajectories.offset.OffsetTrajectory.__init__
+imusim.trajectories.rigid_body.Joint.__init__
+imusim.trajectories.rigid_body.Point.__init__
+imusim.trajectories.rigid_body.PointTrajectory.__init__
+imusim.trajectories.rigid_body.SampledBodyModel.__init__
+imusim.trajectories.rigid_body.SampledJoint.__init__
+imusim.trajectories.rigid_body.SplinedBodyModel.__init__
+imusim.trajectories.rigid_body.SplinedJoint.__init__
+imusim.trajectories.sampled.SampledPositionTrajectory.__init__
+imusim.trajectories.sampled.SampledRotationTrajectory.__init__
+imusim.trajectories.sampled.SampledTrajectory.__init__
+imusim.trajectories.splined.SplinedPositionTrajectory.__init__
+imusim.trajectories.splined.SplinedRotationTrajectory.__init__
+imusim.trajectories.splined.SplinedTrajectory.__init__
+imusim.utilities.caching.CacheEntry.__init__
+imusim.utilities.caching.CacheLastValue.__init__
+imusim.utilities.documentation.prepend_method_doc.__init__
+imusim.utilities.time_series.TimeSeries.__init__
+imusim.utilities.trees.TreeNode.__init__
+imusim.visualisation.rendering.AnimatedRenderer.__init__
+imusim.visualisation.rendering.BodyModelRenderer.__init__
+imusim.visualisation.rendering.ContactProbabilityRenderer.__init__
+imusim.visualisation.rendering.InteractiveAnimation.__init__
+imusim.visualisation.rendering.VelocityVectorRenderer.__init__" class="py-name" href="#" onclick="return doclink('link-52', '__init__', 'link-27');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt id="link-53" class="py-name"><a title="imusim.trajectories.sampled" class="py-name" href="#" onclick="return doclink('link-53', 'sampled', 'link-6');">sampled</a></tt><tt class="py-op">,</tt> <tt class="py-op">**</tt><tt class="py-name">kwargs</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line"> </tt>
+<a name="SplinedMarker6DOF"></a><div id="SplinedMarker6DOF-def"><a name="L123"></a><tt class="py-lineno">123</tt> <a class="py-toggle" href="#" id="SplinedMarker6DOF-toggle" onclick="return toggle('SplinedMarker6DOF');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="imusim.capture.marker.SplinedMarker6DOF-class.html">SplinedMarker6DOF</a><tt class="py-op">(</tt><tt class="py-base-class">SplinedRotationTrajectory</tt><tt class="py-op">,</tt> <tt class="py-base-class">SplinedMarker3DOF</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SplinedMarker6DOF-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="SplinedMarker6DOF-expanded"><a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line"><tt class="py-docstring">    A capture marker with splined 6DOF position and rotation information.</tt> </tt>
+<a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="SplinedMarker6DOF.__init__"></a><div id="SplinedMarker6DOF.__init__-def"><a name="L127"></a><tt class="py-lineno">127</tt> <a class="py-toggle" href="#" id="SplinedMarker6DOF.__init__-toggle" onclick="return toggle('SplinedMarker6DOF.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.capture.marker.SplinedMarker6DOF-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">capture</tt><tt class="py-op">,</tt> <tt class="py-param">sampled</tt><tt class="py-op">,</tt> <tt class="py-op">**</tt><tt class="py-param">kwargs</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SplinedMarker6DOF.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="SplinedMarker6DOF.__init__-expanded"><a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line"><tt class="py-docstring">        Initialise splined marker trajectory.</tt> </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line"><tt class="py-docstring">        @param capture: Parent L{SplinedMarkerCapture}.</tt> </tt>
+<a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line"><tt class="py-docstring">        @param sampled: L{Marker6DOF} with sampled data.</tt> </tt>
+<a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line"><tt class="py-docstring">        @param kwargs: Keyword arguments for spline trajectory constructors.</tt> </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line">        <tt id="link-54" class="py-name"><a title="imusim.capture.marker.SplinedMarker3DOF" class="py-name" href="#" onclick="return doclink('link-54', 'SplinedMarker3DOF', 'link-44');">SplinedMarker3DOF</a></tt><tt class="py-op">.</tt><tt id="link-55" class="py-name"><a title="imusim.algorithms.calibration.ScaleAndOffsetCalibration.__init__
+imusim.algorithms.orientation.BachmannCF.__init__
+imusim.algorithms.orientation.DistLinAccelCF.__init__
+imusim.algorithms.orientation.GyroIntegrator.__init__
+imusim.algorithms.orientation.OrientCF.__init__
+imusim.algorithms.orientation.OrientationFilter.__init__
+imusim.algorithms.orientation.YunEKF.__init__
+imusim.algorithms.position.ConstantPosition.__init__
+imusim.algorithms.position.ContactTrackingKalmanFilter.__init__
+imusim.algorithms.position.LowestPoint.__init__
+imusim.algorithms.position.PositionEstimator.__init__
+imusim.algorithms.position.RootAccelerationIntegrator.__init__
+imusim.algorithms.posture_reconstruction.InheritedForwardKinematics.__init__
+imusim.algorithms.posture_reconstruction.PostureReconstructor.__init__
+imusim.algorithms.posture_reconstruction.SimpleForwardKinematics.__init__
+imusim.algorithms.vector_observation.FQA.__init__
+imusim.algorithms.vector_observation.LeastSquaresOptimalVectorObservation.__init__
+imusim.behaviours.basestation.BodyModelReconstructor.__init__
+imusim.behaviours.imu.BasicIMUBehaviour.__init__
+imusim.behaviours.mac.MAC.__init__
+imusim.behaviours.orient_tdma.AuxPacket.__init__
+imusim.behaviours.orient_tdma.DataPacket.__init__
+imusim.behaviours.orient_tdma.InterSlaveMAC.__init__
+imusim.behaviours.orient_tdma.InterSlaveSchedule.__init__
+imusim.behaviours.orient_tdma.MasterMAC.__init__
+imusim.behaviours.orient_tdma.Schedule.__init__
+imusim.behaviours.orient_tdma.SlaveMAC.__init__
+imusim.behaviours.sampling.PeriodicSampler.__init__
+imusim.behaviours.timing.TimerMultiplexer.__init__
+imusim.behaviours.timing.VirtualTimer.__init__
+imusim.capture.marker.Marker.__init__
+imusim.capture.marker.Marker3DOF.__init__
+imusim.capture.marker.Marker6DOF.__init__
+imusim.capture.marker.MarkerCapture.__init__
+imusim.capture.marker.SplinedMarker3DOF.__init__
+imusim.capture.marker.SplinedMarker6DOF.__init__
+imusim.capture.marker.SplinedMarkerCapture.__init__
+imusim.capture.sensor.CapturedDevice.__init__
+imusim.capture.sensor.SensorDataCapture.__init__
+imusim.environment.base.Environment.__init__
+imusim.environment.gravity.ConstantGravitationalField.__init__
+imusim.environment.magnetic_fields.DistortedMagneticField.__init__
+imusim.environment.magnetic_fields.EarthMagneticField.__init__
+imusim.environment.magnetic_fields.SolenoidMagneticField.__init__
+imusim.environment.radio_environment.BERRadioEnvironment.__init__
+imusim.environment.radio_environment.IdealRadioEnvironment.__init__
+imusim.environment.radio_environment.RadioEnvironment.__init__
+imusim.io.bvh.BVHExporter.__init__
+imusim.io.bvh.BVHLoader.__init__
+imusim.maths.integrators.DoubleIntegrator.__init__
+imusim.maths.integrators.Integrator.__init__
+imusim.maths.integrators.TrapeziumRule.__init__
+imusim.maths.kalman.KalmanFilter.__init__
+imusim.maths.kalman.UnscentedKalmanFilter.__init__
+imusim.maths.quat_splines.SQUADQuaternionSpline.__init__
+imusim.maths.quaternions.QuaternionArray.__init__
+imusim.maths.splines.PartialInputSpline.__init__
+imusim.maths.splines.UnivariateSpline.__init__
+imusim.maths.transforms.AffineTransform.__init__
+imusim.maths.transforms.UnscentedTransform.__init__
+imusim.maths.vector_fields.ConstantVectorField.__init__
+imusim.maths.vector_fields.InterpolatedVectorField.__init__
+imusim.maths.vector_fields.NaturalNeighbourInterpolatedField.__init__
+imusim.maths.vector_fields.RBFInterpolatedField.__init__
+imusim.maths.vector_splines.PartialInputVectorSpline.__init__
+imusim.maths.vector_splines.UnivariateVectorSpline.__init__
+imusim.platforms.accelerometers.MMA7260Q.__init__
+imusim.platforms.adcs.ParametricADC.__init__
+imusim.platforms.adcs.QuantisingADC.__init__
+imusim.platforms.base.Component.__init__
+imusim.platforms.base.Platform.__init__
+imusim.platforms.basestations.IdealBasestation.__init__
+imusim.platforms.gyroscopes.ADXRS300.__init__
+imusim.platforms.imus.IdealIMU.__init__
+imusim.platforms.imus.MagicIMU.__init__
+imusim.platforms.imus.Orient3IMU.__init__
+imusim.platforms.magnetometers.HMC105x.__init__
+imusim.platforms.radios.Radio.__init__
+imusim.platforms.radios.RadioPacket.__init__
+imusim.platforms.sensors.NoisySensor.__init__
+imusim.platforms.sensors.NoisyTransformedSensor.__init__
+imusim.platforms.sensors.Sensor.__init__
+imusim.platforms.sensors.TransformedSensor.__init__
+imusim.platforms.timers.ParametricTimer.__init__
+imusim.platforms.timers.Timer.__init__
+imusim.simulation.base.Simulation.ProgressMonitor.__init__
+imusim.simulation.base.Simulation.__init__
+imusim.simulation.calibrators.Calibrator.__init__
+imusim.simulation.calibrators.ScaleAndOffsetCalibrator.__init__
+imusim.testing.random_data.RandomRotationTrajectory.__init__
+imusim.testing.random_data.RandomTrajectory.__init__
+imusim.trajectories.base.ConstantPositionTrajectory.__init__
+imusim.trajectories.base.ConstantRotationTrajectory.__init__
+imusim.trajectories.base.ContinuousRotationTrajectory.__init__
+imusim.trajectories.base.StaticContinuousRotationTrajectory.__init__
+imusim.trajectories.base.StaticTrajectory.__init__
+imusim.trajectories.multi_marker.MultiMarkerTrajectory.__init__
+imusim.trajectories.offset.OffsetTrajectory.__init__
+imusim.trajectories.rigid_body.Joint.__init__
+imusim.trajectories.rigid_body.Point.__init__
+imusim.trajectories.rigid_body.PointTrajectory.__init__
+imusim.trajectories.rigid_body.SampledBodyModel.__init__
+imusim.trajectories.rigid_body.SampledJoint.__init__
+imusim.trajectories.rigid_body.SplinedBodyModel.__init__
+imusim.trajectories.rigid_body.SplinedJoint.__init__
+imusim.trajectories.sampled.SampledPositionTrajectory.__init__
+imusim.trajectories.sampled.SampledRotationTrajectory.__init__
+imusim.trajectories.sampled.SampledTrajectory.__init__
+imusim.trajectories.splined.SplinedPositionTrajectory.__init__
+imusim.trajectories.splined.SplinedRotationTrajectory.__init__
+imusim.trajectories.splined.SplinedTrajectory.__init__
+imusim.utilities.caching.CacheEntry.__init__
+imusim.utilities.caching.CacheLastValue.__init__
+imusim.utilities.documentation.prepend_method_doc.__init__
+imusim.utilities.time_series.TimeSeries.__init__
+imusim.utilities.trees.TreeNode.__init__
+imusim.visualisation.rendering.AnimatedRenderer.__init__
+imusim.visualisation.rendering.BodyModelRenderer.__init__
+imusim.visualisation.rendering.ContactProbabilityRenderer.__init__
+imusim.visualisation.rendering.InteractiveAnimation.__init__
+imusim.visualisation.rendering.VelocityVectorRenderer.__init__" class="py-name" href="#" onclick="return doclink('link-55', '__init__', 'link-27');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt id="link-56" class="py-name"><a title="imusim.capture" class="py-name" href="#" onclick="return doclink('link-56', 'capture', 'link-23');">capture</a></tt><tt class="py-op">,</tt> <tt id="link-57" class="py-name"><a title="imusim.trajectories.sampled" class="py-name" href="#" onclick="return doclink('link-57', 'sampled', 'link-6');">sampled</a></tt><tt class="py-op">,</tt> <tt class="py-op">**</tt><tt class="py-name">kwargs</tt><tt class="py-op">)</tt> </tt>
+<a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line">        <tt id="link-58" class="py-name"><a title="imusim.trajectories.splined.SplinedRotationTrajectory" class="py-name" href="#" onclick="return doclink('link-58', 'SplinedRotationTrajectory', 'link-19');">SplinedRotationTrajectory</a></tt><tt class="py-op">.</tt><tt id="link-59" class="py-name"><a title="imusim.algorithms.calibration.ScaleAndOffsetCalibration.__init__
+imusim.algorithms.orientation.BachmannCF.__init__
+imusim.algorithms.orientation.DistLinAccelCF.__init__
+imusim.algorithms.orientation.GyroIntegrator.__init__
+imusim.algorithms.orientation.OrientCF.__init__
+imusim.algorithms.orientation.OrientationFilter.__init__
+imusim.algorithms.orientation.YunEKF.__init__
+imusim.algorithms.position.ConstantPosition.__init__
+imusim.algorithms.position.ContactTrackingKalmanFilter.__init__
+imusim.algorithms.position.LowestPoint.__init__
+imusim.algorithms.position.PositionEstimator.__init__
+imusim.algorithms.position.RootAccelerationIntegrator.__init__
+imusim.algorithms.posture_reconstruction.InheritedForwardKinematics.__init__
+imusim.algorithms.posture_reconstruction.PostureReconstructor.__init__
+imusim.algorithms.posture_reconstruction.SimpleForwardKinematics.__init__
+imusim.algorithms.vector_observation.FQA.__init__
+imusim.algorithms.vector_observation.LeastSquaresOptimalVectorObservation.__init__
+imusim.behaviours.basestation.BodyModelReconstructor.__init__
+imusim.behaviours.imu.BasicIMUBehaviour.__init__
+imusim.behaviours.mac.MAC.__init__
+imusim.behaviours.orient_tdma.AuxPacket.__init__
+imusim.behaviours.orient_tdma.DataPacket.__init__
+imusim.behaviours.orient_tdma.InterSlaveMAC.__init__
+imusim.behaviours.orient_tdma.InterSlaveSchedule.__init__
+imusim.behaviours.orient_tdma.MasterMAC.__init__
+imusim.behaviours.orient_tdma.Schedule.__init__
+imusim.behaviours.orient_tdma.SlaveMAC.__init__
+imusim.behaviours.sampling.PeriodicSampler.__init__
+imusim.behaviours.timing.TimerMultiplexer.__init__
+imusim.behaviours.timing.VirtualTimer.__init__
+imusim.capture.marker.Marker.__init__
+imusim.capture.marker.Marker3DOF.__init__
+imusim.capture.marker.Marker6DOF.__init__
+imusim.capture.marker.MarkerCapture.__init__
+imusim.capture.marker.SplinedMarker3DOF.__init__
+imusim.capture.marker.SplinedMarker6DOF.__init__
+imusim.capture.marker.SplinedMarkerCapture.__init__
+imusim.capture.sensor.CapturedDevice.__init__
+imusim.capture.sensor.SensorDataCapture.__init__
+imusim.environment.base.Environment.__init__
+imusim.environment.gravity.ConstantGravitationalField.__init__
+imusim.environment.magnetic_fields.DistortedMagneticField.__init__
+imusim.environment.magnetic_fields.EarthMagneticField.__init__
+imusim.environment.magnetic_fields.SolenoidMagneticField.__init__
+imusim.environment.radio_environment.BERRadioEnvironment.__init__
+imusim.environment.radio_environment.IdealRadioEnvironment.__init__
+imusim.environment.radio_environment.RadioEnvironment.__init__
+imusim.io.bvh.BVHExporter.__init__
+imusim.io.bvh.BVHLoader.__init__
+imusim.maths.integrators.DoubleIntegrator.__init__
+imusim.maths.integrators.Integrator.__init__
+imusim.maths.integrators.TrapeziumRule.__init__
+imusim.maths.kalman.KalmanFilter.__init__
+imusim.maths.kalman.UnscentedKalmanFilter.__init__
+imusim.maths.quat_splines.SQUADQuaternionSpline.__init__
+imusim.maths.quaternions.QuaternionArray.__init__
+imusim.maths.splines.PartialInputSpline.__init__
+imusim.maths.splines.UnivariateSpline.__init__
+imusim.maths.transforms.AffineTransform.__init__
+imusim.maths.transforms.UnscentedTransform.__init__
+imusim.maths.vector_fields.ConstantVectorField.__init__
+imusim.maths.vector_fields.InterpolatedVectorField.__init__
+imusim.maths.vector_fields.NaturalNeighbourInterpolatedField.__init__
+imusim.maths.vector_fields.RBFInterpolatedField.__init__
+imusim.maths.vector_splines.PartialInputVectorSpline.__init__
+imusim.maths.vector_splines.UnivariateVectorSpline.__init__
+imusim.platforms.accelerometers.MMA7260Q.__init__
+imusim.platforms.adcs.ParametricADC.__init__
+imusim.platforms.adcs.QuantisingADC.__init__
+imusim.platforms.base.Component.__init__
+imusim.platforms.base.Platform.__init__
+imusim.platforms.basestations.IdealBasestation.__init__
+imusim.platforms.gyroscopes.ADXRS300.__init__
+imusim.platforms.imus.IdealIMU.__init__
+imusim.platforms.imus.MagicIMU.__init__
+imusim.platforms.imus.Orient3IMU.__init__
+imusim.platforms.magnetometers.HMC105x.__init__
+imusim.platforms.radios.Radio.__init__
+imusim.platforms.radios.RadioPacket.__init__
+imusim.platforms.sensors.NoisySensor.__init__
+imusim.platforms.sensors.NoisyTransformedSensor.__init__
+imusim.platforms.sensors.Sensor.__init__
+imusim.platforms.sensors.TransformedSensor.__init__
+imusim.platforms.timers.ParametricTimer.__init__
+imusim.platforms.timers.Timer.__init__
+imusim.simulation.base.Simulation.ProgressMonitor.__init__
+imusim.simulation.base.Simulation.__init__
+imusim.simulation.calibrators.Calibrator.__init__
+imusim.simulation.calibrators.ScaleAndOffsetCalibrator.__init__
+imusim.testing.random_data.RandomRotationTrajectory.__init__
+imusim.testing.random_data.RandomTrajectory.__init__
+imusim.trajectories.base.ConstantPositionTrajectory.__init__
+imusim.trajectories.base.ConstantRotationTrajectory.__init__
+imusim.trajectories.base.ContinuousRotationTrajectory.__init__
+imusim.trajectories.base.StaticContinuousRotationTrajectory.__init__
+imusim.trajectories.base.StaticTrajectory.__init__
+imusim.trajectories.multi_marker.MultiMarkerTrajectory.__init__
+imusim.trajectories.offset.OffsetTrajectory.__init__
+imusim.trajectories.rigid_body.Joint.__init__
+imusim.trajectories.rigid_body.Point.__init__
+imusim.trajectories.rigid_body.PointTrajectory.__init__
+imusim.trajectories.rigid_body.SampledBodyModel.__init__
+imusim.trajectories.rigid_body.SampledJoint.__init__
+imusim.trajectories.rigid_body.SplinedBodyModel.__init__
+imusim.trajectories.rigid_body.SplinedJoint.__init__
+imusim.trajectories.sampled.SampledPositionTrajectory.__init__
+imusim.trajectories.sampled.SampledRotationTrajectory.__init__
+imusim.trajectories.sampled.SampledTrajectory.__init__
+imusim.trajectories.splined.SplinedPositionTrajectory.__init__
+imusim.trajectories.splined.SplinedRotationTrajectory.__init__
+imusim.trajectories.splined.SplinedTrajectory.__init__
+imusim.utilities.caching.CacheEntry.__init__
+imusim.utilities.caching.CacheLastValue.__init__
+imusim.utilities.documentation.prepend_method_doc.__init__
+imusim.utilities.time_series.TimeSeries.__init__
+imusim.utilities.trees.TreeNode.__init__
+imusim.visualisation.rendering.AnimatedRenderer.__init__
+imusim.visualisation.rendering.BodyModelRenderer.__init__
+imusim.visualisation.rendering.ContactProbabilityRenderer.__init__
+imusim.visualisation.rendering.InteractiveAnimation.__init__
+imusim.visualisation.rendering.VelocityVectorRenderer.__init__" class="py-name" href="#" onclick="return doclink('link-59', '__init__', 'link-27');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt id="link-60" class="py-name"><a title="imusim.trajectories.sampled" class="py-name" href="#" onclick="return doclink('link-60', 'sampled', 'link-6');">sampled</a></tt><tt class="py-op">,</tt> <tt class="py-op">**</tt><tt class="py-name">kwargs</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line"> </tt>
+<a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line">    <tt class="py-decorator">@</tt><tt class="py-decorator">property</tt> </tt>
+<a name="SplinedMarker6DOF.startTime"></a><div id="SplinedMarker6DOF.startTime-def"><a name="L139"></a><tt class="py-lineno">139</tt> <a class="py-toggle" href="#" id="SplinedMarker6DOF.startTime-toggle" onclick="return toggle('SplinedMarker6DOF.startTime');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.capture.marker.SplinedMarker6DOF-class.html#startTime">startTime</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SplinedMarker6DOF.startTime-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="SplinedMarker6DOF.startTime-expanded"><a name="L140"></a><tt class="py-lineno">140</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">max</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_positionStartTime</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_rotationStartTime</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line"> </tt>
+<a name="L142"></a><tt class="py-lineno">142</tt>  <tt class="py-line">    <tt class="py-decorator">@</tt><tt class="py-decorator">property</tt> </tt>
+<a name="SplinedMarker6DOF.endTime"></a><div id="SplinedMarker6DOF.endTime-def"><a name="L143"></a><tt class="py-lineno">143</tt> <a class="py-toggle" href="#" id="SplinedMarker6DOF.endTime-toggle" onclick="return toggle('SplinedMarker6DOF.endTime');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.capture.marker.SplinedMarker6DOF-class.html#endTime">endTime</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SplinedMarker6DOF.endTime-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="SplinedMarker6DOF.endTime-expanded"><a name="L144"></a><tt class="py-lineno">144</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">min</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_positionEndTime</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_rotationEndTime</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="imusim-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://www.imusim.org/">IMUSim</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Wed Apr 14 11:45:15 2021
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

@@ -1,0 +1,512 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>imusim.maths.kalman.UnscentedKalmanFilter</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="imusim-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://www.imusim.org/">IMUSim</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="imusim-module.html">Package&nbsp;imusim</a> ::
+        <a href="imusim.maths-module.html">Package&nbsp;maths</a> ::
+        <a href="imusim.maths.kalman-module.html">Module&nbsp;kalman</a> ::
+        Class&nbsp;UnscentedKalmanFilter
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class UnscentedKalmanFilter</h1><p class="nomargin-top"><span class="codelink"><a href="imusim.maths.kalman-pysrc.html#UnscentedKalmanFilter">source&nbsp;code</a></span></p>
+<center>
+
+</center>
+<hr />
+<p>Implementation of the unscented Kalman filter algorithm for additive 
+  noise.</p>
+  <p>Implementation equations are taken from Wan and Van Der Merwe, 
+  &quot;The Unscented Kalman Filter&quot;, table 7.3.2.</p>
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Instance Methods</span></td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="imusim.maths.kalman.UnscentedKalmanFilter-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">stateUpdateFunction</span>,
+        <span class="summary-sig-arg">measurementFunction</span>,
+        <span class="summary-sig-arg">state</span>,
+        <span class="summary-sig-arg">stateCovariance</span>,
+        <span class="summary-sig-arg">processCovariance</span>,
+        <span class="summary-sig-arg">measurementCovariance</span>)</span><br />
+      Construct unscented Kalman filter.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="imusim.maths.kalman-pysrc.html#UnscentedKalmanFilter.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="imusim.maths.kalman.UnscentedKalmanFilter-class.html#predict" class="summary-sig-name">predict</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">control</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Predict the system state at the next timestep, updating the estimate.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="imusim.maths.kalman-pysrc.html#UnscentedKalmanFilter.predict">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="imusim.maths.kalman.UnscentedKalmanFilter-class.html#innovation" class="summary-sig-name">innovation</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">measurement</span>)</span><br />
+      Calculate the filter innovation and covariance for a given 
+      measurement.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="imusim.maths.kalman-pysrc.html#UnscentedKalmanFilter.innovation">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="imusim.maths.kalman.UnscentedKalmanFilter-class.html#correct" class="summary-sig-name">correct</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">measurement</span>)</span><br />
+      Correct the filter state given a new measurement.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="imusim.maths.kalman-pysrc.html#UnscentedKalmanFilter.correct">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="imusim.maths.kalman.KalmanFilter-class.html">KalmanFilter</a></code></b>:
+      <code><a href="imusim.maths.kalman.KalmanFilter-class.html#normalisedInnovation">normalisedInnovation</a></code>,
+      <code><a href="imusim.maths.kalman.KalmanFilter-class.html#update">update</a></code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__delattr__</code>,
+      <code>__format__</code>,
+      <code>__getattribute__</code>,
+      <code>__hash__</code>,
+      <code>__new__</code>,
+      <code>__reduce__</code>,
+      <code>__reduce_ex__</code>,
+      <code>__repr__</code>,
+      <code>__setattr__</code>,
+      <code>__sizeof__</code>,
+      <code>__str__</code>,
+      <code>__subclasshook__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== INSTANCE VARIABLES ==================== -->
+<a name="section-InstanceVariables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Instance Variables</span></td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="imusim.maths.kalman.UnscentedKalmanFilter-class.html#stateUpdateFunction" class="summary-name">stateUpdateFunction</a><br />
+      Non-linear function to propagate state into the next timestep.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="imusim.maths.kalman.UnscentedKalmanFilter-class.html#measurementFunction" class="summary-name">measurementFunction</a><br />
+      Non-linear function relating state variables to expected 
+      measurements.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="measurementCovariance"></a><span class="summary-name">measurementCovariance</span><br />
+      Measurement noise covariance matrix.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="processCovariance"></a><span class="summary-name">processCovariance</span><br />
+      Process noise covariance matrix.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="state"></a><span class="summary-name">state</span><br />
+      Current state estimate.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="stateCovariance"></a><span class="summary-name">stateCovariance</span><br />
+      State covariance matrix.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="imusim.maths.kalman.KalmanFilter-class.html">KalmanFilter</a></code></b>:
+      <code><a href="imusim.maths.kalman.KalmanFilter-class.html#controlMatrix">controlMatrix</a></code>,
+      <code><a href="imusim.maths.kalman.KalmanFilter-class.html#measurementMatrix">measurementMatrix</a></code>,
+      <code><a href="imusim.maths.kalman.KalmanFilter-class.html#stateTransitionMatrix">stateTransitionMatrix</a></code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== PROPERTIES ==================== -->
+<a name="section-Properties"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Properties</span></td>
+</tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="imusim.maths.kalman.KalmanFilter-class.html">KalmanFilter</a></code></b>:
+      <code><a href="imusim.maths.kalman.KalmanFilter-class.html#gain">gain</a></code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__class__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Method Details</span></td>
+</tr>
+</table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">stateUpdateFunction</span>,
+        <span class="sig-arg">measurementFunction</span>,
+        <span class="sig-arg">state</span>,
+        <span class="sig-arg">stateCovariance</span>,
+        <span class="sig-arg">processCovariance</span>,
+        <span class="sig-arg">measurementCovariance</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="imusim.maths.kalman-pysrc.html#UnscentedKalmanFilter.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Construct unscented Kalman filter.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>stateUpdateFunction</code></strong> - Non-linear function to propagate state into the next timestep. 
+          The function is called with two arguments, the current Nx1 state 
+          vector and the current Mx1 control input vector. It should return
+          a new Nx1 state vector. N and M are the numbers of states and 
+          control inputs.</li>
+        <li><strong class="pname"><code>measurementFunction</code></strong> - Non-linear function relating state variables to expected 
+          measurements. The function is called with the current Nx1 state 
+          vector as an argument, and should return an Mx1 measurement 
+          vector. N and M are the numbers of states and measurement 
+          outputs.</li>
+        <li><strong class="pname"><code>state</code></strong> - Initial state estimate.</li>
+        <li><strong class="pname"><code>stateCovariance</code></strong> - Initial state covariance matrix.</li>
+        <li><strong class="pname"><code>processCovariance</code></strong> - Process noise covariance matrix.</li>
+        <li><strong class="pname"><code>measurementCovariance</code></strong> - Measurement noise covariance matrix.</li>
+    </ul></dd>
+    <dt>Overrides:
+        object.__init__
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="predict"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">predict</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">control</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="imusim.maths.kalman-pysrc.html#UnscentedKalmanFilter.predict">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Predict the system state at the next timestep, updating the 
+  estimate.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>control</code></strong> - Mx1 <code class="link">np.ndarray</code> of control inputs, or 
+          None if there are no control inputs to the system.</li>
+    </ul></dd>
+    <dt>Overrides:
+        <a href="imusim.maths.kalman.KalmanFilter-class.html#predict">KalmanFilter.predict</a>
+        <dd><em class="note">(inherited documentation)</em></dd>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="innovation"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">innovation</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">measurement</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="imusim.maths.kalman-pysrc.html#UnscentedKalmanFilter.innovation">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Calculate the filter innovation and covariance for a given 
+  measurement.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>measurement</code></strong> - Nx1 <code class="link">np.ndarray</code> of measurement inputs.</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>Nx1 innovation vector, NxN covariance matrix of the innovation, 
+          and MxN cross covariance from states to measurements.</dd>
+    <dt>Overrides:
+        <a href="imusim.maths.kalman.KalmanFilter-class.html#innovation">KalmanFilter.innovation</a>
+        <dd><em class="note">(inherited documentation)</em></dd>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="correct"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">correct</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">measurement</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="imusim.maths.kalman-pysrc.html#UnscentedKalmanFilter.correct">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Correct the filter state given a new measurement.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>measurement</code></strong> - Nx1 <code class="link">np.ndarray</code> of measurement inputs.</li>
+    </ul></dd>
+    <dt>Overrides:
+        <a href="imusim.maths.kalman.KalmanFilter-class.html#correct">KalmanFilter.correct</a>
+        <dd><em class="note">(inherited documentation)</em></dd>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== INSTANCE VARIABLE DETAILS ==================== -->
+<a name="section-InstanceVariableDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Instance Variable Details</span></td>
+</tr>
+</table>
+<a name="stateUpdateFunction"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">stateUpdateFunction</h3>
+  Non-linear function to propagate state into the next timestep. The 
+  function is called with two arguments, the current Nx1 state vector and 
+  the current Mx1 control input vector. It should return a new Nx1 state 
+  vector. N and M are the numbers of states and control inputs.
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.stateUpdateFunction(<span class="summary-sig-arg">self</span>)</span>
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.stateUpdateFunction(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">function</span>)</span>
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="measurementFunction"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">measurementFunction</h3>
+  Non-linear function relating state variables to expected measurements. 
+  The function is called with the current Nx1 state vector as an argument, 
+  and should return an Mx1 measurement vector. N and M are the numbers of 
+  states and measurement outputs.
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.measurementFunction(<span class="summary-sig-arg">self</span>)</span>
+    </dd>
+    <dt>Set Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.measurementFunction(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">function</span>)</span>
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="imusim-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://www.imusim.org/">IMUSim</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Wed Apr 14 11:45:14 2021
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

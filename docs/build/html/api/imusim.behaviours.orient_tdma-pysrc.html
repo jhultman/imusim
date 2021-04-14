@@ -1,0 +1,1140 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>imusim.behaviours.orient_tdma</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="imusim-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://www.imusim.org/">IMUSim</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="imusim-module.html">Package&nbsp;imusim</a> ::
+        <a href="imusim.behaviours-module.html">Package&nbsp;behaviours</a> ::
+        Module&nbsp;orient_tdma
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="imusim.behaviours.orient_tdma-module.html">Module imusim.behaviours.orient_tdma</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-docstring">Simulation model of the TDMA scheme used by the Orient IMU system.</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment"># Copyright (C) 2009-2011 University of Edinburgh</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-comment"># This file is part of IMUSim.</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-comment"># IMUSim is free software: you can redistribute it and/or modify it</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-comment"># under the terms of the GNU General Public License as published by</tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-comment"># the Free Software Foundation, either version 3 of the License, or</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-comment"># (at your option) any later version.</tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-comment"># IMUSim is distributed in the hope that it will be useful,</tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-comment"># but WITHOUT ANY WARRANTY; without even the implied warranty of</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-comment"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-comment"># GNU General Public License for more details.</tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-comment"># You should have received a copy of the GNU General Public License</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-comment"># along with IMUSim.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">__future__</tt> <tt class="py-keyword">import</tt> <tt class="py-name">division</tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-0" class="py-name" targets="Package imusim=imusim-module.html"><a title="imusim" class="py-name" href="#" onclick="return doclink('link-0', 'imusim', 'link-0');">imusim</a></tt><tt class="py-op">.</tt><tt id="link-1" class="py-name" targets="Package imusim.behaviours=imusim.behaviours-module.html"><a title="imusim.behaviours" class="py-name" href="#" onclick="return doclink('link-1', 'behaviours', 'link-1');">behaviours</a></tt><tt class="py-op">.</tt><tt id="link-2" class="py-name" targets="Module imusim.behaviours.mac=imusim.behaviours.mac-module.html"><a title="imusim.behaviours.mac" class="py-name" href="#" onclick="return doclink('link-2', 'mac', 'link-2');">mac</a></tt> <tt class="py-keyword">import</tt> <tt id="link-3" class="py-name" targets="Class imusim.behaviours.mac.MAC=imusim.behaviours.mac.MAC-class.html"><a title="imusim.behaviours.mac.MAC" class="py-name" href="#" onclick="return doclink('link-3', 'MAC', 'link-3');">MAC</a></tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-4" class="py-name"><a title="imusim" class="py-name" href="#" onclick="return doclink('link-4', 'imusim', 'link-0');">imusim</a></tt><tt class="py-op">.</tt><tt id="link-5" class="py-name"><a title="imusim.behaviours" class="py-name" href="#" onclick="return doclink('link-5', 'behaviours', 'link-1');">behaviours</a></tt><tt class="py-op">.</tt><tt id="link-6" class="py-name" targets="Module imusim.behaviours.timing=imusim.behaviours.timing-module.html"><a title="imusim.behaviours.timing" class="py-name" href="#" onclick="return doclink('link-6', 'timing', 'link-6');">timing</a></tt> <tt class="py-keyword">import</tt> <tt id="link-7" class="py-name" targets="Class imusim.behaviours.timing.VirtualTimer=imusim.behaviours.timing.VirtualTimer-class.html"><a title="imusim.behaviours.timing.VirtualTimer" class="py-name" href="#" onclick="return doclink('link-7', 'VirtualTimer', 'link-7');">VirtualTimer</a></tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-8" class="py-name"><a title="imusim" class="py-name" href="#" onclick="return doclink('link-8', 'imusim', 'link-0');">imusim</a></tt><tt class="py-op">.</tt><tt id="link-9" class="py-name" targets="Package imusim.platforms=imusim.platforms-module.html"><a title="imusim.platforms" class="py-name" href="#" onclick="return doclink('link-9', 'platforms', 'link-9');">platforms</a></tt><tt class="py-op">.</tt><tt id="link-10" class="py-name" targets="Module imusim.platforms.radios=imusim.platforms.radios-module.html"><a title="imusim.platforms.radios" class="py-name" href="#" onclick="return doclink('link-10', 'radios', 'link-10');">radios</a></tt> <tt class="py-keyword">import</tt> <tt id="link-11" class="py-name" targets="Class imusim.platforms.radios.RadioPacket=imusim.platforms.radios.RadioPacket-class.html"><a title="imusim.platforms.radios.RadioPacket" class="py-name" href="#" onclick="return doclink('link-11', 'RadioPacket', 'link-11');">RadioPacket</a></tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-12" class="py-name"><a title="imusim" class="py-name" href="#" onclick="return doclink('link-12', 'imusim', 'link-0');">imusim</a></tt><tt class="py-op">.</tt><tt id="link-13" class="py-name" targets="Package imusim.maths=imusim.maths-module.html"><a title="imusim.maths" class="py-name" href="#" onclick="return doclink('link-13', 'maths', 'link-13');">maths</a></tt><tt class="py-op">.</tt><tt id="link-14" class="py-name" targets="Module imusim.maths.quaternions=imusim.maths.quaternions-module.html,Module imusim.testing.quaternions=imusim.testing.quaternions-module.html"><a title="imusim.maths.quaternions
+imusim.testing.quaternions" class="py-name" href="#" onclick="return doclink('link-14', 'quaternions', 'link-14');">quaternions</a></tt> <tt class="py-keyword">import</tt> <tt id="link-15" class="py-name" targets="Class imusim.maths.quaternions.Quaternion=imusim.maths.quaternions.Quaternion-class.html"><a title="imusim.maths.quaternions.Quaternion" class="py-name" href="#" onclick="return doclink('link-15', 'Quaternion', 'link-15');">Quaternion</a></tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-16" class="py-name"><a title="imusim" class="py-name" href="#" onclick="return doclink('link-16', 'imusim', 'link-0');">imusim</a></tt><tt class="py-op">.</tt><tt id="link-17" class="py-name" targets="Package imusim.utilities=imusim.utilities-module.html"><a title="imusim.utilities" class="py-name" href="#" onclick="return doclink('link-17', 'utilities', 'link-17');">utilities</a></tt><tt class="py-op">.</tt><tt id="link-18" class="py-name" targets="Module imusim.utilities.documentation=imusim.utilities.documentation-module.html"><a title="imusim.utilities.documentation" class="py-name" href="#" onclick="return doclink('link-18', 'documentation', 'link-18');">documentation</a></tt> <tt class="py-keyword">import</tt> <tt id="link-19" class="py-name" targets="Class imusim.utilities.documentation.prepend_method_doc=imusim.utilities.documentation.prepend_method_doc-class.html"><a title="imusim.utilities.documentation.prepend_method_doc" class="py-name" href="#" onclick="return doclink('link-19', 'prepend_method_doc', 'link-19');">prepend_method_doc</a></tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">numpy</tt> <tt class="py-keyword">as</tt> <tt class="py-name">np</tt> </tt>
+<a name="Schedule"></a><div id="Schedule-def"><a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt> <a class="py-toggle" href="#" id="Schedule-toggle" onclick="return toggle('Schedule');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="imusim.behaviours.orient_tdma.Schedule-class.html">Schedule</a><tt class="py-op">(</tt><tt class="py-base-class">object</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Schedule-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="Schedule-expanded"><a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"><tt class="py-docstring">    Transmission schedule.</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line"> </tt>
+<a name="Schedule.__init__"></a><div id="Schedule.__init__-def"><a name="L34"></a><tt class="py-lineno"> 34</tt> <a class="py-toggle" href="#" id="Schedule.__init__-toggle" onclick="return toggle('Schedule.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.behaviours.orient_tdma.Schedule-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">dataSlotTime</tt><tt class="py-op">,</tt> <tt class="py-param">syncSlotTime</tt><tt class="py-op">,</tt> <tt class="py-param">dataSlots</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Schedule.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Schedule.__init__-expanded"><a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line"><tt class="py-docstring">        Initialise schedule.</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line"><tt class="py-docstring">        @param dataSlotTime: Data slot duration (float, s).</tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line"><tt class="py-docstring">        @param syncSlotTime: Synchronisation slot duration (float, s).</tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line"><tt class="py-docstring">        @param dataSlots: List of device IDs indexed by allocated slot.</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">dataSlotTime</tt> <tt class="py-op">=</tt> <tt class="py-name">dataSlotTime</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">syncSlotTime</tt> <tt class="py-op">=</tt> <tt class="py-name">syncSlotTime</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">dataSlots</tt> <tt class="py-op">=</tt> <tt class="py-name">dataSlots</tt> </tt>
+</div><a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line"> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line">    <tt class="py-decorator">@</tt><tt class="py-decorator">property</tt> </tt>
+<a name="Schedule.framePeriod"></a><div id="Schedule.framePeriod-def"><a name="L47"></a><tt class="py-lineno"> 47</tt> <a class="py-toggle" href="#" id="Schedule.framePeriod-toggle" onclick="return toggle('Schedule.framePeriod');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.behaviours.orient_tdma.Schedule-class.html#framePeriod">framePeriod</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Schedule.framePeriod-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Schedule.framePeriod-expanded"><a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line">        <tt class="py-docstring">""" Duration of one complete frame. """</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">dataSlots</tt><tt class="py-op">)</tt> <tt class="py-op">*</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">dataSlotTime</tt> <tt class="py-op">+</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">syncSlotTime</tt> </tt>
+</div><a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line"> </tt>
+<a name="Schedule.dataTxSlot"></a><div id="Schedule.dataTxSlot-def"><a name="L51"></a><tt class="py-lineno"> 51</tt> <a class="py-toggle" href="#" id="Schedule.dataTxSlot-toggle" onclick="return toggle('Schedule.dataTxSlot');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.behaviours.orient_tdma.Schedule-class.html#dataTxSlot">dataTxSlot</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">id</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Schedule.dataTxSlot-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Schedule.dataTxSlot-expanded"><a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line">        <tt class="py-docstring">""" Transmission slot number for given device ID. """</tt> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">dataSlots</tt><tt class="py-op">.</tt><tt class="py-name">index</tt><tt class="py-op">(</tt><tt class="py-name">id</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line"> </tt>
+<a name="SyncPacket"></a><div id="SyncPacket-def"><a name="L55"></a><tt class="py-lineno"> 55</tt> <a class="py-toggle" href="#" id="SyncPacket-toggle" onclick="return toggle('SyncPacket');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="imusim.behaviours.orient_tdma.SyncPacket-class.html">SyncPacket</a><tt class="py-op">(</tt><tt class="py-base-class">RadioPacket</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SyncPacket-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="SyncPacket-expanded"><a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line"><tt class="py-docstring">    Synchronisation packet from master.</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line">    <tt class="py-decorator">@</tt><tt class="py-decorator">property</tt> </tt>
+<a name="SyncPacket.bytes"></a><div id="SyncPacket.bytes-def"><a name="L60"></a><tt class="py-lineno"> 60</tt> <a class="py-toggle" href="#" id="SyncPacket.bytes-toggle" onclick="return toggle('SyncPacket.bytes');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.behaviours.orient_tdma.SyncPacket-class.html#bytes">bytes</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SyncPacket.bytes-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="SyncPacket.bytes-expanded"><a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-number">1</tt> </tt>
+</div></div><a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line"> </tt>
+<a name="DataPacket"></a><div id="DataPacket-def"><a name="L63"></a><tt class="py-lineno"> 63</tt> <a class="py-toggle" href="#" id="DataPacket-toggle" onclick="return toggle('DataPacket');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="imusim.behaviours.orient_tdma.DataPacket-class.html">DataPacket</a><tt class="py-op">(</tt><tt class="py-base-class">RadioPacket</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="DataPacket-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="DataPacket-expanded"><a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line"><tt class="py-docstring">    Data packet from slave to master.</tt> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line"><tt class="py-docstring">    @ivar source: Source device ID.</tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="DataPacket.__init__"></a><div id="DataPacket.__init__-def"><a name="L69"></a><tt class="py-lineno"> 69</tt> <a class="py-toggle" href="#" id="DataPacket.__init__-toggle" onclick="return toggle('DataPacket.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.behaviours.orient_tdma.DataPacket-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">source</tt><tt class="py-op">,</tt> <tt class="py-param">data</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="DataPacket.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="DataPacket.__init__-expanded"><a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line"><tt class="py-docstring">        Initialise data packet.</tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line"><tt class="py-docstring">        @param source: Source device ID.</tt> </tt>
+<a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line"><tt class="py-docstring">        @param data: Payload data.</tt> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line">        <tt id="link-20" class="py-name"><a title="imusim.platforms.radios.RadioPacket" class="py-name" href="#" onclick="return doclink('link-20', 'RadioPacket', 'link-11');">RadioPacket</a></tt><tt class="py-op">.</tt><tt id="link-21" class="py-name" targets="Method imusim.algorithms.calibration.ScaleAndOffsetCalibration.__init__()=imusim.algorithms.calibration.ScaleAndOffsetCalibration-class.html#__init__,Method imusim.algorithms.orientation.BachmannCF.__init__()=imusim.algorithms.orientation.BachmannCF-class.html#__init__,Method imusim.algorithms.orientation.DistLinAccelCF.__init__()=imusim.algorithms.orientation.DistLinAccelCF-class.html#__init__,Method imusim.algorithms.orientation.GyroIntegrator.__init__()=imusim.algorithms.orientation.GyroIntegrator-class.html#__init__,Method imusim.algorithms.orientation.OrientCF.__init__()=imusim.algorithms.orientation.OrientCF-class.html#__init__,Method imusim.algorithms.orientation.OrientationFilter.__init__()=imusim.algorithms.orientation.OrientationFilter-class.html#__init__,Method imusim.algorithms.orientation.YunEKF.__init__()=imusim.algorithms.orientation.YunEKF-class.html#__init__,Method imusim.algorithms.position.ConstantPosition.__init__()=imusim.algorithms.position.ConstantPosition-class.html#__init__,Method imusim.algorithms.position.ContactTrackingKalmanFilter.__init__()=imusim.algorithms.position.ContactTrackingKalmanFilter-class.html#__init__,Method imusim.algorithms.position.LowestPoint.__init__()=imusim.algorithms.position.LowestPoint-class.html#__init__,Method imusim.algorithms.position.PositionEstimator.__init__()=imusim.algorithms.position.PositionEstimator-class.html#__init__,Method imusim.algorithms.position.RootAccelerationIntegrator.__init__()=imusim.algorithms.position.RootAccelerationIntegrator-class.html#__init__,Method imusim.algorithms.posture_reconstruction.InheritedForwardKinematics.__init__()=imusim.algorithms.posture_reconstruction.InheritedForwardKinematics-class.html#__init__,Method imusim.algorithms.posture_reconstruction.PostureReconstructor.__init__()=imusim.algorithms.posture_reconstruction.PostureReconstructor-class.html#__init__,Method imusim.algorithms.posture_reconstruction.SimpleForwardKinematics.__init__()=imusim.algorithms.posture_reconstruction.SimpleForwardKinematics-class.html#__init__,Method imusim.algorithms.vector_observation.FQA.__init__()=imusim.algorithms.vector_observation.FQA-class.html#__init__,Method imusim.algorithms.vector_observation.LeastSquaresOptimalVectorObservation.__init__()=imusim.algorithms.vector_observation.LeastSquaresOptimalVectorObservation-class.html#__init__,Method imusim.behaviours.basestation.BodyModelReconstructor.__init__()=imusim.behaviours.basestation.BodyModelReconstructor-class.html#__init__,Method imusim.behaviours.imu.BasicIMUBehaviour.__init__()=imusim.behaviours.imu.BasicIMUBehaviour-class.html#__init__,Method imusim.behaviours.mac.MAC.__init__()=imusim.behaviours.mac.MAC-class.html#__init__,Method imusim.behaviours.orient_tdma.AuxPacket.__init__()=imusim.behaviours.orient_tdma.AuxPacket-class.html#__init__,Method imusim.behaviours.orient_tdma.DataPacket.__init__()=imusim.behaviours.orient_tdma.DataPacket-class.html#__init__,Method imusim.behaviours.orient_tdma.InterSlaveMAC.__init__()=imusim.behaviours.orient_tdma.InterSlaveMAC-class.html#__init__,Method imusim.behaviours.orient_tdma.InterSlaveSchedule.__init__()=imusim.behaviours.orient_tdma.InterSlaveSchedule-class.html#__init__,Method imusim.behaviours.orient_tdma.MasterMAC.__init__()=imusim.behaviours.orient_tdma.MasterMAC-class.html#__init__,Method imusim.behaviours.orient_tdma.Schedule.__init__()=imusim.behaviours.orient_tdma.Schedule-class.html#__init__,Method imusim.behaviours.orient_tdma.SlaveMAC.__init__()=imusim.behaviours.orient_tdma.SlaveMAC-class.html#__init__,Method imusim.behaviours.sampling.PeriodicSampler.__init__()=imusim.behaviours.sampling.PeriodicSampler-class.html#__init__,Method imusim.behaviours.timing.TimerMultiplexer.__init__()=imusim.behaviours.timing.TimerMultiplexer-class.html#__init__,Method imusim.behaviours.timing.VirtualTimer.__init__()=imusim.behaviours.timing.VirtualTimer-class.html#__init__,Method imusim.capture.marker.Marker.__init__()=imusim.capture.marker.Marker-class.html#__init__,Method imusim.capture.marker.Marker3DOF.__init__()=imusim.capture.marker.Marker3DOF-class.html#__init__,Method imusim.capture.marker.Marker6DOF.__init__()=imusim.capture.marker.Marker6DOF-class.html#__init__,Method imusim.capture.marker.MarkerCapture.__init__()=imusim.capture.marker.MarkerCapture-class.html#__init__,Method imusim.capture.marker.SplinedMarker3DOF.__init__()=imusim.capture.marker.SplinedMarker3DOF-class.html#__init__,Method imusim.capture.marker.SplinedMarker6DOF.__init__()=imusim.capture.marker.SplinedMarker6DOF-class.html#__init__,Method imusim.capture.marker.SplinedMarkerCapture.__init__()=imusim.capture.marker.SplinedMarkerCapture-class.html#__init__,Method imusim.capture.sensor.CapturedDevice.__init__()=imusim.capture.sensor.CapturedDevice-class.html#__init__,Method imusim.capture.sensor.SensorDataCapture.__init__()=imusim.capture.sensor.SensorDataCapture-class.html#__init__,Method imusim.environment.base.Environment.__init__()=imusim.environment.base.Environment-class.html#__init__,Method imusim.environment.gravity.ConstantGravitationalField.__init__()=imusim.environment.gravity.ConstantGravitationalField-class.html#__init__,Method imusim.environment.magnetic_fields.DistortedMagneticField.__init__()=imusim.environment.magnetic_fields.DistortedMagneticField-class.html#__init__,Method imusim.environment.magnetic_fields.EarthMagneticField.__init__()=imusim.environment.magnetic_fields.EarthMagneticField-class.html#__init__,Method imusim.environment.magnetic_fields.SolenoidMagneticField.__init__()=imusim.environment.magnetic_fields.SolenoidMagneticField-class.html#__init__,Method imusim.environment.radio_environment.BERRadioEnvironment.__init__()=imusim.environment.radio_environment.BERRadioEnvironment-class.html#__init__,Method imusim.environment.radio_environment.IdealRadioEnvironment.__init__()=imusim.environment.radio_environment.IdealRadioEnvironment-class.html#__init__,Method imusim.environment.radio_environment.RadioEnvironment.__init__()=imusim.environment.radio_environment.RadioEnvironment-class.html#__init__,Method imusim.io.bvh.BVHExporter.__init__()=imusim.io.bvh.BVHExporter-class.html#__init__,Method imusim.io.bvh.BVHLoader.__init__()=imusim.io.bvh.BVHLoader-class.html#__init__,Method imusim.maths.integrators.DoubleIntegrator.__init__()=imusim.maths.integrators.DoubleIntegrator-class.html#__init__,Method imusim.maths.integrators.Integrator.__init__()=imusim.maths.integrators.Integrator-class.html#__init__,Method imusim.maths.integrators.TrapeziumRule.__init__()=imusim.maths.integrators.TrapeziumRule-class.html#__init__,Method imusim.maths.kalman.KalmanFilter.__init__()=imusim.maths.kalman.KalmanFilter-class.html#__init__,Method imusim.maths.kalman.UnscentedKalmanFilter.__init__()=imusim.maths.kalman.UnscentedKalmanFilter-class.html#__init__,Method imusim.maths.quat_splines.SQUADQuaternionSpline.__init__()=imusim.maths.quat_splines.SQUADQuaternionSpline-class.html#__init__,Method imusim.maths.quaternions.QuaternionArray.__init__()=imusim.maths.quaternions.QuaternionArray-class.html#__init__,Method imusim.maths.splines.PartialInputSpline.__init__()=imusim.maths.splines.PartialInputSpline-class.html#__init__,Method imusim.maths.splines.UnivariateSpline.__init__()=imusim.maths.splines.UnivariateSpline-class.html#__init__,Method imusim.maths.transforms.AffineTransform.__init__()=imusim.maths.transforms.AffineTransform-class.html#__init__,Method imusim.maths.transforms.UnscentedTransform.__init__()=imusim.maths.transforms.UnscentedTransform-class.html#__init__,Method imusim.maths.vector_fields.ConstantVectorField.__init__()=imusim.maths.vector_fields.ConstantVectorField-class.html#__init__,Method imusim.maths.vector_fields.InterpolatedVectorField.__init__()=imusim.maths.vector_fields.InterpolatedVectorField-class.html#__init__,Method imusim.maths.vector_fields.NaturalNeighbourInterpolatedField.__init__()=imusim.maths.vector_fields.NaturalNeighbourInterpolatedField-class.html#__init__,Method imusim.maths.vector_fields.RBFInterpolatedField.__init__()=imusim.maths.vector_fields.RBFInterpolatedField-class.html#__init__,Method imusim.maths.vector_splines.PartialInputVectorSpline.__init__()=imusim.maths.vector_splines.PartialInputVectorSpline-class.html#__init__,Method imusim.maths.vector_splines.UnivariateVectorSpline.__init__()=imusim.maths.vector_splines.UnivariateVectorSpline-class.html#__init__,Method imusim.platforms.accelerometers.MMA7260Q.__init__()=imusim.platforms.accelerometers.MMA7260Q-class.html#__init__,Method imusim.platforms.adcs.ParametricADC.__init__()=imusim.platforms.adcs.ParametricADC-class.html#__init__,Method imusim.platforms.adcs.QuantisingADC.__init__()=imusim.platforms.adcs.QuantisingADC-class.html#__init__,Method imusim.platforms.base.Component.__init__()=imusim.platforms.base.Component-class.html#__init__,Method imusim.platforms.base.Platform.__init__()=imusim.platforms.base.Platform-class.html#__init__,Method imusim.platforms.basestations.IdealBasestation.__init__()=imusim.platforms.basestations.IdealBasestation-class.html#__init__,Method imusim.platforms.gyroscopes.ADXRS300.__init__()=imusim.platforms.gyroscopes.ADXRS300-class.html#__init__,Method imusim.platforms.imus.IdealIMU.__init__()=imusim.platforms.imus.IdealIMU-class.html#__init__,Method imusim.platforms.imus.MagicIMU.__init__()=imusim.platforms.imus.MagicIMU-class.html#__init__,Method imusim.platforms.imus.Orient3IMU.__init__()=imusim.platforms.imus.Orient3IMU-class.html#__init__,Method imusim.platforms.magnetometers.HMC105x.__init__()=imusim.platforms.magnetometers.HMC105x-class.html#__init__,Method imusim.platforms.radios.Radio.__init__()=imusim.platforms.radios.Radio-class.html#__init__,Method imusim.platforms.radios.RadioPacket.__init__()=imusim.platforms.radios.RadioPacket-class.html#__init__,Method imusim.platforms.sensors.NoisySensor.__init__()=imusim.platforms.sensors.NoisySensor-class.html#__init__,Method imusim.platforms.sensors.NoisyTransformedSensor.__init__()=imusim.platforms.sensors.NoisyTransformedSensor-class.html#__init__,Method imusim.platforms.sensors.Sensor.__init__()=imusim.platforms.sensors.Sensor-class.html#__init__,Method imusim.platforms.sensors.TransformedSensor.__init__()=imusim.platforms.sensors.TransformedSensor-class.html#__init__,Method imusim.platforms.timers.ParametricTimer.__init__()=imusim.platforms.timers.ParametricTimer-class.html#__init__,Method imusim.platforms.timers.Timer.__init__()=imusim.platforms.timers.Timer-class.html#__init__,Method imusim.simulation.base.Simulation.ProgressMonitor.__init__()=imusim.simulation.base.Simulation.ProgressMonitor-class.html#__init__,Method imusim.simulation.base.Simulation.__init__()=imusim.simulation.base.Simulation-class.html#__init__,Method imusim.simulation.calibrators.Calibrator.__init__()=imusim.simulation.calibrators.Calibrator-class.html#__init__,Method imusim.simulation.calibrators.ScaleAndOffsetCalibrator.__init__()=imusim.simulation.calibrators.ScaleAndOffsetCalibrator-class.html#__init__,Method imusim.testing.random_data.RandomRotationTrajectory.__init__()=imusim.testing.random_data.RandomRotationTrajectory-class.html#__init__,Method imusim.testing.random_data.RandomTrajectory.__init__()=imusim.testing.random_data.RandomTrajectory-class.html#__init__,Method imusim.trajectories.base.ConstantPositionTrajectory.__init__()=imusim.trajectories.base.ConstantPositionTrajectory-class.html#__init__,Method imusim.trajectories.base.ConstantRotationTrajectory.__init__()=imusim.trajectories.base.ConstantRotationTrajectory-class.html#__init__,Method imusim.trajectories.base.ContinuousRotationTrajectory.__init__()=imusim.trajectories.base.ContinuousRotationTrajectory-class.html#__init__,Method imusim.trajectories.base.StaticContinuousRotationTrajectory.__init__()=imusim.trajectories.base.StaticContinuousRotationTrajectory-class.html#__init__,Method imusim.trajectories.base.StaticTrajectory.__init__()=imusim.trajectories.base.StaticTrajectory-class.html#__init__,Method imusim.trajectories.multi_marker.MultiMarkerTrajectory.__init__()=imusim.trajectories.multi_marker.MultiMarkerTrajectory-class.html#__init__,Method imusim.trajectories.offset.OffsetTrajectory.__init__()=imusim.trajectories.offset.OffsetTrajectory-class.html#__init__,Method imusim.trajectories.rigid_body.Joint.__init__()=imusim.trajectories.rigid_body.Joint-class.html#__init__,Method imusim.trajectories.rigid_body.Point.__init__()=imusim.trajectories.rigid_body.Point-class.html#__init__,Method imusim.trajectories.rigid_body.PointTrajectory.__init__()=imusim.trajectories.rigid_body.PointTrajectory-class.html#__init__,Method imusim.trajectories.rigid_body.SampledBodyModel.__init__()=imusim.trajectories.rigid_body.SampledBodyModel-class.html#__init__,Method imusim.trajectories.rigid_body.SampledJoint.__init__()=imusim.trajectories.rigid_body.SampledJoint-class.html#__init__,Method imusim.trajectories.rigid_body.SplinedBodyModel.__init__()=imusim.trajectories.rigid_body.SplinedBodyModel-class.html#__init__,Method imusim.trajectories.rigid_body.SplinedJoint.__init__()=imusim.trajectories.rigid_body.SplinedJoint-class.html#__init__,Method imusim.trajectories.sampled.SampledPositionTrajectory.__init__()=imusim.trajectories.sampled.SampledPositionTrajectory-class.html#__init__,Method imusim.trajectories.sampled.SampledRotationTrajectory.__init__()=imusim.trajectories.sampled.SampledRotationTrajectory-class.html#__init__,Method imusim.trajectories.sampled.SampledTrajectory.__init__()=imusim.trajectories.sampled.SampledTrajectory-class.html#__init__,Method imusim.trajectories.splined.SplinedPositionTrajectory.__init__()=imusim.trajectories.splined.SplinedPositionTrajectory-class.html#__init__,Method imusim.trajectories.splined.SplinedRotationTrajectory.__init__()=imusim.trajectories.splined.SplinedRotationTrajectory-class.html#__init__,Method imusim.trajectories.splined.SplinedTrajectory.__init__()=imusim.trajectories.splined.SplinedTrajectory-class.html#__init__,Method imusim.utilities.caching.CacheEntry.__init__()=imusim.utilities.caching.CacheEntry-class.html#__init__,Method imusim.utilities.caching.CacheLastValue.__init__()=imusim.utilities.caching.CacheLastValue-class.html#__init__,Method imusim.utilities.documentation.prepend_method_doc.__init__()=imusim.utilities.documentation.prepend_method_doc-class.html#__init__,Method imusim.utilities.time_series.TimeSeries.__init__()=imusim.utilities.time_series.TimeSeries-class.html#__init__,Method imusim.utilities.trees.TreeNode.__init__()=imusim.utilities.trees.TreeNode-class.html#__init__,Method imusim.visualisation.rendering.AnimatedRenderer.__init__()=imusim.visualisation.rendering.AnimatedRenderer-class.html#__init__,Method imusim.visualisation.rendering.BodyModelRenderer.__init__()=imusim.visualisation.rendering.BodyModelRenderer-class.html#__init__,Method imusim.visualisation.rendering.ContactProbabilityRenderer.__init__()=imusim.visualisation.rendering.ContactProbabilityRenderer-class.html#__init__,Method imusim.visualisation.rendering.InteractiveAnimation.__init__()=imusim.visualisation.rendering.InteractiveAnimation-class.html#__init__,Method imusim.visualisation.rendering.VelocityVectorRenderer.__init__()=imusim.visualisation.rendering.VelocityVectorRenderer-class.html#__init__"><a title="imusim.algorithms.calibration.ScaleAndOffsetCalibration.__init__
+imusim.algorithms.orientation.BachmannCF.__init__
+imusim.algorithms.orientation.DistLinAccelCF.__init__
+imusim.algorithms.orientation.GyroIntegrator.__init__
+imusim.algorithms.orientation.OrientCF.__init__
+imusim.algorithms.orientation.OrientationFilter.__init__
+imusim.algorithms.orientation.YunEKF.__init__
+imusim.algorithms.position.ConstantPosition.__init__
+imusim.algorithms.position.ContactTrackingKalmanFilter.__init__
+imusim.algorithms.position.LowestPoint.__init__
+imusim.algorithms.position.PositionEstimator.__init__
+imusim.algorithms.position.RootAccelerationIntegrator.__init__
+imusim.algorithms.posture_reconstruction.InheritedForwardKinematics.__init__
+imusim.algorithms.posture_reconstruction.PostureReconstructor.__init__
+imusim.algorithms.posture_reconstruction.SimpleForwardKinematics.__init__
+imusim.algorithms.vector_observation.FQA.__init__
+imusim.algorithms.vector_observation.LeastSquaresOptimalVectorObservation.__init__
+imusim.behaviours.basestation.BodyModelReconstructor.__init__
+imusim.behaviours.imu.BasicIMUBehaviour.__init__
+imusim.behaviours.mac.MAC.__init__
+imusim.behaviours.orient_tdma.AuxPacket.__init__
+imusim.behaviours.orient_tdma.DataPacket.__init__
+imusim.behaviours.orient_tdma.InterSlaveMAC.__init__
+imusim.behaviours.orient_tdma.InterSlaveSchedule.__init__
+imusim.behaviours.orient_tdma.MasterMAC.__init__
+imusim.behaviours.orient_tdma.Schedule.__init__
+imusim.behaviours.orient_tdma.SlaveMAC.__init__
+imusim.behaviours.sampling.PeriodicSampler.__init__
+imusim.behaviours.timing.TimerMultiplexer.__init__
+imusim.behaviours.timing.VirtualTimer.__init__
+imusim.capture.marker.Marker.__init__
+imusim.capture.marker.Marker3DOF.__init__
+imusim.capture.marker.Marker6DOF.__init__
+imusim.capture.marker.MarkerCapture.__init__
+imusim.capture.marker.SplinedMarker3DOF.__init__
+imusim.capture.marker.SplinedMarker6DOF.__init__
+imusim.capture.marker.SplinedMarkerCapture.__init__
+imusim.capture.sensor.CapturedDevice.__init__
+imusim.capture.sensor.SensorDataCapture.__init__
+imusim.environment.base.Environment.__init__
+imusim.environment.gravity.ConstantGravitationalField.__init__
+imusim.environment.magnetic_fields.DistortedMagneticField.__init__
+imusim.environment.magnetic_fields.EarthMagneticField.__init__
+imusim.environment.magnetic_fields.SolenoidMagneticField.__init__
+imusim.environment.radio_environment.BERRadioEnvironment.__init__
+imusim.environment.radio_environment.IdealRadioEnvironment.__init__
+imusim.environment.radio_environment.RadioEnvironment.__init__
+imusim.io.bvh.BVHExporter.__init__
+imusim.io.bvh.BVHLoader.__init__
+imusim.maths.integrators.DoubleIntegrator.__init__
+imusim.maths.integrators.Integrator.__init__
+imusim.maths.integrators.TrapeziumRule.__init__
+imusim.maths.kalman.KalmanFilter.__init__
+imusim.maths.kalman.UnscentedKalmanFilter.__init__
+imusim.maths.quat_splines.SQUADQuaternionSpline.__init__
+imusim.maths.quaternions.QuaternionArray.__init__
+imusim.maths.splines.PartialInputSpline.__init__
+imusim.maths.splines.UnivariateSpline.__init__
+imusim.maths.transforms.AffineTransform.__init__
+imusim.maths.transforms.UnscentedTransform.__init__
+imusim.maths.vector_fields.ConstantVectorField.__init__
+imusim.maths.vector_fields.InterpolatedVectorField.__init__
+imusim.maths.vector_fields.NaturalNeighbourInterpolatedField.__init__
+imusim.maths.vector_fields.RBFInterpolatedField.__init__
+imusim.maths.vector_splines.PartialInputVectorSpline.__init__
+imusim.maths.vector_splines.UnivariateVectorSpline.__init__
+imusim.platforms.accelerometers.MMA7260Q.__init__
+imusim.platforms.adcs.ParametricADC.__init__
+imusim.platforms.adcs.QuantisingADC.__init__
+imusim.platforms.base.Component.__init__
+imusim.platforms.base.Platform.__init__
+imusim.platforms.basestations.IdealBasestation.__init__
+imusim.platforms.gyroscopes.ADXRS300.__init__
+imusim.platforms.imus.IdealIMU.__init__
+imusim.platforms.imus.MagicIMU.__init__
+imusim.platforms.imus.Orient3IMU.__init__
+imusim.platforms.magnetometers.HMC105x.__init__
+imusim.platforms.radios.Radio.__init__
+imusim.platforms.radios.RadioPacket.__init__
+imusim.platforms.sensors.NoisySensor.__init__
+imusim.platforms.sensors.NoisyTransformedSensor.__init__
+imusim.platforms.sensors.Sensor.__init__
+imusim.platforms.sensors.TransformedSensor.__init__
+imusim.platforms.timers.ParametricTimer.__init__
+imusim.platforms.timers.Timer.__init__
+imusim.simulation.base.Simulation.ProgressMonitor.__init__
+imusim.simulation.base.Simulation.__init__
+imusim.simulation.calibrators.Calibrator.__init__
+imusim.simulation.calibrators.ScaleAndOffsetCalibrator.__init__
+imusim.testing.random_data.RandomRotationTrajectory.__init__
+imusim.testing.random_data.RandomTrajectory.__init__
+imusim.trajectories.base.ConstantPositionTrajectory.__init__
+imusim.trajectories.base.ConstantRotationTrajectory.__init__
+imusim.trajectories.base.ContinuousRotationTrajectory.__init__
+imusim.trajectories.base.StaticContinuousRotationTrajectory.__init__
+imusim.trajectories.base.StaticTrajectory.__init__
+imusim.trajectories.multi_marker.MultiMarkerTrajectory.__init__
+imusim.trajectories.offset.OffsetTrajectory.__init__
+imusim.trajectories.rigid_body.Joint.__init__
+imusim.trajectories.rigid_body.Point.__init__
+imusim.trajectories.rigid_body.PointTrajectory.__init__
+imusim.trajectories.rigid_body.SampledBodyModel.__init__
+imusim.trajectories.rigid_body.SampledJoint.__init__
+imusim.trajectories.rigid_body.SplinedBodyModel.__init__
+imusim.trajectories.rigid_body.SplinedJoint.__init__
+imusim.trajectories.sampled.SampledPositionTrajectory.__init__
+imusim.trajectories.sampled.SampledRotationTrajectory.__init__
+imusim.trajectories.sampled.SampledTrajectory.__init__
+imusim.trajectories.splined.SplinedPositionTrajectory.__init__
+imusim.trajectories.splined.SplinedRotationTrajectory.__init__
+imusim.trajectories.splined.SplinedTrajectory.__init__
+imusim.utilities.caching.CacheEntry.__init__
+imusim.utilities.caching.CacheLastValue.__init__
+imusim.utilities.documentation.prepend_method_doc.__init__
+imusim.utilities.time_series.TimeSeries.__init__
+imusim.utilities.trees.TreeNode.__init__
+imusim.visualisation.rendering.AnimatedRenderer.__init__
+imusim.visualisation.rendering.BodyModelRenderer.__init__
+imusim.visualisation.rendering.ContactProbabilityRenderer.__init__
+imusim.visualisation.rendering.InteractiveAnimation.__init__
+imusim.visualisation.rendering.VelocityVectorRenderer.__init__" class="py-name" href="#" onclick="return doclink('link-21', '__init__', 'link-21');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">data</tt><tt class="py-op">)</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">source</tt> <tt class="py-op">=</tt> <tt class="py-name">source</tt> </tt>
+</div><a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line"> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line">    <tt class="py-decorator">@</tt><tt class="py-decorator">property</tt> </tt>
+<a name="DataPacket.bytes"></a><div id="DataPacket.bytes-def"><a name="L79"></a><tt class="py-lineno"> 79</tt> <a class="py-toggle" href="#" id="DataPacket.bytes-toggle" onclick="return toggle('DataPacket.bytes');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.behaviours.orient_tdma.DataPacket-class.html#bytes">bytes</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="DataPacket.bytes-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="DataPacket.bytes-expanded"><a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">        <tt class="py-name">size</tt> <tt class="py-op">=</tt> <tt class="py-number">2</tt> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line">        <tt class="py-keyword">for</tt> <tt class="py-name">key</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">keys</tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line">            <tt class="py-name">data</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">[</tt><tt class="py-name">key</tt><tt class="py-op">]</tt> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">isinstance</tt><tt class="py-op">(</tt><tt class="py-name">data</tt><tt class="py-op">,</tt> <tt id="link-22" class="py-name"><a title="imusim.maths.quaternions.Quaternion" class="py-name" href="#" onclick="return doclink('link-22', 'Quaternion', 'link-15');">Quaternion</a></tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line">                <tt class="py-name">size</tt> <tt class="py-op">+=</tt> <tt id="link-23" class="py-name" targets="Variable imusim.maths.quaternions.QuaternionArray.array=imusim.maths.quaternions.QuaternionArray-class.html#array"><a title="imusim.maths.quaternions.QuaternionArray.array" class="py-name" href="#" onclick="return doclink('link-23', 'array', 'link-23');">array</a></tt><tt class="py-op">(</tt><tt class="py-name">data</tt><tt class="py-op">.</tt><tt id="link-24" class="py-name" targets="Variable imusim.maths.quaternions.Quaternion.components=imusim.maths.quaternions.Quaternion-class.html#components,Variable imusim.platforms.base.Platform.components=imusim.platforms.base.Platform-class.html#components,Variable imusim.platforms.basestations.IdealBasestation.components=imusim.platforms.basestations.IdealBasestation-class.html#components,Variable imusim.platforms.imus.StandardIMU.components=imusim.platforms.imus.StandardIMU-class.html#components"><a title="imusim.maths.quaternions.Quaternion.components
+imusim.platforms.base.Platform.components
+imusim.platforms.basestations.IdealBasestation.components
+imusim.platforms.imus.StandardIMU.components" class="py-name" href="#" onclick="return doclink('link-24', 'components', 'link-24');">components</a></tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">nbytes</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">            <tt class="py-keyword">elif</tt> <tt class="py-name">isinstance</tt><tt class="py-op">(</tt><tt class="py-name">data</tt><tt class="py-op">,</tt> <tt class="py-name">numpy</tt><tt class="py-op">.</tt><tt class="py-name">ndarray</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line">                <tt class="py-name">size</tt> <tt class="py-op">+=</tt> <tt class="py-name">data</tt><tt class="py-op">.</tt><tt class="py-name">nbytes</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">size</tt> </tt>
+</div></div><a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line"> </tt>
+<a name="AuxPacket"></a><div id="AuxPacket-def"><a name="L89"></a><tt class="py-lineno"> 89</tt> <a class="py-toggle" href="#" id="AuxPacket-toggle" onclick="return toggle('AuxPacket');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="imusim.behaviours.orient_tdma.AuxPacket-class.html">AuxPacket</a><tt class="py-op">(</tt><tt class="py-base-class">DataPacket</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="AuxPacket-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="AuxPacket-expanded"><a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line"><tt class="py-docstring">    Auxillary packet from slave to slave.</tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line"><tt class="py-docstring">    @ivar source: Source device ID.</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line"><tt class="py-docstring">    @ivar dest: Destination device ID.</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="AuxPacket.__init__"></a><div id="AuxPacket.__init__-def"><a name="L96"></a><tt class="py-lineno"> 96</tt> <a class="py-toggle" href="#" id="AuxPacket.__init__-toggle" onclick="return toggle('AuxPacket.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.behaviours.orient_tdma.AuxPacket-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">source</tt><tt class="py-op">,</tt> <tt class="py-param">dest</tt><tt class="py-op">,</tt> <tt class="py-param">data</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="AuxPacket.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="AuxPacket.__init__-expanded"><a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line"><tt class="py-docstring">        Initialise auxillary packet.</tt> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line"><tt class="py-docstring">        @param source: Source device ID.</tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line"><tt class="py-docstring">        @param dest: Destination device ID.</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line"><tt class="py-docstring">        @param data: Payload data.</tt> </tt>
+<a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line">        <tt id="link-25" class="py-name" targets="Class imusim.behaviours.orient_tdma.DataPacket=imusim.behaviours.orient_tdma.DataPacket-class.html"><a title="imusim.behaviours.orient_tdma.DataPacket" class="py-name" href="#" onclick="return doclink('link-25', 'DataPacket', 'link-25');">DataPacket</a></tt><tt class="py-op">.</tt><tt id="link-26" class="py-name"><a title="imusim.algorithms.calibration.ScaleAndOffsetCalibration.__init__
+imusim.algorithms.orientation.BachmannCF.__init__
+imusim.algorithms.orientation.DistLinAccelCF.__init__
+imusim.algorithms.orientation.GyroIntegrator.__init__
+imusim.algorithms.orientation.OrientCF.__init__
+imusim.algorithms.orientation.OrientationFilter.__init__
+imusim.algorithms.orientation.YunEKF.__init__
+imusim.algorithms.position.ConstantPosition.__init__
+imusim.algorithms.position.ContactTrackingKalmanFilter.__init__
+imusim.algorithms.position.LowestPoint.__init__
+imusim.algorithms.position.PositionEstimator.__init__
+imusim.algorithms.position.RootAccelerationIntegrator.__init__
+imusim.algorithms.posture_reconstruction.InheritedForwardKinematics.__init__
+imusim.algorithms.posture_reconstruction.PostureReconstructor.__init__
+imusim.algorithms.posture_reconstruction.SimpleForwardKinematics.__init__
+imusim.algorithms.vector_observation.FQA.__init__
+imusim.algorithms.vector_observation.LeastSquaresOptimalVectorObservation.__init__
+imusim.behaviours.basestation.BodyModelReconstructor.__init__
+imusim.behaviours.imu.BasicIMUBehaviour.__init__
+imusim.behaviours.mac.MAC.__init__
+imusim.behaviours.orient_tdma.AuxPacket.__init__
+imusim.behaviours.orient_tdma.DataPacket.__init__
+imusim.behaviours.orient_tdma.InterSlaveMAC.__init__
+imusim.behaviours.orient_tdma.InterSlaveSchedule.__init__
+imusim.behaviours.orient_tdma.MasterMAC.__init__
+imusim.behaviours.orient_tdma.Schedule.__init__
+imusim.behaviours.orient_tdma.SlaveMAC.__init__
+imusim.behaviours.sampling.PeriodicSampler.__init__
+imusim.behaviours.timing.TimerMultiplexer.__init__
+imusim.behaviours.timing.VirtualTimer.__init__
+imusim.capture.marker.Marker.__init__
+imusim.capture.marker.Marker3DOF.__init__
+imusim.capture.marker.Marker6DOF.__init__
+imusim.capture.marker.MarkerCapture.__init__
+imusim.capture.marker.SplinedMarker3DOF.__init__
+imusim.capture.marker.SplinedMarker6DOF.__init__
+imusim.capture.marker.SplinedMarkerCapture.__init__
+imusim.capture.sensor.CapturedDevice.__init__
+imusim.capture.sensor.SensorDataCapture.__init__
+imusim.environment.base.Environment.__init__
+imusim.environment.gravity.ConstantGravitationalField.__init__
+imusim.environment.magnetic_fields.DistortedMagneticField.__init__
+imusim.environment.magnetic_fields.EarthMagneticField.__init__
+imusim.environment.magnetic_fields.SolenoidMagneticField.__init__
+imusim.environment.radio_environment.BERRadioEnvironment.__init__
+imusim.environment.radio_environment.IdealRadioEnvironment.__init__
+imusim.environment.radio_environment.RadioEnvironment.__init__
+imusim.io.bvh.BVHExporter.__init__
+imusim.io.bvh.BVHLoader.__init__
+imusim.maths.integrators.DoubleIntegrator.__init__
+imusim.maths.integrators.Integrator.__init__
+imusim.maths.integrators.TrapeziumRule.__init__
+imusim.maths.kalman.KalmanFilter.__init__
+imusim.maths.kalman.UnscentedKalmanFilter.__init__
+imusim.maths.quat_splines.SQUADQuaternionSpline.__init__
+imusim.maths.quaternions.QuaternionArray.__init__
+imusim.maths.splines.PartialInputSpline.__init__
+imusim.maths.splines.UnivariateSpline.__init__
+imusim.maths.transforms.AffineTransform.__init__
+imusim.maths.transforms.UnscentedTransform.__init__
+imusim.maths.vector_fields.ConstantVectorField.__init__
+imusim.maths.vector_fields.InterpolatedVectorField.__init__
+imusim.maths.vector_fields.NaturalNeighbourInterpolatedField.__init__
+imusim.maths.vector_fields.RBFInterpolatedField.__init__
+imusim.maths.vector_splines.PartialInputVectorSpline.__init__
+imusim.maths.vector_splines.UnivariateVectorSpline.__init__
+imusim.platforms.accelerometers.MMA7260Q.__init__
+imusim.platforms.adcs.ParametricADC.__init__
+imusim.platforms.adcs.QuantisingADC.__init__
+imusim.platforms.base.Component.__init__
+imusim.platforms.base.Platform.__init__
+imusim.platforms.basestations.IdealBasestation.__init__
+imusim.platforms.gyroscopes.ADXRS300.__init__
+imusim.platforms.imus.IdealIMU.__init__
+imusim.platforms.imus.MagicIMU.__init__
+imusim.platforms.imus.Orient3IMU.__init__
+imusim.platforms.magnetometers.HMC105x.__init__
+imusim.platforms.radios.Radio.__init__
+imusim.platforms.radios.RadioPacket.__init__
+imusim.platforms.sensors.NoisySensor.__init__
+imusim.platforms.sensors.NoisyTransformedSensor.__init__
+imusim.platforms.sensors.Sensor.__init__
+imusim.platforms.sensors.TransformedSensor.__init__
+imusim.platforms.timers.ParametricTimer.__init__
+imusim.platforms.timers.Timer.__init__
+imusim.simulation.base.Simulation.ProgressMonitor.__init__
+imusim.simulation.base.Simulation.__init__
+imusim.simulation.calibrators.Calibrator.__init__
+imusim.simulation.calibrators.ScaleAndOffsetCalibrator.__init__
+imusim.testing.random_data.RandomRotationTrajectory.__init__
+imusim.testing.random_data.RandomTrajectory.__init__
+imusim.trajectories.base.ConstantPositionTrajectory.__init__
+imusim.trajectories.base.ConstantRotationTrajectory.__init__
+imusim.trajectories.base.ContinuousRotationTrajectory.__init__
+imusim.trajectories.base.StaticContinuousRotationTrajectory.__init__
+imusim.trajectories.base.StaticTrajectory.__init__
+imusim.trajectories.multi_marker.MultiMarkerTrajectory.__init__
+imusim.trajectories.offset.OffsetTrajectory.__init__
+imusim.trajectories.rigid_body.Joint.__init__
+imusim.trajectories.rigid_body.Point.__init__
+imusim.trajectories.rigid_body.PointTrajectory.__init__
+imusim.trajectories.rigid_body.SampledBodyModel.__init__
+imusim.trajectories.rigid_body.SampledJoint.__init__
+imusim.trajectories.rigid_body.SplinedBodyModel.__init__
+imusim.trajectories.rigid_body.SplinedJoint.__init__
+imusim.trajectories.sampled.SampledPositionTrajectory.__init__
+imusim.trajectories.sampled.SampledRotationTrajectory.__init__
+imusim.trajectories.sampled.SampledTrajectory.__init__
+imusim.trajectories.splined.SplinedPositionTrajectory.__init__
+imusim.trajectories.splined.SplinedRotationTrajectory.__init__
+imusim.trajectories.splined.SplinedTrajectory.__init__
+imusim.utilities.caching.CacheEntry.__init__
+imusim.utilities.caching.CacheLastValue.__init__
+imusim.utilities.documentation.prepend_method_doc.__init__
+imusim.utilities.time_series.TimeSeries.__init__
+imusim.utilities.trees.TreeNode.__init__
+imusim.visualisation.rendering.AnimatedRenderer.__init__
+imusim.visualisation.rendering.BodyModelRenderer.__init__
+imusim.visualisation.rendering.ContactProbabilityRenderer.__init__
+imusim.visualisation.rendering.InteractiveAnimation.__init__
+imusim.visualisation.rendering.VelocityVectorRenderer.__init__" class="py-name" href="#" onclick="return doclink('link-26', '__init__', 'link-21');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">source</tt><tt class="py-op">,</tt> <tt class="py-name">data</tt><tt class="py-op">)</tt> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">dest</tt> <tt class="py-op">=</tt> <tt class="py-name">dest</tt> </tt>
+</div></div><a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line"> </tt>
+<a name="MasterMAC"></a><div id="MasterMAC-def"><a name="L107"></a><tt class="py-lineno">107</tt> <a class="py-toggle" href="#" id="MasterMAC-toggle" onclick="return toggle('MasterMAC');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="imusim.behaviours.orient_tdma.MasterMAC-class.html">MasterMAC</a><tt class="py-op">(</tt><tt class="py-base-class">MAC</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MasterMAC-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="MasterMAC-expanded"><a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line"><tt class="py-docstring">    Master MAC implementation.</tt> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line"> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line">    <tt class="py-decorator">@</tt><tt class="py-decorator">prepend_method_doc</tt><tt class="py-op">(</tt><tt id="link-27" class="py-name"><a title="imusim.behaviours.mac.MAC" class="py-name" href="#" onclick="return doclink('link-27', 'MAC', 'link-3');">MAC</a></tt><tt class="py-op">)</tt> </tt>
+<a name="MasterMAC.__init__"></a><div id="MasterMAC.__init__-def"><a name="L113"></a><tt class="py-lineno">113</tt> <a class="py-toggle" href="#" id="MasterMAC.__init__-toggle" onclick="return toggle('MasterMAC.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.behaviours.orient_tdma.MasterMAC-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">radio</tt><tt class="py-op">,</tt> <tt class="py-param">timerMux</tt><tt class="py-op">,</tt> <tt class="py-param">schedule</tt><tt class="py-op">,</tt> <tt class="py-param">frameHandler</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MasterMAC.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MasterMAC.__init__-expanded"><a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line"><tt class="py-docstring">        @param schedule: L{Schedule} object giving transmission scheduling.</tt> </tt>
+<a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line"><tt class="py-docstring">        @param frameHandler: Handler function to call at the end of each frame.</tt> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line"><tt class="py-docstring">            The packets received in that frame will be passed as a list.</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line">        <tt id="link-28" class="py-name"><a title="imusim.behaviours.mac.MAC" class="py-name" href="#" onclick="return doclink('link-28', 'MAC', 'link-3');">MAC</a></tt><tt class="py-op">.</tt><tt id="link-29" class="py-name"><a title="imusim.algorithms.calibration.ScaleAndOffsetCalibration.__init__
+imusim.algorithms.orientation.BachmannCF.__init__
+imusim.algorithms.orientation.DistLinAccelCF.__init__
+imusim.algorithms.orientation.GyroIntegrator.__init__
+imusim.algorithms.orientation.OrientCF.__init__
+imusim.algorithms.orientation.OrientationFilter.__init__
+imusim.algorithms.orientation.YunEKF.__init__
+imusim.algorithms.position.ConstantPosition.__init__
+imusim.algorithms.position.ContactTrackingKalmanFilter.__init__
+imusim.algorithms.position.LowestPoint.__init__
+imusim.algorithms.position.PositionEstimator.__init__
+imusim.algorithms.position.RootAccelerationIntegrator.__init__
+imusim.algorithms.posture_reconstruction.InheritedForwardKinematics.__init__
+imusim.algorithms.posture_reconstruction.PostureReconstructor.__init__
+imusim.algorithms.posture_reconstruction.SimpleForwardKinematics.__init__
+imusim.algorithms.vector_observation.FQA.__init__
+imusim.algorithms.vector_observation.LeastSquaresOptimalVectorObservation.__init__
+imusim.behaviours.basestation.BodyModelReconstructor.__init__
+imusim.behaviours.imu.BasicIMUBehaviour.__init__
+imusim.behaviours.mac.MAC.__init__
+imusim.behaviours.orient_tdma.AuxPacket.__init__
+imusim.behaviours.orient_tdma.DataPacket.__init__
+imusim.behaviours.orient_tdma.InterSlaveMAC.__init__
+imusim.behaviours.orient_tdma.InterSlaveSchedule.__init__
+imusim.behaviours.orient_tdma.MasterMAC.__init__
+imusim.behaviours.orient_tdma.Schedule.__init__
+imusim.behaviours.orient_tdma.SlaveMAC.__init__
+imusim.behaviours.sampling.PeriodicSampler.__init__
+imusim.behaviours.timing.TimerMultiplexer.__init__
+imusim.behaviours.timing.VirtualTimer.__init__
+imusim.capture.marker.Marker.__init__
+imusim.capture.marker.Marker3DOF.__init__
+imusim.capture.marker.Marker6DOF.__init__
+imusim.capture.marker.MarkerCapture.__init__
+imusim.capture.marker.SplinedMarker3DOF.__init__
+imusim.capture.marker.SplinedMarker6DOF.__init__
+imusim.capture.marker.SplinedMarkerCapture.__init__
+imusim.capture.sensor.CapturedDevice.__init__
+imusim.capture.sensor.SensorDataCapture.__init__
+imusim.environment.base.Environment.__init__
+imusim.environment.gravity.ConstantGravitationalField.__init__
+imusim.environment.magnetic_fields.DistortedMagneticField.__init__
+imusim.environment.magnetic_fields.EarthMagneticField.__init__
+imusim.environment.magnetic_fields.SolenoidMagneticField.__init__
+imusim.environment.radio_environment.BERRadioEnvironment.__init__
+imusim.environment.radio_environment.IdealRadioEnvironment.__init__
+imusim.environment.radio_environment.RadioEnvironment.__init__
+imusim.io.bvh.BVHExporter.__init__
+imusim.io.bvh.BVHLoader.__init__
+imusim.maths.integrators.DoubleIntegrator.__init__
+imusim.maths.integrators.Integrator.__init__
+imusim.maths.integrators.TrapeziumRule.__init__
+imusim.maths.kalman.KalmanFilter.__init__
+imusim.maths.kalman.UnscentedKalmanFilter.__init__
+imusim.maths.quat_splines.SQUADQuaternionSpline.__init__
+imusim.maths.quaternions.QuaternionArray.__init__
+imusim.maths.splines.PartialInputSpline.__init__
+imusim.maths.splines.UnivariateSpline.__init__
+imusim.maths.transforms.AffineTransform.__init__
+imusim.maths.transforms.UnscentedTransform.__init__
+imusim.maths.vector_fields.ConstantVectorField.__init__
+imusim.maths.vector_fields.InterpolatedVectorField.__init__
+imusim.maths.vector_fields.NaturalNeighbourInterpolatedField.__init__
+imusim.maths.vector_fields.RBFInterpolatedField.__init__
+imusim.maths.vector_splines.PartialInputVectorSpline.__init__
+imusim.maths.vector_splines.UnivariateVectorSpline.__init__
+imusim.platforms.accelerometers.MMA7260Q.__init__
+imusim.platforms.adcs.ParametricADC.__init__
+imusim.platforms.adcs.QuantisingADC.__init__
+imusim.platforms.base.Component.__init__
+imusim.platforms.base.Platform.__init__
+imusim.platforms.basestations.IdealBasestation.__init__
+imusim.platforms.gyroscopes.ADXRS300.__init__
+imusim.platforms.imus.IdealIMU.__init__
+imusim.platforms.imus.MagicIMU.__init__
+imusim.platforms.imus.Orient3IMU.__init__
+imusim.platforms.magnetometers.HMC105x.__init__
+imusim.platforms.radios.Radio.__init__
+imusim.platforms.radios.RadioPacket.__init__
+imusim.platforms.sensors.NoisySensor.__init__
+imusim.platforms.sensors.NoisyTransformedSensor.__init__
+imusim.platforms.sensors.Sensor.__init__
+imusim.platforms.sensors.TransformedSensor.__init__
+imusim.platforms.timers.ParametricTimer.__init__
+imusim.platforms.timers.Timer.__init__
+imusim.simulation.base.Simulation.ProgressMonitor.__init__
+imusim.simulation.base.Simulation.__init__
+imusim.simulation.calibrators.Calibrator.__init__
+imusim.simulation.calibrators.ScaleAndOffsetCalibrator.__init__
+imusim.testing.random_data.RandomRotationTrajectory.__init__
+imusim.testing.random_data.RandomTrajectory.__init__
+imusim.trajectories.base.ConstantPositionTrajectory.__init__
+imusim.trajectories.base.ConstantRotationTrajectory.__init__
+imusim.trajectories.base.ContinuousRotationTrajectory.__init__
+imusim.trajectories.base.StaticContinuousRotationTrajectory.__init__
+imusim.trajectories.base.StaticTrajectory.__init__
+imusim.trajectories.multi_marker.MultiMarkerTrajectory.__init__
+imusim.trajectories.offset.OffsetTrajectory.__init__
+imusim.trajectories.rigid_body.Joint.__init__
+imusim.trajectories.rigid_body.Point.__init__
+imusim.trajectories.rigid_body.PointTrajectory.__init__
+imusim.trajectories.rigid_body.SampledBodyModel.__init__
+imusim.trajectories.rigid_body.SampledJoint.__init__
+imusim.trajectories.rigid_body.SplinedBodyModel.__init__
+imusim.trajectories.rigid_body.SplinedJoint.__init__
+imusim.trajectories.sampled.SampledPositionTrajectory.__init__
+imusim.trajectories.sampled.SampledRotationTrajectory.__init__
+imusim.trajectories.sampled.SampledTrajectory.__init__
+imusim.trajectories.splined.SplinedPositionTrajectory.__init__
+imusim.trajectories.splined.SplinedRotationTrajectory.__init__
+imusim.trajectories.splined.SplinedTrajectory.__init__
+imusim.utilities.caching.CacheEntry.__init__
+imusim.utilities.caching.CacheLastValue.__init__
+imusim.utilities.documentation.prepend_method_doc.__init__
+imusim.utilities.time_series.TimeSeries.__init__
+imusim.utilities.trees.TreeNode.__init__
+imusim.visualisation.rendering.AnimatedRenderer.__init__
+imusim.visualisation.rendering.BodyModelRenderer.__init__
+imusim.visualisation.rendering.ContactProbabilityRenderer.__init__
+imusim.visualisation.rendering.InteractiveAnimation.__init__
+imusim.visualisation.rendering.VelocityVectorRenderer.__init__" class="py-name" href="#" onclick="return doclink('link-29', '__init__', 'link-21');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">radio</tt><tt class="py-op">,</tt> <tt class="py-name">timerMux</tt><tt class="py-op">)</tt> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">schedule</tt> <tt class="py-op">=</tt> <tt class="py-name">schedule</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">frameHandler</tt> <tt class="py-op">=</tt> <tt class="py-name">frameHandler</tt> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">frameTimer</tt> <tt class="py-op">=</tt> <tt id="link-30" class="py-name"><a title="imusim.behaviours.timing.VirtualTimer" class="py-name" href="#" onclick="return doclink('link-30', 'VirtualTimer', 'link-7');">VirtualTimer</a></tt><tt class="py-op">(</tt><tt class="py-name">timerMux</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_frameTimerHandler</tt><tt class="py-op">)</tt> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">packets</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">frameTimer</tt><tt class="py-op">.</tt><tt id="link-31" class="py-name" targets="Method imusim.behaviours.timing.VirtualTimer.start()=imusim.behaviours.timing.VirtualTimer-class.html#start,Method imusim.platforms.timers.Timer.start()=imusim.platforms.timers.Timer-class.html#start,Method imusim.visualisation.rendering.InteractiveAnimation.start()=imusim.visualisation.rendering.InteractiveAnimation-class.html#start"><a title="imusim.behaviours.timing.VirtualTimer.start
+imusim.platforms.timers.Timer.start
+imusim.visualisation.rendering.InteractiveAnimation.start" class="py-name" href="#" onclick="return doclink('link-31', 'start', 'link-31');">start</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">schedule</tt><tt class="py-op">.</tt><tt id="link-32" class="py-name" targets="Variable imusim.behaviours.orient_tdma.Schedule.framePeriod=imusim.behaviours.orient_tdma.Schedule-class.html#framePeriod"><a title="imusim.behaviours.orient_tdma.Schedule.framePeriod" class="py-name" href="#" onclick="return doclink('link-32', 'framePeriod', 'link-32');">framePeriod</a></tt><tt class="py-op">,</tt> <tt class="py-name">repeat</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line"> </tt>
+<a name="MasterMAC._frameTimerHandler"></a><div id="MasterMAC._frameTimerHandler-def"><a name="L126"></a><tt class="py-lineno">126</tt> <a class="py-toggle" href="#" id="MasterMAC._frameTimerHandler-toggle" onclick="return toggle('MasterMAC._frameTimerHandler');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.behaviours.orient_tdma.MasterMAC-class.html#_frameTimerHandler">_frameTimerHandler</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MasterMAC._frameTimerHandler-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MasterMAC._frameTimerHandler-expanded"><a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">frameHandler</tt> <tt class="py-keyword">is</tt> <tt class="py-keyword">not</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">frameHandler</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">packets</tt><tt class="py-op">)</tt> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">packets</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-op">]</tt> </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">radio</tt><tt class="py-op">.</tt><tt id="link-33" class="py-name" targets="Method imusim.environment.radio_environment.BERRadioEnvironment.transmit()=imusim.environment.radio_environment.BERRadioEnvironment-class.html#transmit,Method imusim.environment.radio_environment.IdealRadioEnvironment.transmit()=imusim.environment.radio_environment.IdealRadioEnvironment-class.html#transmit,Method imusim.environment.radio_environment.RadioEnvironment.transmit()=imusim.environment.radio_environment.RadioEnvironment-class.html#transmit,Method imusim.platforms.radios.IdealRadio.transmit()=imusim.platforms.radios.IdealRadio-class.html#transmit,Method imusim.platforms.radios.Radio.transmit()=imusim.platforms.radios.Radio-class.html#transmit"><a title="imusim.environment.radio_environment.BERRadioEnvironment.transmit
+imusim.environment.radio_environment.IdealRadioEnvironment.transmit
+imusim.environment.radio_environment.RadioEnvironment.transmit
+imusim.platforms.radios.IdealRadio.transmit
+imusim.platforms.radios.Radio.transmit" class="py-name" href="#" onclick="return doclink('link-33', 'transmit', 'link-33');">transmit</a></tt><tt class="py-op">(</tt><tt id="link-34" class="py-name" targets="Class imusim.behaviours.orient_tdma.SyncPacket=imusim.behaviours.orient_tdma.SyncPacket-class.html"><a title="imusim.behaviours.orient_tdma.SyncPacket" class="py-name" href="#" onclick="return doclink('link-34', 'SyncPacket', 'link-34');">SyncPacket</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line"> </tt>
+<a name="MasterMAC.queuePacket"></a><div id="MasterMAC.queuePacket-def"><a name="L132"></a><tt class="py-lineno">132</tt> <a class="py-toggle" href="#" id="MasterMAC.queuePacket-toggle" onclick="return toggle('MasterMAC.queuePacket');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.behaviours.orient_tdma.MasterMAC-class.html#queuePacket">queuePacket</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">packet</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MasterMAC.queuePacket-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MasterMAC.queuePacket-expanded"><a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line">        <tt class="py-keyword">raise</tt> <tt class="py-name">NotImplementedError</tt> </tt>
+</div><a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line"> </tt>
+<a name="MasterMAC.handleIncomingPacket"></a><div id="MasterMAC.handleIncomingPacket-def"><a name="L135"></a><tt class="py-lineno">135</tt> <a class="py-toggle" href="#" id="MasterMAC.handleIncomingPacket-toggle" onclick="return toggle('MasterMAC.handleIncomingPacket');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.behaviours.orient_tdma.MasterMAC-class.html#handleIncomingPacket">handleIncomingPacket</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">packet</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="MasterMAC.handleIncomingPacket-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="MasterMAC.handleIncomingPacket-expanded"><a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">isinstance</tt><tt class="py-op">(</tt><tt class="py-name">packet</tt><tt class="py-op">,</tt> <tt id="link-35" class="py-name"><a title="imusim.behaviours.orient_tdma.DataPacket" class="py-name" href="#" onclick="return doclink('link-35', 'DataPacket', 'link-25');">DataPacket</a></tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">packets</tt><tt class="py-op">.</tt><tt class="py-name">append</tt><tt class="py-op">(</tt><tt class="py-name">packet</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line"> </tt>
+<a name="SlaveMAC"></a><div id="SlaveMAC-def"><a name="L139"></a><tt class="py-lineno">139</tt> <a class="py-toggle" href="#" id="SlaveMAC-toggle" onclick="return toggle('SlaveMAC');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="imusim.behaviours.orient_tdma.SlaveMAC-class.html">SlaveMAC</a><tt class="py-op">(</tt><tt class="py-base-class">MAC</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SlaveMAC-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="SlaveMAC-expanded"><a name="L140"></a><tt class="py-lineno">140</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line"><tt class="py-docstring">    Slave MAC implementation.</tt> </tt>
+<a name="L142"></a><tt class="py-lineno">142</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L143"></a><tt class="py-lineno">143</tt>  <tt class="py-line"> </tt>
+<a name="L144"></a><tt class="py-lineno">144</tt>  <tt class="py-line">    <tt class="py-decorator">@</tt><tt class="py-decorator">prepend_method_doc</tt><tt class="py-op">(</tt><tt id="link-36" class="py-name"><a title="imusim.behaviours.mac.MAC" class="py-name" href="#" onclick="return doclink('link-36', 'MAC', 'link-3');">MAC</a></tt><tt class="py-op">)</tt> </tt>
+<a name="SlaveMAC.__init__"></a><div id="SlaveMAC.__init__-def"><a name="L145"></a><tt class="py-lineno">145</tt> <a class="py-toggle" href="#" id="SlaveMAC.__init__-toggle" onclick="return toggle('SlaveMAC.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.behaviours.orient_tdma.SlaveMAC-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">radio</tt><tt class="py-op">,</tt> <tt class="py-param">timerMux</tt><tt class="py-op">,</tt> <tt class="py-param">schedule</tt><tt class="py-op">,</tt> <tt class="py-param">id</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SlaveMAC.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="SlaveMAC.__init__-expanded"><a name="L146"></a><tt class="py-lineno">146</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line"><tt class="py-docstring">        @param schedule: L{Schedule} object giving transmission scheduling.</tt> </tt>
+<a name="L148"></a><tt class="py-lineno">148</tt>  <tt class="py-line"><tt class="py-docstring">        @param id: The device ID of this node.</tt> </tt>
+<a name="L149"></a><tt class="py-lineno">149</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L150"></a><tt class="py-lineno">150</tt>  <tt class="py-line">        <tt id="link-37" class="py-name"><a title="imusim.behaviours.mac.MAC" class="py-name" href="#" onclick="return doclink('link-37', 'MAC', 'link-3');">MAC</a></tt><tt class="py-op">.</tt><tt id="link-38" class="py-name"><a title="imusim.algorithms.calibration.ScaleAndOffsetCalibration.__init__
+imusim.algorithms.orientation.BachmannCF.__init__
+imusim.algorithms.orientation.DistLinAccelCF.__init__
+imusim.algorithms.orientation.GyroIntegrator.__init__
+imusim.algorithms.orientation.OrientCF.__init__
+imusim.algorithms.orientation.OrientationFilter.__init__
+imusim.algorithms.orientation.YunEKF.__init__
+imusim.algorithms.position.ConstantPosition.__init__
+imusim.algorithms.position.ContactTrackingKalmanFilter.__init__
+imusim.algorithms.position.LowestPoint.__init__
+imusim.algorithms.position.PositionEstimator.__init__
+imusim.algorithms.position.RootAccelerationIntegrator.__init__
+imusim.algorithms.posture_reconstruction.InheritedForwardKinematics.__init__
+imusim.algorithms.posture_reconstruction.PostureReconstructor.__init__
+imusim.algorithms.posture_reconstruction.SimpleForwardKinematics.__init__
+imusim.algorithms.vector_observation.FQA.__init__
+imusim.algorithms.vector_observation.LeastSquaresOptimalVectorObservation.__init__
+imusim.behaviours.basestation.BodyModelReconstructor.__init__
+imusim.behaviours.imu.BasicIMUBehaviour.__init__
+imusim.behaviours.mac.MAC.__init__
+imusim.behaviours.orient_tdma.AuxPacket.__init__
+imusim.behaviours.orient_tdma.DataPacket.__init__
+imusim.behaviours.orient_tdma.InterSlaveMAC.__init__
+imusim.behaviours.orient_tdma.InterSlaveSchedule.__init__
+imusim.behaviours.orient_tdma.MasterMAC.__init__
+imusim.behaviours.orient_tdma.Schedule.__init__
+imusim.behaviours.orient_tdma.SlaveMAC.__init__
+imusim.behaviours.sampling.PeriodicSampler.__init__
+imusim.behaviours.timing.TimerMultiplexer.__init__
+imusim.behaviours.timing.VirtualTimer.__init__
+imusim.capture.marker.Marker.__init__
+imusim.capture.marker.Marker3DOF.__init__
+imusim.capture.marker.Marker6DOF.__init__
+imusim.capture.marker.MarkerCapture.__init__
+imusim.capture.marker.SplinedMarker3DOF.__init__
+imusim.capture.marker.SplinedMarker6DOF.__init__
+imusim.capture.marker.SplinedMarkerCapture.__init__
+imusim.capture.sensor.CapturedDevice.__init__
+imusim.capture.sensor.SensorDataCapture.__init__
+imusim.environment.base.Environment.__init__
+imusim.environment.gravity.ConstantGravitationalField.__init__
+imusim.environment.magnetic_fields.DistortedMagneticField.__init__
+imusim.environment.magnetic_fields.EarthMagneticField.__init__
+imusim.environment.magnetic_fields.SolenoidMagneticField.__init__
+imusim.environment.radio_environment.BERRadioEnvironment.__init__
+imusim.environment.radio_environment.IdealRadioEnvironment.__init__
+imusim.environment.radio_environment.RadioEnvironment.__init__
+imusim.io.bvh.BVHExporter.__init__
+imusim.io.bvh.BVHLoader.__init__
+imusim.maths.integrators.DoubleIntegrator.__init__
+imusim.maths.integrators.Integrator.__init__
+imusim.maths.integrators.TrapeziumRule.__init__
+imusim.maths.kalman.KalmanFilter.__init__
+imusim.maths.kalman.UnscentedKalmanFilter.__init__
+imusim.maths.quat_splines.SQUADQuaternionSpline.__init__
+imusim.maths.quaternions.QuaternionArray.__init__
+imusim.maths.splines.PartialInputSpline.__init__
+imusim.maths.splines.UnivariateSpline.__init__
+imusim.maths.transforms.AffineTransform.__init__
+imusim.maths.transforms.UnscentedTransform.__init__
+imusim.maths.vector_fields.ConstantVectorField.__init__
+imusim.maths.vector_fields.InterpolatedVectorField.__init__
+imusim.maths.vector_fields.NaturalNeighbourInterpolatedField.__init__
+imusim.maths.vector_fields.RBFInterpolatedField.__init__
+imusim.maths.vector_splines.PartialInputVectorSpline.__init__
+imusim.maths.vector_splines.UnivariateVectorSpline.__init__
+imusim.platforms.accelerometers.MMA7260Q.__init__
+imusim.platforms.adcs.ParametricADC.__init__
+imusim.platforms.adcs.QuantisingADC.__init__
+imusim.platforms.base.Component.__init__
+imusim.platforms.base.Platform.__init__
+imusim.platforms.basestations.IdealBasestation.__init__
+imusim.platforms.gyroscopes.ADXRS300.__init__
+imusim.platforms.imus.IdealIMU.__init__
+imusim.platforms.imus.MagicIMU.__init__
+imusim.platforms.imus.Orient3IMU.__init__
+imusim.platforms.magnetometers.HMC105x.__init__
+imusim.platforms.radios.Radio.__init__
+imusim.platforms.radios.RadioPacket.__init__
+imusim.platforms.sensors.NoisySensor.__init__
+imusim.platforms.sensors.NoisyTransformedSensor.__init__
+imusim.platforms.sensors.Sensor.__init__
+imusim.platforms.sensors.TransformedSensor.__init__
+imusim.platforms.timers.ParametricTimer.__init__
+imusim.platforms.timers.Timer.__init__
+imusim.simulation.base.Simulation.ProgressMonitor.__init__
+imusim.simulation.base.Simulation.__init__
+imusim.simulation.calibrators.Calibrator.__init__
+imusim.simulation.calibrators.ScaleAndOffsetCalibrator.__init__
+imusim.testing.random_data.RandomRotationTrajectory.__init__
+imusim.testing.random_data.RandomTrajectory.__init__
+imusim.trajectories.base.ConstantPositionTrajectory.__init__
+imusim.trajectories.base.ConstantRotationTrajectory.__init__
+imusim.trajectories.base.ContinuousRotationTrajectory.__init__
+imusim.trajectories.base.StaticContinuousRotationTrajectory.__init__
+imusim.trajectories.base.StaticTrajectory.__init__
+imusim.trajectories.multi_marker.MultiMarkerTrajectory.__init__
+imusim.trajectories.offset.OffsetTrajectory.__init__
+imusim.trajectories.rigid_body.Joint.__init__
+imusim.trajectories.rigid_body.Point.__init__
+imusim.trajectories.rigid_body.PointTrajectory.__init__
+imusim.trajectories.rigid_body.SampledBodyModel.__init__
+imusim.trajectories.rigid_body.SampledJoint.__init__
+imusim.trajectories.rigid_body.SplinedBodyModel.__init__
+imusim.trajectories.rigid_body.SplinedJoint.__init__
+imusim.trajectories.sampled.SampledPositionTrajectory.__init__
+imusim.trajectories.sampled.SampledRotationTrajectory.__init__
+imusim.trajectories.sampled.SampledTrajectory.__init__
+imusim.trajectories.splined.SplinedPositionTrajectory.__init__
+imusim.trajectories.splined.SplinedRotationTrajectory.__init__
+imusim.trajectories.splined.SplinedTrajectory.__init__
+imusim.utilities.caching.CacheEntry.__init__
+imusim.utilities.caching.CacheLastValue.__init__
+imusim.utilities.documentation.prepend_method_doc.__init__
+imusim.utilities.time_series.TimeSeries.__init__
+imusim.utilities.trees.TreeNode.__init__
+imusim.visualisation.rendering.AnimatedRenderer.__init__
+imusim.visualisation.rendering.BodyModelRenderer.__init__
+imusim.visualisation.rendering.ContactProbabilityRenderer.__init__
+imusim.visualisation.rendering.InteractiveAnimation.__init__
+imusim.visualisation.rendering.VelocityVectorRenderer.__init__" class="py-name" href="#" onclick="return doclink('link-38', '__init__', 'link-21');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">radio</tt><tt class="py-op">,</tt> <tt class="py-name">timerMux</tt><tt class="py-op">)</tt> </tt>
+<a name="L151"></a><tt class="py-lineno">151</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">schedule</tt> <tt class="py-op">=</tt> <tt class="py-name">schedule</tt> </tt>
+<a name="L152"></a><tt class="py-lineno">152</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">id</tt> <tt class="py-op">=</tt> <tt class="py-name">id</tt> </tt>
+<a name="L153"></a><tt class="py-lineno">153</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-39" class="py-name" targets="Method imusim.behaviours.orient_tdma.Schedule.dataTxSlot()=imusim.behaviours.orient_tdma.Schedule-class.html#dataTxSlot"><a title="imusim.behaviours.orient_tdma.Schedule.dataTxSlot" class="py-name" href="#" onclick="return doclink('link-39', 'dataTxSlot', 'link-39');">dataTxSlot</a></tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">schedule</tt><tt class="py-op">.</tt><tt id="link-40" class="py-name"><a title="imusim.behaviours.orient_tdma.Schedule.dataTxSlot" class="py-name" href="#" onclick="return doclink('link-40', 'dataTxSlot', 'link-39');">dataTxSlot</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">id</tt><tt class="py-op">)</tt> </tt>
+<a name="L154"></a><tt class="py-lineno">154</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">slotTimer</tt> <tt class="py-op">=</tt> <tt id="link-41" class="py-name"><a title="imusim.behaviours.timing.VirtualTimer" class="py-name" href="#" onclick="return doclink('link-41', 'VirtualTimer', 'link-7');">VirtualTimer</a></tt><tt class="py-op">(</tt><tt class="py-name">timerMux</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_slotTimerHandler</tt><tt class="py-op">)</tt> </tt>
+<a name="L155"></a><tt class="py-lineno">155</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">slot</tt> <tt class="py-op">=</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">schedule</tt><tt class="py-op">.</tt><tt class="py-name">dataSlots</tt><tt class="py-op">)</tt> </tt>
+<a name="L156"></a><tt class="py-lineno">156</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">txPacket</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+</div><a name="L157"></a><tt class="py-lineno">157</tt>  <tt class="py-line"> </tt>
+<a name="SlaveMAC._slotTimerHandler"></a><div id="SlaveMAC._slotTimerHandler-def"><a name="L158"></a><tt class="py-lineno">158</tt> <a class="py-toggle" href="#" id="SlaveMAC._slotTimerHandler-toggle" onclick="return toggle('SlaveMAC._slotTimerHandler');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.behaviours.orient_tdma.SlaveMAC-class.html#_slotTimerHandler">_slotTimerHandler</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SlaveMAC._slotTimerHandler-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="SlaveMAC._slotTimerHandler-expanded"><a name="L159"></a><tt class="py-lineno">159</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">slot</tt> <tt class="py-op">==</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">schedule</tt><tt class="py-op">.</tt><tt class="py-name">dataSlots</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L160"></a><tt class="py-lineno">160</tt>  <tt class="py-line">            <tt class="py-comment"># End of sync slot, start of first data slot.</tt> </tt>
+<a name="L161"></a><tt class="py-lineno">161</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">slot</tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt> </tt>
+<a name="L162"></a><tt class="py-lineno">162</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L163"></a><tt class="py-lineno">163</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">slot</tt> <tt class="py-op">+=</tt> <tt class="py-number">1</tt> </tt>
+<a name="L164"></a><tt class="py-lineno">164</tt>  <tt class="py-line"> </tt>
+<a name="L165"></a><tt class="py-lineno">165</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">slot</tt> <tt class="py-op">==</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">schedule</tt><tt class="py-op">.</tt><tt class="py-name">dataSlots</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L166"></a><tt class="py-lineno">166</tt>  <tt class="py-line">            <tt class="py-comment"># Start of sync slot.</tt> </tt>
+<a name="L167"></a><tt class="py-lineno">167</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">slotTimer</tt><tt class="py-op">.</tt><tt id="link-42" class="py-name"><a title="imusim.behaviours.timing.VirtualTimer.start
+imusim.platforms.timers.Timer.start
+imusim.visualisation.rendering.InteractiveAnimation.start" class="py-name" href="#" onclick="return doclink('link-42', 'start', 'link-31');">start</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">schedule</tt><tt class="py-op">.</tt><tt class="py-name">syncSlotTime</tt><tt class="py-op">)</tt> </tt>
+<a name="L168"></a><tt class="py-lineno">168</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L169"></a><tt class="py-lineno">169</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">slotTimer</tt><tt class="py-op">.</tt><tt id="link-43" class="py-name"><a title="imusim.behaviours.timing.VirtualTimer.start
+imusim.platforms.timers.Timer.start
+imusim.visualisation.rendering.InteractiveAnimation.start" class="py-name" href="#" onclick="return doclink('link-43', 'start', 'link-31');">start</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">schedule</tt><tt class="py-op">.</tt><tt class="py-name">dataSlotTime</tt><tt class="py-op">)</tt> </tt>
+<a name="L170"></a><tt class="py-lineno">170</tt>  <tt class="py-line"> </tt>
+<a name="L171"></a><tt class="py-lineno">171</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">slot</tt> <tt class="py-op">==</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-44" class="py-name"><a title="imusim.behaviours.orient_tdma.Schedule.dataTxSlot" class="py-name" href="#" onclick="return doclink('link-44', 'dataTxSlot', 'link-39');">dataTxSlot</a></tt><tt class="py-op">:</tt> </tt>
+<a name="L172"></a><tt class="py-lineno">172</tt>  <tt class="py-line">            <tt class="py-comment"># Our transmit slot.</tt> </tt>
+<a name="L173"></a><tt class="py-lineno">173</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">txPacket</tt> <tt class="py-keyword">is</tt> <tt class="py-keyword">not</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L174"></a><tt class="py-lineno">174</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">radio</tt><tt class="py-op">.</tt><tt id="link-45" class="py-name"><a title="imusim.environment.radio_environment.BERRadioEnvironment.transmit
+imusim.environment.radio_environment.IdealRadioEnvironment.transmit
+imusim.environment.radio_environment.RadioEnvironment.transmit
+imusim.platforms.radios.IdealRadio.transmit
+imusim.platforms.radios.Radio.transmit" class="py-name" href="#" onclick="return doclink('link-45', 'transmit', 'link-33');">transmit</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">txPacket</tt><tt class="py-op">)</tt> </tt>
+<a name="L175"></a><tt class="py-lineno">175</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">txPacket</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+</div><a name="L176"></a><tt class="py-lineno">176</tt>  <tt class="py-line"> </tt>
+<a name="SlaveMAC.queuePacket"></a><div id="SlaveMAC.queuePacket-def"><a name="L177"></a><tt class="py-lineno">177</tt> <a class="py-toggle" href="#" id="SlaveMAC.queuePacket-toggle" onclick="return toggle('SlaveMAC.queuePacket');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.behaviours.orient_tdma.SlaveMAC-class.html#queuePacket">queuePacket</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">packet</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SlaveMAC.queuePacket-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="SlaveMAC.queuePacket-expanded"><a name="L178"></a><tt class="py-lineno">178</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">isinstance</tt><tt class="py-op">(</tt><tt class="py-name">packet</tt><tt class="py-op">,</tt> <tt id="link-46" class="py-name"><a title="imusim.behaviours.orient_tdma.DataPacket" class="py-name" href="#" onclick="return doclink('link-46', 'DataPacket', 'link-25');">DataPacket</a></tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L179"></a><tt class="py-lineno">179</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">txPacket</tt> <tt class="py-op">=</tt> <tt class="py-name">packet</tt> </tt>
+<a name="L180"></a><tt class="py-lineno">180</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L181"></a><tt class="py-lineno">181</tt>  <tt class="py-line">            <tt class="py-keyword">raise</tt> <tt class="py-name">ValueError</tt> </tt>
+</div><a name="L182"></a><tt class="py-lineno">182</tt>  <tt class="py-line"> </tt>
+<a name="SlaveMAC.handleIncomingPacket"></a><div id="SlaveMAC.handleIncomingPacket-def"><a name="L183"></a><tt class="py-lineno">183</tt> <a class="py-toggle" href="#" id="SlaveMAC.handleIncomingPacket-toggle" onclick="return toggle('SlaveMAC.handleIncomingPacket');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.behaviours.orient_tdma.SlaveMAC-class.html#handleIncomingPacket">handleIncomingPacket</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">packet</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SlaveMAC.handleIncomingPacket-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="SlaveMAC.handleIncomingPacket-expanded"><a name="L184"></a><tt class="py-lineno">184</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">isinstance</tt><tt class="py-op">(</tt><tt class="py-name">packet</tt><tt class="py-op">,</tt> <tt id="link-47" class="py-name"><a title="imusim.behaviours.orient_tdma.SyncPacket" class="py-name" href="#" onclick="return doclink('link-47', 'SyncPacket', 'link-34');">SyncPacket</a></tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L185"></a><tt class="py-lineno">185</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">slotTimer</tt><tt class="py-op">.</tt><tt id="link-48" class="py-name"><a title="imusim.behaviours.timing.VirtualTimer.start
+imusim.platforms.timers.Timer.start
+imusim.visualisation.rendering.InteractiveAnimation.start" class="py-name" href="#" onclick="return doclink('link-48', 'start', 'link-31');">start</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">schedule</tt><tt class="py-op">.</tt><tt class="py-name">syncSlotTime</tt><tt class="py-op">/</tt><tt class="py-number">2</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L186"></a><tt class="py-lineno">186</tt>  <tt class="py-line"> </tt>
+<a name="InterSlaveSchedule"></a><div id="InterSlaveSchedule-def"><a name="L187"></a><tt class="py-lineno">187</tt> <a class="py-toggle" href="#" id="InterSlaveSchedule-toggle" onclick="return toggle('InterSlaveSchedule');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="imusim.behaviours.orient_tdma.InterSlaveSchedule-class.html">InterSlaveSchedule</a><tt class="py-op">(</tt><tt class="py-base-class">Schedule</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="InterSlaveSchedule-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="InterSlaveSchedule-expanded"><a name="L188"></a><tt class="py-lineno">188</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L189"></a><tt class="py-lineno">189</tt>  <tt class="py-line"><tt class="py-docstring">    Transmission schedule including an auxillary slave-to-slave channel.</tt> </tt>
+<a name="L190"></a><tt class="py-lineno">190</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L191"></a><tt class="py-lineno">191</tt>  <tt class="py-line"> </tt>
+<a name="L192"></a><tt class="py-lineno">192</tt>  <tt class="py-line">    <tt class="py-decorator">@</tt><tt class="py-decorator">prepend_method_doc</tt><tt class="py-op">(</tt><tt id="link-49" class="py-name" targets="Class imusim.behaviours.orient_tdma.Schedule=imusim.behaviours.orient_tdma.Schedule-class.html"><a title="imusim.behaviours.orient_tdma.Schedule" class="py-name" href="#" onclick="return doclink('link-49', 'Schedule', 'link-49');">Schedule</a></tt><tt class="py-op">)</tt> </tt>
+<a name="InterSlaveSchedule.__init__"></a><div id="InterSlaveSchedule.__init__-def"><a name="L193"></a><tt class="py-lineno">193</tt> <a class="py-toggle" href="#" id="InterSlaveSchedule.__init__-toggle" onclick="return toggle('InterSlaveSchedule.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.behaviours.orient_tdma.InterSlaveSchedule-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">dataSlots</tt><tt class="py-op">,</tt> <tt class="py-param">dataSlotTime</tt><tt class="py-op">,</tt> <tt class="py-param">syncSlotTime</tt><tt class="py-op">,</tt> <tt class="py-param">auxTxSlots</tt><tt class="py-op">,</tt> <tt class="py-param">auxRxSlots</tt><tt class="py-op">,</tt> <tt class="py-param">dataChannel</tt><tt class="py-op">=</tt><tt class="py-number">0</tt><tt class="py-op">,</tt> <tt class="py-param">auxChannel</tt><tt class="py-op">=</tt><tt class="py-number">1</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="InterSlaveSchedule.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="InterSlaveSchedule.__init__-expanded"><a name="L194"></a><tt class="py-lineno">194</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L195"></a><tt class="py-lineno">195</tt>  <tt class="py-line"><tt class="py-docstring">        @param auxTxSlots: List of device IDs indexed by allocated</tt> </tt>
+<a name="L196"></a><tt class="py-lineno">196</tt>  <tt class="py-line"><tt class="py-docstring">            auxillary TX slot.</tt> </tt>
+<a name="L197"></a><tt class="py-lineno">197</tt>  <tt class="py-line"><tt class="py-docstring">        @param auxRxSlots: List of device IDs indexed by allocated</tt> </tt>
+<a name="L198"></a><tt class="py-lineno">198</tt>  <tt class="py-line"><tt class="py-docstring">            auxillary RX slot.</tt> </tt>
+<a name="L199"></a><tt class="py-lineno">199</tt>  <tt class="py-line"><tt class="py-docstring">        @param dataChannel: Channel identifier of master-slave channel.</tt> </tt>
+<a name="L200"></a><tt class="py-lineno">200</tt>  <tt class="py-line"><tt class="py-docstring">        @param auxChannel: Channel identifier of slave-slave channel.</tt> </tt>
+<a name="L201"></a><tt class="py-lineno">201</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L202"></a><tt class="py-lineno">202</tt>  <tt class="py-line">        <tt id="link-50" class="py-name"><a title="imusim.behaviours.orient_tdma.Schedule" class="py-name" href="#" onclick="return doclink('link-50', 'Schedule', 'link-49');">Schedule</a></tt><tt class="py-op">.</tt><tt id="link-51" class="py-name"><a title="imusim.algorithms.calibration.ScaleAndOffsetCalibration.__init__
+imusim.algorithms.orientation.BachmannCF.__init__
+imusim.algorithms.orientation.DistLinAccelCF.__init__
+imusim.algorithms.orientation.GyroIntegrator.__init__
+imusim.algorithms.orientation.OrientCF.__init__
+imusim.algorithms.orientation.OrientationFilter.__init__
+imusim.algorithms.orientation.YunEKF.__init__
+imusim.algorithms.position.ConstantPosition.__init__
+imusim.algorithms.position.ContactTrackingKalmanFilter.__init__
+imusim.algorithms.position.LowestPoint.__init__
+imusim.algorithms.position.PositionEstimator.__init__
+imusim.algorithms.position.RootAccelerationIntegrator.__init__
+imusim.algorithms.posture_reconstruction.InheritedForwardKinematics.__init__
+imusim.algorithms.posture_reconstruction.PostureReconstructor.__init__
+imusim.algorithms.posture_reconstruction.SimpleForwardKinematics.__init__
+imusim.algorithms.vector_observation.FQA.__init__
+imusim.algorithms.vector_observation.LeastSquaresOptimalVectorObservation.__init__
+imusim.behaviours.basestation.BodyModelReconstructor.__init__
+imusim.behaviours.imu.BasicIMUBehaviour.__init__
+imusim.behaviours.mac.MAC.__init__
+imusim.behaviours.orient_tdma.AuxPacket.__init__
+imusim.behaviours.orient_tdma.DataPacket.__init__
+imusim.behaviours.orient_tdma.InterSlaveMAC.__init__
+imusim.behaviours.orient_tdma.InterSlaveSchedule.__init__
+imusim.behaviours.orient_tdma.MasterMAC.__init__
+imusim.behaviours.orient_tdma.Schedule.__init__
+imusim.behaviours.orient_tdma.SlaveMAC.__init__
+imusim.behaviours.sampling.PeriodicSampler.__init__
+imusim.behaviours.timing.TimerMultiplexer.__init__
+imusim.behaviours.timing.VirtualTimer.__init__
+imusim.capture.marker.Marker.__init__
+imusim.capture.marker.Marker3DOF.__init__
+imusim.capture.marker.Marker6DOF.__init__
+imusim.capture.marker.MarkerCapture.__init__
+imusim.capture.marker.SplinedMarker3DOF.__init__
+imusim.capture.marker.SplinedMarker6DOF.__init__
+imusim.capture.marker.SplinedMarkerCapture.__init__
+imusim.capture.sensor.CapturedDevice.__init__
+imusim.capture.sensor.SensorDataCapture.__init__
+imusim.environment.base.Environment.__init__
+imusim.environment.gravity.ConstantGravitationalField.__init__
+imusim.environment.magnetic_fields.DistortedMagneticField.__init__
+imusim.environment.magnetic_fields.EarthMagneticField.__init__
+imusim.environment.magnetic_fields.SolenoidMagneticField.__init__
+imusim.environment.radio_environment.BERRadioEnvironment.__init__
+imusim.environment.radio_environment.IdealRadioEnvironment.__init__
+imusim.environment.radio_environment.RadioEnvironment.__init__
+imusim.io.bvh.BVHExporter.__init__
+imusim.io.bvh.BVHLoader.__init__
+imusim.maths.integrators.DoubleIntegrator.__init__
+imusim.maths.integrators.Integrator.__init__
+imusim.maths.integrators.TrapeziumRule.__init__
+imusim.maths.kalman.KalmanFilter.__init__
+imusim.maths.kalman.UnscentedKalmanFilter.__init__
+imusim.maths.quat_splines.SQUADQuaternionSpline.__init__
+imusim.maths.quaternions.QuaternionArray.__init__
+imusim.maths.splines.PartialInputSpline.__init__
+imusim.maths.splines.UnivariateSpline.__init__
+imusim.maths.transforms.AffineTransform.__init__
+imusim.maths.transforms.UnscentedTransform.__init__
+imusim.maths.vector_fields.ConstantVectorField.__init__
+imusim.maths.vector_fields.InterpolatedVectorField.__init__
+imusim.maths.vector_fields.NaturalNeighbourInterpolatedField.__init__
+imusim.maths.vector_fields.RBFInterpolatedField.__init__
+imusim.maths.vector_splines.PartialInputVectorSpline.__init__
+imusim.maths.vector_splines.UnivariateVectorSpline.__init__
+imusim.platforms.accelerometers.MMA7260Q.__init__
+imusim.platforms.adcs.ParametricADC.__init__
+imusim.platforms.adcs.QuantisingADC.__init__
+imusim.platforms.base.Component.__init__
+imusim.platforms.base.Platform.__init__
+imusim.platforms.basestations.IdealBasestation.__init__
+imusim.platforms.gyroscopes.ADXRS300.__init__
+imusim.platforms.imus.IdealIMU.__init__
+imusim.platforms.imus.MagicIMU.__init__
+imusim.platforms.imus.Orient3IMU.__init__
+imusim.platforms.magnetometers.HMC105x.__init__
+imusim.platforms.radios.Radio.__init__
+imusim.platforms.radios.RadioPacket.__init__
+imusim.platforms.sensors.NoisySensor.__init__
+imusim.platforms.sensors.NoisyTransformedSensor.__init__
+imusim.platforms.sensors.Sensor.__init__
+imusim.platforms.sensors.TransformedSensor.__init__
+imusim.platforms.timers.ParametricTimer.__init__
+imusim.platforms.timers.Timer.__init__
+imusim.simulation.base.Simulation.ProgressMonitor.__init__
+imusim.simulation.base.Simulation.__init__
+imusim.simulation.calibrators.Calibrator.__init__
+imusim.simulation.calibrators.ScaleAndOffsetCalibrator.__init__
+imusim.testing.random_data.RandomRotationTrajectory.__init__
+imusim.testing.random_data.RandomTrajectory.__init__
+imusim.trajectories.base.ConstantPositionTrajectory.__init__
+imusim.trajectories.base.ConstantRotationTrajectory.__init__
+imusim.trajectories.base.ContinuousRotationTrajectory.__init__
+imusim.trajectories.base.StaticContinuousRotationTrajectory.__init__
+imusim.trajectories.base.StaticTrajectory.__init__
+imusim.trajectories.multi_marker.MultiMarkerTrajectory.__init__
+imusim.trajectories.offset.OffsetTrajectory.__init__
+imusim.trajectories.rigid_body.Joint.__init__
+imusim.trajectories.rigid_body.Point.__init__
+imusim.trajectories.rigid_body.PointTrajectory.__init__
+imusim.trajectories.rigid_body.SampledBodyModel.__init__
+imusim.trajectories.rigid_body.SampledJoint.__init__
+imusim.trajectories.rigid_body.SplinedBodyModel.__init__
+imusim.trajectories.rigid_body.SplinedJoint.__init__
+imusim.trajectories.sampled.SampledPositionTrajectory.__init__
+imusim.trajectories.sampled.SampledRotationTrajectory.__init__
+imusim.trajectories.sampled.SampledTrajectory.__init__
+imusim.trajectories.splined.SplinedPositionTrajectory.__init__
+imusim.trajectories.splined.SplinedRotationTrajectory.__init__
+imusim.trajectories.splined.SplinedTrajectory.__init__
+imusim.utilities.caching.CacheEntry.__init__
+imusim.utilities.caching.CacheLastValue.__init__
+imusim.utilities.documentation.prepend_method_doc.__init__
+imusim.utilities.time_series.TimeSeries.__init__
+imusim.utilities.trees.TreeNode.__init__
+imusim.visualisation.rendering.AnimatedRenderer.__init__
+imusim.visualisation.rendering.BodyModelRenderer.__init__
+imusim.visualisation.rendering.ContactProbabilityRenderer.__init__
+imusim.visualisation.rendering.InteractiveAnimation.__init__
+imusim.visualisation.rendering.VelocityVectorRenderer.__init__" class="py-name" href="#" onclick="return doclink('link-51', '__init__', 'link-21');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">dataSlots</tt><tt class="py-op">,</tt> <tt class="py-name">dataSlotTime</tt><tt class="py-op">,</tt> <tt class="py-name">syncSlotTime</tt><tt class="py-op">)</tt> </tt>
+<a name="L203"></a><tt class="py-lineno">203</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">auxTxSlots</tt> <tt class="py-op">=</tt> <tt class="py-name">auxTxSlots</tt> </tt>
+<a name="L204"></a><tt class="py-lineno">204</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">auxRxSlots</tt> <tt class="py-op">=</tt> <tt class="py-name">auxRxSlots</tt> </tt>
+<a name="L205"></a><tt class="py-lineno">205</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">dataChannel</tt> <tt class="py-op">=</tt> <tt class="py-name">dataChannel</tt> </tt>
+<a name="L206"></a><tt class="py-lineno">206</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">auxChannel</tt> <tt class="py-op">=</tt> <tt class="py-name">auxChannel</tt> </tt>
+</div><a name="L207"></a><tt class="py-lineno">207</tt>  <tt class="py-line"> </tt>
+<a name="InterSlaveSchedule._auxSlots"></a><div id="InterSlaveSchedule._auxSlots-def"><a name="L208"></a><tt class="py-lineno">208</tt> <a class="py-toggle" href="#" id="InterSlaveSchedule._auxSlots-toggle" onclick="return toggle('InterSlaveSchedule._auxSlots');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.behaviours.orient_tdma.InterSlaveSchedule-class.html#_auxSlots">_auxSlots</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">sequence</tt><tt class="py-op">,</tt> <tt class="py-param">id</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="InterSlaveSchedule._auxSlots-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="InterSlaveSchedule._auxSlots-expanded"><a name="L209"></a><tt class="py-lineno">209</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">list</tt><tt class="py-op">(</tt><tt class="py-name">np</tt><tt class="py-op">.</tt><tt class="py-name">nonzero</tt><tt class="py-op">(</tt><tt class="py-name">np</tt><tt class="py-op">.</tt><tt id="link-52" class="py-name"><a title="imusim.maths.quaternions.QuaternionArray.array" class="py-name" href="#" onclick="return doclink('link-52', 'array', 'link-23');">array</a></tt><tt class="py-op">(</tt><tt class="py-name">sequence</tt><tt class="py-op">)</tt><tt class="py-op">==</tt><tt class="py-name">id</tt><tt class="py-op">)</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L210"></a><tt class="py-lineno">210</tt>  <tt class="py-line"> </tt>
+<a name="InterSlaveSchedule.slaveAuxTxSlots"></a><div id="InterSlaveSchedule.slaveAuxTxSlots-def"><a name="L211"></a><tt class="py-lineno">211</tt> <a class="py-toggle" href="#" id="InterSlaveSchedule.slaveAuxTxSlots-toggle" onclick="return toggle('InterSlaveSchedule.slaveAuxTxSlots');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.behaviours.orient_tdma.InterSlaveSchedule-class.html#slaveAuxTxSlots">slaveAuxTxSlots</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">id</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="InterSlaveSchedule.slaveAuxTxSlots-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="InterSlaveSchedule.slaveAuxTxSlots-expanded"><a name="L212"></a><tt class="py-lineno">212</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_auxSlots</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">auxTxSlots</tt><tt class="py-op">,</tt> <tt class="py-name">id</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L213"></a><tt class="py-lineno">213</tt>  <tt class="py-line"> </tt>
+<a name="InterSlaveSchedule.slaveAuxRxSlots"></a><div id="InterSlaveSchedule.slaveAuxRxSlots-def"><a name="L214"></a><tt class="py-lineno">214</tt> <a class="py-toggle" href="#" id="InterSlaveSchedule.slaveAuxRxSlots-toggle" onclick="return toggle('InterSlaveSchedule.slaveAuxRxSlots');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.behaviours.orient_tdma.InterSlaveSchedule-class.html#slaveAuxRxSlots">slaveAuxRxSlots</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">id</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="InterSlaveSchedule.slaveAuxRxSlots-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="InterSlaveSchedule.slaveAuxRxSlots-expanded"><a name="L215"></a><tt class="py-lineno">215</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_auxSlots</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">auxRxSlots</tt><tt class="py-op">,</tt> <tt class="py-name">id</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L216"></a><tt class="py-lineno">216</tt>  <tt class="py-line"> </tt>
+<a name="InterSlaveSchedule.auxSlot"></a><div id="InterSlaveSchedule.auxSlot-def"><a name="L217"></a><tt class="py-lineno">217</tt> <a class="py-toggle" href="#" id="InterSlaveSchedule.auxSlot-toggle" onclick="return toggle('InterSlaveSchedule.auxSlot');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.behaviours.orient_tdma.InterSlaveSchedule-class.html#auxSlot">auxSlot</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">source</tt><tt class="py-op">,</tt> <tt class="py-param">dest</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="InterSlaveSchedule.auxSlot-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="InterSlaveSchedule.auxSlot-expanded"><a name="L218"></a><tt class="py-lineno">218</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">np</tt><tt class="py-op">.</tt><tt class="py-name">nonzero</tt><tt class="py-op">(</tt><tt class="py-op">(</tt><tt class="py-name">np</tt><tt class="py-op">.</tt><tt id="link-53" class="py-name"><a title="imusim.maths.quaternions.QuaternionArray.array" class="py-name" href="#" onclick="return doclink('link-53', 'array', 'link-23');">array</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">auxTxSlots</tt><tt class="py-op">)</tt><tt class="py-op">==</tt><tt class="py-name">source</tt><tt class="py-op">)</tt> </tt>
+<a name="L219"></a><tt class="py-lineno">219</tt>  <tt class="py-line">                <tt class="py-op">&amp;</tt> <tt class="py-op">(</tt><tt class="py-name">np</tt><tt class="py-op">.</tt><tt id="link-54" class="py-name"><a title="imusim.maths.quaternions.QuaternionArray.array" class="py-name" href="#" onclick="return doclink('link-54', 'array', 'link-23');">array</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">auxRxSlots</tt><tt class="py-op">)</tt><tt class="py-op">==</tt><tt class="py-name">dest</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> </tt>
+</div></div><a name="L220"></a><tt class="py-lineno">220</tt>  <tt class="py-line"> </tt>
+<a name="InterSlaveMAC"></a><div id="InterSlaveMAC-def"><a name="L221"></a><tt class="py-lineno">221</tt> <a class="py-toggle" href="#" id="InterSlaveMAC-toggle" onclick="return toggle('InterSlaveMAC');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="imusim.behaviours.orient_tdma.InterSlaveMAC-class.html">InterSlaveMAC</a><tt class="py-op">(</tt><tt class="py-base-class">SlaveMAC</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="InterSlaveMAC-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="InterSlaveMAC-expanded"><a name="L222"></a><tt class="py-lineno">222</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L223"></a><tt class="py-lineno">223</tt>  <tt class="py-line"><tt class="py-docstring">    Slave MAC implementation with support for slave-slave packets.</tt> </tt>
+<a name="L224"></a><tt class="py-lineno">224</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L225"></a><tt class="py-lineno">225</tt>  <tt class="py-line"> </tt>
+<a name="L226"></a><tt class="py-lineno">226</tt>  <tt class="py-line">    <tt class="py-decorator">@</tt><tt class="py-decorator">prepend_method_doc</tt><tt class="py-op">(</tt><tt id="link-55" class="py-name" targets="Class imusim.behaviours.orient_tdma.SlaveMAC=imusim.behaviours.orient_tdma.SlaveMAC-class.html"><a title="imusim.behaviours.orient_tdma.SlaveMAC" class="py-name" href="#" onclick="return doclink('link-55', 'SlaveMAC', 'link-55');">SlaveMAC</a></tt><tt class="py-op">)</tt> </tt>
+<a name="InterSlaveMAC.__init__"></a><div id="InterSlaveMAC.__init__-def"><a name="L227"></a><tt class="py-lineno">227</tt> <a class="py-toggle" href="#" id="InterSlaveMAC.__init__-toggle" onclick="return toggle('InterSlaveMAC.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.behaviours.orient_tdma.InterSlaveMAC-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">radio</tt><tt class="py-op">,</tt> <tt class="py-param">timerMux</tt><tt class="py-op">,</tt> <tt class="py-param">schedule</tt><tt class="py-op">,</tt> <tt class="py-param">id</tt><tt class="py-op">,</tt> <tt class="py-param">packetHandler</tt><tt class="py-op">=</tt><tt class="py-name">None</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="InterSlaveMAC.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="InterSlaveMAC.__init__-expanded"><a name="L228"></a><tt class="py-lineno">228</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L229"></a><tt class="py-lineno">229</tt>  <tt class="py-line"><tt class="py-docstring">        @param packetHandler: Handler to call on reception of a slave-slave</tt> </tt>
+<a name="L230"></a><tt class="py-lineno">230</tt>  <tt class="py-line"><tt class="py-docstring">            packet. The packet will be passed as an argument.</tt> </tt>
+<a name="L231"></a><tt class="py-lineno">231</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L232"></a><tt class="py-lineno">232</tt>  <tt class="py-line">        <tt id="link-56" class="py-name"><a title="imusim.behaviours.orient_tdma.SlaveMAC" class="py-name" href="#" onclick="return doclink('link-56', 'SlaveMAC', 'link-55');">SlaveMAC</a></tt><tt class="py-op">.</tt><tt id="link-57" class="py-name"><a title="imusim.algorithms.calibration.ScaleAndOffsetCalibration.__init__
+imusim.algorithms.orientation.BachmannCF.__init__
+imusim.algorithms.orientation.DistLinAccelCF.__init__
+imusim.algorithms.orientation.GyroIntegrator.__init__
+imusim.algorithms.orientation.OrientCF.__init__
+imusim.algorithms.orientation.OrientationFilter.__init__
+imusim.algorithms.orientation.YunEKF.__init__
+imusim.algorithms.position.ConstantPosition.__init__
+imusim.algorithms.position.ContactTrackingKalmanFilter.__init__
+imusim.algorithms.position.LowestPoint.__init__
+imusim.algorithms.position.PositionEstimator.__init__
+imusim.algorithms.position.RootAccelerationIntegrator.__init__
+imusim.algorithms.posture_reconstruction.InheritedForwardKinematics.__init__
+imusim.algorithms.posture_reconstruction.PostureReconstructor.__init__
+imusim.algorithms.posture_reconstruction.SimpleForwardKinematics.__init__
+imusim.algorithms.vector_observation.FQA.__init__
+imusim.algorithms.vector_observation.LeastSquaresOptimalVectorObservation.__init__
+imusim.behaviours.basestation.BodyModelReconstructor.__init__
+imusim.behaviours.imu.BasicIMUBehaviour.__init__
+imusim.behaviours.mac.MAC.__init__
+imusim.behaviours.orient_tdma.AuxPacket.__init__
+imusim.behaviours.orient_tdma.DataPacket.__init__
+imusim.behaviours.orient_tdma.InterSlaveMAC.__init__
+imusim.behaviours.orient_tdma.InterSlaveSchedule.__init__
+imusim.behaviours.orient_tdma.MasterMAC.__init__
+imusim.behaviours.orient_tdma.Schedule.__init__
+imusim.behaviours.orient_tdma.SlaveMAC.__init__
+imusim.behaviours.sampling.PeriodicSampler.__init__
+imusim.behaviours.timing.TimerMultiplexer.__init__
+imusim.behaviours.timing.VirtualTimer.__init__
+imusim.capture.marker.Marker.__init__
+imusim.capture.marker.Marker3DOF.__init__
+imusim.capture.marker.Marker6DOF.__init__
+imusim.capture.marker.MarkerCapture.__init__
+imusim.capture.marker.SplinedMarker3DOF.__init__
+imusim.capture.marker.SplinedMarker6DOF.__init__
+imusim.capture.marker.SplinedMarkerCapture.__init__
+imusim.capture.sensor.CapturedDevice.__init__
+imusim.capture.sensor.SensorDataCapture.__init__
+imusim.environment.base.Environment.__init__
+imusim.environment.gravity.ConstantGravitationalField.__init__
+imusim.environment.magnetic_fields.DistortedMagneticField.__init__
+imusim.environment.magnetic_fields.EarthMagneticField.__init__
+imusim.environment.magnetic_fields.SolenoidMagneticField.__init__
+imusim.environment.radio_environment.BERRadioEnvironment.__init__
+imusim.environment.radio_environment.IdealRadioEnvironment.__init__
+imusim.environment.radio_environment.RadioEnvironment.__init__
+imusim.io.bvh.BVHExporter.__init__
+imusim.io.bvh.BVHLoader.__init__
+imusim.maths.integrators.DoubleIntegrator.__init__
+imusim.maths.integrators.Integrator.__init__
+imusim.maths.integrators.TrapeziumRule.__init__
+imusim.maths.kalman.KalmanFilter.__init__
+imusim.maths.kalman.UnscentedKalmanFilter.__init__
+imusim.maths.quat_splines.SQUADQuaternionSpline.__init__
+imusim.maths.quaternions.QuaternionArray.__init__
+imusim.maths.splines.PartialInputSpline.__init__
+imusim.maths.splines.UnivariateSpline.__init__
+imusim.maths.transforms.AffineTransform.__init__
+imusim.maths.transforms.UnscentedTransform.__init__
+imusim.maths.vector_fields.ConstantVectorField.__init__
+imusim.maths.vector_fields.InterpolatedVectorField.__init__
+imusim.maths.vector_fields.NaturalNeighbourInterpolatedField.__init__
+imusim.maths.vector_fields.RBFInterpolatedField.__init__
+imusim.maths.vector_splines.PartialInputVectorSpline.__init__
+imusim.maths.vector_splines.UnivariateVectorSpline.__init__
+imusim.platforms.accelerometers.MMA7260Q.__init__
+imusim.platforms.adcs.ParametricADC.__init__
+imusim.platforms.adcs.QuantisingADC.__init__
+imusim.platforms.base.Component.__init__
+imusim.platforms.base.Platform.__init__
+imusim.platforms.basestations.IdealBasestation.__init__
+imusim.platforms.gyroscopes.ADXRS300.__init__
+imusim.platforms.imus.IdealIMU.__init__
+imusim.platforms.imus.MagicIMU.__init__
+imusim.platforms.imus.Orient3IMU.__init__
+imusim.platforms.magnetometers.HMC105x.__init__
+imusim.platforms.radios.Radio.__init__
+imusim.platforms.radios.RadioPacket.__init__
+imusim.platforms.sensors.NoisySensor.__init__
+imusim.platforms.sensors.NoisyTransformedSensor.__init__
+imusim.platforms.sensors.Sensor.__init__
+imusim.platforms.sensors.TransformedSensor.__init__
+imusim.platforms.timers.ParametricTimer.__init__
+imusim.platforms.timers.Timer.__init__
+imusim.simulation.base.Simulation.ProgressMonitor.__init__
+imusim.simulation.base.Simulation.__init__
+imusim.simulation.calibrators.Calibrator.__init__
+imusim.simulation.calibrators.ScaleAndOffsetCalibrator.__init__
+imusim.testing.random_data.RandomRotationTrajectory.__init__
+imusim.testing.random_data.RandomTrajectory.__init__
+imusim.trajectories.base.ConstantPositionTrajectory.__init__
+imusim.trajectories.base.ConstantRotationTrajectory.__init__
+imusim.trajectories.base.ContinuousRotationTrajectory.__init__
+imusim.trajectories.base.StaticContinuousRotationTrajectory.__init__
+imusim.trajectories.base.StaticTrajectory.__init__
+imusim.trajectories.multi_marker.MultiMarkerTrajectory.__init__
+imusim.trajectories.offset.OffsetTrajectory.__init__
+imusim.trajectories.rigid_body.Joint.__init__
+imusim.trajectories.rigid_body.Point.__init__
+imusim.trajectories.rigid_body.PointTrajectory.__init__
+imusim.trajectories.rigid_body.SampledBodyModel.__init__
+imusim.trajectories.rigid_body.SampledJoint.__init__
+imusim.trajectories.rigid_body.SplinedBodyModel.__init__
+imusim.trajectories.rigid_body.SplinedJoint.__init__
+imusim.trajectories.sampled.SampledPositionTrajectory.__init__
+imusim.trajectories.sampled.SampledRotationTrajectory.__init__
+imusim.trajectories.sampled.SampledTrajectory.__init__
+imusim.trajectories.splined.SplinedPositionTrajectory.__init__
+imusim.trajectories.splined.SplinedRotationTrajectory.__init__
+imusim.trajectories.splined.SplinedTrajectory.__init__
+imusim.utilities.caching.CacheEntry.__init__
+imusim.utilities.caching.CacheLastValue.__init__
+imusim.utilities.documentation.prepend_method_doc.__init__
+imusim.utilities.time_series.TimeSeries.__init__
+imusim.utilities.trees.TreeNode.__init__
+imusim.visualisation.rendering.AnimatedRenderer.__init__
+imusim.visualisation.rendering.BodyModelRenderer.__init__
+imusim.visualisation.rendering.ContactProbabilityRenderer.__init__
+imusim.visualisation.rendering.InteractiveAnimation.__init__
+imusim.visualisation.rendering.VelocityVectorRenderer.__init__" class="py-name" href="#" onclick="return doclink('link-57', '__init__', 'link-21');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">radio</tt><tt class="py-op">,</tt> <tt class="py-name">timerMux</tt><tt class="py-op">,</tt> <tt class="py-name">schedule</tt><tt class="py-op">,</tt> <tt class="py-name">id</tt><tt class="py-op">)</tt> </tt>
+<a name="L233"></a><tt class="py-lineno">233</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">auxTxSlots</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">schedule</tt><tt class="py-op">.</tt><tt id="link-58" class="py-name" targets="Method imusim.behaviours.orient_tdma.InterSlaveSchedule.slaveAuxTxSlots()=imusim.behaviours.orient_tdma.InterSlaveSchedule-class.html#slaveAuxTxSlots"><a title="imusim.behaviours.orient_tdma.InterSlaveSchedule.slaveAuxTxSlots" class="py-name" href="#" onclick="return doclink('link-58', 'slaveAuxTxSlots', 'link-58');">slaveAuxTxSlots</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">id</tt><tt class="py-op">)</tt> </tt>
+<a name="L234"></a><tt class="py-lineno">234</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">auxRxSlots</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">schedule</tt><tt class="py-op">.</tt><tt id="link-59" class="py-name" targets="Method imusim.behaviours.orient_tdma.InterSlaveSchedule.slaveAuxRxSlots()=imusim.behaviours.orient_tdma.InterSlaveSchedule-class.html#slaveAuxRxSlots"><a title="imusim.behaviours.orient_tdma.InterSlaveSchedule.slaveAuxRxSlots" class="py-name" href="#" onclick="return doclink('link-59', 'slaveAuxRxSlots', 'link-59');">slaveAuxRxSlots</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">id</tt><tt class="py-op">)</tt> </tt>
+<a name="L235"></a><tt class="py-lineno">235</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">auxSlotTimer</tt> <tt class="py-op">=</tt> <tt id="link-60" class="py-name"><a title="imusim.behaviours.timing.VirtualTimer" class="py-name" href="#" onclick="return doclink('link-60', 'VirtualTimer', 'link-7');">VirtualTimer</a></tt><tt class="py-op">(</tt><tt class="py-name">timerMux</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_auxSlotTimerHandler</tt><tt class="py-op">)</tt> </tt>
+<a name="L236"></a><tt class="py-lineno">236</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">auxPackets</tt> <tt class="py-op">=</tt> <tt class="py-op">{</tt><tt class="py-op">}</tt> </tt>
+<a name="L237"></a><tt class="py-lineno">237</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">packetHandler</tt> <tt class="py-op">=</tt> <tt class="py-name">packetHandler</tt> </tt>
+<a name="L238"></a><tt class="py-lineno">238</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">radio</tt><tt class="py-op">.</tt><tt id="link-61" class="py-name" targets="Variable imusim.io.asf_amc.channel=imusim.io.asf_amc-module.html#channel"><a title="imusim.io.asf_amc.channel" class="py-name" href="#" onclick="return doclink('link-61', 'channel', 'link-61');">channel</a></tt> <tt class="py-op">=</tt> <tt class="py-name">schedule</tt><tt class="py-op">.</tt><tt class="py-name">dataChannel</tt> </tt>
+</div><a name="L239"></a><tt class="py-lineno">239</tt>  <tt class="py-line"> </tt>
+<a name="InterSlaveMAC._slotTimerHandler"></a><div id="InterSlaveMAC._slotTimerHandler-def"><a name="L240"></a><tt class="py-lineno">240</tt> <a class="py-toggle" href="#" id="InterSlaveMAC._slotTimerHandler-toggle" onclick="return toggle('InterSlaveMAC._slotTimerHandler');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.behaviours.orient_tdma.InterSlaveMAC-class.html#_slotTimerHandler">_slotTimerHandler</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="InterSlaveMAC._slotTimerHandler-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="InterSlaveMAC._slotTimerHandler-expanded"><a name="L241"></a><tt class="py-lineno">241</tt>  <tt class="py-line">        <tt id="link-62" class="py-name"><a title="imusim.behaviours.orient_tdma.SlaveMAC" class="py-name" href="#" onclick="return doclink('link-62', 'SlaveMAC', 'link-55');">SlaveMAC</a></tt><tt class="py-op">.</tt><tt class="py-name">_slotTimerHandler</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">)</tt> </tt>
+<a name="L242"></a><tt class="py-lineno">242</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">slot</tt> <tt class="py-op">==</tt> <tt class="py-number">0</tt><tt class="py-op">:</tt> </tt>
+<a name="L243"></a><tt class="py-lineno">243</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-63" class="py-name" targets="Method imusim.behaviours.orient_tdma.InterSlaveSchedule.auxSlot()=imusim.behaviours.orient_tdma.InterSlaveSchedule-class.html#auxSlot"><a title="imusim.behaviours.orient_tdma.InterSlaveSchedule.auxSlot" class="py-name" href="#" onclick="return doclink('link-63', 'auxSlot', 'link-63');">auxSlot</a></tt> <tt class="py-op">=</tt> <tt class="py-number">0</tt> </tt>
+<a name="L244"></a><tt class="py-lineno">244</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L245"></a><tt class="py-lineno">245</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-64" class="py-name"><a title="imusim.behaviours.orient_tdma.InterSlaveSchedule.auxSlot" class="py-name" href="#" onclick="return doclink('link-64', 'auxSlot', 'link-63');">auxSlot</a></tt> <tt class="py-op">+=</tt> <tt class="py-number">1</tt> </tt>
+<a name="L246"></a><tt class="py-lineno">246</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">slot</tt> <tt class="py-op">&lt;</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">schedule</tt><tt class="py-op">.</tt><tt class="py-name">dataSlots</tt><tt class="py-op">:</tt> </tt>
+<a name="L247"></a><tt class="py-lineno">247</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">auxSlotTimer</tt><tt class="py-op">.</tt><tt id="link-65" class="py-name"><a title="imusim.behaviours.timing.VirtualTimer.start
+imusim.platforms.timers.Timer.start
+imusim.visualisation.rendering.InteractiveAnimation.start" class="py-name" href="#" onclick="return doclink('link-65', 'start', 'link-31');">start</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">schedule</tt><tt class="py-op">.</tt><tt class="py-name">dataSlotTime</tt><tt class="py-op">/</tt><tt class="py-number">2</tt><tt class="py-op">)</tt> </tt>
+<a name="L248"></a><tt class="py-lineno">248</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-66" class="py-name"><a title="imusim.behaviours.orient_tdma.InterSlaveSchedule.auxSlot" class="py-name" href="#" onclick="return doclink('link-66', 'auxSlot', 'link-63');">auxSlot</a></tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">auxTxSlots</tt> <tt class="py-op">+</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">auxRxSlots</tt><tt class="py-op">:</tt> </tt>
+<a name="L249"></a><tt class="py-lineno">249</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">radio</tt><tt class="py-op">.</tt><tt id="link-67" class="py-name"><a title="imusim.io.asf_amc.channel" class="py-name" href="#" onclick="return doclink('link-67', 'channel', 'link-61');">channel</a></tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">schedule</tt><tt class="py-op">.</tt><tt class="py-name">auxChannel</tt> </tt>
+</div><a name="L250"></a><tt class="py-lineno">250</tt>  <tt class="py-line"> </tt>
+<a name="InterSlaveMAC._auxSlotTimerHandler"></a><div id="InterSlaveMAC._auxSlotTimerHandler-def"><a name="L251"></a><tt class="py-lineno">251</tt> <a class="py-toggle" href="#" id="InterSlaveMAC._auxSlotTimerHandler-toggle" onclick="return toggle('InterSlaveMAC._auxSlotTimerHandler');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.behaviours.orient_tdma.InterSlaveMAC-class.html#_auxSlotTimerHandler">_auxSlotTimerHandler</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="InterSlaveMAC._auxSlotTimerHandler-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="InterSlaveMAC._auxSlotTimerHandler-expanded"><a name="L252"></a><tt class="py-lineno">252</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-68" class="py-name"><a title="imusim.behaviours.orient_tdma.InterSlaveSchedule.auxSlot" class="py-name" href="#" onclick="return doclink('link-68', 'auxSlot', 'link-63');">auxSlot</a></tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">auxTxSlots</tt><tt class="py-op">:</tt> </tt>
+<a name="L253"></a><tt class="py-lineno">253</tt>  <tt class="py-line">            <tt class="py-name">packet</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">auxPackets</tt><tt class="py-op">.</tt><tt class="py-name">pop</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-69" class="py-name"><a title="imusim.behaviours.orient_tdma.InterSlaveSchedule.auxSlot" class="py-name" href="#" onclick="return doclink('link-69', 'auxSlot', 'link-63');">auxSlot</a></tt><tt class="py-op">,</tt> <tt class="py-name">None</tt><tt class="py-op">)</tt> </tt>
+<a name="L254"></a><tt class="py-lineno">254</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">packet</tt> <tt class="py-keyword">is</tt> <tt class="py-keyword">not</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L255"></a><tt class="py-lineno">255</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">radio</tt><tt class="py-op">.</tt><tt id="link-70" class="py-name"><a title="imusim.environment.radio_environment.BERRadioEnvironment.transmit
+imusim.environment.radio_environment.IdealRadioEnvironment.transmit
+imusim.environment.radio_environment.RadioEnvironment.transmit
+imusim.platforms.radios.IdealRadio.transmit
+imusim.platforms.radios.Radio.transmit" class="py-name" href="#" onclick="return doclink('link-70', 'transmit', 'link-33');">transmit</a></tt><tt class="py-op">(</tt><tt class="py-name">packet</tt><tt class="py-op">)</tt> </tt>
+<a name="L256"></a><tt class="py-lineno">256</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">slot</tt> <tt class="py-op">+</tt> <tt class="py-number">1</tt> <tt class="py-keyword">in</tt> <tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-71" class="py-name"><a title="imusim.behaviours.orient_tdma.Schedule.dataTxSlot" class="py-name" href="#" onclick="return doclink('link-71', 'dataTxSlot', 'link-39');">dataTxSlot</a></tt><tt class="py-op">,</tt> <tt class="py-name">len</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">schedule</tt><tt class="py-op">.</tt><tt class="py-name">dataSlots</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L257"></a><tt class="py-lineno">257</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">radio</tt><tt class="py-op">.</tt><tt id="link-72" class="py-name"><a title="imusim.io.asf_amc.channel" class="py-name" href="#" onclick="return doclink('link-72', 'channel', 'link-61');">channel</a></tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">schedule</tt><tt class="py-op">.</tt><tt class="py-name">dataChannel</tt> </tt>
+</div><a name="L258"></a><tt class="py-lineno">258</tt>  <tt class="py-line"> </tt>
+<a name="InterSlaveMAC.queueAuxPacket"></a><div id="InterSlaveMAC.queueAuxPacket-def"><a name="L259"></a><tt class="py-lineno">259</tt> <a class="py-toggle" href="#" id="InterSlaveMAC.queueAuxPacket-toggle" onclick="return toggle('InterSlaveMAC.queueAuxPacket');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.behaviours.orient_tdma.InterSlaveMAC-class.html#queueAuxPacket">queueAuxPacket</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">packet</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="InterSlaveMAC.queueAuxPacket-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="InterSlaveMAC.queueAuxPacket-expanded"><a name="L260"></a><tt class="py-lineno">260</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L261"></a><tt class="py-lineno">261</tt>  <tt class="py-line"><tt class="py-docstring">        Queue a packet for transmission to another slave.</tt> </tt>
+<a name="L262"></a><tt class="py-lineno">262</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L263"></a><tt class="py-lineno">263</tt>  <tt class="py-line"><tt class="py-docstring">        @param packet: L{RadioPacket} to transmit.</tt> </tt>
+<a name="L264"></a><tt class="py-lineno">264</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L265"></a><tt class="py-lineno">265</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">isinstance</tt><tt class="py-op">(</tt><tt class="py-name">packet</tt><tt class="py-op">,</tt> <tt id="link-73" class="py-name" targets="Class imusim.behaviours.orient_tdma.AuxPacket=imusim.behaviours.orient_tdma.AuxPacket-class.html"><a title="imusim.behaviours.orient_tdma.AuxPacket" class="py-name" href="#" onclick="return doclink('link-73', 'AuxPacket', 'link-73');">AuxPacket</a></tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+<a name="L266"></a><tt class="py-lineno">266</tt>  <tt class="py-line">            <tt class="py-name">slot</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">schedule</tt><tt class="py-op">.</tt><tt id="link-74" class="py-name"><a title="imusim.behaviours.orient_tdma.InterSlaveSchedule.auxSlot" class="py-name" href="#" onclick="return doclink('link-74', 'auxSlot', 'link-63');">auxSlot</a></tt><tt class="py-op">(</tt><tt class="py-name">packet</tt><tt class="py-op">.</tt><tt class="py-name">source</tt><tt class="py-op">,</tt> <tt class="py-name">packet</tt><tt class="py-op">.</tt><tt class="py-name">dest</tt><tt class="py-op">)</tt> </tt>
+<a name="L267"></a><tt class="py-lineno">267</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">auxPackets</tt><tt class="py-op">[</tt><tt class="py-name">slot</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">packet</tt> </tt>
+<a name="L268"></a><tt class="py-lineno">268</tt>  <tt class="py-line">        <tt class="py-keyword">else</tt><tt class="py-op">:</tt> </tt>
+<a name="L269"></a><tt class="py-lineno">269</tt>  <tt class="py-line">            <tt class="py-keyword">raise</tt> <tt class="py-name">ValueError</tt> </tt>
+</div><a name="L270"></a><tt class="py-lineno">270</tt>  <tt class="py-line"> </tt>
+<a name="InterSlaveMAC.handleIncomingPacket"></a><div id="InterSlaveMAC.handleIncomingPacket-def"><a name="L271"></a><tt class="py-lineno">271</tt> <a class="py-toggle" href="#" id="InterSlaveMAC.handleIncomingPacket-toggle" onclick="return toggle('InterSlaveMAC.handleIncomingPacket');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.behaviours.orient_tdma.InterSlaveMAC-class.html#handleIncomingPacket">handleIncomingPacket</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">packet</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="InterSlaveMAC.handleIncomingPacket-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="InterSlaveMAC.handleIncomingPacket-expanded"><a name="L272"></a><tt class="py-lineno">272</tt>  <tt class="py-line">        <tt id="link-75" class="py-name"><a title="imusim.behaviours.orient_tdma.SlaveMAC" class="py-name" href="#" onclick="return doclink('link-75', 'SlaveMAC', 'link-55');">SlaveMAC</a></tt><tt class="py-op">.</tt><tt id="link-76" class="py-name" targets="Method imusim.behaviours.mac.MAC.handleIncomingPacket()=imusim.behaviours.mac.MAC-class.html#handleIncomingPacket,Method imusim.behaviours.orient_tdma.InterSlaveMAC.handleIncomingPacket()=imusim.behaviours.orient_tdma.InterSlaveMAC-class.html#handleIncomingPacket,Method imusim.behaviours.orient_tdma.MasterMAC.handleIncomingPacket()=imusim.behaviours.orient_tdma.MasterMAC-class.html#handleIncomingPacket,Method imusim.behaviours.orient_tdma.SlaveMAC.handleIncomingPacket()=imusim.behaviours.orient_tdma.SlaveMAC-class.html#handleIncomingPacket"><a title="imusim.behaviours.mac.MAC.handleIncomingPacket
+imusim.behaviours.orient_tdma.InterSlaveMAC.handleIncomingPacket
+imusim.behaviours.orient_tdma.MasterMAC.handleIncomingPacket
+imusim.behaviours.orient_tdma.SlaveMAC.handleIncomingPacket" class="py-name" href="#" onclick="return doclink('link-76', 'handleIncomingPacket', 'link-76');">handleIncomingPacket</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">packet</tt><tt class="py-op">)</tt> </tt>
+<a name="L273"></a><tt class="py-lineno">273</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">isinstance</tt><tt class="py-op">(</tt><tt class="py-name">packet</tt><tt class="py-op">,</tt> <tt id="link-77" class="py-name"><a title="imusim.behaviours.orient_tdma.AuxPacket" class="py-name" href="#" onclick="return doclink('link-77', 'AuxPacket', 'link-73');">AuxPacket</a></tt><tt class="py-op">)</tt> <tt class="py-keyword">and</tt> <tt class="py-name">packet</tt><tt class="py-op">.</tt><tt class="py-name">dest</tt> <tt class="py-op">==</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">id</tt><tt class="py-op">:</tt> </tt>
+<a name="L274"></a><tt class="py-lineno">274</tt>  <tt class="py-line">            <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">packetHandler</tt> <tt class="py-keyword">is</tt> <tt class="py-keyword">not</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L275"></a><tt class="py-lineno">275</tt>  <tt class="py-line">                <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">packetHandler</tt><tt class="py-op">(</tt><tt class="py-name">packet</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L276"></a><tt class="py-lineno">276</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="imusim-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://www.imusim.org/">IMUSim</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Wed Apr 14 11:45:15 2021
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

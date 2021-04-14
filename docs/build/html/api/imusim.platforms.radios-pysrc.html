@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>imusim.platforms.radios</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="imusim-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://www.imusim.org/">IMUSim</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="imusim-module.html">Package&nbsp;imusim</a> ::
+        <a href="imusim.platforms-module.html">Package&nbsp;platforms</a> ::
+        Module&nbsp;radios
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="imusim.platforms.radios-module.html">Module imusim.platforms.radios</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-docstring">Radio models.</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment"># Copyright (C) 2009-2011 University of Edinburgh</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-comment"># This file is part of IMUSim.</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-comment"># IMUSim is free software: you can redistribute it and/or modify it</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-comment"># under the terms of the GNU General Public License as published by</tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-comment"># the Free Software Foundation, either version 3 of the License, or</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-comment"># (at your option) any later version.</tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-comment"># IMUSim is distributed in the hope that it will be useful,</tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-comment"># but WITHOUT ANY WARRANTY; without even the implied warranty of</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-comment"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-comment"># GNU General Public License for more details.</tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-comment"># You should have received a copy of the GNU General Public License</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-comment"># along with IMUSim.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">abc</tt> <tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Class abc.ABCMeta=abc.ABCMeta-class.html"><a title="abc.ABCMeta" class="py-name" href="#" onclick="return doclink('link-0', 'ABCMeta', 'link-0');">ABCMeta</a></tt><tt class="py-op">,</tt> <tt class="py-name">abstractmethod</tt><tt class="py-op">,</tt> <tt class="py-name">abstractproperty</tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-1" class="py-name" targets="Package imusim=imusim-module.html"><a title="imusim" class="py-name" href="#" onclick="return doclink('link-1', 'imusim', 'link-1');">imusim</a></tt><tt class="py-op">.</tt><tt id="link-2" class="py-name" targets="Package imusim.platforms=imusim.platforms-module.html"><a title="imusim.platforms" class="py-name" href="#" onclick="return doclink('link-2', 'platforms', 'link-2');">platforms</a></tt><tt class="py-op">.</tt><tt id="link-3" class="py-name" targets="Module imusim.environment.base=imusim.environment.base-module.html,Module imusim.platforms.base=imusim.platforms.base-module.html,Module imusim.simulation.base=imusim.simulation.base-module.html,Module imusim.trajectories.base=imusim.trajectories.base-module.html"><a title="imusim.environment.base
+imusim.platforms.base
+imusim.simulation.base
+imusim.trajectories.base" class="py-name" href="#" onclick="return doclink('link-3', 'base', 'link-3');">base</a></tt> <tt class="py-keyword">import</tt> <tt id="link-4" class="py-name" targets="Class imusim.platforms.base.Component=imusim.platforms.base.Component-class.html"><a title="imusim.platforms.base.Component" class="py-name" href="#" onclick="return doclink('link-4', 'Component', 'link-4');">Component</a></tt> </tt>
+<a name="RadioPacket"></a><div id="RadioPacket-def"><a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt> <a class="py-toggle" href="#" id="RadioPacket-toggle" onclick="return toggle('RadioPacket');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="imusim.platforms.radios.RadioPacket-class.html">RadioPacket</a><tt class="py-op">(</tt><tt class="py-base-class">dict</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="RadioPacket-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="RadioPacket-expanded"><a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-docstring">    Class to represent a radio packet.</tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"><tt class="py-docstring">    Payload fields should be added as dictionary items.</tt> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"><tt class="py-docstring">    Metadata relevant to radio simulation should be added as attributes.</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line"> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line">    <tt id="link-5" class="py-name" targets="Variable imusim.platforms.adcs.ADC.__metaclass__=imusim.platforms.adcs.ADC-class.html#__metaclass__,Variable imusim.platforms.imus.IMU.__metaclass__=imusim.platforms.imus.IMU-class.html#__metaclass__,Variable imusim.platforms.radios.Radio.__metaclass__=imusim.platforms.radios.Radio-class.html#__metaclass__,Variable imusim.platforms.sensors.Sensor.__metaclass__=imusim.platforms.sensors.Sensor-class.html#__metaclass__,Variable imusim.platforms.timers.Timer.__metaclass__=imusim.platforms.timers.Timer-class.html#__metaclass__,Variable imusim.visualisation.rendering.AnimatedRenderer.__metaclass__=imusim.visualisation.rendering.AnimatedRenderer-class.html#__metaclass__"><a title="imusim.platforms.adcs.ADC.__metaclass__
+imusim.platforms.imus.IMU.__metaclass__
+imusim.platforms.radios.Radio.__metaclass__
+imusim.platforms.sensors.Sensor.__metaclass__
+imusim.platforms.timers.Timer.__metaclass__
+imusim.visualisation.rendering.AnimatedRenderer.__metaclass__" class="py-name" href="#" onclick="return doclink('link-5', '__metaclass__', 'link-5');">__metaclass__</a></tt> <tt class="py-op">=</tt> <tt id="link-6" class="py-name"><a title="abc.ABCMeta" class="py-name" href="#" onclick="return doclink('link-6', 'ABCMeta', 'link-0');">ABCMeta</a></tt> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line"> </tt>
+<a name="RadioPacket.__init__"></a><div id="RadioPacket.__init__-def"><a name="L35"></a><tt class="py-lineno"> 35</tt> <a class="py-toggle" href="#" id="RadioPacket.__init__-toggle" onclick="return toggle('RadioPacket.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.platforms.radios.RadioPacket-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-op">*</tt><tt class="py-param">args</tt><tt class="py-op">,</tt> <tt class="py-op">**</tt><tt class="py-param">kwargs</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="RadioPacket.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="RadioPacket.__init__-expanded"><a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line">        <tt class="py-name">dict</tt><tt class="py-op">.</tt><tt id="link-7" class="py-name" targets="Method imusim.algorithms.calibration.ScaleAndOffsetCalibration.__init__()=imusim.algorithms.calibration.ScaleAndOffsetCalibration-class.html#__init__,Method imusim.algorithms.orientation.BachmannCF.__init__()=imusim.algorithms.orientation.BachmannCF-class.html#__init__,Method imusim.algorithms.orientation.DistLinAccelCF.__init__()=imusim.algorithms.orientation.DistLinAccelCF-class.html#__init__,Method imusim.algorithms.orientation.GyroIntegrator.__init__()=imusim.algorithms.orientation.GyroIntegrator-class.html#__init__,Method imusim.algorithms.orientation.OrientCF.__init__()=imusim.algorithms.orientation.OrientCF-class.html#__init__,Method imusim.algorithms.orientation.OrientationFilter.__init__()=imusim.algorithms.orientation.OrientationFilter-class.html#__init__,Method imusim.algorithms.orientation.YunEKF.__init__()=imusim.algorithms.orientation.YunEKF-class.html#__init__,Method imusim.algorithms.position.ConstantPosition.__init__()=imusim.algorithms.position.ConstantPosition-class.html#__init__,Method imusim.algorithms.position.ContactTrackingKalmanFilter.__init__()=imusim.algorithms.position.ContactTrackingKalmanFilter-class.html#__init__,Method imusim.algorithms.position.LowestPoint.__init__()=imusim.algorithms.position.LowestPoint-class.html#__init__,Method imusim.algorithms.position.PositionEstimator.__init__()=imusim.algorithms.position.PositionEstimator-class.html#__init__,Method imusim.algorithms.position.RootAccelerationIntegrator.__init__()=imusim.algorithms.position.RootAccelerationIntegrator-class.html#__init__,Method imusim.algorithms.posture_reconstruction.InheritedForwardKinematics.__init__()=imusim.algorithms.posture_reconstruction.InheritedForwardKinematics-class.html#__init__,Method imusim.algorithms.posture_reconstruction.PostureReconstructor.__init__()=imusim.algorithms.posture_reconstruction.PostureReconstructor-class.html#__init__,Method imusim.algorithms.posture_reconstruction.SimpleForwardKinematics.__init__()=imusim.algorithms.posture_reconstruction.SimpleForwardKinematics-class.html#__init__,Method imusim.algorithms.vector_observation.FQA.__init__()=imusim.algorithms.vector_observation.FQA-class.html#__init__,Method imusim.algorithms.vector_observation.LeastSquaresOptimalVectorObservation.__init__()=imusim.algorithms.vector_observation.LeastSquaresOptimalVectorObservation-class.html#__init__,Method imusim.behaviours.basestation.BodyModelReconstructor.__init__()=imusim.behaviours.basestation.BodyModelReconstructor-class.html#__init__,Method imusim.behaviours.imu.BasicIMUBehaviour.__init__()=imusim.behaviours.imu.BasicIMUBehaviour-class.html#__init__,Method imusim.behaviours.mac.MAC.__init__()=imusim.behaviours.mac.MAC-class.html#__init__,Method imusim.behaviours.orient_tdma.AuxPacket.__init__()=imusim.behaviours.orient_tdma.AuxPacket-class.html#__init__,Method imusim.behaviours.orient_tdma.DataPacket.__init__()=imusim.behaviours.orient_tdma.DataPacket-class.html#__init__,Method imusim.behaviours.orient_tdma.InterSlaveMAC.__init__()=imusim.behaviours.orient_tdma.InterSlaveMAC-class.html#__init__,Method imusim.behaviours.orient_tdma.InterSlaveSchedule.__init__()=imusim.behaviours.orient_tdma.InterSlaveSchedule-class.html#__init__,Method imusim.behaviours.orient_tdma.MasterMAC.__init__()=imusim.behaviours.orient_tdma.MasterMAC-class.html#__init__,Method imusim.behaviours.orient_tdma.Schedule.__init__()=imusim.behaviours.orient_tdma.Schedule-class.html#__init__,Method imusim.behaviours.orient_tdma.SlaveMAC.__init__()=imusim.behaviours.orient_tdma.SlaveMAC-class.html#__init__,Method imusim.behaviours.sampling.PeriodicSampler.__init__()=imusim.behaviours.sampling.PeriodicSampler-class.html#__init__,Method imusim.behaviours.timing.TimerMultiplexer.__init__()=imusim.behaviours.timing.TimerMultiplexer-class.html#__init__,Method imusim.behaviours.timing.VirtualTimer.__init__()=imusim.behaviours.timing.VirtualTimer-class.html#__init__,Method imusim.capture.marker.Marker.__init__()=imusim.capture.marker.Marker-class.html#__init__,Method imusim.capture.marker.Marker3DOF.__init__()=imusim.capture.marker.Marker3DOF-class.html#__init__,Method imusim.capture.marker.Marker6DOF.__init__()=imusim.capture.marker.Marker6DOF-class.html#__init__,Method imusim.capture.marker.MarkerCapture.__init__()=imusim.capture.marker.MarkerCapture-class.html#__init__,Method imusim.capture.marker.SplinedMarker3DOF.__init__()=imusim.capture.marker.SplinedMarker3DOF-class.html#__init__,Method imusim.capture.marker.SplinedMarker6DOF.__init__()=imusim.capture.marker.SplinedMarker6DOF-class.html#__init__,Method imusim.capture.marker.SplinedMarkerCapture.__init__()=imusim.capture.marker.SplinedMarkerCapture-class.html#__init__,Method imusim.capture.sensor.CapturedDevice.__init__()=imusim.capture.sensor.CapturedDevice-class.html#__init__,Method imusim.capture.sensor.SensorDataCapture.__init__()=imusim.capture.sensor.SensorDataCapture-class.html#__init__,Method imusim.environment.base.Environment.__init__()=imusim.environment.base.Environment-class.html#__init__,Method imusim.environment.gravity.ConstantGravitationalField.__init__()=imusim.environment.gravity.ConstantGravitationalField-class.html#__init__,Method imusim.environment.magnetic_fields.DistortedMagneticField.__init__()=imusim.environment.magnetic_fields.DistortedMagneticField-class.html#__init__,Method imusim.environment.magnetic_fields.EarthMagneticField.__init__()=imusim.environment.magnetic_fields.EarthMagneticField-class.html#__init__,Method imusim.environment.magnetic_fields.SolenoidMagneticField.__init__()=imusim.environment.magnetic_fields.SolenoidMagneticField-class.html#__init__,Method imusim.environment.radio_environment.BERRadioEnvironment.__init__()=imusim.environment.radio_environment.BERRadioEnvironment-class.html#__init__,Method imusim.environment.radio_environment.IdealRadioEnvironment.__init__()=imusim.environment.radio_environment.IdealRadioEnvironment-class.html#__init__,Method imusim.environment.radio_environment.RadioEnvironment.__init__()=imusim.environment.radio_environment.RadioEnvironment-class.html#__init__,Method imusim.io.bvh.BVHExporter.__init__()=imusim.io.bvh.BVHExporter-class.html#__init__,Method imusim.io.bvh.BVHLoader.__init__()=imusim.io.bvh.BVHLoader-class.html#__init__,Method imusim.maths.integrators.DoubleIntegrator.__init__()=imusim.maths.integrators.DoubleIntegrator-class.html#__init__,Method imusim.maths.integrators.Integrator.__init__()=imusim.maths.integrators.Integrator-class.html#__init__,Method imusim.maths.integrators.TrapeziumRule.__init__()=imusim.maths.integrators.TrapeziumRule-class.html#__init__,Method imusim.maths.kalman.KalmanFilter.__init__()=imusim.maths.kalman.KalmanFilter-class.html#__init__,Method imusim.maths.kalman.UnscentedKalmanFilter.__init__()=imusim.maths.kalman.UnscentedKalmanFilter-class.html#__init__,Method imusim.maths.quat_splines.SQUADQuaternionSpline.__init__()=imusim.maths.quat_splines.SQUADQuaternionSpline-class.html#__init__,Method imusim.maths.quaternions.QuaternionArray.__init__()=imusim.maths.quaternions.QuaternionArray-class.html#__init__,Method imusim.maths.splines.PartialInputSpline.__init__()=imusim.maths.splines.PartialInputSpline-class.html#__init__,Method imusim.maths.splines.UnivariateSpline.__init__()=imusim.maths.splines.UnivariateSpline-class.html#__init__,Method imusim.maths.transforms.AffineTransform.__init__()=imusim.maths.transforms.AffineTransform-class.html#__init__,Method imusim.maths.transforms.UnscentedTransform.__init__()=imusim.maths.transforms.UnscentedTransform-class.html#__init__,Method imusim.maths.vector_fields.ConstantVectorField.__init__()=imusim.maths.vector_fields.ConstantVectorField-class.html#__init__,Method imusim.maths.vector_fields.InterpolatedVectorField.__init__()=imusim.maths.vector_fields.InterpolatedVectorField-class.html#__init__,Method imusim.maths.vector_fields.NaturalNeighbourInterpolatedField.__init__()=imusim.maths.vector_fields.NaturalNeighbourInterpolatedField-class.html#__init__,Method imusim.maths.vector_fields.RBFInterpolatedField.__init__()=imusim.maths.vector_fields.RBFInterpolatedField-class.html#__init__,Method imusim.maths.vector_splines.PartialInputVectorSpline.__init__()=imusim.maths.vector_splines.PartialInputVectorSpline-class.html#__init__,Method imusim.maths.vector_splines.UnivariateVectorSpline.__init__()=imusim.maths.vector_splines.UnivariateVectorSpline-class.html#__init__,Method imusim.platforms.accelerometers.MMA7260Q.__init__()=imusim.platforms.accelerometers.MMA7260Q-class.html#__init__,Method imusim.platforms.adcs.ParametricADC.__init__()=imusim.platforms.adcs.ParametricADC-class.html#__init__,Method imusim.platforms.adcs.QuantisingADC.__init__()=imusim.platforms.adcs.QuantisingADC-class.html#__init__,Method imusim.platforms.base.Component.__init__()=imusim.platforms.base.Component-class.html#__init__,Method imusim.platforms.base.Platform.__init__()=imusim.platforms.base.Platform-class.html#__init__,Method imusim.platforms.basestations.IdealBasestation.__init__()=imusim.platforms.basestations.IdealBasestation-class.html#__init__,Method imusim.platforms.gyroscopes.ADXRS300.__init__()=imusim.platforms.gyroscopes.ADXRS300-class.html#__init__,Method imusim.platforms.imus.IdealIMU.__init__()=imusim.platforms.imus.IdealIMU-class.html#__init__,Method imusim.platforms.imus.MagicIMU.__init__()=imusim.platforms.imus.MagicIMU-class.html#__init__,Method imusim.platforms.imus.Orient3IMU.__init__()=imusim.platforms.imus.Orient3IMU-class.html#__init__,Method imusim.platforms.magnetometers.HMC105x.__init__()=imusim.platforms.magnetometers.HMC105x-class.html#__init__,Method imusim.platforms.radios.Radio.__init__()=imusim.platforms.radios.Radio-class.html#__init__,Method imusim.platforms.radios.RadioPacket.__init__()=imusim.platforms.radios.RadioPacket-class.html#__init__,Method imusim.platforms.sensors.NoisySensor.__init__()=imusim.platforms.sensors.NoisySensor-class.html#__init__,Method imusim.platforms.sensors.NoisyTransformedSensor.__init__()=imusim.platforms.sensors.NoisyTransformedSensor-class.html#__init__,Method imusim.platforms.sensors.Sensor.__init__()=imusim.platforms.sensors.Sensor-class.html#__init__,Method imusim.platforms.sensors.TransformedSensor.__init__()=imusim.platforms.sensors.TransformedSensor-class.html#__init__,Method imusim.platforms.timers.ParametricTimer.__init__()=imusim.platforms.timers.ParametricTimer-class.html#__init__,Method imusim.platforms.timers.Timer.__init__()=imusim.platforms.timers.Timer-class.html#__init__,Method imusim.simulation.base.Simulation.ProgressMonitor.__init__()=imusim.simulation.base.Simulation.ProgressMonitor-class.html#__init__,Method imusim.simulation.base.Simulation.__init__()=imusim.simulation.base.Simulation-class.html#__init__,Method imusim.simulation.calibrators.Calibrator.__init__()=imusim.simulation.calibrators.Calibrator-class.html#__init__,Method imusim.simulation.calibrators.ScaleAndOffsetCalibrator.__init__()=imusim.simulation.calibrators.ScaleAndOffsetCalibrator-class.html#__init__,Method imusim.testing.random_data.RandomRotationTrajectory.__init__()=imusim.testing.random_data.RandomRotationTrajectory-class.html#__init__,Method imusim.testing.random_data.RandomTrajectory.__init__()=imusim.testing.random_data.RandomTrajectory-class.html#__init__,Method imusim.trajectories.base.ConstantPositionTrajectory.__init__()=imusim.trajectories.base.ConstantPositionTrajectory-class.html#__init__,Method imusim.trajectories.base.ConstantRotationTrajectory.__init__()=imusim.trajectories.base.ConstantRotationTrajectory-class.html#__init__,Method imusim.trajectories.base.ContinuousRotationTrajectory.__init__()=imusim.trajectories.base.ContinuousRotationTrajectory-class.html#__init__,Method imusim.trajectories.base.StaticContinuousRotationTrajectory.__init__()=imusim.trajectories.base.StaticContinuousRotationTrajectory-class.html#__init__,Method imusim.trajectories.base.StaticTrajectory.__init__()=imusim.trajectories.base.StaticTrajectory-class.html#__init__,Method imusim.trajectories.multi_marker.MultiMarkerTrajectory.__init__()=imusim.trajectories.multi_marker.MultiMarkerTrajectory-class.html#__init__,Method imusim.trajectories.offset.OffsetTrajectory.__init__()=imusim.trajectories.offset.OffsetTrajectory-class.html#__init__,Method imusim.trajectories.rigid_body.Joint.__init__()=imusim.trajectories.rigid_body.Joint-class.html#__init__,Method imusim.trajectories.rigid_body.Point.__init__()=imusim.trajectories.rigid_body.Point-class.html#__init__,Method imusim.trajectories.rigid_body.PointTrajectory.__init__()=imusim.trajectories.rigid_body.PointTrajectory-class.html#__init__,Method imusim.trajectories.rigid_body.SampledBodyModel.__init__()=imusim.trajectories.rigid_body.SampledBodyModel-class.html#__init__,Method imusim.trajectories.rigid_body.SampledJoint.__init__()=imusim.trajectories.rigid_body.SampledJoint-class.html#__init__,Method imusim.trajectories.rigid_body.SplinedBodyModel.__init__()=imusim.trajectories.rigid_body.SplinedBodyModel-class.html#__init__,Method imusim.trajectories.rigid_body.SplinedJoint.__init__()=imusim.trajectories.rigid_body.SplinedJoint-class.html#__init__,Method imusim.trajectories.sampled.SampledPositionTrajectory.__init__()=imusim.trajectories.sampled.SampledPositionTrajectory-class.html#__init__,Method imusim.trajectories.sampled.SampledRotationTrajectory.__init__()=imusim.trajectories.sampled.SampledRotationTrajectory-class.html#__init__,Method imusim.trajectories.sampled.SampledTrajectory.__init__()=imusim.trajectories.sampled.SampledTrajectory-class.html#__init__,Method imusim.trajectories.splined.SplinedPositionTrajectory.__init__()=imusim.trajectories.splined.SplinedPositionTrajectory-class.html#__init__,Method imusim.trajectories.splined.SplinedRotationTrajectory.__init__()=imusim.trajectories.splined.SplinedRotationTrajectory-class.html#__init__,Method imusim.trajectories.splined.SplinedTrajectory.__init__()=imusim.trajectories.splined.SplinedTrajectory-class.html#__init__,Method imusim.utilities.caching.CacheEntry.__init__()=imusim.utilities.caching.CacheEntry-class.html#__init__,Method imusim.utilities.caching.CacheLastValue.__init__()=imusim.utilities.caching.CacheLastValue-class.html#__init__,Method imusim.utilities.documentation.prepend_method_doc.__init__()=imusim.utilities.documentation.prepend_method_doc-class.html#__init__,Method imusim.utilities.time_series.TimeSeries.__init__()=imusim.utilities.time_series.TimeSeries-class.html#__init__,Method imusim.utilities.trees.TreeNode.__init__()=imusim.utilities.trees.TreeNode-class.html#__init__,Method imusim.visualisation.rendering.AnimatedRenderer.__init__()=imusim.visualisation.rendering.AnimatedRenderer-class.html#__init__,Method imusim.visualisation.rendering.BodyModelRenderer.__init__()=imusim.visualisation.rendering.BodyModelRenderer-class.html#__init__,Method imusim.visualisation.rendering.ContactProbabilityRenderer.__init__()=imusim.visualisation.rendering.ContactProbabilityRenderer-class.html#__init__,Method imusim.visualisation.rendering.InteractiveAnimation.__init__()=imusim.visualisation.rendering.InteractiveAnimation-class.html#__init__,Method imusim.visualisation.rendering.VelocityVectorRenderer.__init__()=imusim.visualisation.rendering.VelocityVectorRenderer-class.html#__init__"><a title="imusim.algorithms.calibration.ScaleAndOffsetCalibration.__init__
+imusim.algorithms.orientation.BachmannCF.__init__
+imusim.algorithms.orientation.DistLinAccelCF.__init__
+imusim.algorithms.orientation.GyroIntegrator.__init__
+imusim.algorithms.orientation.OrientCF.__init__
+imusim.algorithms.orientation.OrientationFilter.__init__
+imusim.algorithms.orientation.YunEKF.__init__
+imusim.algorithms.position.ConstantPosition.__init__
+imusim.algorithms.position.ContactTrackingKalmanFilter.__init__
+imusim.algorithms.position.LowestPoint.__init__
+imusim.algorithms.position.PositionEstimator.__init__
+imusim.algorithms.position.RootAccelerationIntegrator.__init__
+imusim.algorithms.posture_reconstruction.InheritedForwardKinematics.__init__
+imusim.algorithms.posture_reconstruction.PostureReconstructor.__init__
+imusim.algorithms.posture_reconstruction.SimpleForwardKinematics.__init__
+imusim.algorithms.vector_observation.FQA.__init__
+imusim.algorithms.vector_observation.LeastSquaresOptimalVectorObservation.__init__
+imusim.behaviours.basestation.BodyModelReconstructor.__init__
+imusim.behaviours.imu.BasicIMUBehaviour.__init__
+imusim.behaviours.mac.MAC.__init__
+imusim.behaviours.orient_tdma.AuxPacket.__init__
+imusim.behaviours.orient_tdma.DataPacket.__init__
+imusim.behaviours.orient_tdma.InterSlaveMAC.__init__
+imusim.behaviours.orient_tdma.InterSlaveSchedule.__init__
+imusim.behaviours.orient_tdma.MasterMAC.__init__
+imusim.behaviours.orient_tdma.Schedule.__init__
+imusim.behaviours.orient_tdma.SlaveMAC.__init__
+imusim.behaviours.sampling.PeriodicSampler.__init__
+imusim.behaviours.timing.TimerMultiplexer.__init__
+imusim.behaviours.timing.VirtualTimer.__init__
+imusim.capture.marker.Marker.__init__
+imusim.capture.marker.Marker3DOF.__init__
+imusim.capture.marker.Marker6DOF.__init__
+imusim.capture.marker.MarkerCapture.__init__
+imusim.capture.marker.SplinedMarker3DOF.__init__
+imusim.capture.marker.SplinedMarker6DOF.__init__
+imusim.capture.marker.SplinedMarkerCapture.__init__
+imusim.capture.sensor.CapturedDevice.__init__
+imusim.capture.sensor.SensorDataCapture.__init__
+imusim.environment.base.Environment.__init__
+imusim.environment.gravity.ConstantGravitationalField.__init__
+imusim.environment.magnetic_fields.DistortedMagneticField.__init__
+imusim.environment.magnetic_fields.EarthMagneticField.__init__
+imusim.environment.magnetic_fields.SolenoidMagneticField.__init__
+imusim.environment.radio_environment.BERRadioEnvironment.__init__
+imusim.environment.radio_environment.IdealRadioEnvironment.__init__
+imusim.environment.radio_environment.RadioEnvironment.__init__
+imusim.io.bvh.BVHExporter.__init__
+imusim.io.bvh.BVHLoader.__init__
+imusim.maths.integrators.DoubleIntegrator.__init__
+imusim.maths.integrators.Integrator.__init__
+imusim.maths.integrators.TrapeziumRule.__init__
+imusim.maths.kalman.KalmanFilter.__init__
+imusim.maths.kalman.UnscentedKalmanFilter.__init__
+imusim.maths.quat_splines.SQUADQuaternionSpline.__init__
+imusim.maths.quaternions.QuaternionArray.__init__
+imusim.maths.splines.PartialInputSpline.__init__
+imusim.maths.splines.UnivariateSpline.__init__
+imusim.maths.transforms.AffineTransform.__init__
+imusim.maths.transforms.UnscentedTransform.__init__
+imusim.maths.vector_fields.ConstantVectorField.__init__
+imusim.maths.vector_fields.InterpolatedVectorField.__init__
+imusim.maths.vector_fields.NaturalNeighbourInterpolatedField.__init__
+imusim.maths.vector_fields.RBFInterpolatedField.__init__
+imusim.maths.vector_splines.PartialInputVectorSpline.__init__
+imusim.maths.vector_splines.UnivariateVectorSpline.__init__
+imusim.platforms.accelerometers.MMA7260Q.__init__
+imusim.platforms.adcs.ParametricADC.__init__
+imusim.platforms.adcs.QuantisingADC.__init__
+imusim.platforms.base.Component.__init__
+imusim.platforms.base.Platform.__init__
+imusim.platforms.basestations.IdealBasestation.__init__
+imusim.platforms.gyroscopes.ADXRS300.__init__
+imusim.platforms.imus.IdealIMU.__init__
+imusim.platforms.imus.MagicIMU.__init__
+imusim.platforms.imus.Orient3IMU.__init__
+imusim.platforms.magnetometers.HMC105x.__init__
+imusim.platforms.radios.Radio.__init__
+imusim.platforms.radios.RadioPacket.__init__
+imusim.platforms.sensors.NoisySensor.__init__
+imusim.platforms.sensors.NoisyTransformedSensor.__init__
+imusim.platforms.sensors.Sensor.__init__
+imusim.platforms.sensors.TransformedSensor.__init__
+imusim.platforms.timers.ParametricTimer.__init__
+imusim.platforms.timers.Timer.__init__
+imusim.simulation.base.Simulation.ProgressMonitor.__init__
+imusim.simulation.base.Simulation.__init__
+imusim.simulation.calibrators.Calibrator.__init__
+imusim.simulation.calibrators.ScaleAndOffsetCalibrator.__init__
+imusim.testing.random_data.RandomRotationTrajectory.__init__
+imusim.testing.random_data.RandomTrajectory.__init__
+imusim.trajectories.base.ConstantPositionTrajectory.__init__
+imusim.trajectories.base.ConstantRotationTrajectory.__init__
+imusim.trajectories.base.ContinuousRotationTrajectory.__init__
+imusim.trajectories.base.StaticContinuousRotationTrajectory.__init__
+imusim.trajectories.base.StaticTrajectory.__init__
+imusim.trajectories.multi_marker.MultiMarkerTrajectory.__init__
+imusim.trajectories.offset.OffsetTrajectory.__init__
+imusim.trajectories.rigid_body.Joint.__init__
+imusim.trajectories.rigid_body.Point.__init__
+imusim.trajectories.rigid_body.PointTrajectory.__init__
+imusim.trajectories.rigid_body.SampledBodyModel.__init__
+imusim.trajectories.rigid_body.SampledJoint.__init__
+imusim.trajectories.rigid_body.SplinedBodyModel.__init__
+imusim.trajectories.rigid_body.SplinedJoint.__init__
+imusim.trajectories.sampled.SampledPositionTrajectory.__init__
+imusim.trajectories.sampled.SampledRotationTrajectory.__init__
+imusim.trajectories.sampled.SampledTrajectory.__init__
+imusim.trajectories.splined.SplinedPositionTrajectory.__init__
+imusim.trajectories.splined.SplinedRotationTrajectory.__init__
+imusim.trajectories.splined.SplinedTrajectory.__init__
+imusim.utilities.caching.CacheEntry.__init__
+imusim.utilities.caching.CacheLastValue.__init__
+imusim.utilities.documentation.prepend_method_doc.__init__
+imusim.utilities.time_series.TimeSeries.__init__
+imusim.utilities.trees.TreeNode.__init__
+imusim.visualisation.rendering.AnimatedRenderer.__init__
+imusim.visualisation.rendering.BodyModelRenderer.__init__
+imusim.visualisation.rendering.ContactProbabilityRenderer.__init__
+imusim.visualisation.rendering.InteractiveAnimation.__init__
+imusim.visualisation.rendering.VelocityVectorRenderer.__init__" class="py-name" href="#" onclick="return doclink('link-7', '__init__', 'link-7');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-op">*</tt><tt class="py-name">args</tt><tt class="py-op">,</tt> <tt class="py-op">**</tt><tt class="py-name">kwargs</tt><tt class="py-op">)</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line">        <tt class="py-string">"""</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line"><tt class="py-string">        Construct a radio packet.</tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line"><tt class="py-string">        """</tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line">        <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line"> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line">    <tt class="py-decorator">@</tt><tt class="py-decorator">abstractproperty</tt> </tt>
+<a name="RadioPacket.bytes"></a><div id="RadioPacket.bytes-def"><a name="L43"></a><tt class="py-lineno"> 43</tt> <a class="py-toggle" href="#" id="RadioPacket.bytes-toggle" onclick="return toggle('RadioPacket.bytes');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.platforms.radios.RadioPacket-class.html#bytes">bytes</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="RadioPacket.bytes-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="RadioPacket.bytes-expanded"><a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line">        <tt class="py-keyword">pass</tt> </tt>
+</div></div><a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line"> </tt>
+<a name="Radio"></a><div id="Radio-def"><a name="L46"></a><tt class="py-lineno"> 46</tt> <a class="py-toggle" href="#" id="Radio-toggle" onclick="return toggle('Radio');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="imusim.platforms.radios.Radio-class.html">Radio</a><tt class="py-op">(</tt><tt class="py-base-class">Component</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Radio-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="Radio-expanded"><a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line"><tt class="py-docstring">    Base class for radios.</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line">    <tt id="link-8" class="py-name"><a title="imusim.platforms.adcs.ADC.__metaclass__
+imusim.platforms.imus.IMU.__metaclass__
+imusim.platforms.radios.Radio.__metaclass__
+imusim.platforms.sensors.Sensor.__metaclass__
+imusim.platforms.timers.Timer.__metaclass__
+imusim.visualisation.rendering.AnimatedRenderer.__metaclass__" class="py-name" href="#" onclick="return doclink('link-8', '__metaclass__', 'link-5');">__metaclass__</a></tt> <tt class="py-op">=</tt> <tt id="link-9" class="py-name"><a title="abc.ABCMeta" class="py-name" href="#" onclick="return doclink('link-9', 'ABCMeta', 'link-0');">ABCMeta</a></tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line"> </tt>
+<a name="Radio.__init__"></a><div id="Radio.__init__-def"><a name="L52"></a><tt class="py-lineno"> 52</tt> <a class="py-toggle" href="#" id="Radio.__init__-toggle" onclick="return toggle('Radio.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.platforms.radios.Radio-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">platform</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Radio.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Radio.__init__-expanded"><a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">        <tt id="link-10" class="py-name"><a title="imusim.platforms.base.Component" class="py-name" href="#" onclick="return doclink('link-10', 'Component', 'link-4');">Component</a></tt><tt class="py-op">.</tt><tt id="link-11" class="py-name"><a title="imusim.algorithms.calibration.ScaleAndOffsetCalibration.__init__
+imusim.algorithms.orientation.BachmannCF.__init__
+imusim.algorithms.orientation.DistLinAccelCF.__init__
+imusim.algorithms.orientation.GyroIntegrator.__init__
+imusim.algorithms.orientation.OrientCF.__init__
+imusim.algorithms.orientation.OrientationFilter.__init__
+imusim.algorithms.orientation.YunEKF.__init__
+imusim.algorithms.position.ConstantPosition.__init__
+imusim.algorithms.position.ContactTrackingKalmanFilter.__init__
+imusim.algorithms.position.LowestPoint.__init__
+imusim.algorithms.position.PositionEstimator.__init__
+imusim.algorithms.position.RootAccelerationIntegrator.__init__
+imusim.algorithms.posture_reconstruction.InheritedForwardKinematics.__init__
+imusim.algorithms.posture_reconstruction.PostureReconstructor.__init__
+imusim.algorithms.posture_reconstruction.SimpleForwardKinematics.__init__
+imusim.algorithms.vector_observation.FQA.__init__
+imusim.algorithms.vector_observation.LeastSquaresOptimalVectorObservation.__init__
+imusim.behaviours.basestation.BodyModelReconstructor.__init__
+imusim.behaviours.imu.BasicIMUBehaviour.__init__
+imusim.behaviours.mac.MAC.__init__
+imusim.behaviours.orient_tdma.AuxPacket.__init__
+imusim.behaviours.orient_tdma.DataPacket.__init__
+imusim.behaviours.orient_tdma.InterSlaveMAC.__init__
+imusim.behaviours.orient_tdma.InterSlaveSchedule.__init__
+imusim.behaviours.orient_tdma.MasterMAC.__init__
+imusim.behaviours.orient_tdma.Schedule.__init__
+imusim.behaviours.orient_tdma.SlaveMAC.__init__
+imusim.behaviours.sampling.PeriodicSampler.__init__
+imusim.behaviours.timing.TimerMultiplexer.__init__
+imusim.behaviours.timing.VirtualTimer.__init__
+imusim.capture.marker.Marker.__init__
+imusim.capture.marker.Marker3DOF.__init__
+imusim.capture.marker.Marker6DOF.__init__
+imusim.capture.marker.MarkerCapture.__init__
+imusim.capture.marker.SplinedMarker3DOF.__init__
+imusim.capture.marker.SplinedMarker6DOF.__init__
+imusim.capture.marker.SplinedMarkerCapture.__init__
+imusim.capture.sensor.CapturedDevice.__init__
+imusim.capture.sensor.SensorDataCapture.__init__
+imusim.environment.base.Environment.__init__
+imusim.environment.gravity.ConstantGravitationalField.__init__
+imusim.environment.magnetic_fields.DistortedMagneticField.__init__
+imusim.environment.magnetic_fields.EarthMagneticField.__init__
+imusim.environment.magnetic_fields.SolenoidMagneticField.__init__
+imusim.environment.radio_environment.BERRadioEnvironment.__init__
+imusim.environment.radio_environment.IdealRadioEnvironment.__init__
+imusim.environment.radio_environment.RadioEnvironment.__init__
+imusim.io.bvh.BVHExporter.__init__
+imusim.io.bvh.BVHLoader.__init__
+imusim.maths.integrators.DoubleIntegrator.__init__
+imusim.maths.integrators.Integrator.__init__
+imusim.maths.integrators.TrapeziumRule.__init__
+imusim.maths.kalman.KalmanFilter.__init__
+imusim.maths.kalman.UnscentedKalmanFilter.__init__
+imusim.maths.quat_splines.SQUADQuaternionSpline.__init__
+imusim.maths.quaternions.QuaternionArray.__init__
+imusim.maths.splines.PartialInputSpline.__init__
+imusim.maths.splines.UnivariateSpline.__init__
+imusim.maths.transforms.AffineTransform.__init__
+imusim.maths.transforms.UnscentedTransform.__init__
+imusim.maths.vector_fields.ConstantVectorField.__init__
+imusim.maths.vector_fields.InterpolatedVectorField.__init__
+imusim.maths.vector_fields.NaturalNeighbourInterpolatedField.__init__
+imusim.maths.vector_fields.RBFInterpolatedField.__init__
+imusim.maths.vector_splines.PartialInputVectorSpline.__init__
+imusim.maths.vector_splines.UnivariateVectorSpline.__init__
+imusim.platforms.accelerometers.MMA7260Q.__init__
+imusim.platforms.adcs.ParametricADC.__init__
+imusim.platforms.adcs.QuantisingADC.__init__
+imusim.platforms.base.Component.__init__
+imusim.platforms.base.Platform.__init__
+imusim.platforms.basestations.IdealBasestation.__init__
+imusim.platforms.gyroscopes.ADXRS300.__init__
+imusim.platforms.imus.IdealIMU.__init__
+imusim.platforms.imus.MagicIMU.__init__
+imusim.platforms.imus.Orient3IMU.__init__
+imusim.platforms.magnetometers.HMC105x.__init__
+imusim.platforms.radios.Radio.__init__
+imusim.platforms.radios.RadioPacket.__init__
+imusim.platforms.sensors.NoisySensor.__init__
+imusim.platforms.sensors.NoisyTransformedSensor.__init__
+imusim.platforms.sensors.Sensor.__init__
+imusim.platforms.sensors.TransformedSensor.__init__
+imusim.platforms.timers.ParametricTimer.__init__
+imusim.platforms.timers.Timer.__init__
+imusim.simulation.base.Simulation.ProgressMonitor.__init__
+imusim.simulation.base.Simulation.__init__
+imusim.simulation.calibrators.Calibrator.__init__
+imusim.simulation.calibrators.ScaleAndOffsetCalibrator.__init__
+imusim.testing.random_data.RandomRotationTrajectory.__init__
+imusim.testing.random_data.RandomTrajectory.__init__
+imusim.trajectories.base.ConstantPositionTrajectory.__init__
+imusim.trajectories.base.ConstantRotationTrajectory.__init__
+imusim.trajectories.base.ContinuousRotationTrajectory.__init__
+imusim.trajectories.base.StaticContinuousRotationTrajectory.__init__
+imusim.trajectories.base.StaticTrajectory.__init__
+imusim.trajectories.multi_marker.MultiMarkerTrajectory.__init__
+imusim.trajectories.offset.OffsetTrajectory.__init__
+imusim.trajectories.rigid_body.Joint.__init__
+imusim.trajectories.rigid_body.Point.__init__
+imusim.trajectories.rigid_body.PointTrajectory.__init__
+imusim.trajectories.rigid_body.SampledBodyModel.__init__
+imusim.trajectories.rigid_body.SampledJoint.__init__
+imusim.trajectories.rigid_body.SplinedBodyModel.__init__
+imusim.trajectories.rigid_body.SplinedJoint.__init__
+imusim.trajectories.sampled.SampledPositionTrajectory.__init__
+imusim.trajectories.sampled.SampledRotationTrajectory.__init__
+imusim.trajectories.sampled.SampledTrajectory.__init__
+imusim.trajectories.splined.SplinedPositionTrajectory.__init__
+imusim.trajectories.splined.SplinedRotationTrajectory.__init__
+imusim.trajectories.splined.SplinedTrajectory.__init__
+imusim.utilities.caching.CacheEntry.__init__
+imusim.utilities.caching.CacheLastValue.__init__
+imusim.utilities.documentation.prepend_method_doc.__init__
+imusim.utilities.time_series.TimeSeries.__init__
+imusim.utilities.trees.TreeNode.__init__
+imusim.visualisation.rendering.AnimatedRenderer.__init__
+imusim.visualisation.rendering.BodyModelRenderer.__init__
+imusim.visualisation.rendering.ContactProbabilityRenderer.__init__
+imusim.visualisation.rendering.InteractiveAnimation.__init__
+imusim.visualisation.rendering.VelocityVectorRenderer.__init__" class="py-name" href="#" onclick="return doclink('link-11', '__init__', 'link-7');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">platform</tt><tt class="py-op">)</tt> </tt>
+<a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_receiveHandler</tt> <tt class="py-op">=</tt> <tt class="py-name">None</tt> </tt>
+</div><a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line"> </tt>
+<a name="Radio.setReceiveHandler"></a><div id="Radio.setReceiveHandler-def"><a name="L56"></a><tt class="py-lineno"> 56</tt> <a class="py-toggle" href="#" id="Radio.setReceiveHandler-toggle" onclick="return toggle('Radio.setReceiveHandler');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.platforms.radios.Radio-class.html#setReceiveHandler">setReceiveHandler</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">receiveHandler</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Radio.setReceiveHandler-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Radio.setReceiveHandler-expanded"><a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line"><tt class="py-docstring">        Set the packet handler function.</tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line"><tt class="py-docstring">        @param receiveHandler: Function to be called when a packet is</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line"><tt class="py-docstring">            successfully received. The received L{RadioPacket} will be passed</tt> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line"><tt class="py-docstring">            as an argument.</tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_receiveHandler</tt> <tt class="py-op">=</tt> <tt class="py-name">receiveHandler</tt> </tt>
+</div><a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line"> </tt>
+<a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">    <tt class="py-decorator">@</tt><tt class="py-decorator">abstractmethod</tt> </tt>
+<a name="Radio.handlePacket"></a><div id="Radio.handlePacket-def"><a name="L67"></a><tt class="py-lineno"> 67</tt> <a class="py-toggle" href="#" id="Radio.handlePacket-toggle" onclick="return toggle('Radio.handlePacket');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.platforms.radios.Radio-class.html#handlePacket">handlePacket</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">packet</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Radio.handlePacket-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Radio.handlePacket-expanded"><a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line"><tt class="py-docstring">        Simulate the result of an incoming packet from the radio channel. If</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line"><tt class="py-docstring">        the packet is received, it should be passed to the receive handler.</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line">        <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line"> </tt>
+<a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line">    <tt class="py-decorator">@</tt><tt class="py-decorator">abstractmethod</tt> </tt>
+<a name="Radio.transmit"></a><div id="Radio.transmit-def"><a name="L75"></a><tt class="py-lineno"> 75</tt> <a class="py-toggle" href="#" id="Radio.transmit-toggle" onclick="return toggle('Radio.transmit');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.platforms.radios.Radio-class.html#transmit">transmit</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">packet</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Radio.transmit-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Radio.transmit-expanded"><a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line"><tt class="py-docstring">        Transmit a packet.</tt> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line"><tt class="py-docstring">        @param packet: L{RadioPacket} to send.</tt> </tt>
+<a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line">        <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line"> </tt>
+<a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line">    <tt class="py-decorator">@</tt><tt class="py-decorator">property</tt> </tt>
+<a name="Radio._env"></a><div id="Radio._env-def"><a name="L84"></a><tt class="py-lineno"> 84</tt> <a class="py-toggle" href="#" id="Radio._env-toggle" onclick="return toggle('Radio._env');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.platforms.radios.Radio-class.html#_env">_env</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Radio._env-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Radio._env-expanded"><a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line"><tt class="py-docstring">        Shortcut to access the L{RadioEnvironment} experienced by this radio.</tt> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">platform</tt><tt class="py-op">.</tt><tt id="link-12" class="py-name" targets="Variable imusim.platforms.base.Platform.simulation=imusim.platforms.base.Platform-class.html#simulation,Package imusim.simulation=imusim.simulation-module.html"><a title="imusim.platforms.base.Platform.simulation
+imusim.simulation" class="py-name" href="#" onclick="return doclink('link-12', 'simulation', 'link-12');">simulation</a></tt><tt class="py-op">.</tt><tt id="link-13" class="py-name" targets="Package imusim.environment=imusim.environment-module.html"><a title="imusim.environment" class="py-name" href="#" onclick="return doclink('link-13', 'environment', 'link-13');">environment</a></tt><tt class="py-op">.</tt><tt class="py-name">radioEnvironment</tt> </tt>
+</div><a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line"> </tt>
+<a name="Radio._simulationChange"></a><div id="Radio._simulationChange-def"><a name="L90"></a><tt class="py-lineno"> 90</tt> <a class="py-toggle" href="#" id="Radio._simulationChange-toggle" onclick="return toggle('Radio._simulationChange');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.platforms.radios.Radio-class.html#_simulationChange">_simulationChange</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="Radio._simulationChange-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="Radio._simulationChange-expanded"><a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">platform</tt><tt class="py-op">.</tt><tt id="link-14" class="py-name"><a title="imusim.platforms.base.Platform.simulation
+imusim.simulation" class="py-name" href="#" onclick="return doclink('link-14', 'simulation', 'link-12');">simulation</a></tt> <tt class="py-keyword">is</tt> <tt class="py-keyword">not</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_env</tt><tt class="py-op">.</tt><tt class="py-name">receivers</tt><tt class="py-op">.</tt><tt id="link-15" class="py-name" targets="Method imusim.utilities.time_series.TimeSeries.add()=imusim.utilities.time_series.TimeSeries-class.html#add"><a title="imusim.utilities.time_series.TimeSeries.add" class="py-name" href="#" onclick="return doclink('link-15', 'add', 'link-15');">add</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line"> </tt>
+<a name="IdealRadio"></a><div id="IdealRadio-def"><a name="L94"></a><tt class="py-lineno"> 94</tt> <a class="py-toggle" href="#" id="IdealRadio-toggle" onclick="return toggle('IdealRadio');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="imusim.platforms.radios.IdealRadio-class.html">IdealRadio</a><tt class="py-op">(</tt><tt class="py-base-class">Radio</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="IdealRadio-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="IdealRadio-expanded"><a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line"><tt class="py-docstring">    An ideal radio that can always receive and transmits instantaneously.</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="IdealRadio.handlePacket"></a><div id="IdealRadio.handlePacket-def"><a name="L98"></a><tt class="py-lineno"> 98</tt> <a class="py-toggle" href="#" id="IdealRadio.handlePacket-toggle" onclick="return toggle('IdealRadio.handlePacket');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.platforms.radios.IdealRadio-class.html#handlePacket">handlePacket</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">packet</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="IdealRadio.handlePacket-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="IdealRadio.handlePacket-expanded"><a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_receiveHandler</tt> <tt class="py-keyword">is</tt> <tt class="py-keyword">not</tt> <tt class="py-name">None</tt><tt class="py-op">:</tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">            <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_receiveHandler</tt><tt class="py-op">(</tt><tt class="py-name">packet</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line"> </tt>
+<a name="IdealRadio.transmit"></a><div id="IdealRadio.transmit-def"><a name="L102"></a><tt class="py-lineno">102</tt> <a class="py-toggle" href="#" id="IdealRadio.transmit-toggle" onclick="return toggle('IdealRadio.transmit');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.platforms.radios.IdealRadio-class.html#transmit">transmit</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">packet</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="IdealRadio.transmit-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="IdealRadio.transmit-expanded"><a name="L103"></a><tt class="py-lineno">103</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_env</tt><tt class="py-op">.</tt><tt id="link-16" class="py-name" targets="Method imusim.environment.radio_environment.BERRadioEnvironment.transmit()=imusim.environment.radio_environment.BERRadioEnvironment-class.html#transmit,Method imusim.environment.radio_environment.IdealRadioEnvironment.transmit()=imusim.environment.radio_environment.IdealRadioEnvironment-class.html#transmit,Method imusim.environment.radio_environment.RadioEnvironment.transmit()=imusim.environment.radio_environment.RadioEnvironment-class.html#transmit,Method imusim.platforms.radios.IdealRadio.transmit()=imusim.platforms.radios.IdealRadio-class.html#transmit,Method imusim.platforms.radios.Radio.transmit()=imusim.platforms.radios.Radio-class.html#transmit"><a title="imusim.environment.radio_environment.BERRadioEnvironment.transmit
+imusim.environment.radio_environment.IdealRadioEnvironment.transmit
+imusim.environment.radio_environment.RadioEnvironment.transmit
+imusim.platforms.radios.IdealRadio.transmit
+imusim.platforms.radios.Radio.transmit" class="py-name" href="#" onclick="return doclink('link-16', 'transmit', 'link-16');">transmit</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt class="py-name">packet</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="imusim-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://www.imusim.org/">IMUSim</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Wed Apr 14 11:45:15 2021
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

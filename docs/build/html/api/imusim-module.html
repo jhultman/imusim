@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>imusim</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th bgcolor="#70b0f0" class="navbar-select"
+          >&nbsp;&nbsp;&nbsp;Home&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://www.imusim.org/">IMUSim</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        Package&nbsp;imusim
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== PACKAGE DESCRIPTION ==================== -->
+<h1 class="epydoc">Package imusim</h1><p class="nomargin-top"><span class="codelink"><a href="imusim-pysrc.html">source&nbsp;code</a></span></p>
+<p>IMUSim - simulator for inertial and magnetic sensing systems and 
+  algorithms.</p>
+  <p>For more information see <a href="http://www.imusim.org" 
+  target="_top">http://www.imusim.org</a>.</p>
+  <p>Copyright (C) 2009-2011 University of Edinburgh</p>
+  <p>IMUSim was written by Alex Young and Martin Ling at the School of 
+  Informatics, University of Edinburgh. This work was supported by the UK 
+  Engineering and Physical Sciences Research Council under the Basic 
+  Technology Research Programme, Grant C523881 entitled &quot;Research 
+  Consortium in Speckled Computing&quot;.</p>
+  <p>If you publish work which makes use of IMUSim, please cite the paper 
+  &quot;IMUSim: A Simulation Environment for Inertial Sensing Algorithm 
+  Design and Evaluation&quot; by A. D. Young, M. J. Ling and D. K. Arvind, 
+  in Proceedings of the 10th ACM/IEEE International Conference on 
+  Information Processing in Sensor Networks (IPSN 2011), pp. 199-210. ACM, 
+  2011.</p>
+  <p>IMUSim is free software: you can redistribute it and/or modify it 
+  under the terms of the GNU General Public License as published by the 
+  Free Software Foundation, either version 3 of the License, or (at your 
+  option) any later version.</p>
+  <p>IMUSim is distributed in the hope that it will be useful, but WITHOUT 
+  ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or 
+  FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General Public License for
+  more details.</p>
+  <p>You should have received a copy of the GNU General Public License 
+  along with IMUSim; see the file license.txt.  If not, see <a 
+  href="http://www.gnu.org/licenses/" 
+  target="_top">http://www.gnu.org/licenses/</a>.</p>
+
+<!-- ==================== SUBMODULES ==================== -->
+<a name="section-Submodules"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Submodules</span></td>
+</tr>
+  <tr><td class="summary">
+  <ul class="nomargin">
+    <li> <strong class="uidlink"><a href="imusim.algorithms-module.html">imusim.algorithms</a></strong>: <em class="summary">Algorithms for processing inertial/magnetic sensor data.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.algorithms.calibration-module.html">imusim.algorithms.calibration</a></strong>: <em class="summary">Calibration algorithms for IMU sensors.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.algorithms.orientation-module.html">imusim.algorithms.orientation</a></strong>: <em class="summary">Algorithms for tracking orientation using inertial/magnetic sensor 
+        data.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.algorithms.position-module.html">imusim.algorithms.position</a></strong>: <em class="summary">Algorithms for tracking the position of a body model.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.algorithms.posture_reconstruction-module.html">imusim.algorithms.posture_reconstruction</a></strong>: <em class="summary">Algorithms for reconstructing the posture of a body model.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.algorithms.vector_observation-module.html">imusim.algorithms.vector_observation</a></strong>: <em class="summary">Algorithms for estimating orientation from reference vector 
+        observations.</em>    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.behaviours-module.html">imusim.behaviours</a></strong>: <em class="summary">Behavioural code specifically designed to run on simulated devices.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.behaviours.basestation-module.html">imusim.behaviours.basestation</a></strong>: <em class="summary">Behaviours for basestation devices.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.behaviours.imu-module.html">imusim.behaviours.imu</a></strong>: <em class="summary">Behaviours for IMU devices.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.behaviours.mac-module.html">imusim.behaviours.mac</a></strong>: <em class="summary">Base class for MAC algorithm implementations.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.behaviours.orient_tdma-module.html">imusim.behaviours.orient_tdma</a></strong>: <em class="summary">Simulation model of the TDMA scheme used by the Orient IMU system.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.behaviours.sampling-module.html">imusim.behaviours.sampling</a></strong>: <em class="summary">Sampling behaviours.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.behaviours.timing-module.html">imusim.behaviours.timing</a></strong>: <em class="summary">Timing behaviours.</em>    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.capture-module.html">imusim.capture</a></strong>: <em class="summary">Classes to represent real world captured data.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.capture.marker-module.html">imusim.capture.marker</a></strong>: <em class="summary">Classes to represent marker-based capture data.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.capture.sensor-module.html">imusim.capture.sensor</a></strong>: <em class="summary">Classes to represent captured sensor data.</em>    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.environment-module.html">imusim.environment</a></strong>: <em class="summary">Models of the environment experienced by simulated IMU devices.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.environment.base-module.html">imusim.environment.base</a></strong>: <em class="summary">Overall model of the environment experienced by simulated IMUs.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.environment.gravity-module.html">imusim.environment.gravity</a></strong>: <em class="summary">Gravitational field models.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.environment.magnetic_fields-module.html">imusim.environment.magnetic_fields</a></strong>: <em class="summary">Magnetic field models.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.environment.radio_environment-module.html">imusim.environment.radio_environment</a></strong>: <em class="summary">Radio environment models.</em>    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.io-module.html">imusim.io</a></strong>: <em class="summary">Code for reading and writing various data formats.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.io.asf_amc-module.html">imusim.io.asf_amc</a></strong>: <em class="summary">Reading of ASF/AMC body model movement files.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.io.bvh-module.html">imusim.io.bvh</a></strong>: <em class="summary">Reading and writing BVH body model movement files.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.io.qualisys_tsv-module.html">imusim.io.qualisys_tsv</a></strong>: <em class="summary">Loader for Qualisys optical capture data in TSV format.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.io.vicon_csv-module.html">imusim.io.vicon_csv</a></strong>: <em class="summary">Loader for Vicon optical capture data in CSV format.</em>    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.maths-module.html">imusim.maths</a></strong>: <em class="summary">Code implementing pure mathematical functionality.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.maths.integrators-module.html">imusim.maths.integrators</a></strong>: <em class="summary">Iterative integrator implementations.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.maths.kalman-module.html">imusim.maths.kalman</a></strong>: <em class="summary">Standard and unscented Kalman filters.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.maths.matrices-module.html">imusim.maths.matrices</a></strong>: <em class="summary">Utilities for working with matrices.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.maths.natural_neighbour-module.html">imusim.maths.natural_neighbour</a></strong>: <em class="summary">Cython wrapper for natural neighbour C implementation.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.maths.quat_splines-module.html">imusim.maths.quat_splines</a></strong>: <em class="summary">Spline fitting of quaternion data.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.maths.quaternions-module.html">imusim.maths.quaternions</a></strong>: <em class="summary">Quaternion maths.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.maths.splines-module.html">imusim.maths.splines</a></strong>: <em class="summary">Spline fitting.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.maths.transforms-module.html">imusim.maths.transforms</a></strong>: <em class="summary">Mathematical transforms.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.maths.vector_fields-module.html">imusim.maths.vector_fields</a></strong>: <em class="summary">Classes for modelling 3D vector fields.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.maths.vector_splines-module.html">imusim.maths.vector_splines</a></strong>: <em class="summary">Spline fitting of vector data.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.maths.vectors-module.html">imusim.maths.vectors</a></strong>: <em class="summary">Functions for working with column vectors.</em>    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms-module.html">imusim.platforms</a></strong>: <em class="summary">Models of IMU components and platforms.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.platforms.accelerometers-module.html">imusim.platforms.accelerometers</a></strong>: <em class="summary">Accelerometer models.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.adcs-module.html">imusim.platforms.adcs</a></strong>: <em class="summary">Analogue to digital converter models.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.base-module.html">imusim.platforms.base</a></strong>: <em class="summary">Base class for simulated hardware platforms.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.basestations-module.html">imusim.platforms.basestations</a></strong>: <em class="summary">Basestation hardware platform models.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.gyroscopes-module.html">imusim.platforms.gyroscopes</a></strong>: <em class="summary">Gyroscope models.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.imus-module.html">imusim.platforms.imus</a></strong>: <em class="summary">IMU hardware platform models.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.magnetometers-module.html">imusim.platforms.magnetometers</a></strong>: <em class="summary">Magnetometer models.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.radios-module.html">imusim.platforms.radios</a></strong>: <em class="summary">Radio models.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.sensors-module.html">imusim.platforms.sensors</a></strong>: <em class="summary">Base classes for sensor models.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.timers-module.html">imusim.platforms.timers</a></strong>: <em class="summary">Models of hardware timers.</em>    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.simulation-module.html">imusim.simulation</a></strong>: <em class="summary">Simulation engine.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.simulation.base-module.html">imusim.simulation.base</a></strong>: <em class="summary">Simulation engine for IMUSim.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.simulation.calibrators-module.html">imusim.simulation.calibrators</a></strong>: <em class="summary">Simulation of calibration procedures for IMUs.</em>    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.testing-module.html">imusim.testing</a></strong>: <em class="summary">Useful code for writing tests.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.testing.inspection-module.html">imusim.testing.inspection</a></strong>: <em class="summary">Utilities for code introspection.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.testing.quaternions-module.html">imusim.testing.quaternions</a></strong>: <em class="summary">Utilities for testing quaternion values</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.testing.random_data-module.html">imusim.testing.random_data</a></strong>: <em class="summary">Functions and classes for generating random data to use in testing.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.testing.trajectories-module.html">imusim.testing.trajectories</a></strong>: <em class="summary">Utilities for testing trajectories.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.testing.vectors-module.html">imusim.testing.vectors</a></strong>: <em class="summary">Test utilities for vectors.</em>    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.trajectories-module.html">imusim.trajectories</a></strong>: <em class="summary">Classes for representing and synthesising spatial trajectories.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.base-module.html">imusim.trajectories.base</a></strong>: <em class="summary">Base classes for trajectories.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.multi_marker-module.html">imusim.trajectories.multi_marker</a></strong>: <em class="summary">6DOF trajectories from multiple 3DOF marker trajectories.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.offset-module.html">imusim.trajectories.offset</a></strong>: <em class="summary">Trajectories at fixed offsets from other trajectories.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.rigid_body-module.html">imusim.trajectories.rigid_body</a></strong>: <em class="summary">Modelling of rigid body models for motion trajectory generation.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.sampled-module.html">imusim.trajectories.sampled</a></strong>: <em class="summary">Classes representing sampled trajectories.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.splined-module.html">imusim.trajectories.splined</a></strong>: <em class="summary">Continuous splined trajectories from sampled trajectories.</em>    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.utilities-module.html">imusim.utilities</a></strong>: <em class="summary">General purpose utility code.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.utilities.caching-module.html">imusim.utilities.caching</a></strong>: <em class="summary">Decorators to enable caching of function results.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.utilities.documentation-module.html">imusim.utilities.documentation</a></strong>: <em class="summary">Utilities for documenting code.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.utilities.time_series-module.html">imusim.utilities.time_series</a></strong>: <em class="summary">Classes for representing time series data.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.utilities.trees-module.html">imusim.utilities.trees</a></strong>: <em class="summary">Support for basic tree structures.</em>    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.visualisation-module.html">imusim.visualisation</a></strong>: <em class="summary">Data visualisation tools.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.visualisation.plotting-module.html">imusim.visualisation.plotting</a></strong>: <em class="summary">Support for plotting IMUSim data types.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.visualisation.rendering-module.html">imusim.visualisation.rendering</a></strong>: <em class="summary">3D data rendering using Mayavi.</em>    </li>
+    <li> <strong class="uidlink"><a href="imusim.visualisation.video-module.html">imusim.visualisation.video</a></strong>: <em class="summary">Support for creating videos.</em>    </li>
+    </ul>
+    </li>
+  </ul></td></tr>
+</table>
+
+<br />
+<!-- ==================== VARIABLES ==================== -->
+<a name="section-Variables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Variables</span></td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="__package__"></a><span class="summary-name">__package__</span> = <code title="None">None</code><br />
+      hash(x)
+    </td>
+  </tr>
+</table>
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th bgcolor="#70b0f0" class="navbar-select"
+          >&nbsp;&nbsp;&nbsp;Home&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://www.imusim.org/">IMUSim</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Wed Apr 14 11:46:20 2021
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

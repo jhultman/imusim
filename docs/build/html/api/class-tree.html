@@ -1,0 +1,996 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>Class Hierarchy</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="imusim-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th bgcolor="#70b0f0" class="navbar-select"
+          >&nbsp;&nbsp;&nbsp;Trees&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://www.imusim.org/">IMUSim</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">&nbsp;</td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+      </table>
+    </td>
+  </tr>
+</table>
+<center><b>
+ [ <a href="module-tree.html">Module Hierarchy</a>
+ | <a href="class-tree.html">Class Hierarchy</a> ]
+</b></center><br />
+<h1 class="epydoc">Class Hierarchy</h1>
+<ul class="nomargin-top">
+    <li> <strong class="uidlink">enthought.traits.api.HasTraits</strong>
+    </li>
+    <li> <strong class="uidlink">object</strong>:
+      <em class="summary">The most base type</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.base.AbstractTrajectory-class.html">imusim.trajectories.base.AbstractTrajectory</a></strong>:
+      <em class="summary">Base class of trajectories</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.capture.marker.Marker-class.html">imusim.capture.marker.Marker</a></strong>:
+      <em class="summary">A motion capture marker of any type.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.capture.marker.Marker3DOF-class.html">imusim.capture.marker.Marker3DOF</a></strong>:
+      <em class="summary">A capture marker with 3DOF position samples.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.capture.marker.Marker6DOF-class.html">imusim.capture.marker.Marker6DOF</a></strong>:
+      <em class="summary">A capture marker with 6DOF position &amp; orientation samples.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.capture.marker.SplinedMarker3DOF-class.html">imusim.capture.marker.SplinedMarker3DOF</a></strong>:
+      <em class="summary">A capture marker with splined 3DOF position information.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.capture.marker.SplinedMarker6DOF-class.html">imusim.capture.marker.SplinedMarker6DOF</a></strong>:
+      <em class="summary">A capture marker with splined 6DOF position and rotation 
+        information.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.base.PositionTrajectory-class.html">imusim.trajectories.base.PositionTrajectory</a></strong>:
+      <em class="summary">Represents a continous trajectory of positions</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.base.ConstantPositionTrajectory-class.html">imusim.trajectories.base.ConstantPositionTrajectory</a></strong>:
+      <em class="summary">A trajectory with constant position.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.base.StaticContinuousRotationTrajectory-class.html">imusim.trajectories.base.StaticContinuousRotationTrajectory</a></strong>:
+      <em class="summary">A trajectory with constant position and rotational velocity.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.base.StaticTrajectory-class.html">imusim.trajectories.base.StaticTrajectory</a></strong>:
+      <em class="summary">Represents the trajectory of a static object.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.offset.OffsetTrajectory-class.html">imusim.trajectories.offset.OffsetTrajectory</a></strong>:
+      <em class="summary">Trajectory at an offset from another trajectory.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.rigid_body.PointTrajectory-class.html">imusim.trajectories.rigid_body.PointTrajectory</a></strong>:
+      <em class="summary">Trajectory followed by a point in a rigid body model.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.rigid_body.SampledJoint-class.html">imusim.trajectories.rigid_body.SampledJoint</a></strong>:
+      <em class="summary">A joint in a rigid body model with sampled rotations.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.rigid_body.SampledBodyModel-class.html">imusim.trajectories.rigid_body.SampledBodyModel</a></strong>:
+      <em class="summary">A body model with sampled positions and rotations.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.rigid_body.SplinedJoint-class.html">imusim.trajectories.rigid_body.SplinedJoint</a></strong>:
+      <em class="summary">A joint with rotations splined from sampled data.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.rigid_body.SplinedBodyModel-class.html">imusim.trajectories.rigid_body.SplinedBodyModel</a></strong>:
+      <em class="summary">A body model with positions and rotations splined from sampled 
+        data.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.sampled.SampledPositionTrajectory-class.html">imusim.trajectories.sampled.SampledPositionTrajectory</a></strong>:
+      <em class="summary">Represents a sampled position trajectory.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.capture.marker.Marker3DOF-class.html">imusim.capture.marker.Marker3DOF</a></strong>:
+      <em class="summary">A capture marker with 3DOF position samples.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.capture.marker.Marker6DOF-class.html">imusim.capture.marker.Marker6DOF</a></strong>:
+      <em class="summary">A capture marker with 6DOF position &amp; orientation samples.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.multi_marker.MultiMarkerTrajectory-class.html">imusim.trajectories.multi_marker.MultiMarkerTrajectory</a></strong>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.rigid_body.SampledBodyModel-class.html">imusim.trajectories.rigid_body.SampledBodyModel</a></strong>:
+      <em class="summary">A body model with sampled positions and rotations.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.sampled.SampledTrajectory-class.html">imusim.trajectories.sampled.SampledTrajectory</a></strong>:
+      <em class="summary">Represents a sampled position and rotation trajectory.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.splined.SplinedPositionTrajectory-class.html">imusim.trajectories.splined.SplinedPositionTrajectory</a></strong>:
+      <em class="summary">Trajectory with position obtained by splining a sampled trajectory.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.rigid_body.SplinedBodyModel-class.html">imusim.trajectories.rigid_body.SplinedBodyModel</a></strong>:
+      <em class="summary">A body model with positions and rotations splined from sampled 
+        data.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.capture.marker.SplinedMarker3DOF-class.html">imusim.capture.marker.SplinedMarker3DOF</a></strong>:
+      <em class="summary">A capture marker with splined 3DOF position information.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.capture.marker.SplinedMarker6DOF-class.html">imusim.capture.marker.SplinedMarker6DOF</a></strong>:
+      <em class="summary">A capture marker with splined 6DOF position and rotation 
+        information.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.splined.SplinedTrajectory-class.html">imusim.trajectories.splined.SplinedTrajectory</a></strong>:
+      <em class="summary">Represents a splined position and rotation trajectory.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.testing.random_data.RandomTrajectory-class.html">imusim.testing.random_data.RandomTrajectory</a></strong>:
+      <em class="summary">A trajectory with random curving paths of position and rotation.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.base.RotationTrajectory-class.html">imusim.trajectories.base.RotationTrajectory</a></strong>:
+      <em class="summary">Represents a continuous trajectory of rotations</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.base.ConstantRotationTrajectory-class.html">imusim.trajectories.base.ConstantRotationTrajectory</a></strong>:
+      <em class="summary">A trajectory with constant rotation.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.base.StaticTrajectory-class.html">imusim.trajectories.base.StaticTrajectory</a></strong>:
+      <em class="summary">Represents the trajectory of a static object.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.base.ContinuousRotationTrajectory-class.html">imusim.trajectories.base.ContinuousRotationTrajectory</a></strong>:
+      <em class="summary">A trajectory with constant rotational velocity.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.base.StaticContinuousRotationTrajectory-class.html">imusim.trajectories.base.StaticContinuousRotationTrajectory</a></strong>:
+      <em class="summary">A trajectory with constant position and rotational velocity.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.offset.OffsetTrajectory-class.html">imusim.trajectories.offset.OffsetTrajectory</a></strong>:
+      <em class="summary">Trajectory at an offset from another trajectory.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.rigid_body.PointTrajectory-class.html">imusim.trajectories.rigid_body.PointTrajectory</a></strong>:
+      <em class="summary">Trajectory followed by a point in a rigid body model.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.rigid_body.SampledJoint-class.html">imusim.trajectories.rigid_body.SampledJoint</a></strong>:
+      <em class="summary">A joint in a rigid body model with sampled rotations.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.rigid_body.SampledBodyModel-class.html">imusim.trajectories.rigid_body.SampledBodyModel</a></strong>:
+      <em class="summary">A body model with sampled positions and rotations.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.rigid_body.SplinedJoint-class.html">imusim.trajectories.rigid_body.SplinedJoint</a></strong>:
+      <em class="summary">A joint with rotations splined from sampled data.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.rigid_body.SplinedBodyModel-class.html">imusim.trajectories.rigid_body.SplinedBodyModel</a></strong>:
+      <em class="summary">A body model with positions and rotations splined from sampled 
+        data.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.sampled.SampledRotationTrajectory-class.html">imusim.trajectories.sampled.SampledRotationTrajectory</a></strong>:
+      <em class="summary">Represents a sampled rotation trajectory.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.capture.marker.Marker6DOF-class.html">imusim.capture.marker.Marker6DOF</a></strong>:
+      <em class="summary">A capture marker with 6DOF position &amp; orientation samples.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.multi_marker.MultiMarkerTrajectory-class.html">imusim.trajectories.multi_marker.MultiMarkerTrajectory</a></strong>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.rigid_body.SampledJoint-class.html">imusim.trajectories.rigid_body.SampledJoint</a></strong>:
+      <em class="summary">A joint in a rigid body model with sampled rotations.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.rigid_body.SampledBodyModel-class.html">imusim.trajectories.rigid_body.SampledBodyModel</a></strong>:
+      <em class="summary">A body model with sampled positions and rotations.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.sampled.SampledTrajectory-class.html">imusim.trajectories.sampled.SampledTrajectory</a></strong>:
+      <em class="summary">Represents a sampled position and rotation trajectory.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.splined.SplinedRotationTrajectory-class.html">imusim.trajectories.splined.SplinedRotationTrajectory</a></strong>:
+      <em class="summary">Trajectory with rotation obtained by splining a sampled trajectory.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.testing.random_data.RandomRotationTrajectory-class.html">imusim.testing.random_data.RandomRotationTrajectory</a></strong>:
+      <em class="summary">A trajectory with a random curving path of rotation values.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.rigid_body.SplinedJoint-class.html">imusim.trajectories.rigid_body.SplinedJoint</a></strong>:
+      <em class="summary">A joint with rotations splined from sampled data.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.rigid_body.SplinedBodyModel-class.html">imusim.trajectories.rigid_body.SplinedBodyModel</a></strong>:
+      <em class="summary">A body model with positions and rotations splined from sampled 
+        data.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.capture.marker.SplinedMarker6DOF-class.html">imusim.capture.marker.SplinedMarker6DOF</a></strong>:
+      <em class="summary">A capture marker with splined 6DOF position and rotation 
+        information.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.splined.SplinedTrajectory-class.html">imusim.trajectories.splined.SplinedTrajectory</a></strong>:
+      <em class="summary">Represents a splined position and rotation trajectory.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.testing.random_data.RandomTrajectory-class.html">imusim.testing.random_data.RandomTrajectory</a></strong>:
+      <em class="summary">A trajectory with random curving paths of position and rotation.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.maths.transforms.AffineTransform-class.html">imusim.maths.transforms.AffineTransform</a></strong>:
+      <em class="summary">Affine transform composed of a linear transform matrix and 
+        translation.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.visualisation.rendering.AnimatedRenderer-class.html">imusim.visualisation.rendering.AnimatedRenderer</a></strong>:
+      <em class="summary">Base class for animation renderers.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.io.bvh.BVHExporter-class.html">imusim.io.bvh.BVHExporter</a></strong>:
+      <em class="summary">Exporter class to write BVH files.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.io.bvh.BVHLoader-class.html">imusim.io.bvh.BVHLoader</a></strong>:
+      <em class="summary">Loader class for BVH files.</em>
+    </li>
+    <li> <strong class="uidlink">exceptions.BaseException</strong>:
+      <em class="summary">Common base class for all exceptions</em>
+    <ul>
+    <li> <strong class="uidlink">exceptions.Exception</strong>:
+      <em class="summary">Common base class for all non-exit exceptions.</em>
+    <ul>
+    <li> <strong class="uidlink">exceptions.StandardError</strong>:
+      <em class="summary">Base class for all standard Python exceptions that do not represent
+        interpreter exiting.</em>
+    <ul>
+    <li> <strong class="uidlink">exceptions.ValueError</strong>:
+      <em class="summary">Inappropriate argument value (of correct type).</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.maths.splines.Spline.InsufficientPointsError-class.html">imusim.maths.splines.Spline.InsufficientPointsError</a></strong>:
+      <em class="summary">Exception to be raised if insufficient points to form a valid 
+        spline.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.behaviours.imu.BasicIMUBehaviour-class.html">imusim.behaviours.imu.BasicIMUBehaviour</a></strong>:
+      <em class="summary">Basic behaviour for an IMU that performs periodic sampling.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.behaviours.basestation.BodyModelReconstructor-class.html">imusim.behaviours.basestation.BodyModelReconstructor</a></strong>:
+      <em class="summary">Reconstructs body model movements from individual joint data.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.utilities.caching.CacheEntry-class.html">imusim.utilities.caching.CacheEntry</a></strong>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.utilities.caching.CacheLastValue-class.html">imusim.utilities.caching.CacheLastValue</a></strong>:
+      <em class="summary">Provides a decorator for methods of the form f(t) to cache the last
+        value</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.simulation.calibrators.Calibrator-class.html">imusim.simulation.calibrators.Calibrator</a></strong>:
+      <em class="summary">A calibration procedure for IMUs.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.simulation.calibrators.ScaleAndOffsetCalibrator-class.html">imusim.simulation.calibrators.ScaleAndOffsetCalibrator</a></strong>:
+      <em class="summary">Simple calibration procedure that obtains scale and offset factors.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.capture.sensor.CapturedDevice-class.html">imusim.capture.sensor.CapturedDevice</a></strong>:
+      <em class="summary">A device with one or more colocated sensors from which data was 
+        captured.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.base.Component-class.html">imusim.platforms.base.Component</a></strong>:
+      <em class="summary">Base class for simulated hardware components.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.platforms.adcs.ADC-class.html">imusim.platforms.adcs.ADC</a></strong>:
+      <em class="summary">Base class for ADCs.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.platforms.adcs.IdealADC-class.html">imusim.platforms.adcs.IdealADC</a></strong>:
+      <em class="summary">An ideal ADC that has no quantisation or delay between samples.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.adcs.QuantisingADC-class.html">imusim.platforms.adcs.QuantisingADC</a></strong>:
+      <em class="summary">A quantising ADC with configurable resolution.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.platforms.adcs.ParametricADC-class.html">imusim.platforms.adcs.ParametricADC</a></strong>:
+      <em class="summary">A parametric ADC with configurable resolution and delay between 
+        samples.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.radios.Radio-class.html">imusim.platforms.radios.Radio</a></strong>:
+      <em class="summary">Base class for radios.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.platforms.radios.IdealRadio-class.html">imusim.platforms.radios.IdealRadio</a></strong>:
+      <em class="summary">An ideal radio that can always receive and transmits 
+        instantaneously.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.sensors.Sensor-class.html">imusim.platforms.sensors.Sensor</a></strong>:
+      <em class="summary">Base class for all IMU sensor classes.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.platforms.accelerometers.Accelerometer-class.html">imusim.platforms.accelerometers.Accelerometer</a></strong>:
+      <em class="summary">Base class for accelerometers.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.platforms.accelerometers.IdealAccelerometer-class.html">imusim.platforms.accelerometers.IdealAccelerometer</a></strong>:
+      <em class="summary">An ideal accelerometer.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.platforms.accelerometers.IdealGravitySensor-class.html">imusim.platforms.accelerometers.IdealGravitySensor</a></strong>:
+      <em class="summary">An ideal fictional sensor that measures only acceleration due to 
+        gravity.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.accelerometers.NoisyAccelerometer-class.html">imusim.platforms.accelerometers.NoisyAccelerometer</a></strong>:
+      <em class="summary">Accelerometer with additive white Gaussian noise.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.accelerometers.NoisyTransformedAccelerometer-class.html">imusim.platforms.accelerometers.NoisyTransformedAccelerometer</a></strong>:
+      <em class="summary">Accelerometer with affine transform transfer function and Gaussian 
+        noise.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.accelerometers.MMA7260Q-class.html">imusim.platforms.accelerometers.MMA7260Q</a></strong>:
+      <em class="summary">Model of the Freescale MMA7260Q accelerometer.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.gyroscopes.Gyroscope-class.html">imusim.platforms.gyroscopes.Gyroscope</a></strong>:
+      <em class="summary">Base class for gyroscopes.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.platforms.gyroscopes.ADXRS300-class.html">imusim.platforms.gyroscopes.ADXRS300</a></strong>:
+      <em class="summary">Model of the Analog devices ADXRS300 gyroscope with enhanced range.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.gyroscopes.IdealGyroscope-class.html">imusim.platforms.gyroscopes.IdealGyroscope</a></strong>:
+      <em class="summary">An ideal gyroscope.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.platforms.gyroscopes.NoisyGyroscope-class.html">imusim.platforms.gyroscopes.NoisyGyroscope</a></strong>:
+      <em class="summary">Gyroscope with additive white Gaussian noise.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.gyroscopes.NoisyTransformedGyroscope-class.html">imusim.platforms.gyroscopes.NoisyTransformedGyroscope</a></strong>:
+      <em class="summary">Gyroscope with affine transform transfer function and Gaussian 
+        noise.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.sensors.IdealSensor-class.html">imusim.platforms.sensors.IdealSensor</a></strong>:
+      <em class="summary">An ideal sensor with unity transfer function and no noise.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.platforms.accelerometers.IdealAccelerometer-class.html">imusim.platforms.accelerometers.IdealAccelerometer</a></strong>:
+      <em class="summary">An ideal accelerometer.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.platforms.accelerometers.IdealGravitySensor-class.html">imusim.platforms.accelerometers.IdealGravitySensor</a></strong>:
+      <em class="summary">An ideal fictional sensor that measures only acceleration due to 
+        gravity.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.accelerometers.NoisyAccelerometer-class.html">imusim.platforms.accelerometers.NoisyAccelerometer</a></strong>:
+      <em class="summary">Accelerometer with additive white Gaussian noise.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.accelerometers.NoisyTransformedAccelerometer-class.html">imusim.platforms.accelerometers.NoisyTransformedAccelerometer</a></strong>:
+      <em class="summary">Accelerometer with affine transform transfer function and Gaussian 
+        noise.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.gyroscopes.IdealGyroscope-class.html">imusim.platforms.gyroscopes.IdealGyroscope</a></strong>:
+      <em class="summary">An ideal gyroscope.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.platforms.gyroscopes.NoisyGyroscope-class.html">imusim.platforms.gyroscopes.NoisyGyroscope</a></strong>:
+      <em class="summary">Gyroscope with additive white Gaussian noise.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.gyroscopes.NoisyTransformedGyroscope-class.html">imusim.platforms.gyroscopes.NoisyTransformedGyroscope</a></strong>:
+      <em class="summary">Gyroscope with affine transform transfer function and Gaussian 
+        noise.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.magnetometers.IdealMagnetometer-class.html">imusim.platforms.magnetometers.IdealMagnetometer</a></strong>:
+      <em class="summary">An ideal magnetometer.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.platforms.magnetometers.NoisyMagnetometer-class.html">imusim.platforms.magnetometers.NoisyMagnetometer</a></strong>:
+      <em class="summary">Magnetometer with additive white Gaussian noise.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.magnetometers.NoisyTransformedMagnetometer-class.html">imusim.platforms.magnetometers.NoisyTransformedMagnetometer</a></strong>:
+      <em class="summary">Magnetometer with an affine transform transfer function and 
+        Gaussian noise.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.magnetometers.Magnetometer-class.html">imusim.platforms.magnetometers.Magnetometer</a></strong>:
+      <em class="summary">Base class for magnetometers.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.platforms.magnetometers.HMC105x-class.html">imusim.platforms.magnetometers.HMC105x</a></strong>:
+      <em class="summary">Model of the Honeywell HMC105x magnetometer as used in the Orient-3
+        IMU.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.magnetometers.IdealMagnetometer-class.html">imusim.platforms.magnetometers.IdealMagnetometer</a></strong>:
+      <em class="summary">An ideal magnetometer.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.platforms.magnetometers.NoisyMagnetometer-class.html">imusim.platforms.magnetometers.NoisyMagnetometer</a></strong>:
+      <em class="summary">Magnetometer with additive white Gaussian noise.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.magnetometers.NoisyTransformedMagnetometer-class.html">imusim.platforms.magnetometers.NoisyTransformedMagnetometer</a></strong>:
+      <em class="summary">Magnetometer with an affine transform transfer function and 
+        Gaussian noise.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.sensors.NoisySensor-class.html">imusim.platforms.sensors.NoisySensor</a></strong>:
+      <em class="summary">An sensor with additive white Gaussian noise.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.platforms.accelerometers.NoisyAccelerometer-class.html">imusim.platforms.accelerometers.NoisyAccelerometer</a></strong>:
+      <em class="summary">Accelerometer with additive white Gaussian noise.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.gyroscopes.NoisyGyroscope-class.html">imusim.platforms.gyroscopes.NoisyGyroscope</a></strong>:
+      <em class="summary">Gyroscope with additive white Gaussian noise.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.magnetometers.NoisyMagnetometer-class.html">imusim.platforms.magnetometers.NoisyMagnetometer</a></strong>:
+      <em class="summary">Magnetometer with additive white Gaussian noise.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.sensors.NoisyTransformedSensor-class.html">imusim.platforms.sensors.NoisyTransformedSensor</a></strong>:
+      <em class="summary">A sensor with an affine transform transfer function and Gaussian 
+        noise.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.platforms.gyroscopes.ADXRS300-class.html">imusim.platforms.gyroscopes.ADXRS300</a></strong>:
+      <em class="summary">Model of the Analog devices ADXRS300 gyroscope with enhanced range.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.magnetometers.HMC105x-class.html">imusim.platforms.magnetometers.HMC105x</a></strong>:
+      <em class="summary">Model of the Honeywell HMC105x magnetometer as used in the Orient-3
+        IMU.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.accelerometers.MMA7260Q-class.html">imusim.platforms.accelerometers.MMA7260Q</a></strong>:
+      <em class="summary">Model of the Freescale MMA7260Q accelerometer.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.accelerometers.NoisyTransformedAccelerometer-class.html">imusim.platforms.accelerometers.NoisyTransformedAccelerometer</a></strong>:
+      <em class="summary">Accelerometer with affine transform transfer function and Gaussian 
+        noise.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.gyroscopes.NoisyTransformedGyroscope-class.html">imusim.platforms.gyroscopes.NoisyTransformedGyroscope</a></strong>:
+      <em class="summary">Gyroscope with affine transform transfer function and Gaussian 
+        noise.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.magnetometers.NoisyTransformedMagnetometer-class.html">imusim.platforms.magnetometers.NoisyTransformedMagnetometer</a></strong>:
+      <em class="summary">Magnetometer with an affine transform transfer function and 
+        Gaussian noise.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.sensors.TransformedSensor-class.html">imusim.platforms.sensors.TransformedSensor</a></strong>:
+      <em class="summary">An sensor with an affine transform transfer function.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.platforms.sensors.NoisyTransformedSensor-class.html">imusim.platforms.sensors.NoisyTransformedSensor</a></strong>:
+      <em class="summary">A sensor with an affine transform transfer function and Gaussian 
+        noise.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.platforms.gyroscopes.ADXRS300-class.html">imusim.platforms.gyroscopes.ADXRS300</a></strong>:
+      <em class="summary">Model of the Analog devices ADXRS300 gyroscope with enhanced range.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.magnetometers.HMC105x-class.html">imusim.platforms.magnetometers.HMC105x</a></strong>:
+      <em class="summary">Model of the Honeywell HMC105x magnetometer as used in the Orient-3
+        IMU.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.accelerometers.MMA7260Q-class.html">imusim.platforms.accelerometers.MMA7260Q</a></strong>:
+      <em class="summary">Model of the Freescale MMA7260Q accelerometer.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.accelerometers.NoisyTransformedAccelerometer-class.html">imusim.platforms.accelerometers.NoisyTransformedAccelerometer</a></strong>:
+      <em class="summary">Accelerometer with affine transform transfer function and Gaussian 
+        noise.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.gyroscopes.NoisyTransformedGyroscope-class.html">imusim.platforms.gyroscopes.NoisyTransformedGyroscope</a></strong>:
+      <em class="summary">Gyroscope with affine transform transfer function and Gaussian 
+        noise.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.magnetometers.NoisyTransformedMagnetometer-class.html">imusim.platforms.magnetometers.NoisyTransformedMagnetometer</a></strong>:
+      <em class="summary">Magnetometer with an affine transform transfer function and 
+        Gaussian noise.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.timers.Timer-class.html">imusim.platforms.timers.Timer</a></strong>:
+      <em class="summary">Base class for simulated hardware timers.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.platforms.timers.IdealTimer-class.html">imusim.platforms.timers.IdealTimer</a></strong>:
+      <em class="summary">An ideal timer with infinite resolution and no clock error.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.timers.ParametricTimer-class.html">imusim.platforms.timers.ParametricTimer</a></strong>:
+      <em class="summary">An timer with parametric resolution and frequency error.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.maths.integrators.DoubleIntegrator-class.html">imusim.maths.integrators.DoubleIntegrator</a></strong>:
+      <em class="summary">Iterative integrator that performs double integration.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.environment.base.Environment-class.html">imusim.environment.base.Environment</a></strong>:
+      <em class="summary">Overall model of the environment experienced by simulated IMUs.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.maths.integrators.Integrator-class.html">imusim.maths.integrators.Integrator</a></strong>:
+      <em class="summary">Base class for integrators.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.maths.integrators.RectangleRule-class.html">imusim.maths.integrators.RectangleRule</a></strong>:
+      <em class="summary">Integration by the rectangle rule.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.maths.integrators.TrapeziumRule-class.html">imusim.maths.integrators.TrapeziumRule</a></strong>:
+      <em class="summary">Integration by the trapezium rule.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.maths.kalman.KalmanFilter-class.html">imusim.maths.kalman.KalmanFilter</a></strong>:
+      <em class="summary">Implementation of standard Kalman filter</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.maths.kalman.UnscentedKalmanFilter-class.html">imusim.maths.kalman.UnscentedKalmanFilter</a></strong>:
+      <em class="summary">Implementation of the unscented Kalman filter algorithm for 
+        additive noise.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink">SimPy.Lister.Lister</strong>
+    <ul>
+    <li> <strong class="uidlink">SimPy.Lib.Process</strong>:
+      <em class="summary">Superclass of classes which may use generator functions</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.simulation.base.Simulation.ProgressMonitor-class.html">imusim.simulation.base.Simulation.ProgressMonitor</a></strong>:
+      <em class="summary">Simple process to print status and remaining simulation time at 5% 
+        progress intervals.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.behaviours.mac.MAC-class.html">imusim.behaviours.mac.MAC</a></strong>:
+      <em class="summary">Base class for MAC implementations.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.behaviours.orient_tdma.MasterMAC-class.html">imusim.behaviours.orient_tdma.MasterMAC</a></strong>:
+      <em class="summary">Master MAC implementation.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.behaviours.orient_tdma.SlaveMAC-class.html">imusim.behaviours.orient_tdma.SlaveMAC</a></strong>:
+      <em class="summary">Slave MAC implementation.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.behaviours.orient_tdma.InterSlaveMAC-class.html">imusim.behaviours.orient_tdma.InterSlaveMAC</a></strong>:
+      <em class="summary">Slave MAC implementation with support for slave-slave packets.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.capture.marker.MarkerCapture-class.html">imusim.capture.marker.MarkerCapture</a></strong>:
+      <em class="summary">Marker trajectory data captured synchronously for one or more 
+        markers.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.capture.marker.SplinedMarkerCapture-class.html">imusim.capture.marker.SplinedMarkerCapture</a></strong>:
+      <em class="summary">Wrapper to obtain splined versions of all marker trajectories in a 
+        capture.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.maths.natural_neighbour.NaturalNeighbourInterpolatorC-class.html">imusim.maths.natural_neighbour.NaturalNeighbourInterpolatorC</a></strong>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.algorithms.orientation.OrientationFilter-class.html">imusim.algorithms.orientation.OrientationFilter</a></strong>:
+      <em class="summary">Base class for orientation estimation filters.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.algorithms.orientation.BachmannCF-class.html">imusim.algorithms.orientation.BachmannCF</a></strong>:
+      <em class="summary">Implementation of the complementary filter algorithm proposed by 
+        Bachmann.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.algorithms.orientation.DistLinAccelCF-class.html">imusim.algorithms.orientation.DistLinAccelCF</a></strong>:
+      <em class="summary">Implementation of the multi-IMU orientation algorithm by Young 
+        &amp; Ling.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.algorithms.orientation.GyroIntegrator-class.html">imusim.algorithms.orientation.GyroIntegrator</a></strong>:
+      <em class="summary">An estimator that obtains its orientation using only gyroscope 
+        integration.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.algorithms.orientation.OrientCF-class.html">imusim.algorithms.orientation.OrientCF</a></strong>:
+      <em class="summary">Implementation of the complementary filter used on the Orient IMU.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.algorithms.orientation.YunEKF-class.html">imusim.algorithms.orientation.YunEKF</a></strong>:
+      <em class="summary">Implementation of the extented Kalman filter proposed by Yun et al.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.behaviours.sampling.PeriodicSampler-class.html">imusim.behaviours.sampling.PeriodicSampler</a></strong>:
+      <em class="summary">Takes samples at regular intervals.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.base.Platform-class.html">imusim.platforms.base.Platform</a></strong>:
+      <em class="summary">Base class for simulated hardware platforms.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.platforms.imus.IMU-class.html">imusim.platforms.imus.IMU</a></strong>:
+      <em class="summary">An IMU hardware platform with one or more sensors.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.platforms.imus.StandardIMU-class.html">imusim.platforms.imus.StandardIMU</a></strong>:
+      <em class="summary">An IMU with accelerometer, magnetometer, gyroscope, ADC, Timer and 
+        radio.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.platforms.imus.IdealIMU-class.html">imusim.platforms.imus.IdealIMU</a></strong>:
+      <em class="summary">An IMU with idealised models for all components.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.imus.MagicIMU-class.html">imusim.platforms.imus.MagicIMU</a></strong>:
+      <em class="summary">An IMU with idealised components including a fictional gravity 
+        sensor.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.imus.Orient3IMU-class.html">imusim.platforms.imus.Orient3IMU</a></strong>:
+      <em class="summary">Simple model of the Orient-3 IMU from the University of Edinburgh.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.platforms.basestations.IdealBasestation-class.html">imusim.platforms.basestations.IdealBasestation</a></strong>:
+      <em class="summary">A simple basestation with ideal components.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.algorithms.position.PositionEstimator-class.html">imusim.algorithms.position.PositionEstimator</a></strong>:
+      <em class="summary">Base class for position estimation algorithms.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.algorithms.position.ConstantPosition-class.html">imusim.algorithms.position.ConstantPosition</a></strong>:
+      <em class="summary">Trivial position estimator that gives a constant position.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.algorithms.position.ContactTrackingKalmanFilter-class.html">imusim.algorithms.position.ContactTrackingKalmanFilter</a></strong>:
+      <em class="summary">Estimates position based on root acceleration and estimated ground 
+        contact.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.algorithms.position.LowestPoint-class.html">imusim.algorithms.position.LowestPoint</a></strong>:
+      <em class="summary">Tracking based on assumption that lowest point is in static ground 
+        contact.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.algorithms.position.RootAccelerationIntegrator-class.html">imusim.algorithms.position.RootAccelerationIntegrator</a></strong>:
+      <em class="summary">Estimates position based on integration of root joint acceleration.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.algorithms.posture_reconstruction.PostureReconstructor-class.html">imusim.algorithms.posture_reconstruction.PostureReconstructor</a></strong>:
+      <em class="summary">Base class for posture reconstruction algorithms.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.algorithms.posture_reconstruction.InheritedForwardKinematics-class.html">imusim.algorithms.posture_reconstruction.InheritedForwardKinematics</a></strong>:
+      <em class="summary">Posture reconstructor using joint orientations with inheritance 
+        fallback.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.algorithms.posture_reconstruction.SimpleForwardKinematics-class.html">imusim.algorithms.posture_reconstruction.SimpleForwardKinematics</a></strong>:
+      <em class="summary">Posture reconstructor using joint orientations directly.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.maths.quaternions.Quaternion-class.html">imusim.maths.quaternions.Quaternion</a></strong>:
+      <em class="summary">A quaternion value.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.maths.quaternions.QuaternionArray-class.html">imusim.maths.quaternions.QuaternionArray</a></strong>:
+      <em class="summary">An array of quaternion values.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.maths.quat_splines.QuaternionBSpline-class.html">imusim.maths.quat_splines.QuaternionBSpline</a></strong>:
+      <em class="summary">Model of a quaternion function of time using B-spline fitting of 
+        keyframes.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.environment.radio_environment.RadioEnvironment-class.html">imusim.environment.radio_environment.RadioEnvironment</a></strong>:
+      <em class="summary">Base class for radio environment models.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.environment.radio_environment.IdealRadioEnvironment-class.html">imusim.environment.radio_environment.IdealRadioEnvironment</a></strong>:
+      <em class="summary">An ideal radio channel where all packet transmissions are 
+        successful.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.environment.radio_environment.BERRadioEnvironment-class.html">imusim.environment.radio_environment.BERRadioEnvironment</a></strong>:
+      <em class="summary">Radio channel with a constant bit error rate.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.behaviours.orient_tdma.Schedule-class.html">imusim.behaviours.orient_tdma.Schedule</a></strong>:
+      <em class="summary">Transmission schedule.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.behaviours.orient_tdma.InterSlaveSchedule-class.html">imusim.behaviours.orient_tdma.InterSlaveSchedule</a></strong>:
+      <em class="summary">Transmission schedule including an auxillary slave-to-slave 
+        channel.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.algorithms.calibration.SensorCalibration-class.html">imusim.algorithms.calibration.SensorCalibration</a></strong>:
+      <em class="summary">Calibration data for a triaxial sensor.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.algorithms.calibration.ScaleAndOffsetCalibration-class.html">imusim.algorithms.calibration.ScaleAndOffsetCalibration</a></strong>:
+      <em class="summary">Calibration that corrects constant scale and offset errors.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.capture.sensor.SensorDataCapture-class.html">imusim.capture.sensor.SensorDataCapture</a></strong>:
+      <em class="summary">Sensor data captured synchronously from one or more devices.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.simulation.base.Simulation-class.html">imusim.simulation.base.Simulation</a></strong>:
+      <em class="summary">Main IMUSim simulation environment.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.environment.magnetic_fields.SolenoidMagneticField-class.html">imusim.environment.magnetic_fields.SolenoidMagneticField</a></strong>:
+      <em class="summary">Model of magnetic field around an ideal solenoid.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.maths.splines.Spline-class.html">imusim.maths.splines.Spline</a></strong>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.maths.splines.PartialInputSpline-class.html">imusim.maths.splines.PartialInputSpline</a></strong>:
+      <em class="summary">Piecewise spline that allows for undefined values in the output 
+        domain.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.maths.quat_splines.PartialInputQuaternionBSpline-class.html">imusim.maths.quat_splines.PartialInputQuaternionBSpline</a></strong>:
+      <em class="summary">Quaternion B-spline allowing for undefined regions in output 
+        domain.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.maths.vector_splines.PartialInputVectorSpline-class.html">imusim.maths.vector_splines.PartialInputVectorSpline</a></strong>:
+      <em class="summary">Piecewise vector spline allowing for undefined regions in output 
+        domain.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.maths.quat_splines.SQUADQuaternionSpline-class.html">imusim.maths.quat_splines.SQUADQuaternionSpline</a></strong>:
+      <em class="summary">Model of a quaternion function of time using the SQUAD algorithm.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.maths.splines.UnivariateSpline-class.html">imusim.maths.splines.UnivariateSpline</a></strong>:
+      <em class="summary">Model of a function of a single variable using spline fitting.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.maths.vector_splines.UnivariateVectorSpline-class.html">imusim.maths.vector_splines.UnivariateVectorSpline</a></strong>:
+      <em class="summary">Model of a vector function of a single variable using spline 
+        fitting.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.utilities.time_series.TimeSeries-class.html">imusim.utilities.time_series.TimeSeries</a></strong>:
+      <em class="summary">A series of values taken at consecutive points in time.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.behaviours.timing.TimerMultiplexer-class.html">imusim.behaviours.timing.TimerMultiplexer</a></strong>:
+      <em class="summary">Multiplexer for running multiple virtual timers on one hardware 
+        timer.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.utilities.trees.TreeNode-class.html">imusim.utilities.trees.TreeNode</a></strong>:
+      <em class="summary">A node in a tree structure.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.rigid_body.Point-class.html">imusim.trajectories.rigid_body.Point</a></strong>:
+      <em class="summary">A point in a rigid body model.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.rigid_body.Joint-class.html">imusim.trajectories.rigid_body.Joint</a></strong>:
+      <em class="summary">A joint in a rigid body model, with its own rotating co-ordinate 
+        frame.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.rigid_body.SampledJoint-class.html">imusim.trajectories.rigid_body.SampledJoint</a></strong>:
+      <em class="summary">A joint in a rigid body model with sampled rotations.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.rigid_body.SampledBodyModel-class.html">imusim.trajectories.rigid_body.SampledBodyModel</a></strong>:
+      <em class="summary">A body model with sampled positions and rotations.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.rigid_body.SplinedJoint-class.html">imusim.trajectories.rigid_body.SplinedJoint</a></strong>:
+      <em class="summary">A joint with rotations splined from sampled data.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.rigid_body.SplinedBodyModel-class.html">imusim.trajectories.rigid_body.SplinedBodyModel</a></strong>:
+      <em class="summary">A body model with positions and rotations splined from sampled 
+        data.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.trajectories.rigid_body.PointTrajectory-class.html">imusim.trajectories.rigid_body.PointTrajectory</a></strong>:
+      <em class="summary">Trajectory followed by a point in a rigid body model.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.maths.transforms.UnscentedTransform-class.html">imusim.maths.transforms.UnscentedTransform</a></strong>:
+      <em class="summary">Implementation of the Unscented Transform of Julier and Uhlmann.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.maths.vector_fields.VectorField-class.html">imusim.maths.vector_fields.VectorField</a></strong>:
+      <em class="summary">Base class for vector fields.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.maths.vector_fields.ConstantVectorField-class.html">imusim.maths.vector_fields.ConstantVectorField</a></strong>:
+      <em class="summary">A vector field wth a constant value everywhere.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.environment.gravity.ConstantGravitationalField-class.html">imusim.environment.gravity.ConstantGravitationalField</a></strong>:
+      <em class="summary">Constant gravitational field model.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.environment.magnetic_fields.EarthMagneticField-class.html">imusim.environment.magnetic_fields.EarthMagneticField</a></strong>:
+      <em class="summary">Simple model of the Earth's magnetic field.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.environment.magnetic_fields.DistortedMagneticField-class.html">imusim.environment.magnetic_fields.DistortedMagneticField</a></strong>:
+      <em class="summary">Magnetic field with distortions superimposed.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.maths.vector_fields.InterpolatedVectorField-class.html">imusim.maths.vector_fields.InterpolatedVectorField</a></strong>:
+      <em class="summary">A vector field interpolated from sampled values.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.maths.vector_fields.NaturalNeighbourInterpolatedField-class.html">imusim.maths.vector_fields.NaturalNeighbourInterpolatedField</a></strong>:
+      <em class="summary">Natural Neighbour interpolation of vector fields.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.maths.vector_fields.RBFInterpolatedField-class.html">imusim.maths.vector_fields.RBFInterpolatedField</a></strong>:
+      <em class="summary">Field interpolation using radial basis functions.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.algorithms.vector_observation.VectorObservation-class.html">imusim.algorithms.vector_observation.VectorObservation</a></strong>:
+      <em class="summary">Base class for all vector observation methods.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.algorithms.vector_observation.FQA-class.html">imusim.algorithms.vector_observation.FQA</a></strong>:
+      <em class="summary">Implementation of the Factored Quaternion Algorithm by Yun et al.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.algorithms.vector_observation.GramSchmidt-class.html">imusim.algorithms.vector_observation.GramSchmidt</a></strong>:
+      <em class="summary">Vector observation based on Gram-Schmidt Ortho-Normalisation.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.algorithms.vector_observation.LeastSquaresOptimalVectorObservation-class.html">imusim.algorithms.vector_observation.LeastSquaresOptimalVectorObservation</a></strong>:
+      <em class="summary">Base class of least squares optimal vector observation algorithms</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.algorithms.vector_observation.DavenportQ-class.html">imusim.algorithms.vector_observation.DavenportQ</a></strong>:
+      <em class="summary">Implementation of the Davenport-q algorithm.</em>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.algorithms.vector_observation.QUEST-class.html">imusim.algorithms.vector_observation.QUEST</a></strong>:
+      <em class="summary">Implementation of the QUEST algorithm.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.algorithms.vector_observation.TRIAD-class.html">imusim.algorithms.vector_observation.TRIAD</a></strong>:
+      <em class="summary">Implementation of the TRIAD vector observation algorithm.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.behaviours.timing.VirtualTimer-class.html">imusim.behaviours.timing.VirtualTimer</a></strong>:
+      <em class="summary">A virtual timer multiplexed to a hardware timer.</em>
+    </li>
+    <li> <strong class="uidlink">dict</strong>:
+      <em class="summary">dict() -&gt; new empty dictionary
+dict(mapping) -&gt; new dictionary initialized from a mapping object's
+    (key, value) pairs
+dict(iterable) -&gt; new dictionary initialized as if via:
+    d = {}
+    for k, v in iterable:
+        d[k] = v
+dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
+    in the keyword argument list.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.platforms.radios.RadioPacket-class.html">imusim.platforms.radios.RadioPacket</a></strong>:
+      <em class="summary">Class to represent a radio packet.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.behaviours.orient_tdma.DataPacket-class.html">imusim.behaviours.orient_tdma.DataPacket</a></strong>:
+      <em class="summary">Data packet from slave to master.</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="imusim.behaviours.orient_tdma.AuxPacket-class.html">imusim.behaviours.orient_tdma.AuxPacket</a></strong>:
+      <em class="summary">Auxillary packet from slave to slave.</em>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.behaviours.orient_tdma.SyncPacket-class.html">imusim.behaviours.orient_tdma.SyncPacket</a></strong>:
+      <em class="summary">Synchronisation packet from master.</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+    <li> <strong class="uidlink"><a href="imusim.utilities.documentation.prepend_method_doc-class.html">imusim.utilities.documentation.prepend_method_doc</a></strong>:
+      <em class="summary">Decorator to prepend documentation of a matching named method.</em>
+    </li>
+    <li> <strong class="uidlink">type</strong>:
+      <em class="summary">type(object) -&gt; the object's type type(name, bases, dict) -&gt; 
+        a new type</em>
+    <ul>
+    <li> <strong class="uidlink"><a href="abc.ABCMeta-class.html">abc.ABCMeta</a></strong>:
+      <em class="summary">Metaclass for defining Abstract Base Classes (ABCs).</em>
+    </li>
+    </ul>
+    </li>
+    </ul>
+    </li>
+</ul>
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="imusim-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th bgcolor="#70b0f0" class="navbar-select"
+          >&nbsp;&nbsp;&nbsp;Trees&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://www.imusim.org/">IMUSim</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Wed Apr 14 11:46:20 2021
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

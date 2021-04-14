@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>imusim.maths.vector_fields</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="imusim-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://www.imusim.org/">IMUSim</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="imusim-module.html">Package&nbsp;imusim</a> ::
+        <a href="imusim.maths-module.html">Package&nbsp;maths</a> ::
+        Module&nbsp;vector_fields
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="imusim.maths.vector_fields-module.html">Module imusim.maths.vector_fields</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-docstring">Classes for modelling 3D vector fields.</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment"># Copyright (C) 2009-2011 University of Edinburgh</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-comment"># This file is part of IMUSim.</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-comment"># IMUSim is free software: you can redistribute it and/or modify it</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-comment"># under the terms of the GNU General Public License as published by</tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-comment"># the Free Software Foundation, either version 3 of the License, or</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-comment"># (at your option) any later version.</tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-comment"># IMUSim is distributed in the hope that it will be useful,</tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-comment"># but WITHOUT ANY WARRANTY; without even the implied warranty of</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-comment"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-comment"># GNU General Public License for more details.</tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-comment"># You should have received a copy of the GNU General Public License</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-comment"># along with IMUSim.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">abc</tt> <tt class="py-keyword">import</tt> <tt id="link-0" class="py-name" targets="Class abc.ABCMeta=abc.ABCMeta-class.html"><a title="abc.ABCMeta" class="py-name" href="#" onclick="return doclink('link-0', 'ABCMeta', 'link-0');">ABCMeta</a></tt><tt class="py-op">,</tt> <tt class="py-name">abstractmethod</tt><tt class="py-op">,</tt> <tt class="py-name">abstractproperty</tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">scipy</tt> <tt class="py-keyword">import</tt> <tt class="py-name">interpolate</tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-1" class="py-name" targets="Package imusim=imusim-module.html"><a title="imusim" class="py-name" href="#" onclick="return doclink('link-1', 'imusim', 'link-1');">imusim</a></tt><tt class="py-op">.</tt><tt id="link-2" class="py-name" targets="Package imusim.maths=imusim.maths-module.html"><a title="imusim.maths" class="py-name" href="#" onclick="return doclink('link-2', 'maths', 'link-2');">maths</a></tt> <tt class="py-keyword">import</tt> <tt id="link-3" class="py-name" targets="Module imusim.maths.vectors=imusim.maths.vectors-module.html,Module imusim.testing.vectors=imusim.testing.vectors-module.html"><a title="imusim.maths.vectors
+imusim.testing.vectors" class="py-name" href="#" onclick="return doclink('link-3', 'vectors', 'link-3');">vectors</a></tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-4" class="py-name"><a title="imusim" class="py-name" href="#" onclick="return doclink('link-4', 'imusim', 'link-1');">imusim</a></tt><tt class="py-op">.</tt><tt id="link-5" class="py-name" targets="Package imusim.utilities=imusim.utilities-module.html"><a title="imusim.utilities" class="py-name" href="#" onclick="return doclink('link-5', 'utilities', 'link-5');">utilities</a></tt><tt class="py-op">.</tt><tt id="link-6" class="py-name" targets="Module imusim.utilities.documentation=imusim.utilities.documentation-module.html"><a title="imusim.utilities.documentation" class="py-name" href="#" onclick="return doclink('link-6', 'documentation', 'link-6');">documentation</a></tt> <tt class="py-keyword">import</tt> <tt id="link-7" class="py-name" targets="Class imusim.utilities.documentation.prepend_method_doc=imusim.utilities.documentation.prepend_method_doc-class.html"><a title="imusim.utilities.documentation.prepend_method_doc" class="py-name" href="#" onclick="return doclink('link-7', 'prepend_method_doc', 'link-7');">prepend_method_doc</a></tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-8" class="py-name"><a title="imusim" class="py-name" href="#" onclick="return doclink('link-8', 'imusim', 'link-1');">imusim</a></tt><tt class="py-op">.</tt><tt id="link-9" class="py-name"><a title="imusim.maths" class="py-name" href="#" onclick="return doclink('link-9', 'maths', 'link-2');">maths</a></tt><tt class="py-op">.</tt><tt id="link-10" class="py-name" targets="Module imusim.maths.natural_neighbour=imusim.maths.natural_neighbour-module.html"><a title="imusim.maths.natural_neighbour" class="py-name" href="#" onclick="return doclink('link-10', 'natural_neighbour', 'link-10');">natural_neighbour</a></tt> <tt class="py-keyword">import</tt> <tt id="link-11" class="py-name" targets="Class imusim.maths.natural_neighbour.NaturalNeighbourInterpolatorC=imusim.maths.natural_neighbour.NaturalNeighbourInterpolatorC-class.html"><a title="imusim.maths.natural_neighbour.NaturalNeighbourInterpolatorC" class="py-name" href="#" onclick="return doclink('link-11', 'NaturalNeighbourInterpolatorC', 'link-11');">NaturalNeighbourInterpolatorC</a></tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-keyword">import</tt> <tt class="py-name">numpy</tt> <tt class="py-keyword">as</tt> <tt class="py-name">np</tt> </tt>
+<a name="VectorField"></a><div id="VectorField-def"><a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"> </tt>
+<a name="L28"></a><tt class="py-lineno"> 28</tt> <a class="py-toggle" href="#" id="VectorField-toggle" onclick="return toggle('VectorField');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="imusim.maths.vector_fields.VectorField-class.html">VectorField</a><tt class="py-op">(</tt><tt class="py-base-class">object</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="VectorField-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="VectorField-expanded"><a name="L29"></a><tt class="py-lineno"> 29</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line"><tt class="py-docstring">    Base class for vector fields.</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line">    <tt id="link-12" class="py-name" targets="Variable imusim.platforms.adcs.ADC.__metaclass__=imusim.platforms.adcs.ADC-class.html#__metaclass__,Variable imusim.platforms.imus.IMU.__metaclass__=imusim.platforms.imus.IMU-class.html#__metaclass__,Variable imusim.platforms.radios.Radio.__metaclass__=imusim.platforms.radios.Radio-class.html#__metaclass__,Variable imusim.platforms.sensors.Sensor.__metaclass__=imusim.platforms.sensors.Sensor-class.html#__metaclass__,Variable imusim.platforms.timers.Timer.__metaclass__=imusim.platforms.timers.Timer-class.html#__metaclass__,Variable imusim.visualisation.rendering.AnimatedRenderer.__metaclass__=imusim.visualisation.rendering.AnimatedRenderer-class.html#__metaclass__"><a title="imusim.platforms.adcs.ADC.__metaclass__
+imusim.platforms.imus.IMU.__metaclass__
+imusim.platforms.radios.Radio.__metaclass__
+imusim.platforms.sensors.Sensor.__metaclass__
+imusim.platforms.timers.Timer.__metaclass__
+imusim.visualisation.rendering.AnimatedRenderer.__metaclass__" class="py-name" href="#" onclick="return doclink('link-12', '__metaclass__', 'link-12');">__metaclass__</a></tt> <tt class="py-op">=</tt> <tt id="link-13" class="py-name"><a title="abc.ABCMeta" class="py-name" href="#" onclick="return doclink('link-13', 'ABCMeta', 'link-0');">ABCMeta</a></tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line"> </tt>
+<a name="L34"></a><tt class="py-lineno"> 34</tt>  <tt class="py-line">    <tt class="py-decorator">@</tt><tt class="py-decorator">abstractmethod</tt> </tt>
+<a name="VectorField.__call__"></a><div id="VectorField.__call__-def"><a name="L35"></a><tt class="py-lineno"> 35</tt> <a class="py-toggle" href="#" id="VectorField.__call__-toggle" onclick="return toggle('VectorField.__call__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.maths.vector_fields.VectorField-class.html#__call__">__call__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">position</tt><tt class="py-op">,</tt> <tt class="py-param">t</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="VectorField.__call__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="VectorField.__call__-expanded"><a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line"><tt class="py-docstring">        Evaluate the vector field at the given position(s) and time(s).</tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line"><tt class="py-docstring">        @param position: 3xN L{np.ndarray} of position co-ordinates, in m.</tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line"><tt class="py-docstring">        @param position: Scalar or length N L{np.ndarray} of times in s.</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line"><tt class="py-docstring">        @return: 3xN L{np.ndarray} of field values.</tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line">        <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line"> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line">    <tt class="py-decorator">@</tt><tt class="py-decorator">abstractproperty</tt> </tt>
+<a name="VectorField.nominalValue"></a><div id="VectorField.nominalValue-def"><a name="L47"></a><tt class="py-lineno"> 47</tt> <a class="py-toggle" href="#" id="VectorField.nominalValue-toggle" onclick="return toggle('VectorField.nominalValue');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.maths.vector_fields.VectorField-class.html#nominalValue">nominalValue</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="VectorField.nominalValue-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="VectorField.nominalValue-expanded"><a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L49"></a><tt class="py-lineno"> 49</tt>  <tt class="py-line"><tt class="py-docstring">        Nominal 3x1 vector value of the field, for use in calibrating sensors.</tt> </tt>
+<a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line">        <tt class="py-keyword">pass</tt> </tt>
+</div><a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line"> </tt>
+<a name="L53"></a><tt class="py-lineno"> 53</tt>  <tt class="py-line">    <tt class="py-decorator">@</tt><tt class="py-decorator">property</tt> </tt>
+<a name="VectorField.nominalMagnitude"></a><div id="VectorField.nominalMagnitude-def"><a name="L54"></a><tt class="py-lineno"> 54</tt> <a class="py-toggle" href="#" id="VectorField.nominalMagnitude-toggle" onclick="return toggle('VectorField.nominalMagnitude');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.maths.vector_fields.VectorField-class.html#nominalMagnitude">nominalMagnitude</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="VectorField.nominalMagnitude-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="VectorField.nominalMagnitude-expanded"><a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line"><tt class="py-docstring">        Nominal magnitude of the field, for use in calibrating sensors.</tt> </tt>
+<a name="L57"></a><tt class="py-lineno"> 57</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt id="link-14" class="py-name"><a title="imusim.maths.vectors
+imusim.testing.vectors" class="py-name" href="#" onclick="return doclink('link-14', 'vectors', 'link-3');">vectors</a></tt><tt class="py-op">.</tt><tt id="link-15" class="py-name" targets="Variable imusim.maths.quaternions.QuaternionArray.norm=imusim.maths.quaternions.QuaternionArray-class.html#norm"><a title="imusim.maths.quaternions.QuaternionArray.norm" class="py-name" href="#" onclick="return doclink('link-15', 'norm', 'link-15');">norm</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-16" class="py-name" targets="Variable imusim.environment.gravity.ConstantGravitationalField.nominalValue=imusim.environment.gravity.ConstantGravitationalField-class.html#nominalValue,Variable imusim.environment.magnetic_fields.DistortedMagneticField.nominalValue=imusim.environment.magnetic_fields.DistortedMagneticField-class.html#nominalValue,Variable imusim.maths.vector_fields.ConstantVectorField.nominalValue=imusim.maths.vector_fields.ConstantVectorField-class.html#nominalValue,Variable imusim.maths.vector_fields.NaturalNeighbourInterpolatedField.nominalValue=imusim.maths.vector_fields.NaturalNeighbourInterpolatedField-class.html#nominalValue,Variable imusim.maths.vector_fields.VectorField.nominalValue=imusim.maths.vector_fields.VectorField-class.html#nominalValue"><a title="imusim.environment.gravity.ConstantGravitationalField.nominalValue
+imusim.environment.magnetic_fields.DistortedMagneticField.nominalValue
+imusim.maths.vector_fields.ConstantVectorField.nominalValue
+imusim.maths.vector_fields.NaturalNeighbourInterpolatedField.nominalValue
+imusim.maths.vector_fields.VectorField.nominalValue" class="py-name" href="#" onclick="return doclink('link-16', 'nominalValue', 'link-16');">nominalValue</a></tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line"> </tt>
+<a name="ConstantVectorField"></a><div id="ConstantVectorField-def"><a name="L60"></a><tt class="py-lineno"> 60</tt> <a class="py-toggle" href="#" id="ConstantVectorField-toggle" onclick="return toggle('ConstantVectorField');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="imusim.maths.vector_fields.ConstantVectorField-class.html">ConstantVectorField</a><tt class="py-op">(</tt><tt class="py-base-class">VectorField</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ConstantVectorField-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="ConstantVectorField-expanded"><a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line"><tt class="py-docstring">    A vector field wth a constant value everywhere.</tt> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L64"></a><tt class="py-lineno"> 64</tt>  <tt class="py-line"> </tt>
+<a name="ConstantVectorField.__init__"></a><div id="ConstantVectorField.__init__-def"><a name="L65"></a><tt class="py-lineno"> 65</tt> <a class="py-toggle" href="#" id="ConstantVectorField.__init__-toggle" onclick="return toggle('ConstantVectorField.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.maths.vector_fields.ConstantVectorField-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">value</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ConstantVectorField.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ConstantVectorField.__init__-expanded"><a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line"><tt class="py-docstring">        Construct constant field model.</tt> </tt>
+<a name="L68"></a><tt class="py-lineno"> 68</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line"><tt class="py-docstring">        @param value: Field value as a 3x1 L{np.ndarray}.</tt> </tt>
+<a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_value</tt> <tt class="py-op">=</tt> <tt class="py-name">value</tt> </tt>
+</div><a name="L72"></a><tt class="py-lineno"> 72</tt>  <tt class="py-line"> </tt>
+<a name="ConstantVectorField.__call__"></a><div id="ConstantVectorField.__call__-def"><a name="L73"></a><tt class="py-lineno"> 73</tt> <a class="py-toggle" href="#" id="ConstantVectorField.__call__-toggle" onclick="return toggle('ConstantVectorField.__call__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.maths.vector_fields.ConstantVectorField-class.html#__call__">__call__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">position</tt><tt class="py-op">,</tt> <tt class="py-param">t</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ConstantVectorField.__call__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ConstantVectorField.__call__-expanded"><a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line">        <tt id="link-17" class="py-name" targets="Variable imusim.utilities.caching.CacheEntry.result=imusim.utilities.caching.CacheEntry-class.html#result"><a title="imusim.utilities.caching.CacheEntry.result" class="py-name" href="#" onclick="return doclink('link-17', 'result', 'link-17');">result</a></tt> <tt class="py-op">=</tt> <tt class="py-name">np</tt><tt class="py-op">.</tt><tt class="py-name">empty_like</tt><tt class="py-op">(</tt><tt id="link-18" class="py-name" targets="Module imusim.algorithms.position=imusim.algorithms.position-module.html,Method imusim.testing.random_data.RandomRotationTrajectory.position()=imusim.testing.random_data.RandomRotationTrajectory-class.html#position,Method imusim.trajectories.base.ConstantPositionTrajectory.position()=imusim.trajectories.base.ConstantPositionTrajectory-class.html#position,Method imusim.trajectories.base.PositionTrajectory.position()=imusim.trajectories.base.PositionTrajectory-class.html#position,Method imusim.trajectories.offset.OffsetTrajectory.position()=imusim.trajectories.offset.OffsetTrajectory-class.html#position,Method imusim.trajectories.sampled.SampledPositionTrajectory.position()=imusim.trajectories.sampled.SampledPositionTrajectory-class.html#position,Method imusim.trajectories.splined.SplinedPositionTrajectory.position()=imusim.trajectories.splined.SplinedPositionTrajectory-class.html#position"><a title="imusim.algorithms.position
+imusim.testing.random_data.RandomRotationTrajectory.position
+imusim.trajectories.base.ConstantPositionTrajectory.position
+imusim.trajectories.base.PositionTrajectory.position
+imusim.trajectories.offset.OffsetTrajectory.position
+imusim.trajectories.sampled.SampledPositionTrajectory.position
+imusim.trajectories.splined.SplinedPositionTrajectory.position" class="py-name" href="#" onclick="return doclink('link-18', 'position', 'link-18');">position</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line">        <tt id="link-19" class="py-name"><a title="imusim.utilities.caching.CacheEntry.result" class="py-name" href="#" onclick="return doclink('link-19', 'result', 'link-17');">result</a></tt><tt class="py-op">[</tt><tt class="py-op">:</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_value</tt> </tt>
+<a name="L76"></a><tt class="py-lineno"> 76</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt id="link-20" class="py-name"><a title="imusim.utilities.caching.CacheEntry.result" class="py-name" href="#" onclick="return doclink('link-20', 'result', 'link-17');">result</a></tt> </tt>
+</div><a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line"> </tt>
+<a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line">    <tt class="py-decorator">@</tt><tt class="py-decorator">property</tt> </tt>
+<a name="ConstantVectorField.nominalValue"></a><div id="ConstantVectorField.nominalValue-def"><a name="L79"></a><tt class="py-lineno"> 79</tt> <a class="py-toggle" href="#" id="ConstantVectorField.nominalValue-toggle" onclick="return toggle('ConstantVectorField.nominalValue');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.maths.vector_fields.ConstantVectorField-class.html#nominalValue">nominalValue</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="ConstantVectorField.nominalValue-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="ConstantVectorField.nominalValue-expanded"><a name="L80"></a><tt class="py-lineno"> 80</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_value</tt> </tt>
+</div></div><a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line"> </tt>
+<a name="InterpolatedVectorField"></a><div id="InterpolatedVectorField-def"><a name="L82"></a><tt class="py-lineno"> 82</tt> <a class="py-toggle" href="#" id="InterpolatedVectorField-toggle" onclick="return toggle('InterpolatedVectorField');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="imusim.maths.vector_fields.InterpolatedVectorField-class.html">InterpolatedVectorField</a><tt class="py-op">(</tt><tt class="py-base-class">VectorField</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="InterpolatedVectorField-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="InterpolatedVectorField-expanded"><a name="L83"></a><tt class="py-lineno"> 83</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line"><tt class="py-docstring">    A vector field interpolated from sampled values.</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L86"></a><tt class="py-lineno"> 86</tt>  <tt class="py-line"> </tt>
+<a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">    <tt class="py-decorator">@</tt><tt class="py-decorator">abstractmethod</tt> </tt>
+<a name="InterpolatedVectorField.__init__"></a><div id="InterpolatedVectorField.__init__-def"><a name="L88"></a><tt class="py-lineno"> 88</tt> <a class="py-toggle" href="#" id="InterpolatedVectorField.__init__-toggle" onclick="return toggle('InterpolatedVectorField.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.maths.vector_fields.InterpolatedVectorField-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">positions</tt><tt class="py-op">,</tt> <tt class="py-param">values</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="InterpolatedVectorField.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="InterpolatedVectorField.__init__-expanded"><a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line"><tt class="py-docstring">        Construct vector field interpolator.</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line"><tt class="py-docstring">        @param positions: 3xN L{np.ndarray} of measurement positions.</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line"><tt class="py-docstring">        @param values: 3xN L{np.ndarray} of corresponding field values.</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line">        <tt class="py-keyword">pass</tt> </tt>
+</div></div><a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line"> </tt>
+<a name="RBFInterpolatedField"></a><div id="RBFInterpolatedField-def"><a name="L97"></a><tt class="py-lineno"> 97</tt> <a class="py-toggle" href="#" id="RBFInterpolatedField-toggle" onclick="return toggle('RBFInterpolatedField');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="imusim.maths.vector_fields.RBFInterpolatedField-class.html">RBFInterpolatedField</a><tt class="py-op">(</tt><tt class="py-base-class">InterpolatedVectorField</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="RBFInterpolatedField-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="RBFInterpolatedField-expanded"><a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line"><tt class="py-docstring">    Field interpolation using radial basis functions.</tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line"><tt class="py-docstring">    Each component of the field is interpolated independently.</tt> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="RBFInterpolatedField.__init__"></a><div id="RBFInterpolatedField.__init__-def"><a name="L103"></a><tt class="py-lineno">103</tt> <a class="py-toggle" href="#" id="RBFInterpolatedField.__init__-toggle" onclick="return toggle('RBFInterpolatedField.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.maths.vector_fields.RBFInterpolatedField-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">positions</tt><tt class="py-op">,</tt> <tt class="py-param">values</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="RBFInterpolatedField.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="RBFInterpolatedField.__init__-expanded"><a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line">        <tt id="link-21" class="py-name" targets="Variable imusim.maths.quaternions.Quaternion.x=imusim.maths.quaternions.Quaternion-class.html#x,Variable imusim.maths.quaternions.QuaternionArray.x=imusim.maths.quaternions.QuaternionArray-class.html#x"><a title="imusim.maths.quaternions.Quaternion.x
+imusim.maths.quaternions.QuaternionArray.x" class="py-name" href="#" onclick="return doclink('link-21', 'x', 'link-21');">x</a></tt><tt class="py-op">,</tt><tt id="link-22" class="py-name" targets="Variable imusim.maths.quaternions.Quaternion.y=imusim.maths.quaternions.Quaternion-class.html#y,Variable imusim.maths.quaternions.QuaternionArray.y=imusim.maths.quaternions.QuaternionArray-class.html#y"><a title="imusim.maths.quaternions.Quaternion.y
+imusim.maths.quaternions.QuaternionArray.y" class="py-name" href="#" onclick="return doclink('link-22', 'y', 'link-22');">y</a></tt><tt class="py-op">,</tt><tt id="link-23" class="py-name" targets="Variable imusim.maths.quaternions.Quaternion.z=imusim.maths.quaternions.Quaternion-class.html#z,Variable imusim.maths.quaternions.QuaternionArray.z=imusim.maths.quaternions.QuaternionArray-class.html#z"><a title="imusim.maths.quaternions.Quaternion.z
+imusim.maths.quaternions.QuaternionArray.z" class="py-name" href="#" onclick="return doclink('link-23', 'z', 'link-23');">z</a></tt> <tt class="py-op">=</tt> <tt class="py-name">positions</tt> </tt>
+<a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-24" class="py-name" targets="Variable imusim.maths.quaternions.Quaternion.components=imusim.maths.quaternions.Quaternion-class.html#components,Variable imusim.platforms.base.Platform.components=imusim.platforms.base.Platform-class.html#components,Variable imusim.platforms.basestations.IdealBasestation.components=imusim.platforms.basestations.IdealBasestation-class.html#components,Variable imusim.platforms.imus.StandardIMU.components=imusim.platforms.imus.StandardIMU-class.html#components"><a title="imusim.maths.quaternions.Quaternion.components
+imusim.platforms.base.Platform.components
+imusim.platforms.basestations.IdealBasestation.components
+imusim.platforms.imus.StandardIMU.components" class="py-name" href="#" onclick="return doclink('link-24', 'components', 'link-24');">components</a></tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-name">interpolate</tt><tt class="py-op">.</tt><tt class="py-name">Rbf</tt><tt class="py-op">(</tt><tt id="link-25" class="py-name"><a title="imusim.maths.quaternions.Quaternion.x
+imusim.maths.quaternions.QuaternionArray.x" class="py-name" href="#" onclick="return doclink('link-25', 'x', 'link-21');">x</a></tt><tt class="py-op">,</tt><tt id="link-26" class="py-name"><a title="imusim.maths.quaternions.Quaternion.y
+imusim.maths.quaternions.QuaternionArray.y" class="py-name" href="#" onclick="return doclink('link-26', 'y', 'link-22');">y</a></tt><tt class="py-op">,</tt><tt id="link-27" class="py-name"><a title="imusim.maths.quaternions.Quaternion.z
+imusim.maths.quaternions.QuaternionArray.z" class="py-name" href="#" onclick="return doclink('link-27', 'z', 'link-23');">z</a></tt><tt class="py-op">,</tt><tt class="py-name">v</tt><tt class="py-op">,</tt><tt class="py-name">function</tt><tt class="py-op">=</tt><tt class="py-string">'cubic'</tt><tt class="py-op">)</tt> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line">            <tt class="py-keyword">for</tt> <tt class="py-name">v</tt> <tt class="py-keyword">in</tt> <tt id="link-28" class="py-name" targets="Variable imusim.utilities.time_series.TimeSeries.values=imusim.utilities.time_series.TimeSeries-class.html#values"><a title="imusim.utilities.time_series.TimeSeries.values" class="py-name" href="#" onclick="return doclink('link-28', 'values', 'link-28');">values</a></tt><tt class="py-op">]</tt> </tt>
+</div><a name="L107"></a><tt class="py-lineno">107</tt>  <tt class="py-line"> </tt>
+<a name="RBFInterpolatedField.__call__"></a><div id="RBFInterpolatedField.__call__-def"><a name="L108"></a><tt class="py-lineno">108</tt> <a class="py-toggle" href="#" id="RBFInterpolatedField.__call__-toggle" onclick="return toggle('RBFInterpolatedField.__call__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.maths.vector_fields.RBFInterpolatedField-class.html#__call__">__call__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">position</tt><tt class="py-op">,</tt> <tt class="py-param">t</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="RBFInterpolatedField.__call__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="RBFInterpolatedField.__call__-expanded"><a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line">        <tt class="py-name">length</tt> <tt class="py-op">=</tt> <tt class="py-name">np</tt><tt class="py-op">.</tt><tt class="py-name">shape</tt><tt class="py-op">(</tt><tt id="link-29" class="py-name"><a title="imusim.algorithms.position
+imusim.testing.random_data.RandomRotationTrajectory.position
+imusim.trajectories.base.ConstantPositionTrajectory.position
+imusim.trajectories.base.PositionTrajectory.position
+imusim.trajectories.offset.OffsetTrajectory.position
+imusim.trajectories.sampled.SampledPositionTrajectory.position
+imusim.trajectories.splined.SplinedPositionTrajectory.position" class="py-name" href="#" onclick="return doclink('link-29', 'position', 'link-18');">position</a></tt><tt class="py-op">)</tt><tt class="py-op">[</tt><tt class="py-op">-</tt><tt class="py-number">1</tt><tt class="py-op">]</tt> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line">        <tt class="py-name">nblocks</tt> <tt class="py-op">=</tt> <tt class="py-name">min</tt><tt class="py-op">(</tt><tt class="py-number">1</tt><tt class="py-op">,</tt> <tt class="py-name">length</tt><tt class="py-op">/</tt><tt class="py-number">500</tt><tt class="py-op">)</tt> </tt>
+<a name="L111"></a><tt class="py-lineno">111</tt>  <tt class="py-line">        <tt class="py-name">inblocks</tt> <tt class="py-op">=</tt> <tt class="py-name">np</tt><tt class="py-op">.</tt><tt class="py-name">array_split</tt><tt class="py-op">(</tt><tt id="link-30" class="py-name"><a title="imusim.algorithms.position
+imusim.testing.random_data.RandomRotationTrajectory.position
+imusim.trajectories.base.ConstantPositionTrajectory.position
+imusim.trajectories.base.PositionTrajectory.position
+imusim.trajectories.offset.OffsetTrajectory.position
+imusim.trajectories.sampled.SampledPositionTrajectory.position
+imusim.trajectories.splined.SplinedPositionTrajectory.position" class="py-name" href="#" onclick="return doclink('link-30', 'position', 'link-18');">position</a></tt><tt class="py-op">,</tt> <tt class="py-name">nblocks</tt><tt class="py-op">,</tt> <tt class="py-name">axis</tt><tt class="py-op">=</tt><tt class="py-number">1</tt><tt class="py-op">)</tt> </tt>
+<a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line">        <tt class="py-name">outblocks</tt> <tt class="py-op">=</tt> <tt class="py-op">[</tt><tt class="py-name">np</tt><tt class="py-op">.</tt><tt id="link-31" class="py-name" targets="Variable imusim.maths.quaternions.QuaternionArray.array=imusim.maths.quaternions.QuaternionArray-class.html#array"><a title="imusim.maths.quaternions.QuaternionArray.array" class="py-name" href="#" onclick="return doclink('link-31', 'array', 'link-31');">array</a></tt><tt class="py-op">(</tt><tt class="py-op">[</tt><tt class="py-name">np</tt><tt class="py-op">.</tt><tt class="py-name">atleast_1d</tt><tt class="py-op">(</tt><tt class="py-name">c</tt><tt class="py-op">(</tt><tt class="py-op">*</tt><tt class="py-op">(</tt><tt class="py-name">list</tt><tt class="py-op">(</tt><tt class="py-name">ib</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line">            <tt class="py-keyword">for</tt> <tt class="py-name">c</tt> <tt class="py-keyword">in</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-32" class="py-name"><a title="imusim.maths.quaternions.Quaternion.components
+imusim.platforms.base.Platform.components
+imusim.platforms.basestations.IdealBasestation.components
+imusim.platforms.imus.StandardIMU.components" class="py-name" href="#" onclick="return doclink('link-32', 'components', 'link-24');">components</a></tt><tt class="py-op">]</tt><tt class="py-op">)</tt> <tt class="py-keyword">for</tt> <tt class="py-name">ib</tt> <tt class="py-keyword">in</tt> <tt class="py-name">inblocks</tt><tt class="py-op">]</tt> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">np</tt><tt class="py-op">.</tt><tt class="py-name">hstack</tt><tt class="py-op">(</tt><tt class="py-name">outblocks</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line"> </tt>
+<a name="NaturalNeighbourInterpolatedField"></a><div id="NaturalNeighbourInterpolatedField-def"><a name="L116"></a><tt class="py-lineno">116</tt> <a class="py-toggle" href="#" id="NaturalNeighbourInterpolatedField-toggle" onclick="return toggle('NaturalNeighbourInterpolatedField');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="imusim.maths.vector_fields.NaturalNeighbourInterpolatedField-class.html">NaturalNeighbourInterpolatedField</a><tt class="py-op">(</tt><tt class="py-base-class">InterpolatedVectorField</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="NaturalNeighbourInterpolatedField-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="NaturalNeighbourInterpolatedField-expanded"><a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L118"></a><tt class="py-lineno">118</tt>  <tt class="py-line"><tt class="py-docstring">    Natural Neighbour interpolation of vector fields.</tt> </tt>
+<a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line"><tt class="py-docstring">    This is a Python wrapper for the C implementation by Ross Hemsley, described</tt> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line"><tt class="py-docstring">    in the report "Interpolation on a Magnetic Field", Bristol University, 2009.</tt> </tt>
+<a name="L122"></a><tt class="py-lineno">122</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line"><tt class="py-docstring">    The original code and report are available from:</tt> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line"><tt class="py-docstring">    http://code.google.com/p/interpolate3d/</tt> </tt>
+<a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="NaturalNeighbourInterpolatedField.__init__"></a><div id="NaturalNeighbourInterpolatedField.__init__-def"><a name="L126"></a><tt class="py-lineno">126</tt> <a class="py-toggle" href="#" id="NaturalNeighbourInterpolatedField.__init__-toggle" onclick="return toggle('NaturalNeighbourInterpolatedField.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.maths.vector_fields.NaturalNeighbourInterpolatedField-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">positions</tt><tt class="py-op">,</tt> <tt class="py-param">values</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="NaturalNeighbourInterpolatedField.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="NaturalNeighbourInterpolatedField.__init__-expanded"><a name="L127"></a><tt class="py-lineno">127</tt>  <tt class="py-line"> </tt>
+<a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line">        <tt class="py-name">valid</tt> <tt class="py-op">=</tt> <tt id="link-33" class="py-name"><a title="imusim.maths.vectors
+imusim.testing.vectors" class="py-name" href="#" onclick="return doclink('link-33', 'vectors', 'link-3');">vectors</a></tt><tt class="py-op">.</tt><tt id="link-34" class="py-name" targets="Method imusim.maths.quaternions.QuaternionArray.validity()=imusim.maths.quaternions.QuaternionArray-class.html#validity"><a title="imusim.maths.quaternions.QuaternionArray.validity" class="py-name" href="#" onclick="return doclink('link-34', 'validity', 'link-34');">validity</a></tt><tt class="py-op">(</tt><tt class="py-name">np</tt><tt class="py-op">.</tt><tt class="py-name">vstack</tt><tt class="py-op">(</tt><tt class="py-op">(</tt><tt class="py-name">positions</tt><tt class="py-op">,</tt><tt id="link-35" class="py-name"><a title="imusim.utilities.time_series.TimeSeries.values" class="py-name" href="#" onclick="return doclink('link-35', 'values', 'link-28');">values</a></tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line"> </tt>
+<a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line">        <tt id="link-36" class="py-name"><a title="imusim.maths.quaternions.Quaternion.x
+imusim.maths.quaternions.QuaternionArray.x" class="py-name" href="#" onclick="return doclink('link-36', 'x', 'link-21');">x</a></tt><tt class="py-op">,</tt><tt id="link-37" class="py-name"><a title="imusim.maths.quaternions.Quaternion.y
+imusim.maths.quaternions.QuaternionArray.y" class="py-name" href="#" onclick="return doclink('link-37', 'y', 'link-22');">y</a></tt><tt class="py-op">,</tt><tt id="link-38" class="py-name"><a title="imusim.maths.quaternions.Quaternion.z
+imusim.maths.quaternions.QuaternionArray.z" class="py-name" href="#" onclick="return doclink('link-38', 'z', 'link-23');">z</a></tt> <tt class="py-op">=</tt> <tt class="py-name">positions</tt> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line"> </tt>
+<a name="L132"></a><tt class="py-lineno">132</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_baseField</tt> <tt class="py-op">=</tt> <tt class="py-name">np</tt><tt class="py-op">.</tt><tt class="py-name">median</tt><tt class="py-op">(</tt><tt id="link-39" class="py-name"><a title="imusim.utilities.time_series.TimeSeries.values" class="py-name" href="#" onclick="return doclink('link-39', 'values', 'link-28');">values</a></tt><tt class="py-op">[</tt><tt class="py-op">:</tt><tt class="py-op">,</tt><tt class="py-name">valid</tt><tt class="py-op">]</tt><tt class="py-op">,</tt> <tt class="py-name">axis</tt><tt class="py-op">=</tt><tt class="py-number">1</tt><tt class="py-op">)</tt><tt class="py-op">.</tt><tt class="py-name">reshape</tt><tt class="py-op">(</tt><tt class="py-number">3</tt><tt class="py-op">,</tt><tt class="py-number">1</tt><tt class="py-op">)</tt> </tt>
+<a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line">        <tt class="py-name">deviations</tt> <tt class="py-op">=</tt> <tt id="link-40" class="py-name"><a title="imusim.utilities.time_series.TimeSeries.values" class="py-name" href="#" onclick="return doclink('link-40', 'values', 'link-28');">values</a></tt> <tt class="py-op">-</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_baseField</tt> </tt>
+<a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line"> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line">        <tt class="py-name">u</tt><tt class="py-op">,</tt><tt class="py-name">v</tt><tt class="py-op">,</tt><tt id="link-41" class="py-name" targets="Variable imusim.maths.quaternions.Quaternion.w=imusim.maths.quaternions.Quaternion-class.html#w,Variable imusim.maths.quaternions.QuaternionArray.w=imusim.maths.quaternions.QuaternionArray-class.html#w"><a title="imusim.maths.quaternions.Quaternion.w
+imusim.maths.quaternions.QuaternionArray.w" class="py-name" href="#" onclick="return doclink('link-41', 'w', 'link-41');">w</a></tt> <tt class="py-op">=</tt> <tt id="link-42" class="py-name"><a title="imusim.utilities.time_series.TimeSeries.values" class="py-name" href="#" onclick="return doclink('link-42', 'values', 'link-28');">values</a></tt> </tt>
+<a name="L136"></a><tt class="py-lineno">136</tt>  <tt class="py-line"> </tt>
+<a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">imp</tt> <tt class="py-op">=</tt> <tt id="link-43" class="py-name"><a title="imusim.maths.natural_neighbour.NaturalNeighbourInterpolatorC" class="py-name" href="#" onclick="return doclink('link-43', 'NaturalNeighbourInterpolatorC', 'link-11');">NaturalNeighbourInterpolatorC</a></tt><tt class="py-op">(</tt> </tt>
+<a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line">            <tt class="py-name">np</tt><tt class="py-op">.</tt><tt class="py-name">ascontiguousarray</tt><tt class="py-op">(</tt><tt id="link-44" class="py-name"><a title="imusim.maths.quaternions.Quaternion.x
+imusim.maths.quaternions.QuaternionArray.x" class="py-name" href="#" onclick="return doclink('link-44', 'x', 'link-21');">x</a></tt><tt class="py-op">[</tt><tt class="py-name">valid</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L139"></a><tt class="py-lineno">139</tt>  <tt class="py-line">            <tt class="py-name">np</tt><tt class="py-op">.</tt><tt class="py-name">ascontiguousarray</tt><tt class="py-op">(</tt><tt id="link-45" class="py-name"><a title="imusim.maths.quaternions.Quaternion.y
+imusim.maths.quaternions.QuaternionArray.y" class="py-name" href="#" onclick="return doclink('link-45', 'y', 'link-22');">y</a></tt><tt class="py-op">[</tt><tt class="py-name">valid</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L140"></a><tt class="py-lineno">140</tt>  <tt class="py-line">            <tt class="py-name">np</tt><tt class="py-op">.</tt><tt class="py-name">ascontiguousarray</tt><tt class="py-op">(</tt><tt id="link-46" class="py-name"><a title="imusim.maths.quaternions.Quaternion.z
+imusim.maths.quaternions.QuaternionArray.z" class="py-name" href="#" onclick="return doclink('link-46', 'z', 'link-23');">z</a></tt><tt class="py-op">[</tt><tt class="py-name">valid</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line">            <tt class="py-name">np</tt><tt class="py-op">.</tt><tt class="py-name">ascontiguousarray</tt><tt class="py-op">(</tt><tt class="py-name">u</tt><tt class="py-op">[</tt><tt class="py-name">valid</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L142"></a><tt class="py-lineno">142</tt>  <tt class="py-line">            <tt class="py-name">np</tt><tt class="py-op">.</tt><tt class="py-name">ascontiguousarray</tt><tt class="py-op">(</tt><tt class="py-name">v</tt><tt class="py-op">[</tt><tt class="py-name">valid</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">,</tt> </tt>
+<a name="L143"></a><tt class="py-lineno">143</tt>  <tt class="py-line">            <tt class="py-name">np</tt><tt class="py-op">.</tt><tt class="py-name">ascontiguousarray</tt><tt class="py-op">(</tt><tt id="link-47" class="py-name"><a title="imusim.maths.quaternions.Quaternion.w
+imusim.maths.quaternions.QuaternionArray.w" class="py-name" href="#" onclick="return doclink('link-47', 'w', 'link-41');">w</a></tt><tt class="py-op">[</tt><tt class="py-name">valid</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L144"></a><tt class="py-lineno">144</tt>  <tt class="py-line"> </tt>
+<a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line">    <tt class="py-decorator">@</tt><tt class="py-decorator">property</tt> </tt>
+<a name="NaturalNeighbourInterpolatedField.nominalValue"></a><div id="NaturalNeighbourInterpolatedField.nominalValue-def"><a name="L146"></a><tt class="py-lineno">146</tt> <a class="py-toggle" href="#" id="NaturalNeighbourInterpolatedField.nominalValue-toggle" onclick="return toggle('NaturalNeighbourInterpolatedField.nominalValue');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.maths.vector_fields.NaturalNeighbourInterpolatedField-class.html#nominalValue">nominalValue</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="NaturalNeighbourInterpolatedField.nominalValue-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="NaturalNeighbourInterpolatedField.nominalValue-expanded"><a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_baseField</tt> </tt>
+</div><a name="L148"></a><tt class="py-lineno">148</tt>  <tt class="py-line"> </tt>
+<a name="NaturalNeighbourInterpolatedField.__call__"></a><div id="NaturalNeighbourInterpolatedField.__call__-def"><a name="L149"></a><tt class="py-lineno">149</tt> <a class="py-toggle" href="#" id="NaturalNeighbourInterpolatedField.__call__-toggle" onclick="return toggle('NaturalNeighbourInterpolatedField.__call__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.maths.vector_fields.NaturalNeighbourInterpolatedField-class.html#__call__">__call__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">position</tt><tt class="py-op">,</tt> <tt class="py-param">t</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="NaturalNeighbourInterpolatedField.__call__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="NaturalNeighbourInterpolatedField.__call__-expanded"><a name="L150"></a><tt class="py-lineno">150</tt>  <tt class="py-line">        <tt class="py-name">valid</tt> <tt class="py-op">=</tt> <tt id="link-48" class="py-name"><a title="imusim.maths.vectors
+imusim.testing.vectors" class="py-name" href="#" onclick="return doclink('link-48', 'vectors', 'link-3');">vectors</a></tt><tt class="py-op">.</tt><tt id="link-49" class="py-name"><a title="imusim.maths.quaternions.QuaternionArray.validity" class="py-name" href="#" onclick="return doclink('link-49', 'validity', 'link-34');">validity</a></tt><tt class="py-op">(</tt><tt id="link-50" class="py-name"><a title="imusim.algorithms.position
+imusim.testing.random_data.RandomRotationTrajectory.position
+imusim.trajectories.base.ConstantPositionTrajectory.position
+imusim.trajectories.base.PositionTrajectory.position
+imusim.trajectories.offset.OffsetTrajectory.position
+imusim.trajectories.sampled.SampledPositionTrajectory.position
+imusim.trajectories.splined.SplinedPositionTrajectory.position" class="py-name" href="#" onclick="return doclink('link-50', 'position', 'link-18');">position</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L151"></a><tt class="py-lineno">151</tt>  <tt class="py-line">        <tt id="link-51" class="py-name"><a title="imusim.utilities.caching.CacheEntry.result" class="py-name" href="#" onclick="return doclink('link-51', 'result', 'link-17');">result</a></tt> <tt class="py-op">=</tt> <tt class="py-name">np</tt><tt class="py-op">.</tt><tt class="py-name">empty_like</tt><tt class="py-op">(</tt><tt id="link-52" class="py-name"><a title="imusim.algorithms.position
+imusim.testing.random_data.RandomRotationTrajectory.position
+imusim.trajectories.base.ConstantPositionTrajectory.position
+imusim.trajectories.base.PositionTrajectory.position
+imusim.trajectories.offset.OffsetTrajectory.position
+imusim.trajectories.sampled.SampledPositionTrajectory.position
+imusim.trajectories.splined.SplinedPositionTrajectory.position" class="py-name" href="#" onclick="return doclink('link-52', 'position', 'link-18');">position</a></tt><tt class="py-op">)</tt> </tt>
+<a name="L152"></a><tt class="py-lineno">152</tt>  <tt class="py-line">        <tt id="link-53" class="py-name"><a title="imusim.utilities.caching.CacheEntry.result" class="py-name" href="#" onclick="return doclink('link-53', 'result', 'link-17');">result</a></tt><tt class="py-op">[</tt><tt class="py-op">:</tt><tt class="py-op">,</tt><tt class="py-op">~</tt><tt class="py-name">valid</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">np</tt><tt class="py-op">.</tt><tt id="link-54" class="py-name" targets="Static Method imusim.maths.quaternions.Quaternion.nan()=imusim.maths.quaternions.Quaternion-class.html#nan,Static Method imusim.maths.quaternions.QuaternionArray.nan()=imusim.maths.quaternions.QuaternionArray-class.html#nan"><a title="imusim.maths.quaternions.Quaternion.nan
+imusim.maths.quaternions.QuaternionArray.nan" class="py-name" href="#" onclick="return doclink('link-54', 'nan', 'link-54');">nan</a></tt> </tt>
+<a name="L153"></a><tt class="py-lineno">153</tt>  <tt class="py-line">        <tt id="link-55" class="py-name"><a title="imusim.utilities.caching.CacheEntry.result" class="py-name" href="#" onclick="return doclink('link-55', 'result', 'link-17');">result</a></tt><tt class="py-op">[</tt><tt class="py-op">:</tt><tt class="py-op">,</tt><tt class="py-name">valid</tt><tt class="py-op">]</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">imp</tt><tt class="py-op">(</tt><tt class="py-op">*</tt><tt class="py-op">(</tt><tt class="py-name">list</tt><tt class="py-op">(</tt><tt id="link-56" class="py-name"><a title="imusim.algorithms.position
+imusim.testing.random_data.RandomRotationTrajectory.position
+imusim.trajectories.base.ConstantPositionTrajectory.position
+imusim.trajectories.base.PositionTrajectory.position
+imusim.trajectories.offset.OffsetTrajectory.position
+imusim.trajectories.sampled.SampledPositionTrajectory.position
+imusim.trajectories.splined.SplinedPositionTrajectory.position" class="py-name" href="#" onclick="return doclink('link-56', 'position', 'link-18');">position</a></tt><tt class="py-op">[</tt><tt class="py-op">:</tt><tt class="py-op">,</tt><tt class="py-name">valid</tt><tt class="py-op">]</tt><tt class="py-op">)</tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+<a name="L154"></a><tt class="py-lineno">154</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_baseField</tt> <tt class="py-op">+</tt> <tt id="link-57" class="py-name"><a title="imusim.utilities.caching.CacheEntry.result" class="py-name" href="#" onclick="return doclink('link-57', 'result', 'link-17');">result</a></tt> </tt>
+</div></div><a name="L155"></a><tt class="py-lineno">155</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="imusim-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://www.imusim.org/">IMUSim</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Wed Apr 14 11:45:15 2021
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

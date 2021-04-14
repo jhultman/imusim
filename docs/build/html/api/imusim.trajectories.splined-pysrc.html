@@ -1,0 +1,621 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>imusim.trajectories.splined</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="imusim-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://www.imusim.org/">IMUSim</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="imusim-module.html">Package&nbsp;imusim</a> ::
+        <a href="imusim.trajectories-module.html">Package&nbsp;trajectories</a> ::
+        Module&nbsp;splined
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+      </table>
+    </td>
+  </tr>
+</table>
+<h1 class="epydoc">Source Code for <a href="imusim.trajectories.splined-module.html">Module imusim.trajectories.splined</a></h1>
+<pre class="py-src">
+<a name="L1"></a><tt class="py-lineno">  1</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L2"></a><tt class="py-lineno">  2</tt>  <tt class="py-line"><tt class="py-docstring">Continuous splined trajectories from sampled trajectories.</tt> </tt>
+<a name="L3"></a><tt class="py-lineno">  3</tt>  <tt class="py-line"><tt class="py-docstring">"""</tt> </tt>
+<a name="L4"></a><tt class="py-lineno">  4</tt>  <tt class="py-line"><tt class="py-comment"># Copyright (C) 2009-2011 University of Edinburgh</tt> </tt>
+<a name="L5"></a><tt class="py-lineno">  5</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L6"></a><tt class="py-lineno">  6</tt>  <tt class="py-line"><tt class="py-comment"># This file is part of IMUSim.</tt> </tt>
+<a name="L7"></a><tt class="py-lineno">  7</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L8"></a><tt class="py-lineno">  8</tt>  <tt class="py-line"><tt class="py-comment"># IMUSim is free software: you can redistribute it and/or modify it</tt> </tt>
+<a name="L9"></a><tt class="py-lineno">  9</tt>  <tt class="py-line"><tt class="py-comment"># under the terms of the GNU General Public License as published by</tt> </tt>
+<a name="L10"></a><tt class="py-lineno"> 10</tt>  <tt class="py-line"><tt class="py-comment"># the Free Software Foundation, either version 3 of the License, or</tt> </tt>
+<a name="L11"></a><tt class="py-lineno"> 11</tt>  <tt class="py-line"><tt class="py-comment"># (at your option) any later version.</tt> </tt>
+<a name="L12"></a><tt class="py-lineno"> 12</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L13"></a><tt class="py-lineno"> 13</tt>  <tt class="py-line"><tt class="py-comment"># IMUSim is distributed in the hope that it will be useful,</tt> </tt>
+<a name="L14"></a><tt class="py-lineno"> 14</tt>  <tt class="py-line"><tt class="py-comment"># but WITHOUT ANY WARRANTY; without even the implied warranty of</tt> </tt>
+<a name="L15"></a><tt class="py-lineno"> 15</tt>  <tt class="py-line"><tt class="py-comment"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</tt> </tt>
+<a name="L16"></a><tt class="py-lineno"> 16</tt>  <tt class="py-line"><tt class="py-comment"># GNU General Public License for more details.</tt> </tt>
+<a name="L17"></a><tt class="py-lineno"> 17</tt>  <tt class="py-line"><tt class="py-comment">#</tt> </tt>
+<a name="L18"></a><tt class="py-lineno"> 18</tt>  <tt class="py-line"><tt class="py-comment"># You should have received a copy of the GNU General Public License</tt> </tt>
+<a name="L19"></a><tt class="py-lineno"> 19</tt>  <tt class="py-line"><tt class="py-comment"># along with IMUSim.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</tt> </tt>
+<a name="L20"></a><tt class="py-lineno"> 20</tt>  <tt class="py-line"> </tt>
+<a name="L21"></a><tt class="py-lineno"> 21</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt class="py-name">__future__</tt> <tt class="py-keyword">import</tt> <tt class="py-name">division</tt> </tt>
+<a name="L22"></a><tt class="py-lineno"> 22</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-0" class="py-name" targets="Package imusim=imusim-module.html"><a title="imusim" class="py-name" href="#" onclick="return doclink('link-0', 'imusim', 'link-0');">imusim</a></tt><tt class="py-op">.</tt><tt id="link-1" class="py-name" targets="Module imusim.testing.trajectories=imusim.testing.trajectories-module.html,Package imusim.trajectories=imusim.trajectories-module.html"><a title="imusim.testing.trajectories
+imusim.trajectories" class="py-name" href="#" onclick="return doclink('link-1', 'trajectories', 'link-1');">trajectories</a></tt><tt class="py-op">.</tt><tt id="link-2" class="py-name" targets="Module imusim.trajectories.sampled=imusim.trajectories.sampled-module.html"><a title="imusim.trajectories.sampled" class="py-name" href="#" onclick="return doclink('link-2', 'sampled', 'link-2');">sampled</a></tt> <tt class="py-keyword">import</tt> <tt id="link-3" class="py-name" targets="Class imusim.trajectories.sampled.SampledPositionTrajectory=imusim.trajectories.sampled.SampledPositionTrajectory-class.html"><a title="imusim.trajectories.sampled.SampledPositionTrajectory" class="py-name" href="#" onclick="return doclink('link-3', 'SampledPositionTrajectory', 'link-3');">SampledPositionTrajectory</a></tt><tt class="py-op">,</tt> <tt id="link-4" class="py-name" targets="Class imusim.trajectories.sampled.SampledRotationTrajectory=imusim.trajectories.sampled.SampledRotationTrajectory-class.html"><a title="imusim.trajectories.sampled.SampledRotationTrajectory" class="py-name" href="#" onclick="return doclink('link-4', 'SampledRotationTrajectory', 'link-4');">SampledRotationTrajectory</a></tt> </tt>
+<a name="L23"></a><tt class="py-lineno"> 23</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-5" class="py-name"><a title="imusim" class="py-name" href="#" onclick="return doclink('link-5', 'imusim', 'link-0');">imusim</a></tt><tt class="py-op">.</tt><tt id="link-6" class="py-name"><a title="imusim.testing.trajectories
+imusim.trajectories" class="py-name" href="#" onclick="return doclink('link-6', 'trajectories', 'link-1');">trajectories</a></tt><tt class="py-op">.</tt><tt id="link-7" class="py-name"><a title="imusim.trajectories.sampled" class="py-name" href="#" onclick="return doclink('link-7', 'sampled', 'link-2');">sampled</a></tt> <tt class="py-keyword">import</tt> <tt id="link-8" class="py-name" targets="Class imusim.trajectories.sampled.SampledTrajectory=imusim.trajectories.sampled.SampledTrajectory-class.html"><a title="imusim.trajectories.sampled.SampledTrajectory" class="py-name" href="#" onclick="return doclink('link-8', 'SampledTrajectory', 'link-8');">SampledTrajectory</a></tt> </tt>
+<a name="L24"></a><tt class="py-lineno"> 24</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-9" class="py-name"><a title="imusim" class="py-name" href="#" onclick="return doclink('link-9', 'imusim', 'link-0');">imusim</a></tt><tt class="py-op">.</tt><tt id="link-10" class="py-name" targets="Package imusim.maths=imusim.maths-module.html"><a title="imusim.maths" class="py-name" href="#" onclick="return doclink('link-10', 'maths', 'link-10');">maths</a></tt><tt class="py-op">.</tt><tt id="link-11" class="py-name" targets="Module imusim.maths.vector_splines=imusim.maths.vector_splines-module.html"><a title="imusim.maths.vector_splines" class="py-name" href="#" onclick="return doclink('link-11', 'vector_splines', 'link-11');">vector_splines</a></tt> <tt class="py-keyword">import</tt> <tt id="link-12" class="py-name" targets="Class imusim.maths.vector_splines.PartialInputVectorSpline=imusim.maths.vector_splines.PartialInputVectorSpline-class.html"><a title="imusim.maths.vector_splines.PartialInputVectorSpline" class="py-name" href="#" onclick="return doclink('link-12', 'PartialInputVectorSpline', 'link-12');">PartialInputVectorSpline</a></tt> </tt>
+<a name="L25"></a><tt class="py-lineno"> 25</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-13" class="py-name"><a title="imusim" class="py-name" href="#" onclick="return doclink('link-13', 'imusim', 'link-0');">imusim</a></tt><tt class="py-op">.</tt><tt id="link-14" class="py-name"><a title="imusim.maths" class="py-name" href="#" onclick="return doclink('link-14', 'maths', 'link-10');">maths</a></tt><tt class="py-op">.</tt><tt id="link-15" class="py-name" targets="Module imusim.maths.quat_splines=imusim.maths.quat_splines-module.html"><a title="imusim.maths.quat_splines" class="py-name" href="#" onclick="return doclink('link-15', 'quat_splines', 'link-15');">quat_splines</a></tt> <tt class="py-keyword">import</tt> <tt id="link-16" class="py-name" targets="Class imusim.maths.quat_splines.PartialInputQuaternionBSpline=imusim.maths.quat_splines.PartialInputQuaternionBSpline-class.html"><a title="imusim.maths.quat_splines.PartialInputQuaternionBSpline" class="py-name" href="#" onclick="return doclink('link-16', 'PartialInputQuaternionBSpline', 'link-16');">PartialInputQuaternionBSpline</a></tt> </tt>
+<a name="L26"></a><tt class="py-lineno"> 26</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-17" class="py-name"><a title="imusim" class="py-name" href="#" onclick="return doclink('link-17', 'imusim', 'link-0');">imusim</a></tt><tt class="py-op">.</tt><tt id="link-18" class="py-name" targets="Package imusim.utilities=imusim.utilities-module.html"><a title="imusim.utilities" class="py-name" href="#" onclick="return doclink('link-18', 'utilities', 'link-18');">utilities</a></tt><tt class="py-op">.</tt><tt id="link-19" class="py-name" targets="Module imusim.utilities.caching=imusim.utilities.caching-module.html"><a title="imusim.utilities.caching" class="py-name" href="#" onclick="return doclink('link-19', 'caching', 'link-19');">caching</a></tt> <tt class="py-keyword">import</tt> <tt id="link-20" class="py-name" targets="Class imusim.utilities.caching.CacheLastValue=imusim.utilities.caching.CacheLastValue-class.html"><a title="imusim.utilities.caching.CacheLastValue" class="py-name" href="#" onclick="return doclink('link-20', 'CacheLastValue', 'link-20');">CacheLastValue</a></tt> </tt>
+<a name="L27"></a><tt class="py-lineno"> 27</tt>  <tt class="py-line"><tt class="py-keyword">from</tt> <tt id="link-21" class="py-name"><a title="imusim" class="py-name" href="#" onclick="return doclink('link-21', 'imusim', 'link-0');">imusim</a></tt><tt class="py-op">.</tt><tt id="link-22" class="py-name"><a title="imusim.utilities" class="py-name" href="#" onclick="return doclink('link-22', 'utilities', 'link-18');">utilities</a></tt><tt class="py-op">.</tt><tt id="link-23" class="py-name" targets="Module imusim.utilities.time_series=imusim.utilities.time_series-module.html"><a title="imusim.utilities.time_series" class="py-name" href="#" onclick="return doclink('link-23', 'time_series', 'link-23');">time_series</a></tt> <tt class="py-keyword">import</tt> <tt id="link-24" class="py-name" targets="Class imusim.utilities.time_series.TimeSeries=imusim.utilities.time_series.TimeSeries-class.html"><a title="imusim.utilities.time_series.TimeSeries" class="py-name" href="#" onclick="return doclink('link-24', 'TimeSeries', 'link-24');">TimeSeries</a></tt> </tt>
+<a name="SplinedPositionTrajectory"></a><div id="SplinedPositionTrajectory-def"><a name="L28"></a><tt class="py-lineno"> 28</tt>  <tt class="py-line"> </tt>
+<a name="L29"></a><tt class="py-lineno"> 29</tt> <a class="py-toggle" href="#" id="SplinedPositionTrajectory-toggle" onclick="return toggle('SplinedPositionTrajectory');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="imusim.trajectories.splined.SplinedPositionTrajectory-class.html">SplinedPositionTrajectory</a><tt class="py-op">(</tt><tt class="py-base-class">SampledPositionTrajectory</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SplinedPositionTrajectory-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="SplinedPositionTrajectory-expanded"><a name="L30"></a><tt class="py-lineno"> 30</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L31"></a><tt class="py-lineno"> 31</tt>  <tt class="py-line"><tt class="py-docstring">    Trajectory with position obtained by splining a sampled trajectory.</tt> </tt>
+<a name="L32"></a><tt class="py-lineno"> 32</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L33"></a><tt class="py-lineno"> 33</tt>  <tt class="py-line"> </tt>
+<a name="SplinedPositionTrajectory.__init__"></a><div id="SplinedPositionTrajectory.__init__-def"><a name="L34"></a><tt class="py-lineno"> 34</tt> <a class="py-toggle" href="#" id="SplinedPositionTrajectory.__init__-toggle" onclick="return toggle('SplinedPositionTrajectory.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.trajectories.splined.SplinedPositionTrajectory-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">sampled</tt><tt class="py-op">,</tt> <tt class="py-param">positionStdDev</tt><tt class="py-op">=</tt><tt class="py-number">0.001</tt><tt class="py-op">,</tt> <tt class="py-param">positionSplineOrder</tt><tt class="py-op">=</tt><tt class="py-number">5</tt><tt class="py-op">,</tt> <tt class="py-op">**</tt><tt class="py-param">kwargs</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SplinedPositionTrajectory.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="SplinedPositionTrajectory.__init__-expanded"><a name="L35"></a><tt class="py-lineno"> 35</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L36"></a><tt class="py-lineno"> 36</tt>  <tt class="py-line"><tt class="py-docstring">        Initialise trajectory.</tt> </tt>
+<a name="L37"></a><tt class="py-lineno"> 37</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L38"></a><tt class="py-lineno"> 38</tt>  <tt class="py-line"><tt class="py-docstring">        @param sampled: position samples (L{SampledPositionTrajectory})</tt> </tt>
+<a name="L39"></a><tt class="py-lineno"> 39</tt>  <tt class="py-line"><tt class="py-docstring">        @param positionStdDev: standard deviation of position samples (float)</tt> </tt>
+<a name="L40"></a><tt class="py-lineno"> 40</tt>  <tt class="py-line"><tt class="py-docstring">        @param positionSplineOrder: order of B-spline used for interpolation</tt> </tt>
+<a name="L41"></a><tt class="py-lineno"> 41</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L42"></a><tt class="py-lineno"> 42</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-25" class="py-name"><a title="imusim.trajectories.sampled" class="py-name" href="#" onclick="return doclink('link-25', 'sampled', 'link-2');">sampled</a></tt> <tt class="py-op">=</tt> <tt id="link-26" class="py-name"><a title="imusim.trajectories.sampled" class="py-name" href="#" onclick="return doclink('link-26', 'sampled', 'link-2');">sampled</a></tt> </tt>
+<a name="L43"></a><tt class="py-lineno"> 43</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_positionSpline</tt> <tt class="py-op">=</tt> <tt id="link-27" class="py-name"><a title="imusim.maths.vector_splines.PartialInputVectorSpline" class="py-name" href="#" onclick="return doclink('link-27', 'PartialInputVectorSpline', 'link-12');">PartialInputVectorSpline</a></tt><tt class="py-op">(</tt> </tt>
+<a name="L44"></a><tt class="py-lineno"> 44</tt>  <tt class="py-line">            <tt id="link-28" class="py-name"><a title="imusim.trajectories.sampled" class="py-name" href="#" onclick="return doclink('link-28', 'sampled', 'link-2');">sampled</a></tt><tt class="py-op">.</tt><tt id="link-29" class="py-name" targets="Variable imusim.trajectories.splined.SplinedPositionTrajectory.positionKeyFrames=imusim.trajectories.splined.SplinedPositionTrajectory-class.html#positionKeyFrames"><a title="imusim.trajectories.splined.SplinedPositionTrajectory.positionKeyFrames" class="py-name" href="#" onclick="return doclink('link-29', 'positionKeyFrames', 'link-29');">positionKeyFrames</a></tt><tt class="py-op">.</tt><tt id="link-30" class="py-name" targets="Variable imusim.utilities.time_series.TimeSeries.timestamps=imusim.utilities.time_series.TimeSeries-class.html#timestamps"><a title="imusim.utilities.time_series.TimeSeries.timestamps" class="py-name" href="#" onclick="return doclink('link-30', 'timestamps', 'link-30');">timestamps</a></tt><tt class="py-op">,</tt> </tt>
+<a name="L45"></a><tt class="py-lineno"> 45</tt>  <tt class="py-line">            <tt id="link-31" class="py-name"><a title="imusim.trajectories.sampled" class="py-name" href="#" onclick="return doclink('link-31', 'sampled', 'link-2');">sampled</a></tt><tt class="py-op">.</tt><tt id="link-32" class="py-name"><a title="imusim.trajectories.splined.SplinedPositionTrajectory.positionKeyFrames" class="py-name" href="#" onclick="return doclink('link-32', 'positionKeyFrames', 'link-29');">positionKeyFrames</a></tt><tt class="py-op">.</tt><tt id="link-33" class="py-name" targets="Variable imusim.utilities.time_series.TimeSeries.values=imusim.utilities.time_series.TimeSeries-class.html#values"><a title="imusim.utilities.time_series.TimeSeries.values" class="py-name" href="#" onclick="return doclink('link-33', 'values', 'link-33');">values</a></tt><tt class="py-op">,</tt> </tt>
+<a name="L46"></a><tt class="py-lineno"> 46</tt>  <tt class="py-line">            <tt class="py-name">stddev</tt><tt class="py-op">=</tt><tt class="py-name">positionStdDev</tt><tt class="py-op">,</tt> <tt class="py-name">order</tt><tt class="py-op">=</tt><tt class="py-name">positionSplineOrder</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L47"></a><tt class="py-lineno"> 47</tt>  <tt class="py-line"> </tt>
+<a name="L48"></a><tt class="py-lineno"> 48</tt>  <tt class="py-line">    <tt class="py-decorator">@</tt><tt class="py-decorator">property</tt> </tt>
+<a name="SplinedPositionTrajectory._positionStartTime"></a><div id="SplinedPositionTrajectory._positionStartTime-def"><a name="L49"></a><tt class="py-lineno"> 49</tt> <a class="py-toggle" href="#" id="SplinedPositionTrajectory._positionStartTime-toggle" onclick="return toggle('SplinedPositionTrajectory._positionStartTime');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.trajectories.splined.SplinedPositionTrajectory-class.html#_positionStartTime">_positionStartTime</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SplinedPositionTrajectory._positionStartTime-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="SplinedPositionTrajectory._positionStartTime-expanded"><a name="L50"></a><tt class="py-lineno"> 50</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_positionSpline</tt><tt class="py-op">.</tt><tt id="link-34" class="py-name" targets="Variable imusim.maths.quat_splines.QuaternionBSpline.validFrom=imusim.maths.quat_splines.QuaternionBSpline-class.html#validFrom,Variable imusim.maths.splines.PartialInputSpline.validFrom=imusim.maths.splines.PartialInputSpline-class.html#validFrom,Variable imusim.maths.splines.Spline.validFrom=imusim.maths.splines.Spline-class.html#validFrom,Variable imusim.maths.splines.UnivariateSpline.validFrom=imusim.maths.splines.UnivariateSpline-class.html#validFrom,Variable imusim.maths.vector_splines.UnivariateVectorSpline.validFrom=imusim.maths.vector_splines.UnivariateVectorSpline-class.html#validFrom"><a title="imusim.maths.quat_splines.QuaternionBSpline.validFrom
+imusim.maths.splines.PartialInputSpline.validFrom
+imusim.maths.splines.Spline.validFrom
+imusim.maths.splines.UnivariateSpline.validFrom
+imusim.maths.vector_splines.UnivariateVectorSpline.validFrom" class="py-name" href="#" onclick="return doclink('link-34', 'validFrom', 'link-34');">validFrom</a></tt> </tt>
+</div><a name="L51"></a><tt class="py-lineno"> 51</tt>  <tt class="py-line"> </tt>
+<a name="L52"></a><tt class="py-lineno"> 52</tt>  <tt class="py-line">    <tt class="py-decorator">@</tt><tt class="py-decorator">property</tt> </tt>
+<a name="SplinedPositionTrajectory._positionEndTime"></a><div id="SplinedPositionTrajectory._positionEndTime-def"><a name="L53"></a><tt class="py-lineno"> 53</tt> <a class="py-toggle" href="#" id="SplinedPositionTrajectory._positionEndTime-toggle" onclick="return toggle('SplinedPositionTrajectory._positionEndTime');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.trajectories.splined.SplinedPositionTrajectory-class.html#_positionEndTime">_positionEndTime</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SplinedPositionTrajectory._positionEndTime-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="SplinedPositionTrajectory._positionEndTime-expanded"><a name="L54"></a><tt class="py-lineno"> 54</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_positionSpline</tt><tt class="py-op">.</tt><tt id="link-35" class="py-name" targets="Variable imusim.maths.quat_splines.QuaternionBSpline.validTo=imusim.maths.quat_splines.QuaternionBSpline-class.html#validTo,Variable imusim.maths.splines.PartialInputSpline.validTo=imusim.maths.splines.PartialInputSpline-class.html#validTo,Variable imusim.maths.splines.Spline.validTo=imusim.maths.splines.Spline-class.html#validTo,Variable imusim.maths.splines.UnivariateSpline.validTo=imusim.maths.splines.UnivariateSpline-class.html#validTo,Variable imusim.maths.vector_splines.UnivariateVectorSpline.validTo=imusim.maths.vector_splines.UnivariateVectorSpline-class.html#validTo"><a title="imusim.maths.quat_splines.QuaternionBSpline.validTo
+imusim.maths.splines.PartialInputSpline.validTo
+imusim.maths.splines.Spline.validTo
+imusim.maths.splines.UnivariateSpline.validTo
+imusim.maths.vector_splines.UnivariateVectorSpline.validTo" class="py-name" href="#" onclick="return doclink('link-35', 'validTo', 'link-35');">validTo</a></tt> </tt>
+</div><a name="L55"></a><tt class="py-lineno"> 55</tt>  <tt class="py-line"> </tt>
+<a name="L56"></a><tt class="py-lineno"> 56</tt>  <tt class="py-line">    <tt class="py-decorator">@</tt><tt class="py-decorator">property</tt> </tt>
+<a name="SplinedPositionTrajectory.positionKeyFrames"></a><div id="SplinedPositionTrajectory.positionKeyFrames-def"><a name="L57"></a><tt class="py-lineno"> 57</tt> <a class="py-toggle" href="#" id="SplinedPositionTrajectory.positionKeyFrames-toggle" onclick="return toggle('SplinedPositionTrajectory.positionKeyFrames');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.trajectories.splined.SplinedPositionTrajectory-class.html#positionKeyFrames">positionKeyFrames</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SplinedPositionTrajectory.positionKeyFrames-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="SplinedPositionTrajectory.positionKeyFrames-expanded"><a name="L58"></a><tt class="py-lineno"> 58</tt>  <tt class="py-line">        <tt class="py-name">t</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-36" class="py-name"><a title="imusim.trajectories.sampled" class="py-name" href="#" onclick="return doclink('link-36', 'sampled', 'link-2');">sampled</a></tt><tt class="py-op">.</tt><tt id="link-37" class="py-name"><a title="imusim.trajectories.splined.SplinedPositionTrajectory.positionKeyFrames" class="py-name" href="#" onclick="return doclink('link-37', 'positionKeyFrames', 'link-29');">positionKeyFrames</a></tt><tt class="py-op">.</tt><tt id="link-38" class="py-name"><a title="imusim.utilities.time_series.TimeSeries.timestamps" class="py-name" href="#" onclick="return doclink('link-38', 'timestamps', 'link-30');">timestamps</a></tt> </tt>
+<a name="L59"></a><tt class="py-lineno"> 59</tt>  <tt class="py-line">        <tt class="py-name">t</tt> <tt class="py-op">=</tt> <tt class="py-name">t</tt><tt class="py-op">[</tt><tt class="py-op">(</tt><tt class="py-name">t</tt> <tt class="py-op">&gt;=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-39" class="py-name" targets="Variable imusim.capture.marker.SplinedMarker6DOF.startTime=imusim.capture.marker.SplinedMarker6DOF-class.html#startTime,Variable imusim.trajectories.base.AbstractTrajectory.startTime=imusim.trajectories.base.AbstractTrajectory-class.html#startTime,Variable imusim.trajectories.base.StaticContinuousRotationTrajectory.startTime=imusim.trajectories.base.StaticContinuousRotationTrajectory-class.html#startTime,Variable imusim.trajectories.base.StaticTrajectory.startTime=imusim.trajectories.base.StaticTrajectory-class.html#startTime,Variable imusim.trajectories.offset.OffsetTrajectory.startTime=imusim.trajectories.offset.OffsetTrajectory-class.html#startTime,Variable imusim.trajectories.rigid_body.SplinedBodyModel.startTime=imusim.trajectories.rigid_body.SplinedBodyModel-class.html#startTime,Variable imusim.trajectories.rigid_body.SplinedJoint.startTime=imusim.trajectories.rigid_body.SplinedJoint-class.html#startTime,Variable imusim.trajectories.sampled.SampledPositionTrajectory.startTime=imusim.trajectories.sampled.SampledPositionTrajectory-class.html#startTime,Variable imusim.trajectories.sampled.SampledRotationTrajectory.startTime=imusim.trajectories.sampled.SampledRotationTrajectory-class.html#startTime,Variable imusim.trajectories.sampled.SampledTrajectory.startTime=imusim.trajectories.sampled.SampledTrajectory-class.html#startTime,Variable imusim.trajectories.splined.SplinedPositionTrajectory.startTime=imusim.trajectories.splined.SplinedPositionTrajectory-class.html#startTime,Variable imusim.trajectories.splined.SplinedRotationTrajectory.startTime=imusim.trajectories.splined.SplinedRotationTrajectory-class.html#startTime,Variable imusim.trajectories.splined.SplinedTrajectory.startTime=imusim.trajectories.splined.SplinedTrajectory-class.html#startTime"><a title="imusim.capture.marker.SplinedMarker6DOF.startTime
+imusim.trajectories.base.AbstractTrajectory.startTime
+imusim.trajectories.base.StaticContinuousRotationTrajectory.startTime
+imusim.trajectories.base.StaticTrajectory.startTime
+imusim.trajectories.offset.OffsetTrajectory.startTime
+imusim.trajectories.rigid_body.SplinedBodyModel.startTime
+imusim.trajectories.rigid_body.SplinedJoint.startTime
+imusim.trajectories.sampled.SampledPositionTrajectory.startTime
+imusim.trajectories.sampled.SampledRotationTrajectory.startTime
+imusim.trajectories.sampled.SampledTrajectory.startTime
+imusim.trajectories.splined.SplinedPositionTrajectory.startTime
+imusim.trajectories.splined.SplinedRotationTrajectory.startTime
+imusim.trajectories.splined.SplinedTrajectory.startTime" class="py-name" href="#" onclick="return doclink('link-39', 'startTime', 'link-39');">startTime</a></tt><tt class="py-op">)</tt> <tt class="py-op">&amp;</tt> <tt class="py-op">(</tt><tt class="py-name">t</tt> <tt class="py-op">&lt;=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-40" class="py-name" targets="Variable imusim.capture.marker.SplinedMarker6DOF.endTime=imusim.capture.marker.SplinedMarker6DOF-class.html#endTime,Variable imusim.trajectories.base.AbstractTrajectory.endTime=imusim.trajectories.base.AbstractTrajectory-class.html#endTime,Variable imusim.trajectories.base.StaticContinuousRotationTrajectory.endTime=imusim.trajectories.base.StaticContinuousRotationTrajectory-class.html#endTime,Variable imusim.trajectories.base.StaticTrajectory.endTime=imusim.trajectories.base.StaticTrajectory-class.html#endTime,Variable imusim.trajectories.offset.OffsetTrajectory.endTime=imusim.trajectories.offset.OffsetTrajectory-class.html#endTime,Variable imusim.trajectories.rigid_body.SplinedBodyModel.endTime=imusim.trajectories.rigid_body.SplinedBodyModel-class.html#endTime,Variable imusim.trajectories.rigid_body.SplinedJoint.endTime=imusim.trajectories.rigid_body.SplinedJoint-class.html#endTime,Variable imusim.trajectories.sampled.SampledPositionTrajectory.endTime=imusim.trajectories.sampled.SampledPositionTrajectory-class.html#endTime,Variable imusim.trajectories.sampled.SampledRotationTrajectory.endTime=imusim.trajectories.sampled.SampledRotationTrajectory-class.html#endTime,Variable imusim.trajectories.sampled.SampledTrajectory.endTime=imusim.trajectories.sampled.SampledTrajectory-class.html#endTime,Variable imusim.trajectories.splined.SplinedPositionTrajectory.endTime=imusim.trajectories.splined.SplinedPositionTrajectory-class.html#endTime,Variable imusim.trajectories.splined.SplinedRotationTrajectory.endTime=imusim.trajectories.splined.SplinedRotationTrajectory-class.html#endTime,Variable imusim.trajectories.splined.SplinedTrajectory.endTime=imusim.trajectories.splined.SplinedTrajectory-class.html#endTime"><a title="imusim.capture.marker.SplinedMarker6DOF.endTime
+imusim.trajectories.base.AbstractTrajectory.endTime
+imusim.trajectories.base.StaticContinuousRotationTrajectory.endTime
+imusim.trajectories.base.StaticTrajectory.endTime
+imusim.trajectories.offset.OffsetTrajectory.endTime
+imusim.trajectories.rigid_body.SplinedBodyModel.endTime
+imusim.trajectories.rigid_body.SplinedJoint.endTime
+imusim.trajectories.sampled.SampledPositionTrajectory.endTime
+imusim.trajectories.sampled.SampledRotationTrajectory.endTime
+imusim.trajectories.sampled.SampledTrajectory.endTime
+imusim.trajectories.splined.SplinedPositionTrajectory.endTime
+imusim.trajectories.splined.SplinedRotationTrajectory.endTime
+imusim.trajectories.splined.SplinedTrajectory.endTime" class="py-name" href="#" onclick="return doclink('link-40', 'endTime', 'link-40');">endTime</a></tt><tt class="py-op">)</tt><tt class="py-op">]</tt> </tt>
+<a name="L60"></a><tt class="py-lineno"> 60</tt>  <tt class="py-line">        <tt class="py-name">p</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-41" class="py-name" targets="Module imusim.algorithms.position=imusim.algorithms.position-module.html,Method imusim.testing.random_data.RandomRotationTrajectory.position()=imusim.testing.random_data.RandomRotationTrajectory-class.html#position,Method imusim.trajectories.base.ConstantPositionTrajectory.position()=imusim.trajectories.base.ConstantPositionTrajectory-class.html#position,Method imusim.trajectories.base.PositionTrajectory.position()=imusim.trajectories.base.PositionTrajectory-class.html#position,Method imusim.trajectories.offset.OffsetTrajectory.position()=imusim.trajectories.offset.OffsetTrajectory-class.html#position,Method imusim.trajectories.sampled.SampledPositionTrajectory.position()=imusim.trajectories.sampled.SampledPositionTrajectory-class.html#position,Method imusim.trajectories.splined.SplinedPositionTrajectory.position()=imusim.trajectories.splined.SplinedPositionTrajectory-class.html#position"><a title="imusim.algorithms.position
+imusim.testing.random_data.RandomRotationTrajectory.position
+imusim.trajectories.base.ConstantPositionTrajectory.position
+imusim.trajectories.base.PositionTrajectory.position
+imusim.trajectories.offset.OffsetTrajectory.position
+imusim.trajectories.sampled.SampledPositionTrajectory.position
+imusim.trajectories.splined.SplinedPositionTrajectory.position" class="py-name" href="#" onclick="return doclink('link-41', 'position', 'link-41');">position</a></tt><tt class="py-op">(</tt><tt class="py-name">t</tt><tt class="py-op">)</tt> </tt>
+<a name="L61"></a><tt class="py-lineno"> 61</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt id="link-42" class="py-name"><a title="imusim.utilities.time_series.TimeSeries" class="py-name" href="#" onclick="return doclink('link-42', 'TimeSeries', 'link-24');">TimeSeries</a></tt><tt class="py-op">(</tt><tt class="py-name">t</tt><tt class="py-op">,</tt> <tt class="py-name">p</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L62"></a><tt class="py-lineno"> 62</tt>  <tt class="py-line"> </tt>
+<a name="L63"></a><tt class="py-lineno"> 63</tt>  <tt class="py-line">    <tt class="py-decorator">@</tt><tt class="py-decorator">CacheLastValue</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="SplinedPositionTrajectory.position"></a><div id="SplinedPositionTrajectory.position-def"><a name="L64"></a><tt class="py-lineno"> 64</tt> <a class="py-toggle" href="#" id="SplinedPositionTrajectory.position-toggle" onclick="return toggle('SplinedPositionTrajectory.position');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.trajectories.splined.SplinedPositionTrajectory-class.html#position">position</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">t</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SplinedPositionTrajectory.position-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="SplinedPositionTrajectory.position-expanded"><a name="L65"></a><tt class="py-lineno"> 65</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_positionSpline</tt><tt class="py-op">(</tt><tt class="py-name">t</tt><tt class="py-op">,</tt> <tt class="py-number">0</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L66"></a><tt class="py-lineno"> 66</tt>  <tt class="py-line"> </tt>
+<a name="L67"></a><tt class="py-lineno"> 67</tt>  <tt class="py-line">    <tt class="py-decorator">@</tt><tt class="py-decorator">CacheLastValue</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="SplinedPositionTrajectory.velocity"></a><div id="SplinedPositionTrajectory.velocity-def"><a name="L68"></a><tt class="py-lineno"> 68</tt> <a class="py-toggle" href="#" id="SplinedPositionTrajectory.velocity-toggle" onclick="return toggle('SplinedPositionTrajectory.velocity');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.trajectories.splined.SplinedPositionTrajectory-class.html#velocity">velocity</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">t</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SplinedPositionTrajectory.velocity-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="SplinedPositionTrajectory.velocity-expanded"><a name="L69"></a><tt class="py-lineno"> 69</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_positionSpline</tt><tt class="py-op">(</tt><tt class="py-name">t</tt><tt class="py-op">,</tt> <tt class="py-number">1</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L70"></a><tt class="py-lineno"> 70</tt>  <tt class="py-line"> </tt>
+<a name="L71"></a><tt class="py-lineno"> 71</tt>  <tt class="py-line">    <tt class="py-decorator">@</tt><tt class="py-decorator">CacheLastValue</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="SplinedPositionTrajectory.acceleration"></a><div id="SplinedPositionTrajectory.acceleration-def"><a name="L72"></a><tt class="py-lineno"> 72</tt> <a class="py-toggle" href="#" id="SplinedPositionTrajectory.acceleration-toggle" onclick="return toggle('SplinedPositionTrajectory.acceleration');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.trajectories.splined.SplinedPositionTrajectory-class.html#acceleration">acceleration</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">t</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SplinedPositionTrajectory.acceleration-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="SplinedPositionTrajectory.acceleration-expanded"><a name="L73"></a><tt class="py-lineno"> 73</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_positionSpline</tt><tt class="py-op">(</tt><tt class="py-name">t</tt><tt class="py-op">,</tt> <tt class="py-number">2</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L74"></a><tt class="py-lineno"> 74</tt>  <tt class="py-line"> </tt>
+<a name="L75"></a><tt class="py-lineno"> 75</tt>  <tt class="py-line">    <tt class="py-decorator">@</tt><tt class="py-decorator">property</tt> </tt>
+<a name="SplinedPositionTrajectory.startTime"></a><div id="SplinedPositionTrajectory.startTime-def"><a name="L76"></a><tt class="py-lineno"> 76</tt> <a class="py-toggle" href="#" id="SplinedPositionTrajectory.startTime-toggle" onclick="return toggle('SplinedPositionTrajectory.startTime');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.trajectories.splined.SplinedPositionTrajectory-class.html#startTime">startTime</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SplinedPositionTrajectory.startTime-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="SplinedPositionTrajectory.startTime-expanded"><a name="L77"></a><tt class="py-lineno"> 77</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_positionStartTime</tt> </tt>
+</div><a name="L78"></a><tt class="py-lineno"> 78</tt>  <tt class="py-line"> </tt>
+<a name="L79"></a><tt class="py-lineno"> 79</tt>  <tt class="py-line">    <tt class="py-decorator">@</tt><tt class="py-decorator">property</tt> </tt>
+<a name="SplinedPositionTrajectory.endTime"></a><div id="SplinedPositionTrajectory.endTime-def"><a name="L80"></a><tt class="py-lineno"> 80</tt> <a class="py-toggle" href="#" id="SplinedPositionTrajectory.endTime-toggle" onclick="return toggle('SplinedPositionTrajectory.endTime');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.trajectories.splined.SplinedPositionTrajectory-class.html#endTime">endTime</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SplinedPositionTrajectory.endTime-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="SplinedPositionTrajectory.endTime-expanded"><a name="L81"></a><tt class="py-lineno"> 81</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_positionEndTime</tt> </tt>
+</div></div><a name="L82"></a><tt class="py-lineno"> 82</tt>  <tt class="py-line"> </tt>
+<a name="SplinedRotationTrajectory"></a><div id="SplinedRotationTrajectory-def"><a name="L83"></a><tt class="py-lineno"> 83</tt> <a class="py-toggle" href="#" id="SplinedRotationTrajectory-toggle" onclick="return toggle('SplinedRotationTrajectory');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="imusim.trajectories.splined.SplinedRotationTrajectory-class.html">SplinedRotationTrajectory</a><tt class="py-op">(</tt><tt class="py-base-class">SampledRotationTrajectory</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SplinedRotationTrajectory-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="SplinedRotationTrajectory-expanded"><a name="L84"></a><tt class="py-lineno"> 84</tt>  <tt class="py-line">    <tt class="py-docstring">"""Trajectory with rotation obtained by splining a sampled trajectory."""</tt> </tt>
+<a name="L85"></a><tt class="py-lineno"> 85</tt>  <tt class="py-line"> </tt>
+<a name="SplinedRotationTrajectory.__init__"></a><div id="SplinedRotationTrajectory.__init__-def"><a name="L86"></a><tt class="py-lineno"> 86</tt> <a class="py-toggle" href="#" id="SplinedRotationTrajectory.__init__-toggle" onclick="return toggle('SplinedRotationTrajectory.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.trajectories.splined.SplinedRotationTrajectory-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">sampled</tt><tt class="py-op">,</tt> <tt class="py-param">smoothRotations</tt><tt class="py-op">=</tt><tt class="py-name">True</tt><tt class="py-op">,</tt> <tt class="py-param">rotationStdDev</tt><tt class="py-op">=</tt><tt class="py-number">0.001</tt><tt class="py-op">,</tt> <tt class="py-op">**</tt><tt class="py-param">kwargs</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SplinedRotationTrajectory.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="SplinedRotationTrajectory.__init__-expanded"><a name="L87"></a><tt class="py-lineno"> 87</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L88"></a><tt class="py-lineno"> 88</tt>  <tt class="py-line"><tt class="py-docstring">        Initialise trajectory.</tt> </tt>
+<a name="L89"></a><tt class="py-lineno"> 89</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L90"></a><tt class="py-lineno"> 90</tt>  <tt class="py-line"><tt class="py-docstring">        @param sampled: rotation samples (L{SampledPositionTrajectory})</tt> </tt>
+<a name="L91"></a><tt class="py-lineno"> 91</tt>  <tt class="py-line"><tt class="py-docstring">        @param smoothRotations: `True` to apply smoothing to rotation prior</tt> </tt>
+<a name="L92"></a><tt class="py-lineno"> 92</tt>  <tt class="py-line"><tt class="py-docstring">            to splining (Bool)</tt> </tt>
+<a name="L93"></a><tt class="py-lineno"> 93</tt>  <tt class="py-line"><tt class="py-docstring">        @param rotationStdDev: standard deviation of rotation samples (float)</tt> </tt>
+<a name="L94"></a><tt class="py-lineno"> 94</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L95"></a><tt class="py-lineno"> 95</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-43" class="py-name"><a title="imusim.trajectories.sampled" class="py-name" href="#" onclick="return doclink('link-43', 'sampled', 'link-2');">sampled</a></tt> <tt class="py-op">=</tt> <tt id="link-44" class="py-name"><a title="imusim.trajectories.sampled" class="py-name" href="#" onclick="return doclink('link-44', 'sampled', 'link-2');">sampled</a></tt> </tt>
+<a name="L96"></a><tt class="py-lineno"> 96</tt>  <tt class="py-line">        <tt class="py-name">keyFrames</tt> <tt class="py-op">=</tt> <tt id="link-45" class="py-name"><a title="imusim.trajectories.sampled" class="py-name" href="#" onclick="return doclink('link-45', 'sampled', 'link-2');">sampled</a></tt><tt class="py-op">.</tt><tt id="link-46" class="py-name" targets="Variable imusim.trajectories.splined.SplinedRotationTrajectory.rotationKeyFrames=imusim.trajectories.splined.SplinedRotationTrajectory-class.html#rotationKeyFrames"><a title="imusim.trajectories.splined.SplinedRotationTrajectory.rotationKeyFrames" class="py-name" href="#" onclick="return doclink('link-46', 'rotationKeyFrames', 'link-46');">rotationKeyFrames</a></tt><tt class="py-op">.</tt><tt id="link-47" class="py-name"><a title="imusim.utilities.time_series.TimeSeries.values" class="py-name" href="#" onclick="return doclink('link-47', 'values', 'link-33');">values</a></tt><tt class="py-op">.</tt><tt id="link-48" class="py-name" targets="Method imusim.maths.quaternions.QuaternionArray.unflipped()=imusim.maths.quaternions.QuaternionArray-class.html#unflipped"><a title="imusim.maths.quaternions.QuaternionArray.unflipped" class="py-name" href="#" onclick="return doclink('link-48', 'unflipped', 'link-48');">unflipped</a></tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="L97"></a><tt class="py-lineno"> 97</tt>  <tt class="py-line">        <tt class="py-keyword">if</tt> <tt class="py-name">smoothRotations</tt><tt class="py-op">:</tt> </tt>
+<a name="L98"></a><tt class="py-lineno"> 98</tt>  <tt class="py-line">            <tt class="py-name">keyFrames</tt> <tt class="py-op">=</tt> <tt class="py-name">keyFrames</tt><tt class="py-op">.</tt><tt id="link-49" class="py-name" targets="Method imusim.maths.quaternions.QuaternionArray.smoothed()=imusim.maths.quaternions.QuaternionArray-class.html#smoothed"><a title="imusim.maths.quaternions.QuaternionArray.smoothed" class="py-name" href="#" onclick="return doclink('link-49', 'smoothed', 'link-49');">smoothed</a></tt><tt class="py-op">(</tt><tt class="py-name">stddev</tt><tt class="py-op">=</tt><tt class="py-name">rotationStdDev</tt><tt class="py-op">)</tt> </tt>
+<a name="L99"></a><tt class="py-lineno"> 99</tt>  <tt class="py-line">        <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_rotationSpline</tt> <tt class="py-op">=</tt> <tt id="link-50" class="py-name"><a title="imusim.maths.quat_splines.PartialInputQuaternionBSpline" class="py-name" href="#" onclick="return doclink('link-50', 'PartialInputQuaternionBSpline', 'link-16');">PartialInputQuaternionBSpline</a></tt><tt class="py-op">(</tt> </tt>
+<a name="L100"></a><tt class="py-lineno">100</tt>  <tt class="py-line">            <tt id="link-51" class="py-name"><a title="imusim.trajectories.sampled" class="py-name" href="#" onclick="return doclink('link-51', 'sampled', 'link-2');">sampled</a></tt><tt class="py-op">.</tt><tt id="link-52" class="py-name"><a title="imusim.trajectories.splined.SplinedRotationTrajectory.rotationKeyFrames" class="py-name" href="#" onclick="return doclink('link-52', 'rotationKeyFrames', 'link-46');">rotationKeyFrames</a></tt><tt class="py-op">.</tt><tt id="link-53" class="py-name"><a title="imusim.utilities.time_series.TimeSeries.timestamps" class="py-name" href="#" onclick="return doclink('link-53', 'timestamps', 'link-30');">timestamps</a></tt><tt class="py-op">,</tt> <tt class="py-name">keyFrames</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L101"></a><tt class="py-lineno">101</tt>  <tt class="py-line"> </tt>
+<a name="L102"></a><tt class="py-lineno">102</tt>  <tt class="py-line">    <tt class="py-decorator">@</tt><tt class="py-decorator">property</tt> </tt>
+<a name="SplinedRotationTrajectory._rotationStartTime"></a><div id="SplinedRotationTrajectory._rotationStartTime-def"><a name="L103"></a><tt class="py-lineno">103</tt> <a class="py-toggle" href="#" id="SplinedRotationTrajectory._rotationStartTime-toggle" onclick="return toggle('SplinedRotationTrajectory._rotationStartTime');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.trajectories.splined.SplinedRotationTrajectory-class.html#_rotationStartTime">_rotationStartTime</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SplinedRotationTrajectory._rotationStartTime-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="SplinedRotationTrajectory._rotationStartTime-expanded"><a name="L104"></a><tt class="py-lineno">104</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_rotationSpline</tt><tt class="py-op">.</tt><tt id="link-54" class="py-name"><a title="imusim.maths.quat_splines.QuaternionBSpline.validFrom
+imusim.maths.splines.PartialInputSpline.validFrom
+imusim.maths.splines.Spline.validFrom
+imusim.maths.splines.UnivariateSpline.validFrom
+imusim.maths.vector_splines.UnivariateVectorSpline.validFrom" class="py-name" href="#" onclick="return doclink('link-54', 'validFrom', 'link-34');">validFrom</a></tt> </tt>
+</div><a name="L105"></a><tt class="py-lineno">105</tt>  <tt class="py-line"> </tt>
+<a name="L106"></a><tt class="py-lineno">106</tt>  <tt class="py-line">    <tt class="py-decorator">@</tt><tt class="py-decorator">property</tt> </tt>
+<a name="SplinedRotationTrajectory._rotationEndTime"></a><div id="SplinedRotationTrajectory._rotationEndTime-def"><a name="L107"></a><tt class="py-lineno">107</tt> <a class="py-toggle" href="#" id="SplinedRotationTrajectory._rotationEndTime-toggle" onclick="return toggle('SplinedRotationTrajectory._rotationEndTime');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.trajectories.splined.SplinedRotationTrajectory-class.html#_rotationEndTime">_rotationEndTime</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SplinedRotationTrajectory._rotationEndTime-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="SplinedRotationTrajectory._rotationEndTime-expanded"><a name="L108"></a><tt class="py-lineno">108</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_rotationSpline</tt><tt class="py-op">.</tt><tt id="link-55" class="py-name"><a title="imusim.maths.quat_splines.QuaternionBSpline.validTo
+imusim.maths.splines.PartialInputSpline.validTo
+imusim.maths.splines.Spline.validTo
+imusim.maths.splines.UnivariateSpline.validTo
+imusim.maths.vector_splines.UnivariateVectorSpline.validTo" class="py-name" href="#" onclick="return doclink('link-55', 'validTo', 'link-35');">validTo</a></tt> </tt>
+</div><a name="L109"></a><tt class="py-lineno">109</tt>  <tt class="py-line"> </tt>
+<a name="L110"></a><tt class="py-lineno">110</tt>  <tt class="py-line">    <tt class="py-decorator">@</tt><tt class="py-decorator">property</tt> </tt>
+<a name="SplinedRotationTrajectory.rotationKeyFrames"></a><div id="SplinedRotationTrajectory.rotationKeyFrames-def"><a name="L111"></a><tt class="py-lineno">111</tt> <a class="py-toggle" href="#" id="SplinedRotationTrajectory.rotationKeyFrames-toggle" onclick="return toggle('SplinedRotationTrajectory.rotationKeyFrames');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.trajectories.splined.SplinedRotationTrajectory-class.html#rotationKeyFrames">rotationKeyFrames</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SplinedRotationTrajectory.rotationKeyFrames-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="SplinedRotationTrajectory.rotationKeyFrames-expanded"><a name="L112"></a><tt class="py-lineno">112</tt>  <tt class="py-line">        <tt class="py-name">t</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-56" class="py-name"><a title="imusim.trajectories.sampled" class="py-name" href="#" onclick="return doclink('link-56', 'sampled', 'link-2');">sampled</a></tt><tt class="py-op">.</tt><tt id="link-57" class="py-name"><a title="imusim.trajectories.splined.SplinedRotationTrajectory.rotationKeyFrames" class="py-name" href="#" onclick="return doclink('link-57', 'rotationKeyFrames', 'link-46');">rotationKeyFrames</a></tt><tt class="py-op">.</tt><tt id="link-58" class="py-name"><a title="imusim.utilities.time_series.TimeSeries.timestamps" class="py-name" href="#" onclick="return doclink('link-58', 'timestamps', 'link-30');">timestamps</a></tt> </tt>
+<a name="L113"></a><tt class="py-lineno">113</tt>  <tt class="py-line">        <tt class="py-name">t</tt> <tt class="py-op">=</tt> <tt class="py-name">t</tt><tt class="py-op">[</tt><tt class="py-op">(</tt><tt class="py-name">t</tt> <tt class="py-op">&gt;=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-59" class="py-name"><a title="imusim.capture.marker.SplinedMarker6DOF.startTime
+imusim.trajectories.base.AbstractTrajectory.startTime
+imusim.trajectories.base.StaticContinuousRotationTrajectory.startTime
+imusim.trajectories.base.StaticTrajectory.startTime
+imusim.trajectories.offset.OffsetTrajectory.startTime
+imusim.trajectories.rigid_body.SplinedBodyModel.startTime
+imusim.trajectories.rigid_body.SplinedJoint.startTime
+imusim.trajectories.sampled.SampledPositionTrajectory.startTime
+imusim.trajectories.sampled.SampledRotationTrajectory.startTime
+imusim.trajectories.sampled.SampledTrajectory.startTime
+imusim.trajectories.splined.SplinedPositionTrajectory.startTime
+imusim.trajectories.splined.SplinedRotationTrajectory.startTime
+imusim.trajectories.splined.SplinedTrajectory.startTime" class="py-name" href="#" onclick="return doclink('link-59', 'startTime', 'link-39');">startTime</a></tt><tt class="py-op">)</tt> <tt class="py-op">&amp;</tt> <tt class="py-op">(</tt><tt class="py-name">t</tt> <tt class="py-op">&lt;=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-60" class="py-name"><a title="imusim.capture.marker.SplinedMarker6DOF.endTime
+imusim.trajectories.base.AbstractTrajectory.endTime
+imusim.trajectories.base.StaticContinuousRotationTrajectory.endTime
+imusim.trajectories.base.StaticTrajectory.endTime
+imusim.trajectories.offset.OffsetTrajectory.endTime
+imusim.trajectories.rigid_body.SplinedBodyModel.endTime
+imusim.trajectories.rigid_body.SplinedJoint.endTime
+imusim.trajectories.sampled.SampledPositionTrajectory.endTime
+imusim.trajectories.sampled.SampledRotationTrajectory.endTime
+imusim.trajectories.sampled.SampledTrajectory.endTime
+imusim.trajectories.splined.SplinedPositionTrajectory.endTime
+imusim.trajectories.splined.SplinedRotationTrajectory.endTime
+imusim.trajectories.splined.SplinedTrajectory.endTime" class="py-name" href="#" onclick="return doclink('link-60', 'endTime', 'link-40');">endTime</a></tt><tt class="py-op">)</tt><tt class="py-op">]</tt> </tt>
+<a name="L114"></a><tt class="py-lineno">114</tt>  <tt class="py-line">        <tt class="py-name">r</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt id="link-61" class="py-name" targets="Method imusim.trajectories.base.ConstantRotationTrajectory.rotation()=imusim.trajectories.base.ConstantRotationTrajectory-class.html#rotation,Method imusim.trajectories.base.ContinuousRotationTrajectory.rotation()=imusim.trajectories.base.ContinuousRotationTrajectory-class.html#rotation,Method imusim.trajectories.base.RotationTrajectory.rotation()=imusim.trajectories.base.RotationTrajectory-class.html#rotation,Method imusim.trajectories.offset.OffsetTrajectory.rotation()=imusim.trajectories.offset.OffsetTrajectory-class.html#rotation,Method imusim.trajectories.sampled.SampledRotationTrajectory.rotation()=imusim.trajectories.sampled.SampledRotationTrajectory-class.html#rotation,Method imusim.trajectories.splined.SplinedRotationTrajectory.rotation()=imusim.trajectories.splined.SplinedRotationTrajectory-class.html#rotation"><a title="imusim.trajectories.base.ConstantRotationTrajectory.rotation
+imusim.trajectories.base.ContinuousRotationTrajectory.rotation
+imusim.trajectories.base.RotationTrajectory.rotation
+imusim.trajectories.offset.OffsetTrajectory.rotation
+imusim.trajectories.sampled.SampledRotationTrajectory.rotation
+imusim.trajectories.splined.SplinedRotationTrajectory.rotation" class="py-name" href="#" onclick="return doclink('link-61', 'rotation', 'link-61');">rotation</a></tt><tt class="py-op">(</tt><tt class="py-name">t</tt><tt class="py-op">)</tt> </tt>
+<a name="L115"></a><tt class="py-lineno">115</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt id="link-62" class="py-name"><a title="imusim.utilities.time_series.TimeSeries" class="py-name" href="#" onclick="return doclink('link-62', 'TimeSeries', 'link-24');">TimeSeries</a></tt><tt class="py-op">(</tt><tt class="py-name">t</tt><tt class="py-op">,</tt> <tt class="py-name">r</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L116"></a><tt class="py-lineno">116</tt>  <tt class="py-line"> </tt>
+<a name="L117"></a><tt class="py-lineno">117</tt>  <tt class="py-line">    <tt class="py-decorator">@</tt><tt class="py-decorator">CacheLastValue</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="SplinedRotationTrajectory.rotation"></a><div id="SplinedRotationTrajectory.rotation-def"><a name="L118"></a><tt class="py-lineno">118</tt> <a class="py-toggle" href="#" id="SplinedRotationTrajectory.rotation-toggle" onclick="return toggle('SplinedRotationTrajectory.rotation');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.trajectories.splined.SplinedRotationTrajectory-class.html#rotation">rotation</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">t</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SplinedRotationTrajectory.rotation-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="SplinedRotationTrajectory.rotation-expanded"><a name="L119"></a><tt class="py-lineno">119</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_rotationSpline</tt><tt class="py-op">(</tt><tt class="py-name">t</tt><tt class="py-op">)</tt><tt class="py-op">[</tt><tt class="py-number">0</tt><tt class="py-op">]</tt> </tt>
+</div><a name="L120"></a><tt class="py-lineno">120</tt>  <tt class="py-line"> </tt>
+<a name="L121"></a><tt class="py-lineno">121</tt>  <tt class="py-line">    <tt class="py-decorator">@</tt><tt class="py-decorator">CacheLastValue</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="SplinedRotationTrajectory.rotationalVelocity"></a><div id="SplinedRotationTrajectory.rotationalVelocity-def"><a name="L122"></a><tt class="py-lineno">122</tt> <a class="py-toggle" href="#" id="SplinedRotationTrajectory.rotationalVelocity-toggle" onclick="return toggle('SplinedRotationTrajectory.rotationalVelocity');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.trajectories.splined.SplinedRotationTrajectory-class.html#rotationalVelocity">rotationalVelocity</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">t</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SplinedRotationTrajectory.rotationalVelocity-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="SplinedRotationTrajectory.rotationalVelocity-expanded"><a name="L123"></a><tt class="py-lineno">123</tt>  <tt class="py-line">        <tt class="py-name">r</tt><tt class="py-op">,</tt> <tt class="py-name">omega</tt><tt class="py-op">,</tt> <tt class="py-name">alpha</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_rotationSpline</tt><tt class="py-op">(</tt><tt class="py-name">t</tt><tt class="py-op">)</tt> </tt>
+<a name="L124"></a><tt class="py-lineno">124</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">r</tt><tt class="py-op">.</tt><tt id="link-63" class="py-name" targets="Method imusim.maths.quaternions.Quaternion.rotateVector()=imusim.maths.quaternions.Quaternion-class.html#rotateVector,Method imusim.maths.quaternions.QuaternionArray.rotateVector()=imusim.maths.quaternions.QuaternionArray-class.html#rotateVector"><a title="imusim.maths.quaternions.Quaternion.rotateVector
+imusim.maths.quaternions.QuaternionArray.rotateVector" class="py-name" href="#" onclick="return doclink('link-63', 'rotateVector', 'link-63');">rotateVector</a></tt><tt class="py-op">(</tt><tt class="py-name">omega</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L125"></a><tt class="py-lineno">125</tt>  <tt class="py-line"> </tt>
+<a name="L126"></a><tt class="py-lineno">126</tt>  <tt class="py-line">    <tt class="py-decorator">@</tt><tt class="py-decorator">CacheLastValue</tt><tt class="py-op">(</tt><tt class="py-op">)</tt> </tt>
+<a name="SplinedRotationTrajectory.rotationalAcceleration"></a><div id="SplinedRotationTrajectory.rotationalAcceleration-def"><a name="L127"></a><tt class="py-lineno">127</tt> <a class="py-toggle" href="#" id="SplinedRotationTrajectory.rotationalAcceleration-toggle" onclick="return toggle('SplinedRotationTrajectory.rotationalAcceleration');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.trajectories.splined.SplinedRotationTrajectory-class.html#rotationalAcceleration">rotationalAcceleration</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">t</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SplinedRotationTrajectory.rotationalAcceleration-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="SplinedRotationTrajectory.rotationalAcceleration-expanded"><a name="L128"></a><tt class="py-lineno">128</tt>  <tt class="py-line">        <tt class="py-name">r</tt><tt class="py-op">,</tt> <tt class="py-name">omega</tt><tt class="py-op">,</tt> <tt class="py-name">alpha</tt> <tt class="py-op">=</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_rotationSpline</tt><tt class="py-op">(</tt><tt class="py-name">t</tt><tt class="py-op">)</tt> </tt>
+<a name="L129"></a><tt class="py-lineno">129</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">r</tt><tt class="py-op">.</tt><tt id="link-64" class="py-name"><a title="imusim.maths.quaternions.Quaternion.rotateVector
+imusim.maths.quaternions.QuaternionArray.rotateVector" class="py-name" href="#" onclick="return doclink('link-64', 'rotateVector', 'link-63');">rotateVector</a></tt><tt class="py-op">(</tt><tt class="py-name">alpha</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L130"></a><tt class="py-lineno">130</tt>  <tt class="py-line"> </tt>
+<a name="L131"></a><tt class="py-lineno">131</tt>  <tt class="py-line">    <tt class="py-decorator">@</tt><tt class="py-decorator">property</tt> </tt>
+<a name="SplinedRotationTrajectory.startTime"></a><div id="SplinedRotationTrajectory.startTime-def"><a name="L132"></a><tt class="py-lineno">132</tt> <a class="py-toggle" href="#" id="SplinedRotationTrajectory.startTime-toggle" onclick="return toggle('SplinedRotationTrajectory.startTime');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.trajectories.splined.SplinedRotationTrajectory-class.html#startTime">startTime</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SplinedRotationTrajectory.startTime-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="SplinedRotationTrajectory.startTime-expanded"><a name="L133"></a><tt class="py-lineno">133</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_rotationStartTime</tt> </tt>
+</div><a name="L134"></a><tt class="py-lineno">134</tt>  <tt class="py-line"> </tt>
+<a name="L135"></a><tt class="py-lineno">135</tt>  <tt class="py-line">    <tt class="py-decorator">@</tt><tt class="py-decorator">property</tt> </tt>
+<a name="SplinedRotationTrajectory.endTime"></a><div id="SplinedRotationTrajectory.endTime-def"><a name="L136"></a><tt class="py-lineno">136</tt> <a class="py-toggle" href="#" id="SplinedRotationTrajectory.endTime-toggle" onclick="return toggle('SplinedRotationTrajectory.endTime');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.trajectories.splined.SplinedRotationTrajectory-class.html#endTime">endTime</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SplinedRotationTrajectory.endTime-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="SplinedRotationTrajectory.endTime-expanded"><a name="L137"></a><tt class="py-lineno">137</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_rotationEndTime</tt> </tt>
+</div></div><a name="L138"></a><tt class="py-lineno">138</tt>  <tt class="py-line"> </tt>
+<a name="SplinedTrajectory"></a><div id="SplinedTrajectory-def"><a name="L139"></a><tt class="py-lineno">139</tt> <a class="py-toggle" href="#" id="SplinedTrajectory-toggle" onclick="return toggle('SplinedTrajectory');">-</a><tt class="py-line"><tt class="py-keyword">class</tt> <a class="py-def-name" href="imusim.trajectories.splined.SplinedTrajectory-class.html">SplinedTrajectory</a><tt class="py-op">(</tt><tt class="py-base-class">SplinedPositionTrajectory</tt><tt class="py-op">,</tt> <tt class="py-base-class">SplinedRotationTrajectory</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SplinedTrajectory-collapsed" style="display:none;" pad="+++" indent="++++"></div><div id="SplinedTrajectory-expanded"><a name="L140"></a><tt class="py-lineno">140</tt>  <tt class="py-line">    <tt class="py-docstring">"""</tt> </tt>
+<a name="L141"></a><tt class="py-lineno">141</tt>  <tt class="py-line"><tt class="py-docstring">    Represents a splined position and rotation trajectory.</tt> </tt>
+<a name="L142"></a><tt class="py-lineno">142</tt>  <tt class="py-line"><tt class="py-docstring">    """</tt> </tt>
+<a name="L143"></a><tt class="py-lineno">143</tt>  <tt class="py-line"> </tt>
+<a name="SplinedTrajectory.__init__"></a><div id="SplinedTrajectory.__init__-def"><a name="L144"></a><tt class="py-lineno">144</tt> <a class="py-toggle" href="#" id="SplinedTrajectory.__init__-toggle" onclick="return toggle('SplinedTrajectory.__init__');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.trajectories.splined.SplinedTrajectory-class.html#__init__">__init__</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">,</tt> <tt class="py-param">sampled</tt><tt class="py-op">,</tt> <tt class="py-op">**</tt><tt class="py-param">kwargs</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SplinedTrajectory.__init__-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="SplinedTrajectory.__init__-expanded"><a name="L145"></a><tt class="py-lineno">145</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L146"></a><tt class="py-lineno">146</tt>  <tt class="py-line"><tt class="py-docstring">        Initialise trajectory.</tt> </tt>
+<a name="L147"></a><tt class="py-lineno">147</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L148"></a><tt class="py-lineno">148</tt>  <tt class="py-line"><tt class="py-docstring">        @param sampled: L{SampledTrajectory}</tt> </tt>
+<a name="L149"></a><tt class="py-lineno">149</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L150"></a><tt class="py-lineno">150</tt>  <tt class="py-line"><tt class="py-docstring">        Keyword arguments are passed to L{SplinedPositionTrajectory} and</tt> </tt>
+<a name="L151"></a><tt class="py-lineno">151</tt>  <tt class="py-line"><tt class="py-docstring">        L{SplinedRotationTrajectory} constructors.</tt> </tt>
+<a name="L152"></a><tt class="py-lineno">152</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L153"></a><tt class="py-lineno">153</tt>  <tt class="py-line">        <tt id="link-65" class="py-name" targets="Class imusim.trajectories.splined.SplinedPositionTrajectory=imusim.trajectories.splined.SplinedPositionTrajectory-class.html"><a title="imusim.trajectories.splined.SplinedPositionTrajectory" class="py-name" href="#" onclick="return doclink('link-65', 'SplinedPositionTrajectory', 'link-65');">SplinedPositionTrajectory</a></tt><tt class="py-op">.</tt><tt id="link-66" class="py-name" targets="Method imusim.algorithms.calibration.ScaleAndOffsetCalibration.__init__()=imusim.algorithms.calibration.ScaleAndOffsetCalibration-class.html#__init__,Method imusim.algorithms.orientation.BachmannCF.__init__()=imusim.algorithms.orientation.BachmannCF-class.html#__init__,Method imusim.algorithms.orientation.DistLinAccelCF.__init__()=imusim.algorithms.orientation.DistLinAccelCF-class.html#__init__,Method imusim.algorithms.orientation.GyroIntegrator.__init__()=imusim.algorithms.orientation.GyroIntegrator-class.html#__init__,Method imusim.algorithms.orientation.OrientCF.__init__()=imusim.algorithms.orientation.OrientCF-class.html#__init__,Method imusim.algorithms.orientation.OrientationFilter.__init__()=imusim.algorithms.orientation.OrientationFilter-class.html#__init__,Method imusim.algorithms.orientation.YunEKF.__init__()=imusim.algorithms.orientation.YunEKF-class.html#__init__,Method imusim.algorithms.position.ConstantPosition.__init__()=imusim.algorithms.position.ConstantPosition-class.html#__init__,Method imusim.algorithms.position.ContactTrackingKalmanFilter.__init__()=imusim.algorithms.position.ContactTrackingKalmanFilter-class.html#__init__,Method imusim.algorithms.position.LowestPoint.__init__()=imusim.algorithms.position.LowestPoint-class.html#__init__,Method imusim.algorithms.position.PositionEstimator.__init__()=imusim.algorithms.position.PositionEstimator-class.html#__init__,Method imusim.algorithms.position.RootAccelerationIntegrator.__init__()=imusim.algorithms.position.RootAccelerationIntegrator-class.html#__init__,Method imusim.algorithms.posture_reconstruction.InheritedForwardKinematics.__init__()=imusim.algorithms.posture_reconstruction.InheritedForwardKinematics-class.html#__init__,Method imusim.algorithms.posture_reconstruction.PostureReconstructor.__init__()=imusim.algorithms.posture_reconstruction.PostureReconstructor-class.html#__init__,Method imusim.algorithms.posture_reconstruction.SimpleForwardKinematics.__init__()=imusim.algorithms.posture_reconstruction.SimpleForwardKinematics-class.html#__init__,Method imusim.algorithms.vector_observation.FQA.__init__()=imusim.algorithms.vector_observation.FQA-class.html#__init__,Method imusim.algorithms.vector_observation.LeastSquaresOptimalVectorObservation.__init__()=imusim.algorithms.vector_observation.LeastSquaresOptimalVectorObservation-class.html#__init__,Method imusim.behaviours.basestation.BodyModelReconstructor.__init__()=imusim.behaviours.basestation.BodyModelReconstructor-class.html#__init__,Method imusim.behaviours.imu.BasicIMUBehaviour.__init__()=imusim.behaviours.imu.BasicIMUBehaviour-class.html#__init__,Method imusim.behaviours.mac.MAC.__init__()=imusim.behaviours.mac.MAC-class.html#__init__,Method imusim.behaviours.orient_tdma.AuxPacket.__init__()=imusim.behaviours.orient_tdma.AuxPacket-class.html#__init__,Method imusim.behaviours.orient_tdma.DataPacket.__init__()=imusim.behaviours.orient_tdma.DataPacket-class.html#__init__,Method imusim.behaviours.orient_tdma.InterSlaveMAC.__init__()=imusim.behaviours.orient_tdma.InterSlaveMAC-class.html#__init__,Method imusim.behaviours.orient_tdma.InterSlaveSchedule.__init__()=imusim.behaviours.orient_tdma.InterSlaveSchedule-class.html#__init__,Method imusim.behaviours.orient_tdma.MasterMAC.__init__()=imusim.behaviours.orient_tdma.MasterMAC-class.html#__init__,Method imusim.behaviours.orient_tdma.Schedule.__init__()=imusim.behaviours.orient_tdma.Schedule-class.html#__init__,Method imusim.behaviours.orient_tdma.SlaveMAC.__init__()=imusim.behaviours.orient_tdma.SlaveMAC-class.html#__init__,Method imusim.behaviours.sampling.PeriodicSampler.__init__()=imusim.behaviours.sampling.PeriodicSampler-class.html#__init__,Method imusim.behaviours.timing.TimerMultiplexer.__init__()=imusim.behaviours.timing.TimerMultiplexer-class.html#__init__,Method imusim.behaviours.timing.VirtualTimer.__init__()=imusim.behaviours.timing.VirtualTimer-class.html#__init__,Method imusim.capture.marker.Marker.__init__()=imusim.capture.marker.Marker-class.html#__init__,Method imusim.capture.marker.Marker3DOF.__init__()=imusim.capture.marker.Marker3DOF-class.html#__init__,Method imusim.capture.marker.Marker6DOF.__init__()=imusim.capture.marker.Marker6DOF-class.html#__init__,Method imusim.capture.marker.MarkerCapture.__init__()=imusim.capture.marker.MarkerCapture-class.html#__init__,Method imusim.capture.marker.SplinedMarker3DOF.__init__()=imusim.capture.marker.SplinedMarker3DOF-class.html#__init__,Method imusim.capture.marker.SplinedMarker6DOF.__init__()=imusim.capture.marker.SplinedMarker6DOF-class.html#__init__,Method imusim.capture.marker.SplinedMarkerCapture.__init__()=imusim.capture.marker.SplinedMarkerCapture-class.html#__init__,Method imusim.capture.sensor.CapturedDevice.__init__()=imusim.capture.sensor.CapturedDevice-class.html#__init__,Method imusim.capture.sensor.SensorDataCapture.__init__()=imusim.capture.sensor.SensorDataCapture-class.html#__init__,Method imusim.environment.base.Environment.__init__()=imusim.environment.base.Environment-class.html#__init__,Method imusim.environment.gravity.ConstantGravitationalField.__init__()=imusim.environment.gravity.ConstantGravitationalField-class.html#__init__,Method imusim.environment.magnetic_fields.DistortedMagneticField.__init__()=imusim.environment.magnetic_fields.DistortedMagneticField-class.html#__init__,Method imusim.environment.magnetic_fields.EarthMagneticField.__init__()=imusim.environment.magnetic_fields.EarthMagneticField-class.html#__init__,Method imusim.environment.magnetic_fields.SolenoidMagneticField.__init__()=imusim.environment.magnetic_fields.SolenoidMagneticField-class.html#__init__,Method imusim.environment.radio_environment.BERRadioEnvironment.__init__()=imusim.environment.radio_environment.BERRadioEnvironment-class.html#__init__,Method imusim.environment.radio_environment.IdealRadioEnvironment.__init__()=imusim.environment.radio_environment.IdealRadioEnvironment-class.html#__init__,Method imusim.environment.radio_environment.RadioEnvironment.__init__()=imusim.environment.radio_environment.RadioEnvironment-class.html#__init__,Method imusim.io.bvh.BVHExporter.__init__()=imusim.io.bvh.BVHExporter-class.html#__init__,Method imusim.io.bvh.BVHLoader.__init__()=imusim.io.bvh.BVHLoader-class.html#__init__,Method imusim.maths.integrators.DoubleIntegrator.__init__()=imusim.maths.integrators.DoubleIntegrator-class.html#__init__,Method imusim.maths.integrators.Integrator.__init__()=imusim.maths.integrators.Integrator-class.html#__init__,Method imusim.maths.integrators.TrapeziumRule.__init__()=imusim.maths.integrators.TrapeziumRule-class.html#__init__,Method imusim.maths.kalman.KalmanFilter.__init__()=imusim.maths.kalman.KalmanFilter-class.html#__init__,Method imusim.maths.kalman.UnscentedKalmanFilter.__init__()=imusim.maths.kalman.UnscentedKalmanFilter-class.html#__init__,Method imusim.maths.quat_splines.SQUADQuaternionSpline.__init__()=imusim.maths.quat_splines.SQUADQuaternionSpline-class.html#__init__,Method imusim.maths.quaternions.QuaternionArray.__init__()=imusim.maths.quaternions.QuaternionArray-class.html#__init__,Method imusim.maths.splines.PartialInputSpline.__init__()=imusim.maths.splines.PartialInputSpline-class.html#__init__,Method imusim.maths.splines.UnivariateSpline.__init__()=imusim.maths.splines.UnivariateSpline-class.html#__init__,Method imusim.maths.transforms.AffineTransform.__init__()=imusim.maths.transforms.AffineTransform-class.html#__init__,Method imusim.maths.transforms.UnscentedTransform.__init__()=imusim.maths.transforms.UnscentedTransform-class.html#__init__,Method imusim.maths.vector_fields.ConstantVectorField.__init__()=imusim.maths.vector_fields.ConstantVectorField-class.html#__init__,Method imusim.maths.vector_fields.InterpolatedVectorField.__init__()=imusim.maths.vector_fields.InterpolatedVectorField-class.html#__init__,Method imusim.maths.vector_fields.NaturalNeighbourInterpolatedField.__init__()=imusim.maths.vector_fields.NaturalNeighbourInterpolatedField-class.html#__init__,Method imusim.maths.vector_fields.RBFInterpolatedField.__init__()=imusim.maths.vector_fields.RBFInterpolatedField-class.html#__init__,Method imusim.maths.vector_splines.PartialInputVectorSpline.__init__()=imusim.maths.vector_splines.PartialInputVectorSpline-class.html#__init__,Method imusim.maths.vector_splines.UnivariateVectorSpline.__init__()=imusim.maths.vector_splines.UnivariateVectorSpline-class.html#__init__,Method imusim.platforms.accelerometers.MMA7260Q.__init__()=imusim.platforms.accelerometers.MMA7260Q-class.html#__init__,Method imusim.platforms.adcs.ParametricADC.__init__()=imusim.platforms.adcs.ParametricADC-class.html#__init__,Method imusim.platforms.adcs.QuantisingADC.__init__()=imusim.platforms.adcs.QuantisingADC-class.html#__init__,Method imusim.platforms.base.Component.__init__()=imusim.platforms.base.Component-class.html#__init__,Method imusim.platforms.base.Platform.__init__()=imusim.platforms.base.Platform-class.html#__init__,Method imusim.platforms.basestations.IdealBasestation.__init__()=imusim.platforms.basestations.IdealBasestation-class.html#__init__,Method imusim.platforms.gyroscopes.ADXRS300.__init__()=imusim.platforms.gyroscopes.ADXRS300-class.html#__init__,Method imusim.platforms.imus.IdealIMU.__init__()=imusim.platforms.imus.IdealIMU-class.html#__init__,Method imusim.platforms.imus.MagicIMU.__init__()=imusim.platforms.imus.MagicIMU-class.html#__init__,Method imusim.platforms.imus.Orient3IMU.__init__()=imusim.platforms.imus.Orient3IMU-class.html#__init__,Method imusim.platforms.magnetometers.HMC105x.__init__()=imusim.platforms.magnetometers.HMC105x-class.html#__init__,Method imusim.platforms.radios.Radio.__init__()=imusim.platforms.radios.Radio-class.html#__init__,Method imusim.platforms.radios.RadioPacket.__init__()=imusim.platforms.radios.RadioPacket-class.html#__init__,Method imusim.platforms.sensors.NoisySensor.__init__()=imusim.platforms.sensors.NoisySensor-class.html#__init__,Method imusim.platforms.sensors.NoisyTransformedSensor.__init__()=imusim.platforms.sensors.NoisyTransformedSensor-class.html#__init__,Method imusim.platforms.sensors.Sensor.__init__()=imusim.platforms.sensors.Sensor-class.html#__init__,Method imusim.platforms.sensors.TransformedSensor.__init__()=imusim.platforms.sensors.TransformedSensor-class.html#__init__,Method imusim.platforms.timers.ParametricTimer.__init__()=imusim.platforms.timers.ParametricTimer-class.html#__init__,Method imusim.platforms.timers.Timer.__init__()=imusim.platforms.timers.Timer-class.html#__init__,Method imusim.simulation.base.Simulation.ProgressMonitor.__init__()=imusim.simulation.base.Simulation.ProgressMonitor-class.html#__init__,Method imusim.simulation.base.Simulation.__init__()=imusim.simulation.base.Simulation-class.html#__init__,Method imusim.simulation.calibrators.Calibrator.__init__()=imusim.simulation.calibrators.Calibrator-class.html#__init__,Method imusim.simulation.calibrators.ScaleAndOffsetCalibrator.__init__()=imusim.simulation.calibrators.ScaleAndOffsetCalibrator-class.html#__init__,Method imusim.testing.random_data.RandomRotationTrajectory.__init__()=imusim.testing.random_data.RandomRotationTrajectory-class.html#__init__,Method imusim.testing.random_data.RandomTrajectory.__init__()=imusim.testing.random_data.RandomTrajectory-class.html#__init__,Method imusim.trajectories.base.ConstantPositionTrajectory.__init__()=imusim.trajectories.base.ConstantPositionTrajectory-class.html#__init__,Method imusim.trajectories.base.ConstantRotationTrajectory.__init__()=imusim.trajectories.base.ConstantRotationTrajectory-class.html#__init__,Method imusim.trajectories.base.ContinuousRotationTrajectory.__init__()=imusim.trajectories.base.ContinuousRotationTrajectory-class.html#__init__,Method imusim.trajectories.base.StaticContinuousRotationTrajectory.__init__()=imusim.trajectories.base.StaticContinuousRotationTrajectory-class.html#__init__,Method imusim.trajectories.base.StaticTrajectory.__init__()=imusim.trajectories.base.StaticTrajectory-class.html#__init__,Method imusim.trajectories.multi_marker.MultiMarkerTrajectory.__init__()=imusim.trajectories.multi_marker.MultiMarkerTrajectory-class.html#__init__,Method imusim.trajectories.offset.OffsetTrajectory.__init__()=imusim.trajectories.offset.OffsetTrajectory-class.html#__init__,Method imusim.trajectories.rigid_body.Joint.__init__()=imusim.trajectories.rigid_body.Joint-class.html#__init__,Method imusim.trajectories.rigid_body.Point.__init__()=imusim.trajectories.rigid_body.Point-class.html#__init__,Method imusim.trajectories.rigid_body.PointTrajectory.__init__()=imusim.trajectories.rigid_body.PointTrajectory-class.html#__init__,Method imusim.trajectories.rigid_body.SampledBodyModel.__init__()=imusim.trajectories.rigid_body.SampledBodyModel-class.html#__init__,Method imusim.trajectories.rigid_body.SampledJoint.__init__()=imusim.trajectories.rigid_body.SampledJoint-class.html#__init__,Method imusim.trajectories.rigid_body.SplinedBodyModel.__init__()=imusim.trajectories.rigid_body.SplinedBodyModel-class.html#__init__,Method imusim.trajectories.rigid_body.SplinedJoint.__init__()=imusim.trajectories.rigid_body.SplinedJoint-class.html#__init__,Method imusim.trajectories.sampled.SampledPositionTrajectory.__init__()=imusim.trajectories.sampled.SampledPositionTrajectory-class.html#__init__,Method imusim.trajectories.sampled.SampledRotationTrajectory.__init__()=imusim.trajectories.sampled.SampledRotationTrajectory-class.html#__init__,Method imusim.trajectories.sampled.SampledTrajectory.__init__()=imusim.trajectories.sampled.SampledTrajectory-class.html#__init__,Method imusim.trajectories.splined.SplinedPositionTrajectory.__init__()=imusim.trajectories.splined.SplinedPositionTrajectory-class.html#__init__,Method imusim.trajectories.splined.SplinedRotationTrajectory.__init__()=imusim.trajectories.splined.SplinedRotationTrajectory-class.html#__init__,Method imusim.trajectories.splined.SplinedTrajectory.__init__()=imusim.trajectories.splined.SplinedTrajectory-class.html#__init__,Method imusim.utilities.caching.CacheEntry.__init__()=imusim.utilities.caching.CacheEntry-class.html#__init__,Method imusim.utilities.caching.CacheLastValue.__init__()=imusim.utilities.caching.CacheLastValue-class.html#__init__,Method imusim.utilities.documentation.prepend_method_doc.__init__()=imusim.utilities.documentation.prepend_method_doc-class.html#__init__,Method imusim.utilities.time_series.TimeSeries.__init__()=imusim.utilities.time_series.TimeSeries-class.html#__init__,Method imusim.utilities.trees.TreeNode.__init__()=imusim.utilities.trees.TreeNode-class.html#__init__,Method imusim.visualisation.rendering.AnimatedRenderer.__init__()=imusim.visualisation.rendering.AnimatedRenderer-class.html#__init__,Method imusim.visualisation.rendering.BodyModelRenderer.__init__()=imusim.visualisation.rendering.BodyModelRenderer-class.html#__init__,Method imusim.visualisation.rendering.ContactProbabilityRenderer.__init__()=imusim.visualisation.rendering.ContactProbabilityRenderer-class.html#__init__,Method imusim.visualisation.rendering.InteractiveAnimation.__init__()=imusim.visualisation.rendering.InteractiveAnimation-class.html#__init__,Method imusim.visualisation.rendering.VelocityVectorRenderer.__init__()=imusim.visualisation.rendering.VelocityVectorRenderer-class.html#__init__"><a title="imusim.algorithms.calibration.ScaleAndOffsetCalibration.__init__
+imusim.algorithms.orientation.BachmannCF.__init__
+imusim.algorithms.orientation.DistLinAccelCF.__init__
+imusim.algorithms.orientation.GyroIntegrator.__init__
+imusim.algorithms.orientation.OrientCF.__init__
+imusim.algorithms.orientation.OrientationFilter.__init__
+imusim.algorithms.orientation.YunEKF.__init__
+imusim.algorithms.position.ConstantPosition.__init__
+imusim.algorithms.position.ContactTrackingKalmanFilter.__init__
+imusim.algorithms.position.LowestPoint.__init__
+imusim.algorithms.position.PositionEstimator.__init__
+imusim.algorithms.position.RootAccelerationIntegrator.__init__
+imusim.algorithms.posture_reconstruction.InheritedForwardKinematics.__init__
+imusim.algorithms.posture_reconstruction.PostureReconstructor.__init__
+imusim.algorithms.posture_reconstruction.SimpleForwardKinematics.__init__
+imusim.algorithms.vector_observation.FQA.__init__
+imusim.algorithms.vector_observation.LeastSquaresOptimalVectorObservation.__init__
+imusim.behaviours.basestation.BodyModelReconstructor.__init__
+imusim.behaviours.imu.BasicIMUBehaviour.__init__
+imusim.behaviours.mac.MAC.__init__
+imusim.behaviours.orient_tdma.AuxPacket.__init__
+imusim.behaviours.orient_tdma.DataPacket.__init__
+imusim.behaviours.orient_tdma.InterSlaveMAC.__init__
+imusim.behaviours.orient_tdma.InterSlaveSchedule.__init__
+imusim.behaviours.orient_tdma.MasterMAC.__init__
+imusim.behaviours.orient_tdma.Schedule.__init__
+imusim.behaviours.orient_tdma.SlaveMAC.__init__
+imusim.behaviours.sampling.PeriodicSampler.__init__
+imusim.behaviours.timing.TimerMultiplexer.__init__
+imusim.behaviours.timing.VirtualTimer.__init__
+imusim.capture.marker.Marker.__init__
+imusim.capture.marker.Marker3DOF.__init__
+imusim.capture.marker.Marker6DOF.__init__
+imusim.capture.marker.MarkerCapture.__init__
+imusim.capture.marker.SplinedMarker3DOF.__init__
+imusim.capture.marker.SplinedMarker6DOF.__init__
+imusim.capture.marker.SplinedMarkerCapture.__init__
+imusim.capture.sensor.CapturedDevice.__init__
+imusim.capture.sensor.SensorDataCapture.__init__
+imusim.environment.base.Environment.__init__
+imusim.environment.gravity.ConstantGravitationalField.__init__
+imusim.environment.magnetic_fields.DistortedMagneticField.__init__
+imusim.environment.magnetic_fields.EarthMagneticField.__init__
+imusim.environment.magnetic_fields.SolenoidMagneticField.__init__
+imusim.environment.radio_environment.BERRadioEnvironment.__init__
+imusim.environment.radio_environment.IdealRadioEnvironment.__init__
+imusim.environment.radio_environment.RadioEnvironment.__init__
+imusim.io.bvh.BVHExporter.__init__
+imusim.io.bvh.BVHLoader.__init__
+imusim.maths.integrators.DoubleIntegrator.__init__
+imusim.maths.integrators.Integrator.__init__
+imusim.maths.integrators.TrapeziumRule.__init__
+imusim.maths.kalman.KalmanFilter.__init__
+imusim.maths.kalman.UnscentedKalmanFilter.__init__
+imusim.maths.quat_splines.SQUADQuaternionSpline.__init__
+imusim.maths.quaternions.QuaternionArray.__init__
+imusim.maths.splines.PartialInputSpline.__init__
+imusim.maths.splines.UnivariateSpline.__init__
+imusim.maths.transforms.AffineTransform.__init__
+imusim.maths.transforms.UnscentedTransform.__init__
+imusim.maths.vector_fields.ConstantVectorField.__init__
+imusim.maths.vector_fields.InterpolatedVectorField.__init__
+imusim.maths.vector_fields.NaturalNeighbourInterpolatedField.__init__
+imusim.maths.vector_fields.RBFInterpolatedField.__init__
+imusim.maths.vector_splines.PartialInputVectorSpline.__init__
+imusim.maths.vector_splines.UnivariateVectorSpline.__init__
+imusim.platforms.accelerometers.MMA7260Q.__init__
+imusim.platforms.adcs.ParametricADC.__init__
+imusim.platforms.adcs.QuantisingADC.__init__
+imusim.platforms.base.Component.__init__
+imusim.platforms.base.Platform.__init__
+imusim.platforms.basestations.IdealBasestation.__init__
+imusim.platforms.gyroscopes.ADXRS300.__init__
+imusim.platforms.imus.IdealIMU.__init__
+imusim.platforms.imus.MagicIMU.__init__
+imusim.platforms.imus.Orient3IMU.__init__
+imusim.platforms.magnetometers.HMC105x.__init__
+imusim.platforms.radios.Radio.__init__
+imusim.platforms.radios.RadioPacket.__init__
+imusim.platforms.sensors.NoisySensor.__init__
+imusim.platforms.sensors.NoisyTransformedSensor.__init__
+imusim.platforms.sensors.Sensor.__init__
+imusim.platforms.sensors.TransformedSensor.__init__
+imusim.platforms.timers.ParametricTimer.__init__
+imusim.platforms.timers.Timer.__init__
+imusim.simulation.base.Simulation.ProgressMonitor.__init__
+imusim.simulation.base.Simulation.__init__
+imusim.simulation.calibrators.Calibrator.__init__
+imusim.simulation.calibrators.ScaleAndOffsetCalibrator.__init__
+imusim.testing.random_data.RandomRotationTrajectory.__init__
+imusim.testing.random_data.RandomTrajectory.__init__
+imusim.trajectories.base.ConstantPositionTrajectory.__init__
+imusim.trajectories.base.ConstantRotationTrajectory.__init__
+imusim.trajectories.base.ContinuousRotationTrajectory.__init__
+imusim.trajectories.base.StaticContinuousRotationTrajectory.__init__
+imusim.trajectories.base.StaticTrajectory.__init__
+imusim.trajectories.multi_marker.MultiMarkerTrajectory.__init__
+imusim.trajectories.offset.OffsetTrajectory.__init__
+imusim.trajectories.rigid_body.Joint.__init__
+imusim.trajectories.rigid_body.Point.__init__
+imusim.trajectories.rigid_body.PointTrajectory.__init__
+imusim.trajectories.rigid_body.SampledBodyModel.__init__
+imusim.trajectories.rigid_body.SampledJoint.__init__
+imusim.trajectories.rigid_body.SplinedBodyModel.__init__
+imusim.trajectories.rigid_body.SplinedJoint.__init__
+imusim.trajectories.sampled.SampledPositionTrajectory.__init__
+imusim.trajectories.sampled.SampledRotationTrajectory.__init__
+imusim.trajectories.sampled.SampledTrajectory.__init__
+imusim.trajectories.splined.SplinedPositionTrajectory.__init__
+imusim.trajectories.splined.SplinedRotationTrajectory.__init__
+imusim.trajectories.splined.SplinedTrajectory.__init__
+imusim.utilities.caching.CacheEntry.__init__
+imusim.utilities.caching.CacheLastValue.__init__
+imusim.utilities.documentation.prepend_method_doc.__init__
+imusim.utilities.time_series.TimeSeries.__init__
+imusim.utilities.trees.TreeNode.__init__
+imusim.visualisation.rendering.AnimatedRenderer.__init__
+imusim.visualisation.rendering.BodyModelRenderer.__init__
+imusim.visualisation.rendering.ContactProbabilityRenderer.__init__
+imusim.visualisation.rendering.InteractiveAnimation.__init__
+imusim.visualisation.rendering.VelocityVectorRenderer.__init__" class="py-name" href="#" onclick="return doclink('link-66', '__init__', 'link-66');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt id="link-67" class="py-name"><a title="imusim.trajectories.sampled" class="py-name" href="#" onclick="return doclink('link-67', 'sampled', 'link-2');">sampled</a></tt><tt class="py-op">,</tt> <tt class="py-op">**</tt><tt class="py-name">kwargs</tt><tt class="py-op">)</tt> </tt>
+<a name="L154"></a><tt class="py-lineno">154</tt>  <tt class="py-line">        <tt id="link-68" class="py-name" targets="Class imusim.trajectories.splined.SplinedRotationTrajectory=imusim.trajectories.splined.SplinedRotationTrajectory-class.html"><a title="imusim.trajectories.splined.SplinedRotationTrajectory" class="py-name" href="#" onclick="return doclink('link-68', 'SplinedRotationTrajectory', 'link-68');">SplinedRotationTrajectory</a></tt><tt class="py-op">.</tt><tt id="link-69" class="py-name"><a title="imusim.algorithms.calibration.ScaleAndOffsetCalibration.__init__
+imusim.algorithms.orientation.BachmannCF.__init__
+imusim.algorithms.orientation.DistLinAccelCF.__init__
+imusim.algorithms.orientation.GyroIntegrator.__init__
+imusim.algorithms.orientation.OrientCF.__init__
+imusim.algorithms.orientation.OrientationFilter.__init__
+imusim.algorithms.orientation.YunEKF.__init__
+imusim.algorithms.position.ConstantPosition.__init__
+imusim.algorithms.position.ContactTrackingKalmanFilter.__init__
+imusim.algorithms.position.LowestPoint.__init__
+imusim.algorithms.position.PositionEstimator.__init__
+imusim.algorithms.position.RootAccelerationIntegrator.__init__
+imusim.algorithms.posture_reconstruction.InheritedForwardKinematics.__init__
+imusim.algorithms.posture_reconstruction.PostureReconstructor.__init__
+imusim.algorithms.posture_reconstruction.SimpleForwardKinematics.__init__
+imusim.algorithms.vector_observation.FQA.__init__
+imusim.algorithms.vector_observation.LeastSquaresOptimalVectorObservation.__init__
+imusim.behaviours.basestation.BodyModelReconstructor.__init__
+imusim.behaviours.imu.BasicIMUBehaviour.__init__
+imusim.behaviours.mac.MAC.__init__
+imusim.behaviours.orient_tdma.AuxPacket.__init__
+imusim.behaviours.orient_tdma.DataPacket.__init__
+imusim.behaviours.orient_tdma.InterSlaveMAC.__init__
+imusim.behaviours.orient_tdma.InterSlaveSchedule.__init__
+imusim.behaviours.orient_tdma.MasterMAC.__init__
+imusim.behaviours.orient_tdma.Schedule.__init__
+imusim.behaviours.orient_tdma.SlaveMAC.__init__
+imusim.behaviours.sampling.PeriodicSampler.__init__
+imusim.behaviours.timing.TimerMultiplexer.__init__
+imusim.behaviours.timing.VirtualTimer.__init__
+imusim.capture.marker.Marker.__init__
+imusim.capture.marker.Marker3DOF.__init__
+imusim.capture.marker.Marker6DOF.__init__
+imusim.capture.marker.MarkerCapture.__init__
+imusim.capture.marker.SplinedMarker3DOF.__init__
+imusim.capture.marker.SplinedMarker6DOF.__init__
+imusim.capture.marker.SplinedMarkerCapture.__init__
+imusim.capture.sensor.CapturedDevice.__init__
+imusim.capture.sensor.SensorDataCapture.__init__
+imusim.environment.base.Environment.__init__
+imusim.environment.gravity.ConstantGravitationalField.__init__
+imusim.environment.magnetic_fields.DistortedMagneticField.__init__
+imusim.environment.magnetic_fields.EarthMagneticField.__init__
+imusim.environment.magnetic_fields.SolenoidMagneticField.__init__
+imusim.environment.radio_environment.BERRadioEnvironment.__init__
+imusim.environment.radio_environment.IdealRadioEnvironment.__init__
+imusim.environment.radio_environment.RadioEnvironment.__init__
+imusim.io.bvh.BVHExporter.__init__
+imusim.io.bvh.BVHLoader.__init__
+imusim.maths.integrators.DoubleIntegrator.__init__
+imusim.maths.integrators.Integrator.__init__
+imusim.maths.integrators.TrapeziumRule.__init__
+imusim.maths.kalman.KalmanFilter.__init__
+imusim.maths.kalman.UnscentedKalmanFilter.__init__
+imusim.maths.quat_splines.SQUADQuaternionSpline.__init__
+imusim.maths.quaternions.QuaternionArray.__init__
+imusim.maths.splines.PartialInputSpline.__init__
+imusim.maths.splines.UnivariateSpline.__init__
+imusim.maths.transforms.AffineTransform.__init__
+imusim.maths.transforms.UnscentedTransform.__init__
+imusim.maths.vector_fields.ConstantVectorField.__init__
+imusim.maths.vector_fields.InterpolatedVectorField.__init__
+imusim.maths.vector_fields.NaturalNeighbourInterpolatedField.__init__
+imusim.maths.vector_fields.RBFInterpolatedField.__init__
+imusim.maths.vector_splines.PartialInputVectorSpline.__init__
+imusim.maths.vector_splines.UnivariateVectorSpline.__init__
+imusim.platforms.accelerometers.MMA7260Q.__init__
+imusim.platforms.adcs.ParametricADC.__init__
+imusim.platforms.adcs.QuantisingADC.__init__
+imusim.platforms.base.Component.__init__
+imusim.platforms.base.Platform.__init__
+imusim.platforms.basestations.IdealBasestation.__init__
+imusim.platforms.gyroscopes.ADXRS300.__init__
+imusim.platforms.imus.IdealIMU.__init__
+imusim.platforms.imus.MagicIMU.__init__
+imusim.platforms.imus.Orient3IMU.__init__
+imusim.platforms.magnetometers.HMC105x.__init__
+imusim.platforms.radios.Radio.__init__
+imusim.platforms.radios.RadioPacket.__init__
+imusim.platforms.sensors.NoisySensor.__init__
+imusim.platforms.sensors.NoisyTransformedSensor.__init__
+imusim.platforms.sensors.Sensor.__init__
+imusim.platforms.sensors.TransformedSensor.__init__
+imusim.platforms.timers.ParametricTimer.__init__
+imusim.platforms.timers.Timer.__init__
+imusim.simulation.base.Simulation.ProgressMonitor.__init__
+imusim.simulation.base.Simulation.__init__
+imusim.simulation.calibrators.Calibrator.__init__
+imusim.simulation.calibrators.ScaleAndOffsetCalibrator.__init__
+imusim.testing.random_data.RandomRotationTrajectory.__init__
+imusim.testing.random_data.RandomTrajectory.__init__
+imusim.trajectories.base.ConstantPositionTrajectory.__init__
+imusim.trajectories.base.ConstantRotationTrajectory.__init__
+imusim.trajectories.base.ContinuousRotationTrajectory.__init__
+imusim.trajectories.base.StaticContinuousRotationTrajectory.__init__
+imusim.trajectories.base.StaticTrajectory.__init__
+imusim.trajectories.multi_marker.MultiMarkerTrajectory.__init__
+imusim.trajectories.offset.OffsetTrajectory.__init__
+imusim.trajectories.rigid_body.Joint.__init__
+imusim.trajectories.rigid_body.Point.__init__
+imusim.trajectories.rigid_body.PointTrajectory.__init__
+imusim.trajectories.rigid_body.SampledBodyModel.__init__
+imusim.trajectories.rigid_body.SampledJoint.__init__
+imusim.trajectories.rigid_body.SplinedBodyModel.__init__
+imusim.trajectories.rigid_body.SplinedJoint.__init__
+imusim.trajectories.sampled.SampledPositionTrajectory.__init__
+imusim.trajectories.sampled.SampledRotationTrajectory.__init__
+imusim.trajectories.sampled.SampledTrajectory.__init__
+imusim.trajectories.splined.SplinedPositionTrajectory.__init__
+imusim.trajectories.splined.SplinedRotationTrajectory.__init__
+imusim.trajectories.splined.SplinedTrajectory.__init__
+imusim.utilities.caching.CacheEntry.__init__
+imusim.utilities.caching.CacheLastValue.__init__
+imusim.utilities.documentation.prepend_method_doc.__init__
+imusim.utilities.time_series.TimeSeries.__init__
+imusim.utilities.trees.TreeNode.__init__
+imusim.visualisation.rendering.AnimatedRenderer.__init__
+imusim.visualisation.rendering.BodyModelRenderer.__init__
+imusim.visualisation.rendering.ContactProbabilityRenderer.__init__
+imusim.visualisation.rendering.InteractiveAnimation.__init__
+imusim.visualisation.rendering.VelocityVectorRenderer.__init__" class="py-name" href="#" onclick="return doclink('link-69', '__init__', 'link-66');">__init__</a></tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">,</tt> <tt id="link-70" class="py-name"><a title="imusim.trajectories.sampled" class="py-name" href="#" onclick="return doclink('link-70', 'sampled', 'link-2');">sampled</a></tt><tt class="py-op">,</tt> <tt class="py-op">**</tt><tt class="py-name">kwargs</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L155"></a><tt class="py-lineno">155</tt>  <tt class="py-line"> </tt>
+<a name="L156"></a><tt class="py-lineno">156</tt>  <tt class="py-line">    <tt class="py-decorator">@</tt><tt class="py-decorator">staticmethod</tt> </tt>
+<a name="SplinedTrajectory.fromArrays"></a><div id="SplinedTrajectory.fromArrays-def"><a name="L157"></a><tt class="py-lineno">157</tt> <a class="py-toggle" href="#" id="SplinedTrajectory.fromArrays-toggle" onclick="return toggle('SplinedTrajectory.fromArrays');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.trajectories.splined.SplinedTrajectory-class.html#fromArrays">fromArrays</a><tt class="py-op">(</tt><tt class="py-param">time</tt><tt class="py-op">,</tt> <tt class="py-param">position</tt><tt class="py-op">,</tt> <tt class="py-param">rotation</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SplinedTrajectory.fromArrays-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="SplinedTrajectory.fromArrays-expanded"><a name="L158"></a><tt class="py-lineno">158</tt>  <tt class="py-line">        <tt class="py-docstring">"""</tt> </tt>
+<a name="L159"></a><tt class="py-lineno">159</tt>  <tt class="py-line"><tt class="py-docstring">        Construct a L{SplinedTrajectory} from time, position and rotation arrays.</tt> </tt>
+<a name="L160"></a><tt class="py-lineno">160</tt>  <tt class="py-line"><tt class="py-docstring"></tt> </tt>
+<a name="L161"></a><tt class="py-lineno">161</tt>  <tt class="py-line"><tt class="py-docstring">        @param time: sequence of sample times.</tt> </tt>
+<a name="L162"></a><tt class="py-lineno">162</tt>  <tt class="py-line"><tt class="py-docstring">        @param position: sequence of position samples.</tt> </tt>
+<a name="L163"></a><tt class="py-lineno">163</tt>  <tt class="py-line"><tt class="py-docstring">        @param rotation: sequence of rotation samples.</tt> </tt>
+<a name="L164"></a><tt class="py-lineno">164</tt>  <tt class="py-line"><tt class="py-docstring">        """</tt> </tt>
+<a name="L165"></a><tt class="py-lineno">165</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt id="link-71" class="py-name" targets="Class imusim.trajectories.splined.SplinedTrajectory=imusim.trajectories.splined.SplinedTrajectory-class.html"><a title="imusim.trajectories.splined.SplinedTrajectory" class="py-name" href="#" onclick="return doclink('link-71', 'SplinedTrajectory', 'link-71');">SplinedTrajectory</a></tt><tt class="py-op">(</tt><tt id="link-72" class="py-name"><a title="imusim.trajectories.sampled.SampledTrajectory" class="py-name" href="#" onclick="return doclink('link-72', 'SampledTrajectory', 'link-8');">SampledTrajectory</a></tt><tt class="py-op">.</tt><tt id="link-73" class="py-name" targets="Static Method imusim.trajectories.sampled.SampledTrajectory.fromArrays()=imusim.trajectories.sampled.SampledTrajectory-class.html#fromArrays,Static Method imusim.trajectories.splined.SplinedTrajectory.fromArrays()=imusim.trajectories.splined.SplinedTrajectory-class.html#fromArrays"><a title="imusim.trajectories.sampled.SampledTrajectory.fromArrays
+imusim.trajectories.splined.SplinedTrajectory.fromArrays" class="py-name" href="#" onclick="return doclink('link-73', 'fromArrays', 'link-73');">fromArrays</a></tt><tt class="py-op">(</tt><tt id="link-74" class="py-name" targets="Variable imusim.simulation.base.Simulation.time=imusim.simulation.base.Simulation-class.html#time,Variable imusim.utilities.caching.CacheEntry.time=imusim.utilities.caching.CacheEntry-class.html#time"><a title="imusim.simulation.base.Simulation.time
+imusim.utilities.caching.CacheEntry.time" class="py-name" href="#" onclick="return doclink('link-74', 'time', 'link-74');">time</a></tt><tt class="py-op">,</tt> <tt id="link-75" class="py-name"><a title="imusim.algorithms.position
+imusim.testing.random_data.RandomRotationTrajectory.position
+imusim.trajectories.base.ConstantPositionTrajectory.position
+imusim.trajectories.base.PositionTrajectory.position
+imusim.trajectories.offset.OffsetTrajectory.position
+imusim.trajectories.sampled.SampledPositionTrajectory.position
+imusim.trajectories.splined.SplinedPositionTrajectory.position" class="py-name" href="#" onclick="return doclink('link-75', 'position', 'link-41');">position</a></tt><tt class="py-op">,</tt> <tt id="link-76" class="py-name"><a title="imusim.trajectories.base.ConstantRotationTrajectory.rotation
+imusim.trajectories.base.ContinuousRotationTrajectory.rotation
+imusim.trajectories.base.RotationTrajectory.rotation
+imusim.trajectories.offset.OffsetTrajectory.rotation
+imusim.trajectories.sampled.SampledRotationTrajectory.rotation
+imusim.trajectories.splined.SplinedRotationTrajectory.rotation" class="py-name" href="#" onclick="return doclink('link-76', 'rotation', 'link-61');">rotation</a></tt><tt class="py-op">)</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L166"></a><tt class="py-lineno">166</tt>  <tt class="py-line"> </tt>
+<a name="L167"></a><tt class="py-lineno">167</tt>  <tt class="py-line">    <tt class="py-decorator">@</tt><tt class="py-decorator">property</tt> </tt>
+<a name="SplinedTrajectory.startTime"></a><div id="SplinedTrajectory.startTime-def"><a name="L168"></a><tt class="py-lineno">168</tt> <a class="py-toggle" href="#" id="SplinedTrajectory.startTime-toggle" onclick="return toggle('SplinedTrajectory.startTime');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.trajectories.splined.SplinedTrajectory-class.html#startTime">startTime</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SplinedTrajectory.startTime-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="SplinedTrajectory.startTime-expanded"><a name="L169"></a><tt class="py-lineno">169</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">max</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_positionStartTime</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_rotationStartTime</tt><tt class="py-op">)</tt> </tt>
+</div><a name="L170"></a><tt class="py-lineno">170</tt>  <tt class="py-line"> </tt>
+<a name="L171"></a><tt class="py-lineno">171</tt>  <tt class="py-line">    <tt class="py-decorator">@</tt><tt class="py-decorator">property</tt> </tt>
+<a name="SplinedTrajectory.endTime"></a><div id="SplinedTrajectory.endTime-def"><a name="L172"></a><tt class="py-lineno">172</tt> <a class="py-toggle" href="#" id="SplinedTrajectory.endTime-toggle" onclick="return toggle('SplinedTrajectory.endTime');">-</a><tt class="py-line">    <tt class="py-keyword">def</tt> <a class="py-def-name" href="imusim.trajectories.splined.SplinedTrajectory-class.html#endTime">endTime</a><tt class="py-op">(</tt><tt class="py-param">self</tt><tt class="py-op">)</tt><tt class="py-op">:</tt> </tt>
+</div><div id="SplinedTrajectory.endTime-collapsed" style="display:none;" pad="+++" indent="++++++++"></div><div id="SplinedTrajectory.endTime-expanded"><a name="L173"></a><tt class="py-lineno">173</tt>  <tt class="py-line">        <tt class="py-keyword">return</tt> <tt class="py-name">min</tt><tt class="py-op">(</tt><tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_positionEndTime</tt><tt class="py-op">,</tt> <tt class="py-name">self</tt><tt class="py-op">.</tt><tt class="py-name">_rotationEndTime</tt><tt class="py-op">)</tt> </tt>
+</div></div><a name="L174"></a><tt class="py-lineno">174</tt>  <tt class="py-line"> </tt><script type="text/javascript">
+<!--
+expandto(location.href);
+// -->
+</script>
+</pre>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="imusim-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://www.imusim.org/">IMUSim</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Wed Apr 14 11:45:15 2021
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>

@@ -1,0 +1,546 @@
+<?xml version="1.0" encoding="ascii"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <title>imusim.trajectories.rigid_body.Joint</title>
+  <link rel="stylesheet" href="epydoc.css" type="text/css" />
+  <script type="text/javascript" src="epydoc.js"></script>
+</head>
+
+<body bgcolor="white" text="black" link="blue" vlink="#204080"
+      alink="#204080">
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="imusim-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://www.imusim.org/">IMUSim</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table width="100%" cellpadding="0" cellspacing="0">
+  <tr valign="top">
+    <td width="100%">
+      <span class="breadcrumbs">
+        <a href="imusim-module.html">Package&nbsp;imusim</a> ::
+        <a href="imusim.trajectories-module.html">Package&nbsp;trajectories</a> ::
+        <a href="imusim.trajectories.rigid_body-module.html">Module&nbsp;rigid_body</a> ::
+        Class&nbsp;Joint
+      </span>
+    </td>
+    <td>
+      <table cellpadding="0" cellspacing="0">
+        <!-- hide/show private -->
+      </table>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS DESCRIPTION ==================== -->
+<h1 class="epydoc">Class Joint</h1><p class="nomargin-top"><span class="codelink"><a href="imusim.trajectories.rigid_body-pysrc.html#Joint">source&nbsp;code</a></span></p>
+<center>
+
+</center>
+<hr />
+<p>A joint in a rigid body model, with its own rotating co-ordinate 
+  frame.</p>
+
+<!-- ==================== INSTANCE METHODS ==================== -->
+<a name="section-InstanceMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Instance Methods</span></td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="imusim.trajectories.rigid_body.Joint-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">parent</span>,
+        <span class="summary-sig-arg">name</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">offset</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Construct a joint.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="imusim.trajectories.rigid_body-pysrc.html#Joint.__init__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="imusim.trajectories.rigid_body.Joint-class.html#getPoint" class="summary-sig-name">getPoint</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">pointName</span>)</span><br />
+      Get a point by name from the point tree rooted at this point.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="imusim.trajectories.rigid_body-pysrc.html#Joint.getPoint">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="imusim.trajectories.rigid_body.Joint-class.html#getJoint" class="summary-sig-name">getJoint</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">jointName</span>)</span><br />
+      Get a joint by name from the subtree rooted at this joint.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="imusim.trajectories.rigid_body-pysrc.html#Joint.getJoint">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="imusim.utilities.trees.TreeNode-class.html">utilities.trees.TreeNode</a></code></b>:
+      <code><a href="imusim.utilities.trees.TreeNode-class.html#__iter__">__iter__</a></code>,
+      <code><a href="imusim.utilities.trees.TreeNode-class.html#ascendTree">ascendTree</a></code>,
+      <code><a href="imusim.utilities.trees.TreeNode-class.html#preorderTraversal">preorderTraversal</a></code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__delattr__</code>,
+      <code>__format__</code>,
+      <code>__getattribute__</code>,
+      <code>__hash__</code>,
+      <code>__new__</code>,
+      <code>__reduce__</code>,
+      <code>__reduce_ex__</code>,
+      <code>__repr__</code>,
+      <code>__setattr__</code>,
+      <code>__sizeof__</code>,
+      <code>__str__</code>,
+      <code>__subclasshook__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== CLASS METHODS ==================== -->
+<a name="section-ClassMethods"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Class Methods</span></td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="structureCopy"></a><span class="summary-sig-name">structureCopy</span>(<span class="summary-sig-arg">cls</span>,
+        <span class="summary-sig-arg">ref</span>,
+        <span class="summary-sig-arg">parent</span>=<span class="summary-sig-default">None</span>)</span><br />
+      Create a deep copy of the body model tree starting from the given 
+      joint.</td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="imusim.trajectories.rigid_body-pysrc.html#Joint.structureCopy">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+</table>
+<!-- ==================== INSTANCE VARIABLES ==================== -->
+<a name="section-InstanceVariables"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Instance Variables</span></td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="children"></a><span class="summary-name">children</span><br />
+      List of child nodes.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="imusim.trajectories.rigid_body.Point-class.html">Point</a></code></b>:
+      <code><a href="imusim.trajectories.rigid_body.Point-class.html#name">name</a></code>,
+      <code><a href="imusim.trajectories.rigid_body.Point-class.html#parent">parent</a></code>,
+      <code><a href="imusim.trajectories.rigid_body.Point-class.html#positionOffset">positionOffset</a></code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== PROPERTIES ==================== -->
+<a name="section-Properties"></a>
+<table class="summary" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Properties</span></td>
+</tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="imusim.trajectories.rigid_body.Joint-class.html#points" class="summary-name">points</a><br />
+      Iterator for the points of the body model starting at this point.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="imusim.trajectories.rigid_body.Joint-class.html#pointNames" class="summary-name">pointNames</a><br />
+      List of point names in the tree rooted at this joint.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="imusim.trajectories.rigid_body.Joint-class.html#childJoints" class="summary-name">childJoints</a><br />
+      List of child joints that have this joint as parent.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="imusim.trajectories.rigid_body.Joint-class.html#hasChildJoints" class="summary-name">hasChildJoints</a><br />
+      Whether this joint has any child joints.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="imusim.trajectories.rigid_body.Joint-class.html#joints" class="summary-name">joints</a><br />
+      Iterator for the joints of the body model starting at this joint.
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a href="imusim.trajectories.rigid_body.Joint-class.html#jointNames" class="summary-name">jointNames</a><br />
+      List of joint names in the body model tree rooted at this joint.
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" class="summary">
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="imusim.trajectories.rigid_body.Point-class.html">Point</a></code></b>:
+      <code><a href="imusim.trajectories.rigid_body.Point-class.html#isJoint">isJoint</a></code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="imusim.utilities.trees.TreeNode-class.html">utilities.trees.TreeNode</a></code></b>:
+      <code><a href="imusim.utilities.trees.TreeNode-class.html#depth">depth</a></code>,
+      <code><a href="imusim.utilities.trees.TreeNode-class.html#hasChildren">hasChildren</a></code>,
+      <code><a href="imusim.utilities.trees.TreeNode-class.html#hasParent">hasParent</a></code>,
+      <code><a href="imusim.utilities.trees.TreeNode-class.html#root">root</a></code>
+      </p>
+    <p class="indent-wrapped-lines"><b>Inherited from <code>object</code></b>:
+      <code>__class__</code>
+      </p>
+    </td>
+  </tr>
+</table>
+<!-- ==================== METHOD DETAILS ==================== -->
+<a name="section-MethodDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Method Details</span></td>
+</tr>
+</table>
+<a name="__init__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__init__</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">parent</span>,
+        <span class="sig-arg">name</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">offset</span>=<span class="sig-default">None</span>)</span>
+    <br /><em class="fname">(Constructor)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="imusim.trajectories.rigid_body-pysrc.html#Joint.__init__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Construct a joint.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>parent</code></strong> - Parent <a href="imusim.trajectories.rigid_body.Joint-class.html" 
+          class="link">Joint</a>, or None for the root joint.</li>
+        <li><strong class="pname"><code>name</code></strong> - Name of this joint.</li>
+        <li><strong class="pname"><code>offset</code></strong> - Offset of this joint in the co-ordinate frame of its parent, as a
+          3x1 <code class="link">np.ndarray</code>. Default is zero offset.</li>
+    </ul></dd>
+    <dt>Overrides:
+        object.__init__
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="getPoint"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getPoint</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">pointName</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="imusim.trajectories.rigid_body-pysrc.html#Joint.getPoint">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Get a point by name from the point tree rooted at this point.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>pointName</code></strong> - The name of the point to return (string).</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>The corresponding <a 
+          href="imusim.trajectories.rigid_body.Point-class.html" 
+          class="link">Point</a> object.</dd>
+    <dt>Raises:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code><strong class='fraise'>KeyError</strong></code> - If the named point is not present in the subtree.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="getJoint"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">getJoint</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">jointName</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="imusim.trajectories.rigid_body-pysrc.html#Joint.getJoint">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Get a joint by name from the subtree rooted at this joint.</p>
+  <dl class="fields">
+    <dt>Parameters:</dt>
+    <dd><ul class="nomargin-top">
+        <li><strong class="pname"><code>jointName</code></strong> - The name of the joint to return (string).</li>
+    </ul></dd>
+    <dt>Returns:</dt>
+        <dd>The corresponding <a 
+          href="imusim.trajectories.rigid_body.Joint-class.html" 
+          class="link">Joint</a> object.</dd>
+    <dt>Raises:</dt>
+    <dd><ul class="nomargin-top">
+        <li><code><strong class='fraise'>KeyError</strong></code> - If the named joint is not present in the subtree.</li>
+    </ul></dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== PROPERTY DETAILS ==================== -->
+<a name="section-PropertyDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Property Details</span></td>
+</tr>
+</table>
+<a name="points"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">points</h3>
+  <p>Iterator for the points of the body model starting at this point.</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.points(<span class="summary-sig-arg">self</span>)</span>
+        - Iterator for the points of the body model starting at this point.
+    </dd>
+  </dl>
+<div class="fields">      <p><strong>See Also:</strong>
+        <a 
+        href="imusim.utilities.trees.TreeNode-class.html#preorderTraversal"
+        class="link">preorderTraversal</a>
+      </p>
+</div></td></tr></table>
+</div>
+<a name="pointNames"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">pointNames</h3>
+  <p>List of point names in the tree rooted at this joint.</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.pointNames(<span class="summary-sig-arg">self</span>)</span>
+        - List of point names in the tree rooted at this joint.
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="childJoints"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">childJoints</h3>
+  <p>List of child joints that have this joint as parent.</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.childJoints(<span class="summary-sig-arg">self</span>)</span>
+        - List of child joints that have this joint as parent.
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="hasChildJoints"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">hasChildJoints</h3>
+  <p>Whether this joint has any child joints.</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.hasChildJoints(<span class="summary-sig-arg">self</span>)</span>
+        - Whether this joint has any child joints.
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="joints"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">joints</h3>
+  <p>Iterator for the joints of the body model starting at this joint.</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.joints(<span class="summary-sig-arg">self</span>)</span>
+        - Iterator for the joints of the body model starting at this joint.
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<a name="jointNames"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">jointNames</h3>
+  <p>List of joint names in the body model tree rooted at this joint.</p>
+  <dl class="fields">
+    <dt>Get Method:</dt>
+    <dd class="value"><span class="summary-sig"><i>unreachable</i>.jointNames(<span class="summary-sig-arg">self</span>)</span>
+        - List of joint names in the body model tree rooted at this joint.
+    </dd>
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== NAVIGATION BAR ==================== -->
+<table class="navbar" border="0" width="100%" cellpadding="0"
+       bgcolor="#a0c0ff" cellspacing="0">
+  <tr valign="middle">
+  <!-- Home link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="imusim-module.html">Home</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Tree link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="module-tree.html">Trees</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Index link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="identifier-index.html">Indices</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Help link -->
+      <th>&nbsp;&nbsp;&nbsp;<a
+        href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
+
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            ><a class="navbar" target="_top" href="http://www.imusim.org/">IMUSim</a></th>
+          </tr></table></th>
+  </tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" width="100%%">
+  <tr>
+    <td align="left" class="footer">
+    Generated by Epydoc 3.0.1 on Wed Apr 14 11:45:15 2021
+    </td>
+    <td align="right" class="footer">
+      <a target="mainFrame" href="http://epydoc.sourceforge.net"
+        >http://epydoc.sourceforge.net</a>
+    </td>
+  </tr>
+</table>
+
+<script type="text/javascript">
+  <!--
+  // Private objects are initially displayed (because if
+  // javascript is turned off then we want them to be
+  // visible); but by default, we want to hide them.  So hide
+  // them unless we have a cookie that says to show them.
+  checkCookie();
+  // -->
+</script>
+</body>
+</html>
